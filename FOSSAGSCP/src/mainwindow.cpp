@@ -1,13 +1,10 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "FOSSA-Comms.h"
-
 #include <iostream>
 
 #include <QtCore>
 
-static uint8_t g_Key[16];
 
 
 
@@ -44,7 +41,7 @@ void MainWindow::LoadKeyFromFile()
         byteHexStr[2] = '\0';
 
         uint8_t hexValueAsByte= (uint8_t)strtol(byteHexStr, NULL, 16);
-        g_Key[i/2] = hexValueAsByte;
+        this->m_key[i/2] = hexValueAsByte;
     }
 
     fclose(f);

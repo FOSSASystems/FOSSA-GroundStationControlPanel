@@ -16,15 +16,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    FOSSA-Comms.cpp \
-    aes.cpp \
-    main.cpp \
-    mainwindow.cpp
+    src/main.cpp \
+    src/mainwindow.cpp
 
 HEADERS += \
-    FOSSA-Comms.h \
-    aes.h \
-    mainwindow.h
+    include/mainwindow.h
+
+INCLUDEPATH += include
+INCLUDEPATH += 3rdparty/FOSSA-Comms
+INCLUDEPATH += 3rdparty/quicktle-master/include
+INCLUDEPATH += 3rdparty/tiny-aes
 
 FORMS += \
     mainwindow.ui
