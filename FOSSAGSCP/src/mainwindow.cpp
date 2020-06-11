@@ -2,11 +2,9 @@
 #include "ui_mainwindow.h"
 
 #include <iostream>
+#include <string.h>
 
 #include <QtCore>
-
-
-
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {

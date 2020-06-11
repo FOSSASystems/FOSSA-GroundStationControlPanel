@@ -6,18 +6,18 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1000</width>
-    <height>440</height>
+    <width>800</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Ground Station Control Panel</string>
   </property>
   <property name="tabShape">
-   <enum>QTabWidget::Triangular</enum>
+   <enum>QTabWidget::Rounded</enum>
   </property>
   <property name="unifiedTitleAndToolBarOnMac">
-   <bool>true</bool>
+   <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="autoFillBackground">
@@ -109,18 +109,72 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1000</width>
+     <width>800</width>
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuFOSSA_Ground_Station_Control_Panel">
+   <widget class="QMenu" name="menu_File">
     <property name="title">
-     <string>FOSSA Ground Station Control Panel</string>
+     <string>&amp;File</string>
     </property>
    </widget>
-   <addaction name="menuFOSSA_Ground_Station_Control_Panel"/>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionTLE_Information"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionLogging_2"/>
+    <addaction name="actionEncryption_2"/>
+    <addaction name="actionTLE"/>
+    <addaction name="actionSerial_Ports"/>
+    <addaction name="actionWeb_Route"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionLogging_2">
+   <property name="text">
+    <string>Logging</string>
+   </property>
+  </action>
+  <action name="actionEncryption_2">
+   <property name="text">
+    <string>Encryption</string>
+   </property>
+  </action>
+  <action name="actionTLE">
+   <property name="text">
+    <string>TLE</string>
+   </property>
+  </action>
+  <action name="actionSerial_Ports">
+   <property name="text">
+    <string>Serial Ports</string>
+   </property>
+  </action>
+  <action name="actionTLE_Information">
+   <property name="text">
+    <string>TLE Information</string>
+   </property>
+  </action>
+  <action name="actionWeb_Route">
+   <property name="text">
+    <string>Web Routing</string>
+   </property>
+  </action>
  </widget>
  <resources/>
  <connections/>
