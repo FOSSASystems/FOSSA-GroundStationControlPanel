@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui serialport
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -20,34 +20,14 @@ SOURCES += \
     src/mainwindow.cpp
 
 HEADERS += \
-    Framework/Components/Interfaces/DatabaseAccess/IActiveRecord.h \
-    Framework/Components/Interfaces/Messaging/IEndpoint.h \
-    Framework/Components/Interfaces/Messaging/IMessage.h \
-    Framework/Components/Interfaces/Messaging/IMessageChannel.h \
-    Framework/Components/Interfaces/Messaging/IMessageCommandProcessor.h \
-    Framework/Components/Interfaces/Messaging/IMessageRouter.h \
-    Framework/Components/Interfaces/ResourceManagment/IBuffer.h \
-    Framework/Components/Interfaces/ResourceManagment/IContainer.h \
-    Framework/Components/Interfaces/ResourceManagment/IContextObject.h \
-    Framework/Components/Interfaces/ResourceManagment/IFactory.h \
-    Framework/Components/Interfaces/ResourceManagment/IFrameworkObject.h \
-    Framework/Components/Interfaces/ResourceManagment/IManagedObject.h \
-    Framework/Components/Interfaces/ResourceManagment/IRegistry.h \
-    Framework/Components/Interfaces/ResourceManagment/IService.h \
-    Framework/Framework.h \
-    Framework/FrameworkObjects/DatabaseFrameworkObject.h \
-    Framework/FrameworkObjects/MessagingFrameworkObject.h \
-    Framework/FrameworkObjects/ResourceManagementFrameworkObject.h \
-    Framework/Services/ChannelsService.h \
-    Framework/Services/DatabaseService.h \
-    Framework/Services/MessageProcessorsService.h \
-    Framework/Services/RoutersService.h \
+    include/SerialPortReader.h \
     include/mainwindow.h
 
 INCLUDEPATH += include
 INCLUDEPATH += 3rdparty/FOSSA-Comms
 INCLUDEPATH += 3rdparty/quicktle-master/include
 INCLUDEPATH += 3rdparty/tiny-aes
+
 FORMS += \
     mainwindow.ui
 

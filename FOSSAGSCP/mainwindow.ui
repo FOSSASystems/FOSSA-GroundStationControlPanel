@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>9</number>
+       <number>8</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -95,11 +95,6 @@
         <string>System Information</string>
        </attribute>
       </widget>
-      <widget class="QWidget" name="Serial">
-       <attribute name="title">
-        <string>Serial</string>
-       </attribute>
-      </widget>
      </widget>
     </item>
    </layout>
@@ -113,66 +108,18 @@
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu_File">
-    <property name="title">
-     <string>&amp;File</string>
-    </property>
-   </widget>
-   <widget class="QMenu" name="menuEdit">
-    <property name="title">
-     <string>Edit</string>
-    </property>
-   </widget>
    <widget class="QMenu" name="menuTools">
     <property name="title">
      <string>Tools</string>
     </property>
-    <addaction name="actionTLE_Information"/>
+    <addaction name="actionView_Serial_Ports"/>
    </widget>
-   <widget class="QMenu" name="menuSettings">
-    <property name="title">
-     <string>Settings</string>
-    </property>
-    <addaction name="actionLogging_2"/>
-    <addaction name="actionEncryption_2"/>
-    <addaction name="actionTLE"/>
-    <addaction name="actionSerial_Ports"/>
-    <addaction name="actionWeb_Route"/>
-   </widget>
-   <addaction name="menu_File"/>
-   <addaction name="menuEdit"/>
    <addaction name="menuTools"/>
-   <addaction name="menuSettings"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionLogging_2">
+  <action name="actionView_Serial_Ports">
    <property name="text">
-    <string>Logging</string>
-   </property>
-  </action>
-  <action name="actionEncryption_2">
-   <property name="text">
-    <string>Encryption</string>
-   </property>
-  </action>
-  <action name="actionTLE">
-   <property name="text">
-    <string>TLE</string>
-   </property>
-  </action>
-  <action name="actionSerial_Ports">
-   <property name="text">
-    <string>Serial Ports</string>
-   </property>
-  </action>
-  <action name="actionTLE_Information">
-   <property name="text">
-    <string>TLE Information</string>
-   </property>
-  </action>
-  <action name="actionWeb_Route">
-   <property name="text">
-    <string>Web Routing</string>
+    <string>View Serial Ports</string>
    </property>
   </action>
  </widget>
