@@ -16,15 +16,24 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    src/SerialPortThread.cpp \
+    src/Service.cpp \
     src/main.cpp \
     src/mainwindow.cpp
 
 HEADERS += \
+    include/Channel.h \
+    include/Datagram.h \
+    include/Interfaces/IChannel.h \
+    include/Interfaces/IDatagram.h \
+    include/Interfaces/IInterpreter.h \
+    include/Interfaces/IService.h \
+    include/Interpreter.h \
     include/SerialPortThread.h \
-    include/SerialPortWriter.h \
+    include/Service.h \
     include/mainwindow.h
 
-INCLUDEPATH += include
+INCLUDEPATH += include/
 INCLUDEPATH += 3rdparty/FOSSA-Comms
 INCLUDEPATH += 3rdparty/quicktle-master/include
 INCLUDEPATH += 3rdparty/tiny-aes
