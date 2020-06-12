@@ -26,12 +26,13 @@ Direction bit set to __1__ marks datagrams sent from ground station to control p
 
 Operation ID specifies the type of data sent in the payload section.
 
-* __0x00__ - FCP frame transfer. Payload is only the FCP frame to uplink when sent with direction = 0, or 2-byte RadioLib reception status code followed by the received FCP frame when sent with direction = 1.
-* __0x01__ - Ground station configuration change request/result. Payload is the ground station configuration to set when sent with direction = 0, or configuration result when sent with direction = 1 (typically a 2-byte RadioLib status code).
+* __0x00__ - Handshake request/response. Sent from control panel to initialize the serial protocol, ground station sends this operation ID in response.
+* __0x01__ - FCP frame transfer. Payload is only the FCP frame to uplink when sent with direction = 0, or 2-byte RadioLib reception status code followed by the received FCP frame when sent with direction = 1.
+* __0x02__ - Ground station configuration change request/result. Payload is the ground station configuration to set when sent with direction = 0, or configuration result when sent with direction = 1 (typically a 2-byte RadioLib status code).
 
 ### Length byte
 
-The total length of payload section. The receiver shall wait for complete datagram reception before processing the payload. If the full datagram is not received within a reasonable timeout period, the datagram shall be dropped. Waiting for full datagram should not interfere with normal operation of the ground station or control panel. Length section is only mandatory for datagrams with payload.
+The total length of payload section. The receiver shall wait for complete datagram reception before processing the payload. If the full datagram is not received within a reasonable timeout period, the datagram shall be dropped. Waiting for full datagram should not interfere with normal operation of the ground station or control panel. Length section is mandatory and set to 0 for datagrams without payload.
 
 ### Payload
 
@@ -40,16 +41,16 @@ The payload section is specific for each operation ID. Some operation IDs may no
 ### Examples
 
 * Control panel to ground station CMD_PING uplink request:  
-`00 0b 46 4f 53 53 41 53 41 54 2d 32 00`  
+`01 0b 46 4f 53 53 41 53 41 54 2d 32 00`  
 Direction bit = 0 (control panel to ground station)  
-Operation ID = 0x00 (FCP frame transfer)  
+Operation ID = 0x01 (FCP frame transfer)  
 Length = 0x0b (11 bytes)  
 Payload = FCP Frame (`"FOSSASAT-2" <CMD_PING>`)
 
 * Ground station to control panel RESP_PONG downlink report:  
-`80 0d 00 00 46 4f 53 53 41 53 41 54 2d 32 20`  
+`81 0d 00 00 46 4f 53 53 41 53 41 54 2d 32 20`  
 Direction bit = 1 (ground station to control panel)  
-Operation ID = 0x00 (FCP frame transfer)  
+Operation ID = 0x01 (FCP frame transfer)  
 Length = 0x0d (13 bytes)  
 Reception status = 0 (RadioLib ERR_NONE status code)
 Payload = FCP Frame (`"FOSSASAT-2" <RESP_PONG>`)
