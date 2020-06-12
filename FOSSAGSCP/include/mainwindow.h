@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "SerialPortThread.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -21,8 +22,11 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    // AES KEY
     void LoadKeyFromFile();
     uint8_t m_key[16];
 
+    // serial port thread.
+    SerialPortThread m_serialPortThread;
 };
 #endif // MAINWINDOW_H

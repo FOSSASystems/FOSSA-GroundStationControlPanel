@@ -20,7 +20,8 @@ SOURCES += \
     src/mainwindow.cpp
 
 HEADERS += \
-    include/SerialPortReader.h \
+    include/SerialPortThread.h \
+    include/SerialPortWriter.h \
     include/mainwindow.h
 
 INCLUDEPATH += include
