@@ -30,10 +30,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(&this->m_serialPortThread, &SerialPortThread::Response, this, &MainWindow::ResponseReceived, Qt::AutoConnection);
     connect(&this->m_serialPortThread, &SerialPortThread::Error, this, &MainWindow::ErrorReceived, Qt::AutoConnection);
     connect(&this->m_serialPortThread, &SerialPortThread::Timeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
+
+    m_sytemInfoPane = new systeminformationpane();
+    m_sytemInfoPane->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
+    m_sytemInfoPane->show();
 }
 
 MainWindow::~MainWindow()
 {
+    delete m_sytemInfoPane;
     delete ui;
 }
 
@@ -45,9 +50,21 @@ void MainWindow::ResponseReceived(const QString& response)
     QByteArray arr = response.toLocal8Bit();
     const char* respData = arr.data();
 
-    IDatagram* datagram = Service::GetInterpreter()->Interpret(respData, response.length());
-    Service::GetChannel()->Push(datagram);
+    IDatagram* datagram = Service::GetInterpreter()->MessageToDatagram(respData, response.length());
+
+    // check authentication.
+    // log
+    // to->signals
 }
+
+void MainWindow::SendSerialData(QString& datagram)
+{
+    this->m_serialPortThread.Transaction(m_portName, 250, datagram);
+}
+
+
+
+
 
 void MainWindow::ErrorReceived(const QString &str)
 {
@@ -58,14 +75,6 @@ void MainWindow::TimeoutReceived(const QString &str)
 {
     throw std::runtime_error(str.toUtf8());
 }
-
-
-
-void MainWindow::SendSerialData(QString& datagram)
-{
-    this->m_serialPortThread.Transaction(m_portName, 250, datagram);
-}
-
 
 
 

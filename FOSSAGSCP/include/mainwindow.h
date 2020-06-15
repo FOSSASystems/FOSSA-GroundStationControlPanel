@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include "SerialPortThread.h"
+#include "systeminformationpane.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -27,6 +29,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+    systeminformationpane *m_sytemInfoPane;
 
     // AES KEY
     void LoadKeyFromFile();

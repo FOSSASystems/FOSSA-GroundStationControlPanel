@@ -7,7 +7,8 @@ class IInterpreter
 {
 public:
     virtual ~IInterpreter() {}
-    virtual IDatagram* Interpret(const char * serialData, char serialDataLength) = 0;
+    virtual IDatagram* SerialMessageToDatagram(const char * serialData, char serialDataLength) = 0;
+    virtual IDatagram* GUIMessageToDatagram(char directionBit, char operationId, const char * payloadData) = 0;
 };
 
 #endif // IINTERPRETER_H

@@ -3,7 +3,6 @@
 
 #include "Interfaces/IService.h"
 
-#include "Channel.h"
 #include "Interpreter.h"
 
 class Service : public IService
@@ -21,7 +20,6 @@ public:
 
     virtual void Initialize() override
     {
-        m_channel = new Channel();
         m_interpreter = new Interpreter();
     }
 
@@ -31,17 +29,11 @@ public:
         delete m_channel;
     }
 
-    static IChannel* GetChannel()
-    {
-        return m_channel;
-    }
-
     static IInterpreter* GetInterpreter()
     {
         return m_interpreter;
     }
 private:
-    static IChannel* m_channel;
     static IInterpreter* m_interpreter;
 };
 

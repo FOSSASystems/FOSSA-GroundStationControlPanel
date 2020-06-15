@@ -19,19 +19,19 @@ SOURCES += \
     src/SerialPortThread.cpp \
     src/Service.cpp \
     src/main.cpp \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    systeminformationpane.cpp
 
 HEADERS += \
-    include/Channel.h \
     include/Datagram.h \
-    include/Interfaces/IChannel.h \
     include/Interfaces/IDatagram.h \
     include/Interfaces/IInterpreter.h \
     include/Interfaces/IService.h \
     include/Interpreter.h \
     include/SerialPortThread.h \
     include/Service.h \
-    include/mainwindow.h
+    include/mainwindow.h \
+    systeminformationpane.h
 
 INCLUDEPATH += include/
 INCLUDEPATH += 3rdparty/FOSSA-Comms
@@ -39,7 +39,8 @@ INCLUDEPATH += 3rdparty/quicktle-master/include
 INCLUDEPATH += 3rdparty/tiny-aes
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    systeminformationpane.ui
 
 TRANSLATIONS += \
     FOSSAGSCP_en_GB.ts
