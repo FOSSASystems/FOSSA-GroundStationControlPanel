@@ -86,7 +86,7 @@ public:
         // get the optional data length.
         int16_t optionalDataLength = FCP_Get_OptData_Length(callsign, frame, frameLength, NULL, NULL);
 
-        if (optionalDataLength > 0)
+        if (optionalDataLength >= 0)
         {
             // frame contains metadata
             uint8_t* optionalData = new uint8_t[optionalDataLength];
