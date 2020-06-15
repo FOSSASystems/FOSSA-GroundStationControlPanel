@@ -5,6 +5,7 @@ class IService
 {
 public:
     virtual ~IService() {}
+private:
     virtual void Initialize() = 0;
     virtual void Finialize() = 0;
 };

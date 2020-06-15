@@ -27,12 +27,15 @@ SOURCES += \
 HEADERS += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.h \
     3rdparty/tiny-aes/aes.h \
-    include/GroundStationSerialMessage.h \
     include/Interfaces/IGroundStationSerialMessage.h \
     include/Interfaces/IInterpreter.h \
     include/Interfaces/IMessage.h \
+    include/Interfaces/IMessageLog.h \
     include/Interfaces/IService.h \
-    include/Interpreter.h \
+    include/Components/Interpreter.h \
+    include/Components/MessageLog.h \
+    include/Components/Settings.h \
+    include/Components/GroundStationSerialMessage.h \
     include/SerialPortThread.h \
     include/Service.h \
     include/mainwindow.h \
