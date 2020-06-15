@@ -59,10 +59,42 @@ public:
     }
 
 
-
     void Interpret_Received_Message(IGroundStationSerialMessage* inMsg, Settings* settings)
     {
         GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
+
+        // route via the operation id
+        int operationId = msg->GetOperationID();
+
+        if (operationId == 0)
+        {
+            // handshake
+            Interpret_Handshake(inMsg, settings);
+        }
+        else if (operationId == 1)
+        {
+            // FCP frame.
+            Interpret_FCP_Frame(inMsg, settings);
+        }
+        else if (operationId == 2)
+        {
+            // configuration change.
+            Interpret_Config_Change(inMsg, settings);
+        }
+    }
+
+    void Interpret_Handshake(IGroundStationSerialMessage* inMsg, Settings* settings)
+    {
+
+    }
+
+    void Interpret_Config_Change(IGroundStationSerialMessage* inMsg, Settings* settings)
+    {
+
+    }
+
+    void Interpret_FCP_Frame(IGroundStationSerialMessage* inMsg, Settings* settings)
+    {
 
         // raw characters
         char* payloadData = msg->GetPayload();
@@ -195,6 +227,7 @@ public:
 
         delete[] frame;
     }
+
 
     //////
     /// public unencrypted uplink message commands.
