@@ -2,7 +2,8 @@
 #define INTERPRETER_H
 
 #include "Interfaces/IInterpreter.h"
-#include "Datagram.h"
+
+#include "GroundStationSerialMessage.h"
 
 #include <cstring>
 #include <stdexcept>
@@ -13,7 +14,7 @@ public:
     virtual ~Interpreter() {};
 
     /// @todo checks on the serial data length.
-    virtual Datagram* SerialMessageToDatagram(const char* serialData, char serialDataLength) override final
+    virtual GroundStationSerialMessage* SerialData_To_GroundStationSerialMessage(const char* serialData, char serialDataLength) override final
     {
         // first byte is the control byte.
         char controlByte = serialData[0];
@@ -25,15 +26,15 @@ public:
         char* payload = new char[lengthByte];
         memcpy(payload, &(serialData[2]), lengthByte);
 
-        Datagram* datagram = new Datagram(controlByte, lengthByte, payload);
+        GroundStationSerialMessage* message = new GroundStationSerialMessage(controlByte, lengthByte, payload);
 
         // delete the payload, it is copied in the datagram ctor.
         delete[] payload;
 
-        return datagram;
+        return message;
     }
 
-    virtual Datagram* GUIMessageToDatagram(char directionBit, char operationId, const char * payloadData) override final
+    virtual GroundStationSerialMessage* Create_GroundStationSerialMessage(char directionBit, char operationId, const char * payloadData) override final
     {
         /// @todo check for over-run.
         char length = strlen(payloadData);
@@ -42,7 +43,8 @@ public:
         memcpy(payload, payloadData, length);
 
         char controlByte = directionBit | operationId;
-        Datagram* datagram = new Datagram(controlByte, length, payload);
+
+        GroundStationSerialMessage* datagram = new GroundStationSerialMessage(controlByte, length, payload);
 
         delete[] payload;
 

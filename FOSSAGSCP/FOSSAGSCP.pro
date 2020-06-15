@@ -23,9 +23,10 @@ SOURCES += \
     systeminformationpane.cpp
 
 HEADERS += \
-    include/Datagram.h \
-    include/Interfaces/IDatagram.h \
+    include/GroundStationSerialMessage.h \
+    include/Interfaces/IGroundStationSerialMessage.h \
     include/Interfaces/IInterpreter.h \
+    include/Interfaces/IMessage.h \
     include/Interfaces/IService.h \
     include/Interpreter.h \
     include/SerialPortThread.h \

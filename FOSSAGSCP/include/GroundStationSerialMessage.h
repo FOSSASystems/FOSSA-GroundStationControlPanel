@@ -1,16 +1,15 @@
-#ifndef DATAGRAM_H
-#define DATAGRAM_H
+#ifndef GROUNDSTATIONSERIALMESSAGE_H
+#define GROUNDSTATIONSERIALMESSAGE_H
 
 #include <cstdlib>
 #include <cstring>
 
-#include "Interfaces/IDatagram.h"
+#include "Interfaces/IGroundStationSerialMessage.h"
 
-class Datagram : public IDatagram
+class GroundStationSerialMessage : public IGroundStationSerialMessage
 {
-    // IDatagram interface
 public:
-    Datagram(char controlByte, char lengthByte, char* payload)
+    GroundStationSerialMessage(char controlByte, char lengthByte, char* payload)
     {
         m_controlByte = controlByte;
         m_payloadLengthByte = lengthByte;
@@ -22,7 +21,7 @@ public:
         }
     }
 
-    Datagram(const Datagram& other)
+    GroundStationSerialMessage(const GroundStationSerialMessage& other)
     {
         if (m_payload != nullptr)
         {
@@ -42,7 +41,7 @@ public:
         }
     }
 
-    virtual ~Datagram()
+    virtual ~GroundStationSerialMessage()
     {
         if (m_payload != nullptr)
         {
@@ -82,4 +81,4 @@ private:
     char* m_payload = nullptr;
 };
 
-#endif // DATAGRAM_H
+#endif // GROUNDSTATIONSERIALMESSAGE_H

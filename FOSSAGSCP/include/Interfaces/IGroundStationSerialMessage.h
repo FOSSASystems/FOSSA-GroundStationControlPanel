@@ -1,10 +1,12 @@
-#ifndef IDATAGRAM_H
-#define IDATAGRAM_H
+#ifndef IGROUNDSTATIONSERIALMESSAGE_H
+#define IGROUNDSTATIONSERIALMESSAGE_H
 
-class IDatagram
+#include "IMessage.h"
+
+class IGroundStationSerialMessage : public IMessage
 {
 public:
-    virtual ~IDatagram() {}
+    virtual ~IGroundStationSerialMessage() {}
 
     virtual char GetControlByte() = 0;
     virtual char GetPayloadLengthByte() = 0;
@@ -17,4 +19,4 @@ public:
     virtual char GetOperationID() = 0;
 };
 
-#endif // IDATAGRAM_H
+#endif // IGROUNDSTATIONSERIALMESSAGE_H

@@ -1,14 +1,15 @@
 #ifndef IINTERPRETER_H
 #define IINTERPRETER_H
 
-#include "IDatagram.h"
+#include "IMessage.h"
+#include "IGroundStationSerialMessage.h"
 
 class IInterpreter
 {
 public:
     virtual ~IInterpreter() {}
-    virtual IDatagram* SerialMessageToDatagram(const char * serialData, char serialDataLength) = 0;
-    virtual IDatagram* GUIMessageToDatagram(char directionBit, char operationId, const char * payloadData) = 0;
+    virtual IGroundStationSerialMessage* SerialData_To_GroundStationSerialMessage(const char * serialData, char serialDataLength) = 0;
+    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char directionBit, char operationId, const char * payloadData) = 0;
 };
 
 #endif // IINTERPRETER_H

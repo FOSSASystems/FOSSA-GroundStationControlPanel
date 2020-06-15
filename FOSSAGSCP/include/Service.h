@@ -26,7 +26,6 @@ public:
     virtual void Finialize() override
     {
         delete m_interpreter;
-        delete m_channel;
     }
 
     static IInterpreter* GetInterpreter()

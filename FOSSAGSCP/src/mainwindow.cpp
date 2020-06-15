@@ -11,7 +11,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 
-
+#include <FOSSA-Comms.h>
 
 
 
@@ -43,6 +43,12 @@ MainWindow::~MainWindow()
 }
 
 
+class FCP_Datagram
+{
+public:
+
+    FCP_Datagram
+};
 
 
 void MainWindow::ResponseReceived(const QString& response)
@@ -50,11 +56,13 @@ void MainWindow::ResponseReceived(const QString& response)
     QByteArray arr = response.toLocal8Bit();
     const char* respData = arr.data();
 
-    IDatagram* datagram = Service::GetInterpreter()->MessageToDatagram(respData, response.length());
+    IDatagram* datagram = Service::GetInterpreter()->SerialMessageToDatagram(respData, response.length());
+
+    FCP_Get_FunctionID();
 
     // check authentication.
     // log
-    // to->signals
+    // to->signals for GUI
 }
 
 void MainWindow::SendSerialData(QString& datagram)
