@@ -181,6 +181,10 @@ public:
             {
 
             }
+            else if (functionId == RESP_ACKNOWLEDGE)
+            {
+
+            }
 
             // Private
             // there are no privately downlinked messages.
