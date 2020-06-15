@@ -43,14 +43,6 @@ MainWindow::~MainWindow()
 }
 
 
-class FCP_Datagram
-{
-public:
-
-    FCP_Datagram
-};
-
-
 void MainWindow::ResponseReceived(const QString& response)
 {
     QByteArray arr = response.toLocal8Bit();
