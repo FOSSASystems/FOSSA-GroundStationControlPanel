@@ -48,13 +48,64 @@ void MainWindow::ResponseReceived(const QString& response)
     QByteArray arr = response.toLocal8Bit();
     const char* respData = arr.data();
 
-    IDatagram* datagram = Service::GetInterpreter()->SerialMessageToDatagram(respData, response.length());
+    IGroundStationSerialMessage* msg = Service::GetInterpreter()->SerialData_To_GroundStationSerialMessage(respData, response.length());
 
-    FCP_Get_FunctionID();
+    // raw characters
+    char* payloadData = msg->GetPayload();
+    char payloadLength = msg->GetPayloadLengthByte();
+
+    // converted to uint8_t
+    uint8_t frameLength = (uint8_t)payloadLength;
+    uint8_t* frame = new uint8_t[frameLength];
+    for (int i = 0; i < frameLength; i++)
+    {
+        frame[i] = (uint8_t)(payloadData[i]);
+    }
+
+
+
+
+
+
+
+    char * callsign = (char*)this->m_callsign.c_str(); /// @todo fix stripping of const.
+
+    // get the function ID.
+    int16_t id = FCP_Get_FunctionID(callsign, frame, frameLength);
+
+    // get the optional data length.
+    int16_t optionalDataLength;
+
+    if (m_keySet && m_passwordSet) // both key and password set.
+    {
+        optionalDataLength = FCP_Get_OptData_Length(callsign, frame, frameLength, (const uint8_t*)m_key, m_password.c_str());
+    }
+    else if (m_keySet) // only key set.
+    {
+        optionalDataLength = FCP_Get_OptData_Length(callsign, frame, frameLength, (const uint8_t*)m_key, NULL);
+    }
+    else if (m_passwordSet) // only password set.
+    {
+        optionalDataLength = FCP_Get_OptData_Length(callsign, frame, frameLength, NULL, m_password.c_str());
+    }
+    else // neither key or password set.
+    {
+        optionalDataLength = FCP_Get_OptData_Length(callsign, frame, frameLength, NULL, NULL);
+    }
+
+
+
+
+
+
+
 
     // check authentication.
     // log
     // to->signals for GUI
+
+    delete[] frame;
+    delete msg;
 }
 
 void MainWindow::SendSerialData(QString& datagram)
@@ -133,15 +184,12 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
         str.append("\r\n\tIs Busy = ");
         str.append(info.isBusy());
-
-        str.append("\r\n\tStandard baud rates: ");
-        for (auto baudIter = info.standardBaudRates().begin(); baudIter != info.standardBaudRates().end(); baudIter++)
-        {
-            qint32 baudRate = *baudIter;
-            str.append(baudRate);
-            str.append(",");
-        }
+        str.append("\r\n");
+        str.append("\r\n");
+        str.append("\r\n");
     }
+
+    msgBox.setDetailedText(str);
 
     msgBox.exec();
 }

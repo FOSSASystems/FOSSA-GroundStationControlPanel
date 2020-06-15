@@ -32,18 +32,28 @@ private:
     Ui::MainWindow *ui;
     systeminformationpane *m_sytemInfoPane;
 
-    // AES KEY
-    void LoadKeyFromFile();
-    uint8_t m_key[16];
-
     // Datagram service.
     Service m_service;
 
     // serial port thread.
     SerialPortThread m_serialPortThread;
 
+    ////////////////
+    /// Settings ///
+    ////////////////
     // selected port name.
     QString m_portName;
+    std::string m_callsign = "FOSSASAT-1"; /// @todo implement a menu for this.
+
+
+    // AES KEY
+    void LoadKeyFromFile();
+    uint8_t m_key[16];
+    bool m_keySet = false;
+
+    // Password.
+    std::string m_password = "";
+    bool m_passwordSet = false;
 
 };
 #endif // MAINWINDOW_H

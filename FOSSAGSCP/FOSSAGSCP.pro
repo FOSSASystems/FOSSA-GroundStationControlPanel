@@ -16,6 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    3rdparty/FOSSA-Comms/FOSSA-Comms.cpp \
+    3rdparty/tiny-aes/aes.cpp \
     src/SerialPortThread.cpp \
     src/Service.cpp \
     src/main.cpp \
@@ -23,6 +25,8 @@ SOURCES += \
     systeminformationpane.cpp
 
 HEADERS += \
+    3rdparty/FOSSA-Comms/FOSSA-Comms.h \
+    3rdparty/tiny-aes/aes.h \
     include/GroundStationSerialMessage.h \
     include/Interfaces/IGroundStationSerialMessage.h \
     include/Interfaces/IInterpreter.h \
@@ -32,7 +36,7 @@ HEADERS += \
     include/SerialPortThread.h \
     include/Service.h \
     include/mainwindow.h \
-    systeminformationpane.h
+    systeminformationpane.h \
 
 INCLUDEPATH += include/
 INCLUDEPATH += 3rdparty/FOSSA-Comms
