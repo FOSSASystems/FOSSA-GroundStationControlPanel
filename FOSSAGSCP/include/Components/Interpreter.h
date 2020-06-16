@@ -74,27 +74,66 @@ public:
         return dynamic_cast<IGroundStationSerialMessage*>(message);
     }
 
-    /// this is the base class for all the Create_CMD_XXX methods.
-    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char directionBit, char operationId, const char * payloadData) override final
+    // this is the base class for all the Create_CMD_XXX methods.
+    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char directionBit, char operationId, uint8_t functionId, char* optData, bool encrypt) override final
     {
-        /// @todo check for over-run.
-        char length = strlen(payloadData);
+        //
+        // Get information
+        //
+        const char* callsign = m_settings->GetCallsign().c_str();
+        const char* password = m_settings->GetPassword().c_str();
+        const uint8_t* key = m_settings->GetKey();
 
-        char* payload = new char[length];
-        memcpy(payload, payloadData, length);
 
+        //
+        // Get the optional data part's length.
+        //
+        uint8_t optDataLength = strlen(optData);
+
+        //
+        // Get the entire frame's length.
+        //
+        uint8_t frameLength = 0;
+        if (encrypt)
+        {
+            const char* password = m_settings->GetPassword().c_str();
+            frameLength = FCP_Get_Frame_Length((char*)callsign, optDataLength, password);
+        }
+        else
+        {
+            frameLength = FCP_Get_Frame_Length((char*)callsign, optDataLength);
+        }
+
+        //
+        // Create and encoded (at once) frame.
+        //
+        uint8_t* frame = new uint8_t[frameLength];
+        if (encrypt)
+        {
+            FCP_Encode(frame, (char*)callsign, functionId, optDataLength, (uint8_t*)optData, key, password);
+        }
+        else
+        {
+            FCP_Encode(frame, (char*)callsign, functionId, optDataLength);
+        }
+
+
+        //
+        // Send the frame wrapped in the gcs protocol.
+        //
         char controlByte = directionBit | operationId;
+        GroundStationSerialMessage* msg = new GroundStationSerialMessage(controlByte, (char)frameLength, (char*)frame); // the payload IS the FCP Frame above.
 
-        GroundStationSerialMessage* datagram = new GroundStationSerialMessage(controlByte, length, payload);
+        delete[] frame;
 
-        delete[] payload;
-
-        return dynamic_cast<IGroundStationSerialMessage*>(datagram);
+        return dynamic_cast<IGroundStationSerialMessage*>(msg);
     }
 
 
     void Interpret_Received_Message(IGroundStationSerialMessage* inMsg, Settings* settings)
     {
+        m_settings = settings;
+
         // route via the operation id
         int operationId = inMsg->GetOperationID();
 
@@ -269,7 +308,7 @@ public:
     /////
     IGroundStationSerialMessage* Create_CMD_Ping()
     {
-        return this->Create_GroundStationSerialMessage(FCPI_DIR_TO_GROUND_STATION, FCPI_FRAME_OP, "");
+        return this->Create_GroundStationSerialMessage(FCPI_DIR_TO_GROUND_STATION, FCPI_FRAME_OP, CMD_PING, (char*)"", false);
     };
     IGroundStationSerialMessage* Create_CMD_Retransmit()
     {
@@ -317,7 +356,8 @@ public:
     IGroundStationSerialMessage* Create_CMD_Maneuver() {};
     IGroundStationSerialMessage* Create_CMD_Set_ADCS_Parameters() {};
     IGroundStationSerialMessage* Create_CMD_Erase_Flash() {};
-
+private:
+    Settings* m_settings = nullptr;
 };
 
 #endif // INTERPRETER_H

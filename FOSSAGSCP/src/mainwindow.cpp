@@ -41,6 +41,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+// Response received is a slot, this slot is signalled from the serial port thread.
 void MainWindow::ResponseReceived(const QString& response)
 {
     QByteArray arr = response.toLocal8Bit();
@@ -58,19 +59,17 @@ void MainWindow::ResponseReceived(const QString& response)
     delete msg;
 }
 
-void MainWindow::SendSerialData(QString& datagram)
+// The IGroundStationSerialMessage object is created in Interpreter.h  function name: Create_GroundStationSerialMessage()
+void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
 {
-    QByteArray arr = datagram.toLocal8Bit();
-    const char* cmdData = arr.data();
-
-    // interpret the serial data into the message.
-    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->SerialData_To_GroundStationSerialMessage(cmdData, arr.length());
-
     // log the message.
     FOSSAService::GetMessageLog()->PushMessage(msg);
 
+    // get the string.
+    const char* cmdData = msg->GetRawData().c_str();
+
     // send the message to the ground station via serial.
-    this->m_serialPortThread.Transaction(FOSSAService::GetSettings()->GetPortName(), 250, datagram);
+    this->m_serialPortThread.Transaction(FOSSAService::GetSettings()->GetPortName(), 250, cmdData);
 
     delete msg;
 }

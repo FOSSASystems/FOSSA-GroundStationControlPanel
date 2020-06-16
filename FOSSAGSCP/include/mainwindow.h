@@ -5,7 +5,7 @@
 
 #include "SerialPortThread.h"
 #include "systeminformationpane.h"
-
+#include "Interfaces/IGroundStationSerialMessage.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -19,7 +19,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void SendSerialData(QString& datagram);
+    void SendSerialData(IGroundStationSerialMessage* datagram);
 private slots:
     void on_actionView_Serial_Ports_triggered();
 

@@ -2,6 +2,7 @@
 #define IGROUNDSTATIONSERIALMESSAGE_H
 
 #include "IMessage.h"
+#include <string>
 
 class IGroundStationSerialMessage : public IMessage
 {
@@ -17,6 +18,8 @@ public:
 
     virtual char GetDirectionBit() = 0;
     virtual char GetOperationID() = 0;
+
+    virtual std::string GetRawData() = 0;
 };
 
 #endif // IGROUNDSTATIONSERIALMESSAGE_H

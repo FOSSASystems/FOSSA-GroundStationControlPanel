@@ -3,6 +3,7 @@
 
 #include <cstdlib>
 #include <cstring>
+#include <string>
 
 #include "Interfaces/IGroundStationSerialMessage.h"
 
@@ -73,6 +74,19 @@ public:
     virtual char GetOperationID() override
     {
         return m_controlByte & 0b01111111;
+    }
+
+    virtual std::string GetRawData() override
+    {
+        std::string rawData;
+        rawData.push_back(m_controlByte);
+        rawData.push_back(m_payloadLengthByte);
+
+        for (int i = 0; i < m_payloadLengthByte; i++)
+        {
+            rawData.push_back(m_payload[i]);
+        }
+        return rawData;
     }
 
 private:
