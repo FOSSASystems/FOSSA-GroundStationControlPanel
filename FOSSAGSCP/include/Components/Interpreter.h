@@ -11,6 +11,7 @@
 
 #include "Components/GroundStationSerialMessage.h"
 #include "Components/Settings.h"
+#include "Components/MessageLog.h"
 
 class Interpreter : public IInterpreter
 {
@@ -61,10 +62,8 @@ public:
 
     void Interpret_Received_Message(IGroundStationSerialMessage* inMsg, Settings* settings)
     {
-        GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
-
         // route via the operation id
-        int operationId = msg->GetOperationID();
+        int operationId = inMsg->GetOperationID();
 
         if (operationId == 0)
         {
@@ -85,16 +84,19 @@ public:
 
     void Interpret_Handshake(IGroundStationSerialMessage* inMsg, Settings* settings)
     {
+        GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
     }
 
     void Interpret_Config_Change(IGroundStationSerialMessage* inMsg, Settings* settings)
     {
+        GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
     }
 
     void Interpret_FCP_Frame(IGroundStationSerialMessage* inMsg, Settings* settings)
     {
+        GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
         // raw characters
         char* payloadData = msg->GetPayload();

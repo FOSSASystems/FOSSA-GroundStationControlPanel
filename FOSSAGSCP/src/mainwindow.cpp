@@ -47,7 +47,7 @@ void MainWindow::ResponseReceived(const QString& response)
     const char* respData = arr.data();
 
     // interpret the serial data into the message.
-    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->SerialData_To_GroundStationSerialMessage(respData, response.length());
+    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->SerialData_To_GroundStationSerialMessage(respData, arr.length());
 
     // push the message to the log panel.
     FOSSAService::GetMessageLog()->PushMessage(msg);
@@ -60,7 +60,19 @@ void MainWindow::ResponseReceived(const QString& response)
 
 void MainWindow::SendSerialData(QString& datagram)
 {
+    QByteArray arr = datagram.toLocal8Bit();
+    const char* cmdData = arr.data();
+
+    // interpret the serial data into the message.
+    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->SerialData_To_GroundStationSerialMessage(cmdData, arr.length());
+
+    // log the message.
+    FOSSAService::GetMessageLog()->PushMessage(msg);
+
+    // send the message to the ground station via serial.
     this->m_serialPortThread.Transaction(FOSSAService::GetSettings()->GetPortName(), 250, datagram);
+
+    delete msg;
 }
 
 
