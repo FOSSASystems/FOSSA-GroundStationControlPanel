@@ -75,7 +75,7 @@ public:
     }
 
     // this is the base class for all the Create_CMD_XXX methods.
-    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char directionBit, char operationId, uint8_t functionId, char* optData, bool encrypt) override final
+    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char directionBit, char operationId, uint8_t functionId, uint8_t optDataLength, char* optData, bool encrypt) override final
     {
         //
         // Get information
@@ -84,11 +84,6 @@ public:
         const char* password = m_settings->GetPassword().c_str();
         const uint8_t* key = m_settings->GetKey();
 
-
-        //
-        // Get the optional data part's length.
-        //
-        uint8_t optDataLength = strlen(optData);
 
         //
         // Get the entire frame's length.
@@ -308,7 +303,7 @@ public:
     /////
     IGroundStationSerialMessage* Create_CMD_Ping()
     {
-        return this->Create_GroundStationSerialMessage(FCPI_DIR_TO_GROUND_STATION, FCPI_FRAME_OP, CMD_PING, (char*)"", false);
+        return this->Create_GroundStationSerialMessage(FCPI_DIR_TO_GROUND_STATION, FCPI_FRAME_OP, CMD_PING, 0, (char*)"", false);
     };
     IGroundStationSerialMessage* Create_CMD_Retransmit()
     {
