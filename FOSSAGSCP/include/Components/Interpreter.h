@@ -75,8 +75,13 @@ public:
     }
 
     // this is the base class for all the Create_CMD_XXX methods.
-    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char directionBit, char operationId, uint8_t functionId, uint8_t optDataLength, char* optData, bool encrypt) override final
+    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char operationId, uint8_t functionId, uint8_t optDataLength, char* optData) override final
     {
+        char directionBit = FCPI_DIR_TO_GROUND_STATION; // all outgoing messages are to the ground station.
+
+        // check whether this function id is for encryption.
+        bool encrypt = functionId >= PRIVATE_OFFSET;
+
         //
         // Get information
         //
@@ -303,7 +308,7 @@ public:
     /////
     IGroundStationSerialMessage* Create_CMD_Ping()
     {
-        return this->Create_GroundStationSerialMessage(FCPI_DIR_TO_GROUND_STATION, FCPI_FRAME_OP, CMD_PING, 0, (char*)"", false);
+        return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_PING, 0, (char*)"");
     };
     IGroundStationSerialMessage* Create_CMD_Retransmit()
     {
