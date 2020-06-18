@@ -54,6 +54,24 @@ public:
         return true;
     }
 
+    bool LoadPasswordFromFile()
+    {
+        QFile file("password.txt");
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            return false;
+        }
+
+        while (!file.atEnd())
+        {
+            QByteArray line = file.readLine();
+            this->SetPassword(line.toStdString());
+            break; // only loop for 1 line.
+        }
+
+        return true;
+    }
+
     uint8_t* GetKey() { return m_key; }
     bool IsKeySet() { return m_keySet; }
 

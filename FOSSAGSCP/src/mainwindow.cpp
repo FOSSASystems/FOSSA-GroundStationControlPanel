@@ -19,15 +19,21 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     ui->setupUi(this);
 
     QString path = QDir::currentPath();
-    std::string keyFilePathString = path.toStdString() + std::string("/key.txt");
 
+    // Load key from key.txt
     bool keyLoaded = FOSSAService::GetSettings()->LoadKeyFromFile();
     if (keyLoaded)
     {
         FOSSAService::GetSettings()->SetKeySet();
     }
-    FOSSAService::GetSettings()->SetPassword("password");
-    FOSSAService::GetSettings()->SetPasswordSet();
+
+    // Load password for password.txt
+    bool passwordLoaded = FOSSAService::GetSettings()->LoadPasswordFromFile();
+    if (passwordLoaded)
+    {
+        FOSSAService::GetSettings()->SetPasswordSet();
+    }
+
 
     FOSSAService::GetSettings()->SetPortName("TestPort1");
 
