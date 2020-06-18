@@ -26,9 +26,22 @@ Direction bit set to __1__ marks datagrams sent from ground station to control p
 
 Operation ID specifies the type of data sent in the payload section.
 
-* __0x00__ - Handshake request/response. Sent from control panel to initialize the serial protocol, ground station sends this operation ID in response.
-* __0x01__ - FCP frame transfer. Payload is only the FCP frame to uplink when sent with direction = 0, or 2-byte RadioLib reception status code followed by the received FCP frame when sent with direction = 1.
-* __0x02__ - Ground station configuration change request/result. Payload is the ground station configuration to set when sent with direction = 0, or configuration result when sent with direction = 1 (typically a 2-byte RadioLib status code).
+- __0x00__ - Handshake request/response. Sent from control panel to initialize the serial protocol, ground station sends this operation ID in response.
+- __0x01__ - FCP frame transfer. Payload is only the FCP frame to uplink when sent with direction = 0, or 2-byte RadioLib reception status code followed by the received FCP frame when sent with direction = 1.
+- __0x02__ - Ground station configuration change request/result. Payload is the ground station configuration to set when sent with direction = 0, or configuration result when sent with direction = 1 (2-byte RadioLib status code). The following is the ground station configuration sent from control panel to ground station.
+  - 0: Modem type, 0x00 for LoRa modem, 0x01 for GFSK modem.
+  - 1 - 4: Carrier frequency in MHz, single precision IEEE 754 float, LSB first.
+  - 5: Output power in dBm, signed 8-bit integer.
+  - 6 - 9: Current limit in mA, single precision IEEE 754 float, LSB first.
+  - 10 - 13: LoRa bandwidth in kHz, single precision IEEE 754 float, LSB first.
+  - 14: LoRa spreading factor, unsigned 8-bit integer.
+  - 15: LoRa coding rate, unsigned 8-bit integer.
+  - 16 - 17: LoRa preamble length in symbols, unsigned 16-bit integer, LSB first.
+  - 18 - 21: GFSK bit rate in kbps, single precision IEEE 754 float, LSB first.
+  - 22 - 25: GFSK frequency deviation in kHz, single precision IEEE 754 float, LSB first.
+  - 26 - 29: GFSK Rx bandwidth in kHz, single precision IEEE 754 float, LSB first.
+  - 30 - 33: GFSK data shaping BT product, single precision IEEE 754 float, LSB first.
+  - 34 - 35: GFSK preamble length in bits, unsigned 16-bit integer, LSB first.
 
 ### Length byte
 

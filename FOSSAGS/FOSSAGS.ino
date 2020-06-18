@@ -154,9 +154,48 @@ void processDatagram() {
       sendFrame(datagramBuff, datagramBuffPos + 1);
       break;
       
-    case FGSP_OP_ID_CONFIGURATION:
-      // TODO config
-      break;
+    case FGSP_OP_ID_CONFIGURATION: {
+      // get the parameters
+      uint8_t modem = 0;
+      memcpy(&modem, datagramBuff + 0, sizeof(modem));
+      float freq = 0;
+      memcpy(&freq, datagramBuff + 1, sizeof(freq));
+      int8_t power = 0;
+      memcpy(&power, datagramBuff + 5, sizeof(power));
+      float ocp = 0;
+      memcpy(&ocp, datagramBuff + 6, sizeof(ocp));
+      float loraBw = 0;
+      memcpy(&loraBw, datagramBuff + 10, sizeof(loraBw));
+      uint8_t loraSf = 0;
+      memcpy(&loraSf, datagramBuff + 14, sizeof(loraSf));
+      uint8_t loraCr = 0;
+      memcpy(&loraCr, datagramBuff + 15, sizeof(loraCr));
+      uint16_t loraPre = 0;
+      memcpy(&loraPre, datagramBuff + 16, sizeof(loraPre));
+      float gfskBr = 0;
+      memcpy(&gfskBr, datagramBuff + 18, sizeof(gfskBr));
+      float gfskFdev = 0;
+      memcpy(&gfskFdev, datagramBuff + 22, sizeof(gfskFdev));
+      float gfskRxbw = 0;
+      memcpy(&gfskRxbw, datagramBuff + 26, sizeof(gfskRxbw));
+      float gfskSh = 0;
+      memcpy(&gfskSh, datagramBuff + 30, sizeof(gfskSh));
+      uint16_t gfskPre = 0;
+      memcpy(&gfskPre, datagramBuff + 34, sizeof(gfskPre));
+
+      // set the configuration
+      int16_t state = ERR_NONE;
+      if(modem == 0x00) {
+        state = radio.begin(freq, loraBw, loraSf, loraCr, SYNC_WORD, power, ocp, loraPre, TCXO_VOLTAGE);
+      } else if(modem == 0x01) {
+        state = radio.beginFSK(freq, gfskBr, gfskFdev, gfskRxbw, power, ocp, gfskPre, TCXO_VOLTAGE);
+      } else {
+        state = ERR_WRONG_MODEM;
+      }
+
+      // send the result
+      sendConfigResponse(state);
+    } break;
     
     case FGSP_OP_ID_HANDSHAKE:
       sendDatagram(FGSP_OP_ID_HANDSHAKE);
@@ -272,7 +311,7 @@ void loop() {
     int16_t state = radio.readData(respFrame, respLen);
 
     // send it to control panel
-    sendDatagram(FGSP_OP_ID_FRAME_TRANSFER, (uint8_t)respLen, respFrame);
+    sendFrameDatagram(state, (uint8_t)respLen, respFrame);
 
     // enable reception interrupt
     delete[] respFrame;
