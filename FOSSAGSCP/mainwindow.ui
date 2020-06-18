@@ -50,40 +50,40 @@
       <property name="movable">
        <bool>false</bool>
       </property>
-      <widget class="QWidget" name="Controls">
+      <widget class="QWidget" name="ControlsTab">
        <attribute name="title">
         <string>Controls</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_2">
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox">
+         <widget class="QGroupBox" name="baseOpsGroupBox">
           <property name="title">
            <string>Base Ops</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_3">
            <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="baseOpsRestartButton">
              <property name="text">
               <string>Restart</string>
              </property>
             </widget>
            </item>
            <item row="0" column="2">
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="baseOpsDeploybutton">
              <property name="text">
               <string>Deploy</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QPushButton" name="pushButton_4">
+            <widget class="QPushButton" name="baseOpWipeButton">
              <property name="text">
               <string>Wipe</string>
              </property>
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QPushButton" name="pushButton">
+            <widget class="QPushButton" name="baseOpsPingButton">
              <property name="text">
               <string>Ping</string>
              </property>
@@ -93,27 +93,27 @@
          </widget>
         </item>
         <item row="0" column="1" rowspan="2">
-         <widget class="QGroupBox" name="groupBox_5">
+         <widget class="QGroupBox" name="cameraControlGroupBox">
           <property name="title">
            <string>Camera Control</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_7">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_19">
+            <widget class="QPushButton" name="cameraControlCaptureButton">
              <property name="text">
               <string>Capture</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_21">
+            <widget class="QPushButton" name="cameraControlGetPictureLengtBbutton">
              <property name="text">
               <string>Get Picture Length</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_20">
+            <widget class="QPushButton" name="cameraControlGetPictureBurstButton">
              <property name="text">
               <string>Get Picture Burst</string>
              </property>
@@ -123,20 +123,20 @@
          </widget>
         </item>
         <item row="1" column="0" rowspan="2">
-         <widget class="QGroupBox" name="groupBox_2">
+         <widget class="QGroupBox" name="storeAndForwardGroupBox">
           <property name="title">
            <string>Store And Forward</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_4">
            <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_11">
+            <widget class="QPushButton" name="storeAndForwardRequestMessage">
              <property name="text">
               <string>Request Message</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_10">
+            <widget class="QPushButton" name="storeAndForwardAddMessage">
              <property name="text">
               <string>Add Message</string>
              </property>
@@ -146,13 +146,13 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QGroupBox" name="groupBox_6">
+         <widget class="QGroupBox" name="adcManeuverGroupBox">
           <property name="title">
            <string>ADC Maneuver</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_8">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_22">
+            <widget class="QPushButton" name="adManeuverRunButton">
              <property name="text">
               <string>Run</string>
              </property>
@@ -162,34 +162,34 @@
          </widget>
         </item>
         <item row="3" column="0">
-         <widget class="QGroupBox" name="groupBox_3">
+         <widget class="QGroupBox" name="gpsControlGroupBox">
           <property name="title">
            <string>GPS Control</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_5">
            <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_14">
+            <widget class="QPushButton" name="gpsGetLogStateButton">
              <property name="text">
               <string>Get Log State</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_12">
+            <widget class="QPushButton" name="gpsGetLogButton">
              <property name="text">
               <string>Get Log</string>
              </property>
             </widget>
            </item>
            <item row="2" column="1">
-            <widget class="QPushButton" name="pushButton_13">
+            <widget class="QPushButton" name="gpsRunCommandButton">
              <property name="text">
               <string>Run Command</string>
              </property>
             </widget>
            </item>
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_15">
+            <widget class="QPushButton" name="gpsStartLogButton">
              <property name="text">
               <string>Start Logging</string>
              </property>
@@ -199,13 +199,13 @@
          </widget>
         </item>
         <item row="3" column="1">
-         <widget class="QGroupBox" name="groupBox_7">
+         <widget class="QGroupBox" name="imuControlGroupBox">
           <property name="title">
            <string>IMU Control</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_9">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_23">
+            <widget class="QPushButton" name="imuRecordButton">
              <property name="text">
               <string>Record</string>
              </property>
@@ -215,27 +215,27 @@
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QGroupBox" name="groupBox_4">
+         <widget class="QGroupBox" name="transmisionRouterGroupBox">
           <property name="title">
            <string>Transmission Router</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_6">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_17">
+            <widget class="QPushButton" name="transmissionRouterRetransmitButton">
              <property name="text">
               <string>Retransmit</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QPushButton" name="pushButton_18">
+            <widget class="QPushButton" name="transmissionRouterRetransmitCustomButton">
              <property name="text">
               <string>Retransmit Custom</string>
              </property>
             </widget>
            </item>
            <item row="2" column="0">
-            <widget class="QPushButton" name="pushButton_16">
+            <widget class="QPushButton" name="transmissionRouterRouteCommandButton">
              <property name="text">
               <string>Route Command</string>
              </property>
@@ -245,20 +245,20 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QGroupBox" name="groupBox_8">
+         <widget class="QGroupBox" name="flashControlGroupBox">
           <property name="title">
            <string>Flash Control</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_10">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_25">
+            <widget class="QPushButton" name="flashControlSetButton">
              <property name="text">
               <string>Set</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_24">
+            <widget class="QPushButton" name="flashControlGetButton">
              <property name="text">
               <string>Get</string>
              </property>
@@ -275,13 +275,13 @@
        </attribute>
        <layout class="QGridLayout" name="gridLayout_20">
         <item row="1" column="1">
-         <widget class="QGroupBox" name="groupBox_11">
+         <widget class="QGroupBox" name="TLEGroupBox">
           <property name="title">
            <string>TLE</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_13">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_28">
+            <widget class="QPushButton" name="tleSetButton">
              <property name="text">
               <string>Set</string>
              </property>
@@ -291,13 +291,13 @@
          </widget>
         </item>
         <item row="4" column="0">
-         <widget class="QGroupBox" name="groupBox_14">
+         <widget class="QGroupBox" name="MPPTGroupBox">
           <property name="title">
            <string>MPPT</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_18">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_26">
+            <widget class="QPushButton" name="mpptSetModeButton">
              <property name="text">
               <string>Set Mode</string>
              </property>
@@ -307,7 +307,7 @@
          </widget>
         </item>
         <item row="1" column="0">
-         <widget class="QGroupBox" name="groupBox_16">
+         <widget class="QGroupBox" name="transmittingGroupBox">
           <property name="title">
            <string>Transmitting</string>
           </property>
@@ -330,13 +330,13 @@
          </widget>
         </item>
         <item row="0" column="0">
-         <widget class="QGroupBox" name="groupBox_9">
+         <widget class="QGroupBox" name="receiveWindowTimeGroupBox">
           <property name="title">
            <string>Receive window time</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_11">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_29">
+            <widget class="QPushButton" name="receiveWindowTimeSetLengthButton">
              <property name="text">
               <string>Set Length</string>
              </property>
@@ -346,13 +346,13 @@
          </widget>
         </item>
         <item row="0" column="1">
-         <widget class="QGroupBox" name="groupBox_10">
+         <widget class="QGroupBox" name="callsignGroupBox">
           <property name="title">
            <string>Callsign</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_12">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_27">
+            <widget class="QPushButton" name="callsignSetButton">
              <property name="text">
               <string>Set</string>
              </property>
@@ -362,13 +362,13 @@
          </widget>
         </item>
         <item row="2" column="1">
-         <widget class="QGroupBox" name="groupBox_15">
+         <widget class="QGroupBox" name="powerLimitsGroupBox">
           <property name="title">
            <string>Power Limits</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_16">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_33">
+            <widget class="QPushButton" name="powerLimitsSetButton">
              <property name="text">
               <string>Set</string>
              </property>
@@ -378,13 +378,13 @@
          </widget>
         </item>
         <item row="2" column="0">
-         <widget class="QGroupBox" name="groupBox_17">
+         <widget class="QGroupBox" name="spreadingFactorGroupBox">
           <property name="title">
            <string>Spreading Factor</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_14">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_32">
+            <widget class="QPushButton" name="spreadingFactorSetButton">
              <property name="text">
               <string>Set</string>
              </property>
@@ -394,13 +394,13 @@
          </widget>
         </item>
         <item row="5" column="0">
-         <widget class="QGroupBox" name="groupBox_13">
+         <widget class="QGroupBox" name="RTCGroupBox">
           <property name="title">
            <string>RTC</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_19">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_5">
+            <widget class="QPushButton" name="rtcSetButton">
              <property name="text">
               <string>Set</string>
              </property>
@@ -410,20 +410,20 @@
          </widget>
         </item>
         <item row="4" column="1">
-         <widget class="QGroupBox" name="groupBox_12">
+         <widget class="QGroupBox" name="lowPowerModeGroupBox">
           <property name="title">
            <string>Low Power Mode</string>
           </property>
           <layout class="QGridLayout" name="gridLayout_15">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_34">
+            <widget class="QPushButton" name="lowPowerModeEnableButton">
              <property name="text">
               <string>Enable</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_35">
+            <widget class="QPushButton" name="lowPowerModeDisableButton">
              <property name="text">
               <string>Disable</string>
              </property>
@@ -444,7 +444,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">

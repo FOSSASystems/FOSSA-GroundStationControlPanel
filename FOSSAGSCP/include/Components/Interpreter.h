@@ -89,6 +89,19 @@ public:
         const char* password = m_settings->GetPassword().c_str();
         const uint8_t* key = m_settings->GetKey();
 
+        //
+        // Check that the encryption is setup.
+        //
+        if (encrypt)
+        {
+            bool passwordSet = m_settings->IsPasswordSet();
+            bool keySet = m_settings->IsKeySet();
+
+            if ( !passwordSet || !keySet )
+            {
+                return nullptr;
+            }
+        }
 
         //
         // Get the entire frame's length.

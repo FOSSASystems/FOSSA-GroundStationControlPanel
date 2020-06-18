@@ -34,7 +34,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
         FOSSAService::GetSettings()->SetPasswordSet();
     }
 
-
+    // Set port name.
     FOSSAService::GetSettings()->SetPortName("TestPort1");
 
     // data piping from serial thread to gui thread
