@@ -61,4 +61,4 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     key.txt \
 
-#RESOURCES +=
+RESOURCES += key.txt

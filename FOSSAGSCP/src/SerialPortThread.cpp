@@ -113,7 +113,7 @@ void SerialPortThread::run()
         }
         else
         {
-            currentPortName = false;
+            currentPortNameChanged = false;
         }
 
         currentWaitTimeout = m_waitTimeout;

@@ -10,6 +10,7 @@
 
 #include <QSerialPort>
 #include <QSerialPortInfo>
+#include <QDir>
 
 #include <FOSSA-Comms.h>
 
@@ -17,8 +18,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
-    FOSSAService::GetSettings()->LoadKeyFromFile((char*)"key.txt");
-    FOSSAService::GetSettings()->SetKeySet();
+    QString path = QDir::currentPath();
+    std::string keyFilePathString = path.toStdString() + std::string("/key.txt");
+
+    bool keyLoaded = FOSSAService::GetSettings()->LoadKeyFromFile();
+    if (keyLoaded)
+    {
+        FOSSAService::GetSettings()->SetKeySet();
+    }
     FOSSAService::GetSettings()->SetPassword("password");
     FOSSAService::GetSettings()->SetPasswordSet();
 

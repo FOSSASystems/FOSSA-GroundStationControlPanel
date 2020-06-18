@@ -4,6 +4,9 @@
 #include <QString>
 #include <string>
 #include <cstdint>
+#include <cstdio>
+#include <stdexcept>
+#include <QDir>
 
 ////////////////
 /// Settings ///
@@ -16,34 +19,39 @@ public:
     QString GetPortName() { return m_portName; }
     std::string GetCallsign() { return m_callsign; }
 
-    void LoadKeyFromFile(char* filepath)
+    bool LoadKeyFromFile()
     {
-        FILE* f = fopen(filepath, "r");
-
-        if (f == nullptr)
+        QFile file("key.txt");
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
-            throw std::runtime_error("Could not find key.txt");
+            return false;
         }
 
-        uint8_t tempKey[16];
-
-        for (int i = 0; i < 32; i+=2)
+        while (!file.atEnd())
         {
-            char asciiCharacterA = getc(f);
-            char asciiCharacterB = getc(f);
-            char byteHexStr[3];
+            uint8_t tempKey[16];
+            QByteArray line = file.readLine();
 
-            byteHexStr[0] = asciiCharacterA;
-            byteHexStr[1] = asciiCharacterB;
-            byteHexStr[2] = '\0';
+            for (uint8_t i = 0; i < 32u; i+=2)
+            {
+                char asciiCharacterA = line[i];
+                char asciiCharacterB = line[i+1];
+                char byteHexStr[3];
 
-            uint8_t hexValueAsByte= (uint8_t)strtol(byteHexStr, NULL, 16);
-            tempKey[i/2] = hexValueAsByte;
+                byteHexStr[0] = asciiCharacterA;
+                byteHexStr[1] = asciiCharacterB;
+                byteHexStr[2] = '\0';
+
+                uint8_t hexValueAsByte= (uint8_t)strtol(byteHexStr, NULL, 16);
+                tempKey[i/2] = hexValueAsByte;
+            }
+
+            this->SetKey(tempKey);
+
+            break; // only loop for 1 line.
         }
 
-        fclose(f);
-
-        this->SetKey(tempKey);
+        return true;
     }
 
     uint8_t* GetKey() { return m_key; }
@@ -95,6 +103,7 @@ private:
     // Password.
     std::string m_password = "";
     bool m_passwordSet = false;
+
 };
 
 #endif // SETTINGS_H
