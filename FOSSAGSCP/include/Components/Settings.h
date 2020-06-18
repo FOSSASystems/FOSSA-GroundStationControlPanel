@@ -7,7 +7,7 @@
 #include <cstdio>
 #include <stdexcept>
 #include <QDir>
-
+#include <QCoreApplication>
 #include "../Interfaces/ISettings.h"
 
 ////////////////
@@ -23,7 +23,10 @@ public:
 
     bool LoadKeyFromFile()
     {
-        QFile file("key.txt");
+        std::string keyFilePath = QCoreApplication::applicationDirPath().toStdString();
+        keyFilePath += "/key.txt";
+
+        QFile file(keyFilePath.c_str());
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             return false;
@@ -58,7 +61,11 @@ public:
 
     bool LoadPasswordFromFile()
     {
-        QFile file("password.txt");
+        std::string passwordFilePath = QCoreApplication::applicationDirPath().toStdString();
+        passwordFilePath += "/password.txt";
+
+        QFile file(passwordFilePath.c_str());
+
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
         {
             return false;
@@ -68,6 +75,30 @@ public:
         {
             QByteArray line = file.readLine();
             this->SetPassword(line.toStdString());
+            break; // only loop for 1 line.
+        }
+
+        return true;
+    }
+
+    bool LoadCallsignFromFile()
+    {
+        std::string passwordFilePath = QCoreApplication::applicationDirPath().toStdString();
+        passwordFilePath += "/callsign.txt";
+
+        QFile file(passwordFilePath.c_str());
+
+        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+        {
+            return false;
+        }
+
+        while (!file.atEnd())
+        {
+            QByteArray line = file.readLine();
+
+            this->SetCallsign(line.toStdString());
+
             break; // only loop for 1 line.
         }
 

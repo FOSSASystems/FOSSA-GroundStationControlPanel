@@ -28,7 +28,7 @@ public:
         char operationId = msg->GetOperationID();
         char* payload = msg->GetPayload();
 
-        emit MessageLogged(timestampString,directionBit, operationId, payload);
+        emit MessageLogged(timestampString, directionBit, operationId, payload);
     }
 signals:
     void MessageLogged(char* timestamp, char dirBit, char opId, char* payload);

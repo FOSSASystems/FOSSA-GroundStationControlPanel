@@ -18,6 +18,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
+
+
+
+    // Load the callsign from callsign.txt
+    bool callsignLoaded = FOSSAService::GetSettings()->LoadCallsignFromFile();
+    if (!callsignLoaded)
+    {
+        FOSSAService::GetSettings()->SetCallsign("FOSSASAT-1");
+    }
+
     // Load key from key.txt
     bool keyLoaded = FOSSAService::GetSettings()->LoadKeyFromFile();
     if (keyLoaded)
@@ -35,18 +45,39 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // Set port name.
     FOSSAService::GetSettings()->SetPortName("TestPort1");
 
+
+
+
+
     // attach the settings object to the interpreter.
     FOSSAService::GetInterpreter()->RegisterSettings(FOSSAService::GetSettings());
+
+
+
+
 
     // data piping from serial thread to gui thread
     connect(&this->m_serialPortThread, &SerialPortThread::Response, this, &MainWindow::ResponseReceived, Qt::AutoConnection);
     connect(&this->m_serialPortThread, &SerialPortThread::Error, this, &MainWindow::ErrorReceived, Qt::AutoConnection);
     connect(&this->m_serialPortThread, &SerialPortThread::Timeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
 
+
+
+
+
     // load the system information pane
     m_sytemInfoPane = new systeminformationpane();
     m_sytemInfoPane->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
     m_sytemInfoPane->show();
+
+    // load the message log frame
+    m_messageLogFrame = new MessageLogFrame();
+    m_messageLogFrame->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
+    m_messageLogFrame->show();
+
+
+    // data piping from message log service to message log frame.
+    connect(FOSSAService::GetMessageLog(), &MessageLog::MessageLogged, m_messageLogFrame, &MessageLogFrame::ReceivedMessageLogged, Qt::AutoConnection);
 }
 
 MainWindow::~MainWindow()
@@ -80,7 +111,8 @@ void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
     FOSSAService::GetMessageLog()->PushMessage(msg);
 
     // get the string.
-    const char* cmdData = msg->GetRawData().c_str();
+    std::string cmdDataStr = msg->GetRawData();
+    const char* cmdData = cmdDataStr.c_str();
 
     // send the message to the ground station via serial.
     this->m_serialPortThread.Transaction(FOSSAService::GetSettings()->GetPortName(), 250, cmdData);
@@ -94,12 +126,12 @@ void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
 
 void MainWindow::ErrorReceived(const QString &str)
 {
-    throw std::runtime_error(str.toUtf8());
+    //throw std::runtime_error(str.toUtf8());
 }
 
 void MainWindow::TimeoutReceived(const QString &str)
 {
-    throw std::runtime_error(str.toUtf8());
+    //throw std::runtime_error(str.toUtf8());
 }
 
 

@@ -59,7 +59,7 @@ public:
     /// The ground station serial message is an internal command structure.
     /// This creates it from raw serial datagrams.
     /// @todo checks on the serial data length.
-    virtual IGroundStationSerialMessage* SerialData_To_GroundStationSerialMessage(const char* serialData, char serialDataLength) override final
+    virtual IGroundStationSerialMessage* SerialData_To_GroundStationSerialMessage(const char* serialData, char serialDataLength) override
     {
         // first byte is the control byte.
         char controlByte = serialData[0];
@@ -80,7 +80,7 @@ public:
     }
 
     // this is the base class for all the Create_CMD_XXX methods.
-    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char operationId, uint8_t functionId, uint8_t optDataLength, char* optData) override final
+    virtual IGroundStationSerialMessage* Create_GroundStationSerialMessage(char operationId, uint8_t functionId, uint8_t optDataLength, char* optData) override
     {
         char directionBit = FCPI_DIR_TO_GROUND_STATION; // all outgoing messages are to the ground station.
 
@@ -90,8 +90,11 @@ public:
         //
         // Get information
         //
-        const char* callsign = m_settings->GetCallsign().c_str();
-        const char* password = m_settings->GetPassword().c_str();
+        std::string callsignStr = m_settings->GetCallsign();
+        std::string passwordStr = m_settings->GetPassword();
+
+        const char* callsign = callsignStr.c_str();
+        const char* password = passwordStr.c_str();
         const uint8_t* key = m_settings->GetKey();
 
         //
@@ -114,7 +117,6 @@ public:
         uint8_t frameLength = 0;
         if (encrypt)
         {
-            const char* password = m_settings->GetPassword().c_str();
             frameLength = FCP_Get_Frame_Length((char*)callsign, optDataLength, password);
         }
         else
@@ -324,7 +326,7 @@ public:
     /////
     IGroundStationSerialMessage* Create_CMD_Ping()
     {
-        return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_PING, 0, (char*)"");
+        return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_PING, 0, nullptr);
     };
     IGroundStationSerialMessage* Create_CMD_Retransmit()
     {
@@ -343,7 +345,9 @@ public:
     /////
     IGroundStationSerialMessage* Create_CMD_Deploy()
     {
-        return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_DEPLOY, 0, (char*)"");
+        IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_DEPLOY, 0, nullptr);
+
+        return msg;
     };
     IGroundStationSerialMessage* Create_CMD_Restart() {};
     IGroundStationSerialMessage* Create_CMD_Wipe_EEPROM() {};

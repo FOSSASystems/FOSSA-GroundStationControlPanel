@@ -18,6 +18,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.cpp \
     3rdparty/tiny-aes/aes.cpp \
+    messagelogframe.cpp \
     src/SerialPortThread.cpp \
     src/Service.cpp \
     src/main.cpp \
@@ -40,6 +41,7 @@ HEADERS += \
     include/SerialPortThread.h \
     include/Service.h \
     include/mainwindow.h \
+    messagelogframe.h \
     systeminformationpane.h \
 
 INCLUDEPATH += include/
@@ -49,6 +51,7 @@ INCLUDEPATH += 3rdparty/tiny-aes
 
 FORMS += \
     mainwindow.ui \
+    messagelogframe.ui \
     systeminformationpane.ui
 
 TRANSLATIONS += \

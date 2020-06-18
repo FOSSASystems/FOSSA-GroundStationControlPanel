@@ -5,6 +5,8 @@
 
 #include "SerialPortThread.h"
 #include "systeminformationpane.h"
+#include "messagelogframe.h"
+
 #include "Interfaces/IGroundStationSerialMessage.h"
 
 QT_BEGIN_NAMESPACE
@@ -36,6 +38,7 @@ private slots:
 private:
     Ui::MainWindow *ui;
     systeminformationpane *m_sytemInfoPane;
+    MessageLogFrame *m_messageLogFrame;
 
     FOSSAService m_service;
 
