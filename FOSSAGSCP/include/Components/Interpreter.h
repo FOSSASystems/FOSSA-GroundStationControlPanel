@@ -10,8 +10,8 @@
 #include "Interfaces/IInterpreter.h"
 
 #include "Components/GroundStationSerialMessage.h"
-#include "Components/Settings.h"
 #include "Components/MessageLog.h"
+#include "Components/Settings.h"
 
 /////////////////////
 /// Direction Bit ///
@@ -50,6 +50,11 @@ class Interpreter : public IInterpreter
 {
 public:
     virtual ~Interpreter() {};
+
+    void RegisterSettings(ISettings *settings) override
+    {
+        m_settings = dynamic_cast<Settings*>(settings);
+    }
 
     /// The ground station serial message is an internal command structure.
     /// This creates it from raw serial datagrams.
@@ -143,43 +148,41 @@ public:
     }
 
 
-    void Interpret_Received_Message(IGroundStationSerialMessage* inMsg, Settings* settings)
+    void Interpret_Received_Message(IGroundStationSerialMessage* inMsg)
     {
-        m_settings = settings;
-
         // route via the operation id
         int operationId = inMsg->GetOperationID();
 
         if (operationId == 0)
         {
             // handshake
-            Interpret_Handshake(inMsg, settings);
+            Interpret_Handshake(inMsg);
         }
         else if (operationId == 1)
         {
             // FCP frame.
-            Interpret_FCP_Frame(inMsg, settings);
+            Interpret_FCP_Frame(inMsg);
         }
         else if (operationId == 2)
         {
             // configuration change.
-            Interpret_Config_Change(inMsg, settings);
+            Interpret_Config_Change(inMsg);
         }
     }
 
-    void Interpret_Handshake(IGroundStationSerialMessage* inMsg, Settings* settings)
+    void Interpret_Handshake(IGroundStationSerialMessage* inMsg)
     {
         GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
     }
 
-    void Interpret_Config_Change(IGroundStationSerialMessage* inMsg, Settings* settings)
+    void Interpret_Config_Change(IGroundStationSerialMessage* inMsg)
     {
         GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
     }
 
-    void Interpret_FCP_Frame(IGroundStationSerialMessage* inMsg, Settings* settings)
+    void Interpret_FCP_Frame(IGroundStationSerialMessage* inMsg)
     {
         GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
@@ -197,7 +200,7 @@ public:
 
 
 
-        char * callsign = (char*)settings->GetCallsign().c_str(); /// @todo fix stripping of const.
+        char * callsign = (char*)m_settings->GetCallsign().c_str(); /// @todo fix stripping of const.
 
         // get the function ID.
         int16_t functionId = FCP_Get_FunctionID(callsign, frame, frameLength);
@@ -325,7 +328,6 @@ public:
     };
     IGroundStationSerialMessage* Create_CMD_Retransmit()
     {
-
     };
     IGroundStationSerialMessage* Create_CMD_Retransmit_Custom() {};
     IGroundStationSerialMessage* Create_CMD_Transmit_System_Info() {};
@@ -339,7 +341,10 @@ public:
     /////
     /// Private commands (encrypted uplink messages)
     /////
-    IGroundStationSerialMessage* Create_CMD_Deploy() {};
+    IGroundStationSerialMessage* Create_CMD_Deploy()
+    {
+        return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_DEPLOY, 0, (char*)"");
+    };
     IGroundStationSerialMessage* Create_CMD_Restart() {};
     IGroundStationSerialMessage* Create_CMD_Wipe_EEPROM() {};
     IGroundStationSerialMessage* Create_CMD_Set_Transmit_Enable() {};

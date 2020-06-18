@@ -28,6 +28,11 @@ private slots:
     void ErrorReceived(const QString& str);
     void TimeoutReceived(const QString& str);
 
+    // controls tab
+    void on_baseOpsPingButton_clicked();
+
+    void on_baseOpsDeploybutton_clicked();
+
 private:
     Ui::MainWindow *ui;
     systeminformationpane *m_sytemInfoPane;

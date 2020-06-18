@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -313,14 +313,14 @@
           </property>
           <layout class="QGridLayout" name="gridLayout_17">
            <item row="0" column="0">
-            <widget class="QPushButton" name="pushButton_30">
+            <widget class="QPushButton" name="transmittingDisableButton">
              <property name="text">
               <string>Disable</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QPushButton" name="pushButton_31">
+            <widget class="QPushButton" name="transmittingEnableButton">
              <property name="text">
               <string>Enable</string>
              </property>

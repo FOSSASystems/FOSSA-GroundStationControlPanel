@@ -36,6 +36,7 @@ HEADERS += \
     include/Components/MessageLog.h \
     include/Components/Settings.h \
     include/Components/GroundStationSerialMessage.h \
+    include/Interfaces/ISettings.h \
     include/SerialPortThread.h \
     include/Service.h \
     include/mainwindow.h \

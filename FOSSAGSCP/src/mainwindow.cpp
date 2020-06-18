@@ -18,8 +18,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
-    QString path = QDir::currentPath();
-
     // Load key from key.txt
     bool keyLoaded = FOSSAService::GetSettings()->LoadKeyFromFile();
     if (keyLoaded)
@@ -36,6 +34,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // Set port name.
     FOSSAService::GetSettings()->SetPortName("TestPort1");
+
+    // attach the settings object to the interpreter.
+    FOSSAService::GetInterpreter()->RegisterSettings(FOSSAService::GetSettings());
 
     // data piping from serial thread to gui thread
     connect(&this->m_serialPortThread, &SerialPortThread::Response, this, &MainWindow::ResponseReceived, Qt::AutoConnection);
@@ -67,7 +68,7 @@ void MainWindow::ResponseReceived(const QString& response)
     FOSSAService::GetMessageLog()->PushMessage(msg);
 
     // interpret the received message into function calls.
-    FOSSAService::GetInterpreter()->Interpret_Received_Message(msg, FOSSAService::GetSettings());
+    FOSSAService::GetInterpreter()->Interpret_Received_Message(msg);
 
     delete msg;
 }
@@ -138,4 +139,21 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
     msgBox.setDetailedText(str);
 
     msgBox.exec();
+}
+
+//
+// Controls tab
+//
+
+// ping button
+void MainWindow::on_baseOpsPingButton_clicked()
+{
+    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->Create_CMD_Ping();
+    this->SendSerialData(msg);
+}
+
+void MainWindow::on_baseOpsDeploybutton_clicked()
+{
+    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->Create_CMD_Deploy();
+    this->SendSerialData(msg);
 }

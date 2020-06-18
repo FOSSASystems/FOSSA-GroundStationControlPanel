@@ -8,10 +8,12 @@
 #include <stdexcept>
 #include <QDir>
 
+#include "../Interfaces/ISettings.h"
+
 ////////////////
 /// Settings ///
 ////////////////
-class Settings
+class Settings : public ISettings
 {
 public:
     virtual ~Settings() {}
