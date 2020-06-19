@@ -6,6 +6,7 @@
 #include "SerialPortThread.h"
 #include "systeminformationpane.h"
 #include "messagelogframe.h"
+#include "Service.h"
 
 #include "Interfaces/IGroundStationSerialMessage.h"
 
@@ -22,17 +23,19 @@ public:
     ~MainWindow();
 
     void SendSerialData(IGroundStationSerialMessage* datagram);
+    void SendHandshake();
+    void ReceivedHandshake();
+
 private slots:
     void on_actionView_Serial_Ports_triggered();
 
     // receive from serial port.
-    void ResponseReceived(const QString& response);
+    void HandleRead(QByteArray data);
     void ErrorReceived(const QString& str);
     void TimeoutReceived(const QString& str);
 
     // controls tab
     void on_baseOpsPingButton_clicked();
-
     void on_baseOpsDeploybutton_clicked();
 
 private:
@@ -43,6 +46,8 @@ private:
     FOSSAService m_service;
 
     // serial port thread.
-    SerialPortThread m_serialPortThread;
+    SerialPortThread* m_serialPortThread;
+
+    bool m_handshakeReceived = false;
 };
 #endif // MAINWINDOW_H

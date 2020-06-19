@@ -8,6 +8,7 @@
 #include <stdexcept>
 #include <QDir>
 #include <QCoreApplication>
+
 #include "../Interfaces/ISettings.h"
 
 ////////////////

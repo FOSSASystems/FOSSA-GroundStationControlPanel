@@ -18,9 +18,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
-
-
-
     // Load the callsign from callsign.txt
     bool callsignLoaded = FOSSAService::GetSettings()->LoadCallsignFromFile();
     if (!callsignLoaded)
@@ -54,15 +51,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
 
 
+    // startup the thread.
+    QString portName = FOSSAService::GetSettings()->GetPortName();
+    m_serialPortThread = new SerialPortThread(portName, this);
+
 
 
     // data piping from serial thread to gui thread
-    connect(&this->m_serialPortThread, &SerialPortThread::Response, this, &MainWindow::ResponseReceived, Qt::AutoConnection);
-    connect(&this->m_serialPortThread, &SerialPortThread::Error, this, &MainWindow::ErrorReceived, Qt::AutoConnection);
-    connect(&this->m_serialPortThread, &SerialPortThread::Timeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
-
-
-
+    connect(this->m_serialPortThread, &SerialPortThread::HandleRead, this, &MainWindow::HandleRead, Qt::QueuedConnection);
+    connect(this->m_serialPortThread, &SerialPortThread::HandleError, this, &MainWindow::ErrorReceived, Qt::AutoConnection);
+    connect(this->m_serialPortThread, &SerialPortThread::HandleTimeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
 
 
     // load the system information pane
@@ -78,22 +76,44 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // data piping from message log service to message log frame.
     connect(FOSSAService::GetMessageLog(), &MessageLog::MessageLogged, m_messageLogFrame, &MessageLogFrame::ReceivedMessageLogged, Qt::AutoConnection);
+
+
 }
 
 MainWindow::~MainWindow()
 {
+    m_serialPortThread->quit();
+    delete m_serialPortThread;
     delete m_sytemInfoPane;
     delete ui;
 }
 
-// Response received is a slot, this slot is signalled from the serial port thread.
-void MainWindow::ResponseReceived(const QString& response)
+void MainWindow::SendHandshake()
 {
-    QByteArray arr = response.toLocal8Bit();
-    const char* respData = arr.data();
+    //
+    // Handshake the ground station.
+    //
+    char handshakeMessage = 0b10000000;
+    QByteArray msg;
+    msg.append(handshakeMessage);
+    this->m_serialPortThread->Write(msg);
+}
+
+void MainWindow::ReceivedHandshake()
+{
+    QMessageBox msgBox;
+    msgBox.setText("Handshake received!");
+    msgBox.exec();
+}
+
+
+// Response received is a slot, this slot is signalled from the serial port thread.
+void MainWindow::HandleRead(QByteArray data)
+{
+    const char* respData = data.data();
 
     // interpret the serial data into the message.
-    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->SerialData_To_GroundStationSerialMessage(respData, arr.length());
+    IGroundStationSerialMessage* msg = FOSSAService::GetInterpreter()->SerialData_To_GroundStationSerialMessage(respData, data.size());
 
     // push the message to the log panel.
     FOSSAService::GetMessageLog()->PushMessage(msg);
@@ -104,6 +124,8 @@ void MainWindow::ResponseReceived(const QString& response)
     delete msg;
 }
 
+
+
 // The IGroundStationSerialMessage object is created in Interpreter.h  function name: Create_GroundStationSerialMessage()
 void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
 {
@@ -112,15 +134,19 @@ void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
 
     // get the string.
     std::string cmdDataStr = msg->GetRawData();
-    const char* cmdData = cmdDataStr.c_str();
+
+    // convert it to a byte array.
+    QByteArray byteArray;
+    for (char& v : cmdDataStr)
+    {
+        byteArray.push_back(v);
+    }
 
     // send the message to the ground station via serial.
-    this->m_serialPortThread.Transaction(FOSSAService::GetSettings()->GetPortName(), 250, cmdData);
+    this->m_serialPortThread->Write(byteArray);
 
     delete msg;
 }
-
-
 
 
 

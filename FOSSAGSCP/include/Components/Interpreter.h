@@ -175,7 +175,6 @@ public:
     void Interpret_Handshake(IGroundStationSerialMessage* inMsg)
     {
         GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
-
     }
 
     void Interpret_Config_Change(IGroundStationSerialMessage* inMsg)
