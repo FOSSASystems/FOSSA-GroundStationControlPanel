@@ -8,19 +8,15 @@
 #include <stdexcept>
 #include <QDir>
 #include <QCoreApplication>
-
-#include "../Interfaces/ISettings.h"
+#include <QSettings>
 
 ////////////////
 /// Settings ///
 ////////////////
-class Settings : public ISettings
+class Settings
 {
 public:
     virtual ~Settings() {}
-
-    QString GetPortName() { return m_portName; }
-    std::string GetCallsign() { return m_callsign; }
 
     bool LoadKeyFromFile()
     {
@@ -60,6 +56,56 @@ public:
         return true;
     }
 
+    bool LoadKeyFromSettings()
+    {
+        QSettings settings("settings.txt", QSettings::NativeFormat);
+        QByteArray keyText = settings.value("key", "").toByteArray();
+
+        if (keyText.length() != 32)
+        {
+            return false;
+        }
+
+        uint8_t tempKey[16];
+        for (uint8_t i = 0; i < 32; i+=2)
+        {
+            char asciiCharacterA = keyText[i];
+            char asciiCharacterB = keyText[i+1];
+            char byteHexStr[3];
+
+            byteHexStr[0] = asciiCharacterA;
+            byteHexStr[1] = asciiCharacterB;
+            byteHexStr[2] = '\0';
+
+            uint8_t hexValueAsByte= (uint8_t)strtol(byteHexStr, NULL, 16);
+            tempKey[i/2] = hexValueAsByte;
+        }
+
+        this->SetKey(tempKey);
+
+        return true;
+    }
+
+    void SaveKeyToSettings()
+    {
+        QSettings settings("settings.txt", QSettings::NativeFormat);
+
+        uint8_t* key = this->GetKey();
+
+        QByteArray arr;
+        for (uint8_t i = 0; i < 16; i++)
+        {
+            arr.push_back(key[i]);
+        }
+        settings.setValue("text", arr);
+    }
+
+
+
+
+
+
+
     bool LoadPasswordFromFile()
     {
         std::string passwordFilePath = QCoreApplication::applicationDirPath().toStdString();
@@ -82,29 +128,29 @@ public:
         return true;
     }
 
-    bool LoadCallsignFromFile()
+    bool LoadPasswordFromSettings()
     {
-        std::string passwordFilePath = QCoreApplication::applicationDirPath().toStdString();
-        passwordFilePath += "/callsign.txt";
-
-        QFile file(passwordFilePath.c_str());
-
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            return false;
-        }
-
-        while (!file.atEnd())
-        {
-            QByteArray line = file.readLine();
-
-            this->SetCallsign(line.toStdString());
-
-            break; // only loop for 1 line.
-        }
+        QSettings settings("settings.txt", QSettings::NativeFormat);
+        QString passwordText = settings.value("password", "").toString();
+        std::string password = passwordText.toStdString();
+        this->SetPassword(password);
 
         return true;
     }
+
+    void SavePasswordToSettings()
+    {
+        QSettings settings("settings.txt", QSettings::NativeFormat);
+
+        std::string password = this->GetPassword();
+        QString str = QString::fromStdString(password);
+        settings.setValue("password", str);
+    }
+
+
+
+
+    QString GetPortName() { return m_portName; }
 
     uint8_t* GetKey() { return m_key; }
     bool IsKeySet() { return m_keySet; }
@@ -118,10 +164,6 @@ public:
     void SetPortName(QString portName)
     {
         m_portName = portName;
-    }
-    void SetCallsign(std::string callsign)
-    {
-        m_callsign = callsign;
     }
     void SetKey(uint8_t* key)
     {
@@ -146,7 +188,6 @@ public:
 private:
     // selected port name.
     QString m_portName;
-    std::string m_callsign = "FOSSASAT-1"; /// @todo implement a menu for this.
 
     // AES KEY
     uint8_t m_key[16];

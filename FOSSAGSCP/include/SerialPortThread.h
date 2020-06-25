@@ -9,8 +9,6 @@
 #include <QWaitCondition>
 #include <QTime>
 
-#include "Service.h"
-
 class SerialPortThread : public QThread
 {
     Q_OBJECT

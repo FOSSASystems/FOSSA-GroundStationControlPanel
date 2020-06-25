@@ -1,7 +1,6 @@
 #ifndef MESSAGELOG_H
 #define MESSAGELOG_H
 
-#include "Interfaces/IMessageLog.h"
 #include "Interfaces/IGroundStationSerialMessage.h"
 
 #include <queue>
@@ -11,13 +10,13 @@
 #include <QObject>
 
 /// This acts as a middleground for GUI objects to subscribe to.
-class MessageLog : public QObject, public IMessageLog
+class MessageLog : public QObject
 {
     Q_OBJECT
 public:
-    virtual ~MessageLog() {}
+    ~MessageLog() {}
 
-    virtual void PushMessage(IGroundStationSerialMessage* msg) override final
+    void PushMessage(IGroundStationSerialMessage* msg)
     {
         auto timestamp = std::chrono::system_clock::now();
         auto timenow = std::chrono::system_clock::to_time_t(timestamp);

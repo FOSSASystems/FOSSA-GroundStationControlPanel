@@ -20,7 +20,6 @@ SOURCES += \
     3rdparty/tiny-aes/aes.cpp \
     messagelogframe.cpp \
     src/SerialPortThread.cpp \
-    src/Service.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     systeminformationpane.cpp
@@ -29,17 +28,11 @@ HEADERS += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.h \
     3rdparty/tiny-aes/aes.h \
     include/Interfaces/IGroundStationSerialMessage.h \
-    include/Interfaces/IInterpreter.h \
     include/Interfaces/IMessage.h \
-    include/Interfaces/IMessageLog.h \
-    include/Interfaces/IService.h \
-    include/Components/Interpreter.h \
     include/Components/MessageLog.h \
     include/Components/Settings.h \
     include/Components/GroundStationSerialMessage.h \
-    include/Interfaces/ISettings.h \
     include/SerialPortThread.h \
-    include/Service.h \
     include/mainwindow.h \
     messagelogframe.h \
     systeminformationpane.h \
