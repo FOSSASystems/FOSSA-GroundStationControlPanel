@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>645</width>
-    <height>754</height>
+    <width>875</width>
+    <height>833</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -72,10 +72,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>62</x>
-             <y>-3376</y>
+             <x>177</x>
+             <y>-438</y>
              <width>449</width>
-             <height>4619</height>
+             <height>4627</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1410,7 +1410,7 @@
            </property>
            <property name="geometry">
             <rect>
-             <x>340</x>
+             <x>177</x>
              <y>0</y>
              <width>449</width>
              <height>1561</height>
@@ -2032,8 +2032,8 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>386</x>
-             <y>241</y>
+             <x>212</x>
+             <y>0</y>
              <width>378</width>
              <height>760</height>
             </rect>
@@ -2317,6 +2317,142 @@
         </item>
        </layout>
       </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Control Panel Settings</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_43">
+        <item row="0" column="0">
+         <widget class="QScrollArea" name="scrollArea_4">
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <widget class="QWidget" name="scrollAreaWidgetContents_5">
+           <property name="geometry">
+            <rect>
+             <x>286</x>
+             <y>189</y>
+             <width>250</width>
+             <height>335</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_47">
+            <property name="sizeConstraint">
+             <enum>QLayout::SetDefaultConstraint</enum>
+            </property>
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="groupBox_18">
+              <property name="title">
+               <string>Serial Port</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_37">
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="spinBox_43"/>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_76">
+                 <property name="text">
+                  <string>Port Name:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="comboBox_2"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_77">
+                 <property name="text">
+                  <string>Baud Rate:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButton_30">
+                 <property name="text">
+                  <string>Set</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QGroupBox" name="groupBox_19">
+              <property name="title">
+               <string>Security</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_38">
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="lineEdit_28"/>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_79">
+                 <property name="text">
+                  <string>Password:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="lineEdit_27"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_80">
+                 <property name="text">
+                  <string>Key:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QPushButton" name="pushButton_32">
+                 <property name="text">
+                  <string>Set</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="horizontalSpacer_20">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="0">
+             <spacer name="horizontalSpacer_22">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -2326,7 +2462,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>645</width>
+     <width>875</width>
      <height>26</height>
     </rect>
    </property>
@@ -2348,22 +2484,22 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="sendFullPictureButtonGroup"/>
   <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
  </buttongroups>
 </ui>
