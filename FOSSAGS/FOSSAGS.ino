@@ -46,6 +46,7 @@
 #define FGSP_OP_ID_HANDSHAKE                0x00
 #define FGSP_OP_ID_FRAME_TRANSFER           0x01
 #define FGSP_OP_ID_CONFIGURATION            0x02
+#define FGSP_OP_ID_FREQUENCY_CHANGE         0x03
 
 // set up radio module
 #ifdef USE_SX126X
@@ -124,7 +125,7 @@ void sendFrame(uint8_t* frame, uint8_t frameLen) {
 
   // send the uplink frame data
   radio.transmit(frame, frameLen);
-  
+
   // for some reason, when using SX126x GFSK and listening after transmission,
   // the next packet received will have bad CRC,
   // and the data will be the transmitted packet
@@ -134,7 +135,7 @@ void sendFrame(uint8_t* frame, uint8_t frameLen) {
     delay(10);
     setGFSK();
   #endif
-  
+
   // set radio mode to reception
   #ifdef USE_SX126X
     radio.setDio1Action(onInterrupt);
@@ -149,11 +150,11 @@ void processDatagram() {
   // execute opID
   uint8_t opID = controlByte & 0x7F;
   switch(opID) {
-    
+
     case FGSP_OP_ID_FRAME_TRANSFER:
       sendFrame(datagramBuff, datagramBuffPos + 1);
       break;
-      
+
     case FGSP_OP_ID_CONFIGURATION: {
       // get the parameters
       uint8_t modem = 0;
@@ -196,15 +197,24 @@ void processDatagram() {
       // send the result
       sendConfigResponse(state);
     } break;
-    
+
     case FGSP_OP_ID_HANDSHAKE:
       sendDatagram(FGSP_OP_ID_HANDSHAKE);
       break;
-    
-    default: 
+
+    case FGSP_OP_ID_FREQUENCY_CHANGE: {
+      float freq = 0;
+      memcpy(&freq, datagramBuff, sizeof(freq));
+      int16_t state = radio.setFrequency(freq);
+      uint8_t buff[2];
+      memcpy(buff, &state, sizeof(state));
+      sendDatagram(FGSP_OP_ID_FREQUENCY_CHANGE,  sizeof(state), buff);
+    } break;
+
+    default:
       // TODO process unknown datagrams
       break;
-  
+
   }
 }
 
@@ -235,7 +245,7 @@ void setup() {
       // TODO timeout
       while(!SERIAL_PORT.available());
       SERIAL_PORT.read();
-      
+
       // send response
       sendDatagram(FGSP_OP_ID_HANDSHAKE);
       handshakeReceived = true;
@@ -281,11 +291,11 @@ void loop() {
       // set dataram variables
       receivingDatagram = true;
       datagramBuffPos = 0;
-    
+
     } else {
       // payload byte, add it to buffer
       datagramBuff[datagramBuffPos++] = SERIAL_PORT.read();
-    
+
     }
 
     // check if this byte completes the current datagram

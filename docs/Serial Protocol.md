@@ -42,6 +42,7 @@ Operation ID specifies the type of data sent in the payload section.
   - 26 - 29: GFSK Rx bandwidth in kHz, single precision IEEE 754 float, LSB first.
   - 30 - 33: GFSK data shaping BT product, single precision IEEE 754 float, LSB first.
   - 34 - 35: GFSK preamble length in bits, unsigned 16-bit integer, LSB first.
+- __0x03__ - Ground station carrier frequency change request/result. Kept as separate datagram to allow quick frequency changes for Doppler effect compensation. When sent with direction bit set to 0, the optional data is new carrier frequency as IEEE 754 float, LSB first. RadioLib status code is sent in response.
 
 ### Length byte
 
