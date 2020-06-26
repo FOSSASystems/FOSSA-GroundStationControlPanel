@@ -224,7 +224,7 @@ IGroundStationSerialMessage* MainWindow::Create_GroundStationSerialMessage(char 
     //
     // Get information
     //
-    std::string callsignStr = ui->callsignLineEdit->text().toStdString();
+    std::string callsignStr = ui->SatelliteConfig_callsignLineEdit->text().toStdString();
     std::string passwordStr = m_settings.GetPassword();
 
     const char* callsign = callsignStr.c_str();
@@ -331,7 +331,7 @@ void MainWindow::Interpret_FCP_Frame(IGroundStationSerialMessage *inMsg)
         frame[i] = (uint8_t)(payloadData[i]);
     }
 
-    char * callsign = (char*)ui->callsignLineEdit->text().toStdString().c_str(); /// @todo fix stripping of const.
+    char * callsign = (char*)ui->SatelliteConfig_callsignLineEdit->text().toStdString().c_str(); /// @todo fix stripping of const.
 
     // get the function ID.
     int16_t functionId = FCP_Get_FunctionID(callsign, frame, frameLength);
