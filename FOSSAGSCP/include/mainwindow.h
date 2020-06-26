@@ -53,7 +53,10 @@ private slots:
 
 private:
 
-    Ui::MainWindow *ui;
+    Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h
+                        // this means that we can't pass it to other systems, therefore
+                        // we must do all UI interactivity in this class or create functions for
+                        // all elements? 21:52 25/06/2020 R.G.Bamford
 
     // GUI Frames
     systeminformationpane *m_sytemInfoPane;

@@ -24,7 +24,7 @@
     <bool>false</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>177</x>
-             <y>0</y>
+             <y>-3914</y>
              <width>449</width>
              <height>4627</height>
             </rect>
@@ -104,7 +104,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_27">
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBox_31"/>
+                   <widget class="QSpinBox" name="TransmissionRouter_Retransmission_SendID_SpinBox"/>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_55">
@@ -121,10 +121,10 @@
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QPlainTextEdit" name="plainTextEdit_2"/>
+                   <widget class="QPlainTextEdit" name="TransmissionRouter_Retransmission_MessageContent_PlainTextEdit"/>
                   </item>
                   <item row="3" column="0" colspan="2">
-                   <widget class="QPushButton" name="transmissionRouterRetransmitButton">
+                   <widget class="QPushButton" name="TransmissionRouter_Retransmission_Retransmit_Button">
                     <property name="text">
                      <string>Retransmit</string>
                     </property>
@@ -143,7 +143,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_29">
                   <item row="8" column="1">
-                   <widget class="QRadioButton" name="radioButton_27">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_CRCEnabled_Disabled_RadioButton">
                     <property name="text">
                      <string>Disable CRC</string>
                     </property>
@@ -160,7 +160,7 @@
                    </widget>
                   </item>
                   <item row="7" column="1">
-                   <widget class="QRadioButton" name="radioButton_26">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_CRCEnabled_Enabled_RadioButton">
                     <property name="text">
                      <string>Enable CRC</string>
                     </property>
@@ -170,7 +170,7 @@
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QRadioButton" name="radioButton_21">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_Bandwidth_125_RadioButton">
                     <property name="text">
                      <string>125 kHZ</string>
                     </property>
@@ -180,7 +180,7 @@
                    </widget>
                   </item>
                   <item row="4" column="1">
-                   <widget class="QRadioButton" name="radioButton_24">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_CodingRate_45_RadioButton">
                     <property name="text">
                      <string>4/5</string>
                     </property>
@@ -204,7 +204,7 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QRadioButton" name="radioButton_20">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_Bandwidth_78_RadioButton">
                     <property name="text">
                      <string>7.8 kHz</string>
                     </property>
@@ -214,10 +214,10 @@
                    </widget>
                   </item>
                   <item row="6" column="1">
-                   <widget class="QSpinBox" name="spinBox_33"/>
+                   <widget class="QSpinBox" name="TransmissionRouter_RetransmissionCustom_PreambleLength_SpinBox"/>
                   </item>
                   <item row="3" column="1">
-                   <widget class="QRadioButton" name="radioButton_23">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_SpreadingFactor_SF12_RadioButton">
                     <property name="text">
                      <string>SF12</string>
                     </property>
@@ -227,7 +227,7 @@
                    </widget>
                   </item>
                   <item row="9" column="1">
-                   <widget class="QSpinBox" name="spinBox_34"/>
+                   <widget class="QSpinBox" name="TransmissionRouter_RetransmissionCustom_OutputPower_SpinBox"/>
                   </item>
                   <item row="7" column="0">
                    <widget class="QLabel" name="label_62">
@@ -237,7 +237,7 @@
                    </widget>
                   </item>
                   <item row="5" column="1">
-                   <widget class="QRadioButton" name="radioButton_25">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_CodingRate_48_RadioButton">
                     <property name="text">
                      <string>4/8</string>
                     </property>
@@ -247,7 +247,7 @@
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QRadioButton" name="radioButton_22">
+                   <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_SpreadingFactor_SF5_RadioButton">
                     <property name="text">
                      <string>SF5</string>
                     </property>
@@ -278,7 +278,7 @@
                    </widget>
                   </item>
                   <item row="10" column="1">
-                   <widget class="QSpinBox" name="spinBox_35"/>
+                   <widget class="QSpinBox" name="TransmissionRouter_RetransmissionCustom_SenderID_SpinBox"/>
                   </item>
                   <item row="11" column="0">
                    <widget class="QLabel" name="label_57">
@@ -288,10 +288,10 @@
                    </widget>
                   </item>
                   <item row="11" column="1">
-                   <widget class="QPlainTextEdit" name="plainTextEdit_3"/>
+                   <widget class="QPlainTextEdit" name="TransmissionRouter_RetransmissionCustom_MessageContent_PlainTextEdit"/>
                   </item>
                   <item row="12" column="0" colspan="2">
-                   <widget class="QPushButton" name="transmissionRouterRetransmitCustomButton">
+                   <widget class="QPushButton" name="TransmissionRouter_RetransmissionCustom_RetransmitCustom_Button">
                     <property name="text">
                      <string>Retransmit Custom</string>
                     </property>
@@ -317,10 +317,10 @@
                    </widget>
                   </item>
                   <item row="1" column="2">
-                   <widget class="QPlainTextEdit" name="plainTextEdit_4"/>
+                   <widget class="QPlainTextEdit" name="RouteCommand_FCPFrameContent_PlainTextEdit"/>
                   </item>
                   <item row="2" column="1" colspan="2">
-                   <widget class="QPushButton" name="transmissionRouterRouteCommandButton">
+                   <widget class="QPushButton" name="RouteCommand_RouteCommand_Button">
                     <property name="text">
                      <string>Route Command</string>
                     </property>
@@ -351,42 +351,42 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_12">
                   <item row="0" column="0">
-                   <widget class="QCheckBox" name="checkBox">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox">
                     <property name="text">
                      <string>System Info And Config</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QCheckBox" name="checkBox_2">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_Statistics_CheckBox">
                     <property name="text">
                      <string>Statistics</string>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QCheckBox" name="checkBox_5">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ADCS_CheckBox">
                     <property name="text">
                      <string>ADCS Paramaters</string>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QCheckBox" name="checkBox_4">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_NMEALOG_CheckBox">
                     <property name="text">
                      <string>NMEA Log</string>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QCheckBox" name="checkBox_3">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ImageStorage_CheckBox">
                     <property name="text">
                      <string>Image Storage</string>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="0" colspan="2">
-                   <widget class="QPushButton" name="baseOpWipeButton">
+                   <widget class="QPushButton" name="EEPROM_Control_Wipe_Button">
                     <property name="text">
                      <string>Wipe</string>
                     </property>
@@ -463,10 +463,10 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit_22"/>
+                   <widget class="QLineEdit" name="FlashControl_EraseFlash_Address_LineEdit"/>
                   </item>
                   <item row="1" column="0" colspan="2">
-                   <widget class="QPushButton" name="flashControlSetButton">
+                   <widget class="QPushButton" name="FlashControl_EraseFlash_Erase_Button">
                     <property name="text">
                      <string>Erase Flash Content</string>
                     </property>
@@ -492,7 +492,7 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit_23"/>
+                   <widget class="QLineEdit" name="FlashControl_GetFlashContent_Address_LineEdit"/>
                   </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_68">
@@ -502,10 +502,10 @@
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QSpinBox" name="spinBox_32"/>
+                   <widget class="QSpinBox" name="FlashControl_GetFlashContent_NumberOfBytes_SpinBox"/>
                   </item>
                   <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="flashControlGetButton">
+                   <widget class="QPushButton" name="FlashControl_GetFlashContent_Get_Button">
                     <property name="text">
                      <string>Get Flash Content</string>
                     </property>
@@ -538,13 +538,13 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit_24"/>
+                   <widget class="QLineEdit" name="FlashControl_FlashAddress_LineEdit"/>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QPlainTextEdit" name="plainTextEdit_5"/>
+                   <widget class="QPlainTextEdit" name="FlashControl_FlashData_PlainTextBox"/>
                   </item>
                   <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="pushButton_29">
+                   <widget class="QPushButton" name="FlashControl_SetFlashContent_Button">
                     <property name="text">
                      <string>Set Flash Content</string>
                     </property>
@@ -585,10 +585,10 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBox_28"/>
+                   <widget class="QSpinBox" name="StoreAndForward_RequestMessage_MessageID_SpinBox"/>
                   </item>
                   <item row="1" column="0" colspan="2">
-                   <widget class="QPushButton" name="storeAndForwardRequestMessage">
+                   <widget class="QPushButton" name="storeAndForwardStoreAndForward_RequestMessage_RequestMessage_Button">
                     <property name="text">
                      <string>Request Message</string>
                     </property>
@@ -607,7 +607,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_25">
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBox_27"/>
+                   <widget class="QSpinBox" name="StoreAndForward_Message_MessageID_SpinBox"/>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_48">
@@ -617,14 +617,14 @@
                    </widget>
                   </item>
                   <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="storeAndForwardAddMessage">
+                   <widget class="QPushButton" name="StoreAndForward_Message_AddMessage_Button">
                     <property name="text">
                      <string>Add Message</string>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QPlainTextEdit" name="plainTextEdit"/>
+                   <widget class="QPlainTextEdit" name="StoreAndForward_Message_MessageContent_PlainTextEdit"/>
                   </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_49">
@@ -680,7 +680,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_40">
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit_15"/>
+                   <widget class="QLineEdit" name="GPSControl_LogGPS_LoggingDuration_LineEdit"/>
                   </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_29">
@@ -697,10 +697,10 @@
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QLineEdit" name="lineEdit_16"/>
+                   <widget class="QLineEdit" name="GPSControl_LogGPS_StartOffset_LineEdit"/>
                   </item>
                   <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="gpsStartLogButton">
+                   <widget class="QPushButton" name="GPSControl_LogGPS_StartLogging_Button">
                     <property name="text">
                      <string>Start Logging</string>
                     </property>
@@ -731,10 +731,10 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_49">
                   <item row="1" column="1">
-                   <widget class="QLineEdit" name="lineEdit_18"/>
+                   <widget class="QLineEdit" name="GPSControl_GetGPSState_LastEntryAddress_LineEdit"/>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit_20"/>
+                   <widget class="QLineEdit" name="GPSControl_GetGPSState_Length_LineEdit"/>
                   </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_36">
@@ -744,7 +744,7 @@
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLineEdit" name="lineEdit_19"/>
+                   <widget class="QLineEdit" name="GPSControl_GetGPSState_LastFixAddress_LineEdit"/>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_34">
@@ -761,7 +761,7 @@
                    </widget>
                   </item>
                   <item row="3" column="0" colspan="2">
-                   <widget class="QPushButton" name="gpsGetLogStateButton">
+                   <widget class="QPushButton" name="GPSControl_GetGPSState_GetLogState_Button">
                     <property name="text">
                      <string>Get Log State</string>
                     </property>
@@ -785,8 +785,29 @@
                   <bool>true</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_42">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_31">
+                    <property name="text">
+                     <string>Offset (num NMEA seq.):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_32">
+                    <property name="text">
+                     <string>NMEA sentance count (0=all):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0" colspan="2">
+                   <widget class="QPushButton" name="GPSControl_GetGPSLog_GetLog_Button">
+                    <property name="text">
+                     <string>Get Log</string>
+                    </property>
+                   </widget>
+                  </item>
                   <item row="0" column="1">
-                   <widget class="QRadioButton" name="radioButton_15">
+                   <widget class="QRadioButton" name="GPSControl_GetGPSLog_NewestFirst_RadioButton">
                     <property name="text">
                      <string>Newest First</string>
                     </property>
@@ -795,15 +816,8 @@
                     </attribute>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_31">
-                    <property name="text">
-                     <string>Offset (num NMEA seq.):</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="0" column="0">
-                   <widget class="QRadioButton" name="radioButton_14">
+                   <widget class="QRadioButton" name="GPSControl_GetGPSLog_OldestFirst_RadioButton">
                     <property name="text">
                      <string>Oldest First</string>
                     </property>
@@ -813,24 +827,10 @@
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QSpinBox" name="spinBox_16"/>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_32">
-                    <property name="text">
-                     <string>NMEA sentance count (0=all):</string>
-                    </property>
-                   </widget>
+                   <widget class="QSpinBox" name="GPSControl_GetGPSLog_Offset_SpinBox"/>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QSpinBox" name="spinBox_17"/>
-                  </item>
-                  <item row="3" column="0" colspan="2">
-                   <widget class="QPushButton" name="pushButton_26">
-                    <property name="text">
-                     <string>Get Log</string>
-                    </property>
-                   </widget>
+                   <widget class="QSpinBox" name="GPSControl_GetGPSLog_NMEASeqCount_SpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -852,7 +852,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_28">
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit_17"/>
+                   <widget class="QLineEdit" name="GPSControl_RunGPSCmd_SkytraqBinary_LineEdit"/>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_33">
@@ -862,7 +862,7 @@
                    </widget>
                   </item>
                   <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="gpsRunCommandButton">
+                   <widget class="QPushButton" name="GPSControl_RunGPSCmd_RunCommand_Button">
                     <property name="text">
                      <string>Run Command</string>
                     </property>
@@ -896,7 +896,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_55">
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBox_19"/>
+                   <widget class="QSpinBox" name="CameraControl_GetPictureLength_PictureSlot_SpinBox"/>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_38">
@@ -906,7 +906,7 @@
                    </widget>
                   </item>
                   <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="cameraControlGetPictureLengtBbutton_2">
+                   <widget class="QPushButton" name="CameraControl_GetPictureLength_GetPictureLength_Button">
                     <property name="text">
                      <string>Get Picture Length</string>
                     </property>
@@ -925,7 +925,7 @@
                  </property>
                  <layout class="QGridLayout" name="gridLayout_58">
                   <item row="18" column="1">
-                   <widget class="QSpinBox" name="spinBox_25"/>
+                   <widget class="QSpinBox" name="CameraControl_SpecialFilter_SpinBox"/>
                   </item>
                   <item row="5" column="0">
                    <widget class="QLabel" name="label_45">
@@ -949,14 +949,14 @@
                    </widget>
                   </item>
                   <item row="19" column="0" colspan="2">
-                   <widget class="QPushButton" name="pushButton_28">
+                   <widget class="QPushButton" name="CameraControl_Capture_Button">
                     <property name="text">
                      <string>Capture</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBox_24"/>
+                   <widget class="QSpinBox" name="CameraControl_PictureSlot_SpinBox"/>
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_43">
@@ -973,16 +973,16 @@
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QSpinBox" name="spinBox_26"/>
+                   <widget class="QSpinBox" name="CameraControl_LightMode_SpinBox"/>
                   </item>
                   <item row="3" column="1">
-                   <widget class="QSpinBox" name="spinBox_22"/>
+                   <widget class="QSpinBox" name="CameraControl_Saturation_SpinBox"/>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QSpinBox" name="spinBox_21"/>
+                   <widget class="QSpinBox" name="CameraControl_PictureSisze_SpinBox"/>
                   </item>
                   <item row="5" column="1">
-                   <widget class="QSpinBox" name="spinBox_20"/>
+                   <widget class="QSpinBox" name="CameraControl_Contrast_SpinBox"/>
                   </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_42">
@@ -999,7 +999,7 @@
                    </widget>
                   </item>
                   <item row="4" column="1">
-                   <widget class="QSpinBox" name="spinBox_23"/>
+                   <widget class="QSpinBox" name="CameraControl_Brightness_SpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1028,7 +1028,7 @@
                    </widget>
                   </item>
                   <item row="3" column="1">
-                   <widget class="QRadioButton" name="radioButton_17">
+                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeOnlyScanData_RadioButton">
                     <property name="text">
                      <string>Send Only Scan Data</string>
                     </property>
@@ -1038,14 +1038,14 @@
                    </widget>
                   </item>
                   <item row="8" column="0" colspan="2">
-                   <widget class="QPushButton" name="cameraControlGetPictureLengtBbutton">
+                   <widget class="QPushButton" name="CameraControl_PictureBurst_GetPictureBurst_Button">
                     <property name="text">
                      <string>Get Picture Burst</string>
                     </property>
                    </widget>
                   </item>
                   <item row="4" column="1">
-                   <widget class="QRadioButton" name="radioButton_18">
+                   <widget class="QRadioButton" name="CameraControl_PictureBurst_PublicPrivate_Public_RadioButton">
                     <property name="text">
                      <string>Public Request</string>
                     </property>
@@ -1062,7 +1062,7 @@
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QRadioButton" name="radioButton_16">
+                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton">
                     <property name="text">
                      <string>Send Full Picture</string>
                     </property>
@@ -1079,13 +1079,13 @@
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBox_18"/>
+                   <widget class="QSpinBox" name="CameraControl_PictureBurst_PictureSlot_SpinBox"/>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QLineEdit" name="lineEdit_21"/>
+                   <widget class="QLineEdit" name="CameraControl_PictureBurst_PicturePacketID_LineEdit"/>
                   </item>
                   <item row="5" column="1">
-                   <widget class="QRadioButton" name="radioButton_19">
+                   <widget class="QRadioButton" name="CameraControl_PictureBurst_PublicPrivate_Private_RadioButton">
                     <property name="text">
                      <string>Private Request</string>
                     </property>
@@ -1122,28 +1122,28 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_3">
                <item row="8" column="0">
-                <widget class="QPushButton" name="pushButton_27">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Abort_Button">
                  <property name="text">
                   <string>Abort</string>
                  </property>
                 </widget>
                </item>
                <item row="6" column="0">
-                <widget class="QPushButton" name="baseOpsRestartButton">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Restart_Button">
                  <property name="text">
                   <string>Restart</string>
                  </property>
                 </widget>
                </item>
                <item row="7" column="0">
-                <widget class="QPushButton" name="baseOpsDeploybutton">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Deploy_Button">
                  <property name="text">
                   <string>Deploy</string>
                  </property>
                 </widget>
                </item>
                <item row="5" column="0">
-                <widget class="QPushButton" name="baseOpsPingButton">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Ping_Button">
                  <property name="text">
                   <string>Ping</string>
                  </property>
@@ -1191,7 +1191,7 @@
                    </widget>
                   </item>
                   <item row="5" column="1">
-                   <widget class="QCheckBox" name="checkBox_11">
+                   <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_ZAxis_CheckBox">
                     <property name="text">
                      <string>Z axis</string>
                     </property>
@@ -1205,14 +1205,14 @@
                    </widget>
                   </item>
                   <item row="4" column="1">
-                   <widget class="QCheckBox" name="checkBox_10">
+                   <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_YAxis_CheckBox">
                     <property name="text">
                      <string>Y axis</string>
                     </property>
                    </widget>
                   </item>
                   <item row="3" column="1">
-                   <widget class="QCheckBox" name="checkBox_9">
+                   <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_XAxis_CheckBox">
                     <property name="text">
                      <string>X axis</string>
                     </property>
@@ -1233,20 +1233,20 @@
                    </widget>
                   </item>
                   <item row="6" column="0" colspan="2">
-                   <widget class="QPushButton" name="adManeuverRunButton">
+                   <widget class="QPushButton" name="ADCSManeuvering_IgnoreFaults_RunADCManeuver_Button">
                     <property name="text">
                      <string>Run ADC Maneuver</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="spinBox_36"/>
+                   <widget class="QSpinBox" name="ADCSManeuvering_Hbridge_Xaxis_Mag_SpinBox"/>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QSpinBox" name="spinBox_37"/>
+                   <widget class="QSpinBox" name="ADCSManeuvering_Hbridge_Yaxis_Mag_SpinBox"/>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QSpinBox" name="spinBox_38"/>
+                   <widget class="QSpinBox" name="ADCSManeuvering_Hbridge_Zaxis_Mag_SpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -1306,7 +1306,7 @@
                    </widget>
                   </item>
                   <item row="5" column="1" colspan="2">
-                   <widget class="QPushButton" name="imuRecordButton">
+                   <widget class="QPushButton" name="RecordIMU_RecordIMU_Button">
                     <property name="text">
                      <string>Record IMU</string>
                     </property>
@@ -1320,14 +1320,14 @@
                    </widget>
                   </item>
                   <item row="3" column="2">
-                   <widget class="QCheckBox" name="checkBox_7">
+                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Accelerometer_Checkbox">
                     <property name="text">
                      <string>Accelerometer</string>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="2">
-                   <widget class="QCheckBox" name="checkBox_6">
+                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Gyroscope_Checkbox">
                     <property name="text">
                      <string>Gyroscope</string>
                     </property>
@@ -1341,13 +1341,13 @@
                    </widget>
                   </item>
                   <item row="1" column="2">
-                   <widget class="QSpinBox" name="spinBox_30"/>
+                   <widget class="QSpinBox" name="RecordIMU_SamplingPeriod_SpinBox"/>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QSpinBox" name="spinBox_29"/>
+                   <widget class="QSpinBox" name="RecordIMU_NumberOfSamples_SpinBox"/>
                   </item>
                   <item row="4" column="2">
-                   <widget class="QCheckBox" name="checkBox_8">
+                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Magnetometer_Checkbox">
                     <property name="text">
                      <string>Magnetometer</string>
                     </property>
@@ -1411,7 +1411,7 @@
            <property name="geometry">
             <rect>
              <x>177</x>
-             <y>0</y>
+             <y>-848</y>
              <width>449</width>
              <height>1561</height>
             </rect>
@@ -1430,7 +1430,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_19">
                <item row="4" column="1">
-                <widget class="QSpinBox" name="spinBox_13"/>
+                <widget class="QSpinBox" name="SatelliteConfig_RTC_Hours_SpinBox"/>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_23">
@@ -1447,10 +1447,10 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QSpinBox" name="spinBox_9"/>
+                <widget class="QSpinBox" name="SatelliteConfig_RTC_Year_SpinBox"/>
                </item>
                <item row="6" column="1">
-                <widget class="QSpinBox" name="spinBox_15"/>
+                <widget class="QSpinBox" name="SatelliteConfig_RTC_Seconds_SpinBox"/>
                </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="label_24">
@@ -1460,10 +1460,10 @@
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QSpinBox" name="spinBox_11"/>
+                <widget class="QSpinBox" name="SatelliteConfig_RTC_Day_SpinBox"/>
                </item>
                <item row="3" column="1">
-                <widget class="QSpinBox" name="spinBox_12"/>
+                <widget class="QSpinBox" name="SatelliteConfig_RTC_DoW_SpinBox"/>
                </item>
                <item row="3" column="0">
                 <widget class="QLabel" name="label_25">
@@ -1487,7 +1487,7 @@
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QSpinBox" name="spinBox_10"/>
+                <widget class="QSpinBox" name="SatelliteConfig_RTC_Month_SpinBox"/>
                </item>
                <item row="5" column="0">
                 <widget class="QLabel" name="label_27">
@@ -1497,17 +1497,17 @@
                 </widget>
                </item>
                <item row="5" column="1">
-                <widget class="QSpinBox" name="spinBox_14"/>
+                <widget class="QSpinBox" name="SatelliteConfig_RTC_Minutes_SpinBox"/>
                </item>
                <item row="7" column="0">
-                <widget class="QPushButton" name="pushButton_20">
+                <widget class="QPushButton" name="SatelliteConfig_RTC_Set_Button">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="7" column="1">
-                <widget class="QPushButton" name="pushButton_21">
+                <widget class="QPushButton" name="SatelliteConfig_RTC_Refresh_Button">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -1556,13 +1556,13 @@
              </spacer>
             </item>
             <item row="18" column="0" colspan="3">
-             <widget class="QGroupBox" name="lowPowerModeGroupBox">
+             <widget class="QGroupBox" name="SatelliteConfig_LowPowerMode_Refresh_Button">
               <property name="title">
                <string>Low Power Mode</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_15">
                <item row="0" column="0">
-                <widget class="QRadioButton" name="radioButton_12">
+                <widget class="QRadioButton" name="SatelliteConfig_LowPowerMode_Enabled_RadioButton">
                  <property name="text">
                   <string>Low Power Mode Enabled</string>
                  </property>
@@ -1572,7 +1572,7 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QRadioButton" name="radioButton_13">
+                <widget class="QRadioButton" name="SatelliteConfig_LowPowerMode_Disabled_RadioButton">
                  <property name="text">
                   <string>Low Power Mode Disabled</string>
                  </property>
@@ -1582,7 +1582,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QPushButton" name="pushButton_22">
+                <widget class="QPushButton" name="SatelliteConfig_LowPowerMode_Set_Button">
                  <property name="text">
                   <string>Set</string>
                  </property>
@@ -1618,21 +1618,21 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
                <item row="1" column="1">
-                <widget class="QPushButton" name="pushButton_2">
+                <widget class="QPushButton" name="SatelliteConfig_callsignSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="2">
-                <widget class="QPushButton" name="pushButton_9">
+                <widget class="QPushButton" name="SatelliteConfig_callsignRefreshButton">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
                 </widget>
                </item>
                <item row="0" column="1" colspan="2">
-                <widget class="QLineEdit" name="callsignLineEdit">
+                <widget class="QLineEdit" name="SatelliteConfig_callsignLineEdit">
                  <property name="text">
                   <string>FOSSASAT-2</string>
                  </property>
@@ -1654,7 +1654,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_17">
                <item row="0" column="1">
-                <widget class="QRadioButton" name="radioButton_3">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Disabled_RadioButton">
                  <property name="text">
                   <string>Transmissions Disabled</string>
                  </property>
@@ -1664,7 +1664,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QRadioButton" name="radioButton_4">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton">
                  <property name="text">
                   <string>Automated Statistics Enabled</string>
                  </property>
@@ -1674,7 +1674,7 @@
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QRadioButton" name="radioButton_5">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsDisabled_RadioButton">
                  <property name="text">
                   <string>Automated Statistics Disabled</string>
                  </property>
@@ -1684,7 +1684,7 @@
                 </widget>
                </item>
                <item row="0" column="0">
-                <widget class="QRadioButton" name="radioButton_2">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Enabled_RadioButton">
                  <property name="text">
                   <string>Transmissions Enabled</string>
                  </property>
@@ -1694,14 +1694,14 @@
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QPushButton" name="pushButton_14">
+                <widget class="QPushButton" name="SatelliteConfig_Transmission_Send_Button">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QPushButton" name="pushButton_15">
+                <widget class="QPushButton" name="SatelliteConfig_Transmission_Refresh_Button">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -1737,7 +1737,7 @@
                 </widget>
                </item>
                <item row="5" column="2">
-                <widget class="QLineEdit" name="lineEdit_14"/>
+                <widget class="QLineEdit" name="SatelliteConfig_PowerLimits_MPPTSwitchTemperature_LineEdit"/>
                </item>
                <item row="1" column="1">
                 <widget class="QLabel" name="label_17">
@@ -1747,16 +1747,16 @@
                 </widget>
                </item>
                <item row="4" column="2">
-                <widget class="QLineEdit" name="lineEdit_13"/>
+                <widget class="QLineEdit" name="SatelliteConfig_PowerLimits_HeaterTemperature_LineEdit"/>
                </item>
                <item row="0" column="2">
-                <widget class="QSpinBox" name="spinBox_5"/>
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_DeploymentVoltage_SpinBox"/>
                </item>
                <item row="3" column="2">
-                <widget class="QSpinBox" name="spinBox_8"/>
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_LowPowerVoltage_SpinBox"/>
                </item>
                <item row="1" column="2">
-                <widget class="QSpinBox" name="spinBox_6"/>
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_HeaterVoltage_SpinBox"/>
                </item>
                <item row="5" column="1">
                 <widget class="QLabel" name="label_21">
@@ -1780,24 +1780,24 @@
                 </widget>
                </item>
                <item row="2" column="2">
-                <widget class="QSpinBox" name="spinBox_7"/>
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_CWBeepVoltage_SpinBox"/>
                </item>
                <item row="0" column="1">
-                <widget class="QLabel" name="label_15">
+                <widget class="QLabel" name="label_75">
                  <property name="text">
                   <string>Deployment Voltage (mV):</string>
                  </property>
                 </widget>
                </item>
                <item row="6" column="1">
-                <widget class="QPushButton" name="pushButton_13">
+                <widget class="QPushButton" name="SatelliteConfig_PowerLimits_Set_Button">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="6" column="2">
-                <widget class="QPushButton" name="pushButton_12">
+                <widget class="QPushButton" name="SatelliteConfig_PowerLimits_Refresh_Button">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -1826,7 +1826,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_14">
                <item row="0" column="1">
-                <widget class="QRadioButton" name="radioButton_6">
+                <widget class="QRadioButton" name="SatelliteConfig_SpreadingFactor_AlternativeSetting_RadioButton">
                  <property name="text">
                   <string>Alternative Setting</string>
                  </property>
@@ -1836,7 +1836,7 @@
                 </widget>
                </item>
                <item row="0" column="0">
-                <widget class="QRadioButton" name="radioButton_7">
+                <widget class="QRadioButton" name="SatelliteConfig_SpreadingFactor_StandardSetting_RadioButton">
                  <property name="text">
                   <string>Standard Setting</string>
                  </property>
@@ -1846,14 +1846,14 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QPushButton" name="pushButton_16">
+                <widget class="QPushButton" name="SatelliteConfig_SpreadingFactor_Set_Button">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QPushButton" name="pushButton_17">
+                <widget class="QPushButton" name="SatelliteConfig_SpreadingFactor_Refresh_Button">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -1895,7 +1895,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
                <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEdit_11"/>
+                <widget class="QLineEdit" name="SatelliteConfig_ReceiveWindow_FSKRXLength_LineEdit"/>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_16">
@@ -1912,17 +1912,17 @@
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QLineEdit" name="lineEdit_12"/>
+                <widget class="QLineEdit" name="SatelliteConfig_ReceiveWindow_LoraRXLength_LineEdit"/>
                </item>
                <item row="3" column="0">
-                <widget class="QPushButton" name="pushButton_10">
+                <widget class="QPushButton" name="SatelliteConfig_ReceiveWindow_SetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="3" column="1">
-                <widget class="QPushButton" name="pushButton_11">
+                <widget class="QPushButton" name="SatelliteConfig_ReceiveWindow_RefreshButton">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -1938,21 +1938,21 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_31">
                <item row="1" column="0">
-                <widget class="QPushButton" name="pushButton_25">
+                <widget class="QPushButton" name="SatelliteConfig_TLESetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QPushButton" name="pushButton_24">
+                <widget class="QPushButton" name="SatelliteConfig_TLERefreshButton">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
                 </widget>
                </item>
                <item row="0" column="0" colspan="2">
-                <widget class="QLineEdit" name="lineEdit_9"/>
+                <widget class="QLineEdit" name="SatelliteConfig_TLELineEdit"/>
                </item>
               </layout>
              </widget>
@@ -1964,7 +1964,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_18">
                <item row="1" column="1">
-                <widget class="QRadioButton" name="radioButton_9">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_TemperatureSwitchDisabled_RadioButton">
                  <property name="text">
                   <string>Temperature Switch Disabled</string>
                  </property>
@@ -1974,7 +1974,7 @@
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QRadioButton" name="radioButton_11">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveDisabled_RadioButton">
                  <property name="text">
                   <string>Keep Alive Disabled</string>
                  </property>
@@ -1984,7 +1984,7 @@
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QRadioButton" name="radioButton_10">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveEnabled_RadioButton">
                  <property name="text">
                   <string>Keep Alive Enabled</string>
                  </property>
@@ -1994,7 +1994,7 @@
                 </widget>
                </item>
                <item row="1" column="0">
-                <widget class="QRadioButton" name="radioButton_8">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_TemperatureSwitchEnabled_RadioButton">
                  <property name="text">
                   <string>Temperature Switch Enabled</string>
                  </property>
@@ -2004,14 +2004,14 @@
                 </widget>
                </item>
                <item row="3" column="0">
-                <widget class="QPushButton" name="pushButton_19">
+                <widget class="QPushButton" name="SatelliteConfig_MPPT_Set_Button">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="3" column="1">
-                <widget class="QPushButton" name="pushButton_18">
+                <widget class="QPushButton" name="SatelliteConfig_MPPT_Refresh_Button">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -2043,7 +2043,7 @@
            <property name="geometry">
             <rect>
              <x>212</x>
-             <y>0</y>
+             <y>-47</y>
              <width>378</width>
              <height>760</height>
             </rect>
@@ -2059,9 +2059,12 @@
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item row="0" column="0">
-             <widget class="QRadioButton" name="radioButton">
+             <widget class="QRadioButton" name="handshookRadioButton">
               <property name="text">
                <string>Handshook</string>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
               </property>
              </widget>
             </item>
@@ -2072,10 +2075,10 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
                <item row="6" column="1">
-                <widget class="QLineEdit" name="lineEdit_2"/>
+                <widget class="QLineEdit" name="GroundStationSettings_ConfigCurrentLimitLineEdit"/>
                </item>
                <item row="2" column="1">
-                <widget class="QSpinBox" name="spinBox"/>
+                <widget class="QSpinBox" name="GroundStationSettings_ConfigOutputPowerSpinBox"/>
                </item>
                <item row="6" column="0">
                 <widget class="QLabel" name="label_4">
@@ -2092,7 +2095,7 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QComboBox" name="comboBox">
+                <widget class="QComboBox" name="GroundStationSettings_ModemTypeComboBox">
                  <item>
                   <property name="text">
                    <string>LoRa</string>
@@ -2113,7 +2116,7 @@
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEdit"/>
+                <widget class="QLineEdit" name="GroundStationSettings_ConfigCarrierFrequencyLineEdit"/>
                </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="label_3">
@@ -2123,14 +2126,14 @@
                 </widget>
                </item>
                <item row="7" column="0">
-                <widget class="QPushButton" name="pushButton_4">
+                <widget class="QPushButton" name="GroundStationSettings_ConfigSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="7" column="1">
-                <widget class="QPushButton" name="pushButton_5">
+                <widget class="QPushButton" name="GroundStationSettings_ConfigRefreshButton">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -2142,7 +2145,7 @@
             <item row="5" column="0">
              <widget class="QGroupBox" name="groupBox_3">
               <property name="title">
-               <string>GFSK</string>
+               <string>GFSK Configuration</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_24">
                <item row="0" column="0">
@@ -2153,7 +2156,7 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QLineEdit" name="lineEdit_4"/>
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigBitRateLineEdit"/>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_10">
@@ -2163,7 +2166,7 @@
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEdit_5"/>
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigFreqDeviationLineEdit"/>
                </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="label_11">
@@ -2173,7 +2176,7 @@
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QLineEdit" name="lineEdit_6"/>
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigRxBandwidthLineEdit"/>
                </item>
                <item row="3" column="0">
                 <widget class="QLabel" name="label_12">
@@ -2183,7 +2186,7 @@
                 </widget>
                </item>
                <item row="3" column="1">
-                <widget class="QLineEdit" name="lineEdit_7"/>
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigDataShapingBTProductLineEdit"/>
                </item>
                <item row="4" column="0">
                 <widget class="QLabel" name="label_13">
@@ -2193,17 +2196,17 @@
                 </widget>
                </item>
                <item row="4" column="1">
-                <widget class="QLineEdit" name="lineEdit_8"/>
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigPreambleLengthLineEdit"/>
                </item>
                <item row="5" column="0">
-                <widget class="QPushButton" name="pushButton_6">
+                <widget class="QPushButton" name="GroundStationSettings_GFSKConfigSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="5" column="1">
-                <widget class="QPushButton" name="pushButton_7">
+                <widget class="QPushButton" name="GroundStationSettings_GFSKConfigRefreshButton">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -2241,7 +2244,7 @@
             <item row="8" column="0">
              <widget class="QGroupBox" name="groupBox_2">
               <property name="title">
-               <string>LoRa</string>
+               <string>LoRa Configuration</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
                <item row="0" column="0">
@@ -2252,7 +2255,7 @@
                 </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QSpinBox" name="spinBox_2"/>
+                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationSpreadingFactorSpinBox"/>
                </item>
                <item row="4" column="0">
                 <widget class="QLabel" name="label_8">
@@ -2269,13 +2272,13 @@
                 </widget>
                </item>
                <item row="4" column="1">
-                <widget class="QSpinBox" name="spinBox_4"/>
+                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationPreambleLengthSpinBox"/>
                </item>
                <item row="0" column="1">
-                <widget class="QLineEdit" name="lineEdit_3"/>
+                <widget class="QLineEdit" name="GroundStationSettings_loraConfigurationBandwidthLineEdit"/>
                </item>
                <item row="3" column="1">
-                <widget class="QSpinBox" name="spinBox_3"/>
+                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationCodingRateSpinBox"/>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_6">
@@ -2285,14 +2288,14 @@
                 </widget>
                </item>
                <item row="5" column="0">
-                <widget class="QPushButton" name="pushButton_3">
+                <widget class="QPushButton" name="GroundStationSettings_loraSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
                <item row="5" column="1">
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="GroundStationSettings_loraRefreshButton">
                  <property name="text">
                   <string>Refresh</string>
                  </property>
@@ -2302,7 +2305,7 @@
              </widget>
             </item>
             <item row="1" column="0">
-             <widget class="QPushButton" name="pushButton_8">
+             <widget class="QPushButton" name="handshakeSendButton">
               <property name="text">
                <string>Send Handshake</string>
               </property>
@@ -2366,7 +2369,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_37">
                <item row="1" column="1">
-                <widget class="QSpinBox" name="spinBox_43"/>
+                <widget class="QSpinBox" name="ControlPanelSettings_serialPortBaudRateLineEdit"/>
                </item>
                <item row="0" column="0">
                 <widget class="QLabel" name="label_76">
@@ -2376,7 +2379,7 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QComboBox" name="comboBox_2"/>
+                <widget class="QComboBox" name="ControlPanelSettings_serialPortNameComboBox"/>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_77">
@@ -2386,7 +2389,7 @@
                 </widget>
                </item>
                <item row="3" column="0" colspan="2">
-                <widget class="QPushButton" name="pushButton_30">
+                <widget class="QPushButton" name="ControlPanelSettings_serialPortSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
@@ -2402,7 +2405,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_38">
                <item row="1" column="1">
-                <widget class="QLineEdit" name="lineEdit_28"/>
+                <widget class="QLineEdit" name="ControlPanelSettings_securityKeyLineEdit"/>
                </item>
                <item row="0" column="0">
                 <widget class="QLabel" name="label_79">
@@ -2412,7 +2415,7 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QLineEdit" name="lineEdit_27"/>
+                <widget class="QLineEdit" name="ControlPanelSettings_securityPasswordLineEdit"/>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_80">
@@ -2422,7 +2425,7 @@
                 </widget>
                </item>
                <item row="2" column="0" colspan="2">
-                <widget class="QPushButton" name="pushButton_32">
+                <widget class="QPushButton" name="ControlPanelSettings_securitySetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
@@ -2495,21 +2498,21 @@
  <connections/>
  <buttongroups>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
  </buttongroups>
 </ui>

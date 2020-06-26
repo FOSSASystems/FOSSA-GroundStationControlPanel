@@ -188,9 +188,11 @@ void MainWindow::on_baseOpsDeploybutton_clicked()
 
 
 
-///////////////////
-/// INTERPRETER ///
-///////////////////
+///
+/////////////////////////
+/// FOSSA INTERPRETER ///
+/////////////////////////
+///
 IGroundStationSerialMessage *MainWindow::SerialData_To_GroundStationSerialMessage(const char *serialData, char serialDataLength)
 {
     // first byte is the control byte.
