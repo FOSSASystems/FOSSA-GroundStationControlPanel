@@ -55,6 +55,8 @@ private slots:
 
     void on_ControlPanelSettings_serialPort_SetButton_clicked();
 
+    void on_handshakeSendButton_clicked();
+
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h

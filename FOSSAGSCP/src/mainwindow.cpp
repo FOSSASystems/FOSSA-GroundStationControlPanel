@@ -25,13 +25,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // startup the serial port thread.
     m_serialPortThread.start();
 
-    QString portName = this->ui->ControlPanelSettings_serialPortNameComboBox->currentText();
-    int baudRate = 9600;
-
-    m_serialPortThread.SetPortName(portName);
-    m_serialPortThread.SetBaudRate(baudRate);
-    m_serialPortThread.Open();
-
     // data piping from serial thread to gui thread
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleRead, this, &MainWindow::HandleRead, Qt::QueuedConnection);
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleError, this, &MainWindow::ErrorReceived, Qt::AutoConnection);
@@ -111,7 +104,7 @@ void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
 
 void MainWindow::ErrorReceived(const QString &str)
 {
-    //throw std::runtime_error(str.toUtf8());
+    throw std::runtime_error(str.toUtf8());
 }
 
 void MainWindow::TimeoutReceived(const QString &str)
@@ -139,6 +132,15 @@ void MainWindow::LoadSatelliteConfigurationUI()
 
 }
 
+
+
+
+///////////////////////////////////
+/// CGround station settings tab //
+///////////////////////////////////
+
+#define GroundPanelSettingsTab_Start {
+
 //
 // Ground station config tab
 //
@@ -146,6 +148,23 @@ void MainWindow::LoadGroundStationSettingsUI()
 {
 
 }
+
+
+void MainWindow::on_handshakeSendButton_clicked()
+{
+    m_serialPortThread.Write(QByteArray("ABC"));
+}
+
+///////////////////////////////////////
+/// CGround station settings tab END //
+///////////////////////////////////////
+#define GroundPanelSettingsTab_End }
+
+
+
+
+
+
 
 /////////////////////////////////
 /// Control panel settings tab //
@@ -213,12 +232,6 @@ void MainWindow::LoadControlPanelSettingsUI()
         }
         this->ui->ControlPanelSettings_serialPortBaudRate_ComboBox->addItems(baudRatesStringList);
 
-
-        m_serialPortThread.SetPortName(firstPortName); // set the port name
-        m_serialPortThread.SetBaudRate(baudRate);
-
-        this->ui->statusbar->showMessage("[SUCCESS] Port set to: " + firstPortName + " @ " + baudRate, 5000);
-
     }
 }
 
@@ -275,10 +288,12 @@ void MainWindow::on_ControlPanelSettings_serialPort_SetButton_clicked()
     QString portName = this->ui->ControlPanelSettings_serialPortNameComboBox->currentText();
     int baudRate = this->ui->ControlPanelSettings_serialPortBaudRate_ComboBox->currentText().toInt();
 
+    m_serialPortThread.Close();
     m_serialPortThread.SetPortName(portName);
     m_serialPortThread.SetBaudRate(baudRate);
+    m_serialPortThread.Open();
 
-    this->ui->statusbar->showMessage("[SUCCESS] Port set to: " + portName + " @ " + baudRate, 5000);
+    this->ui->statusbar->showMessage("[SUCCESS] Port set to: " + portName + " @ " + QString::number(baudRate), 5000);
 }
 
 /////////////////////////////////////
