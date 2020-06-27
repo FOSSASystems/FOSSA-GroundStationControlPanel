@@ -16,8 +16,6 @@
 class Settings
 {
 public:
-    virtual ~Settings() {}
-
     bool LoadKeyFromFile()
     {
         std::string keyFilePath = QCoreApplication::applicationDirPath().toStdString();
@@ -97,7 +95,7 @@ public:
         {
             arr.push_back(key[i]);
         }
-        settings.setValue("text", arr);
+        settings.setValue("key", arr);
     }
 
 
@@ -150,21 +148,9 @@ public:
 
 
 
-    QString GetPortName() { return m_portName; }
-
-    uint8_t* GetKey() { return m_key; }
-    bool IsKeySet() { return m_keySet; }
-
-    std::string GetPassword() { return m_password; }
-    bool IsPasswordSet() { return m_passwordSet; }
 
 
 
-
-    void SetPortName(QString portName)
-    {
-        m_portName = portName;
-    }
     void SetKey(uint8_t* key)
     {
         for (int i = 0; i < 16; i++)
@@ -177,6 +163,11 @@ public:
     {
         m_keySet = true;
     }
+
+    uint8_t* GetKey() { return m_key; }
+    bool IsKeySet() { return m_keySet; }
+
+
     void SetPassword(std::string password)
     {
         m_password = password;
@@ -185,10 +176,10 @@ public:
     {
         m_passwordSet = true;
     }
-private:
-    // selected port name.
-    QString m_portName;
 
+    std::string GetPassword() { return m_password; }
+    bool IsPasswordSet() { return m_passwordSet; }
+private:
     // AES KEY
     uint8_t m_key[16];
     bool m_keySet = false;

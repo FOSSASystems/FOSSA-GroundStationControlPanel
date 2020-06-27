@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QSerialPort>
+#include <QString>
 #include <QByteArray>
 #include <QMutex>
 #include <QThread>
@@ -13,8 +14,15 @@ class SerialPortThread : public QThread
 {
     Q_OBJECT
 public:
-    explicit SerialPortThread(QString& serialPortName, QObject* parent = nullptr);
+    explicit SerialPortThread(QObject* parent = nullptr);
     ~SerialPortThread();
+
+public slots:
+    void Open();
+    void Close();
+
+    void SetPortName(QString portName);
+    void SetBaudRate(int baudRate);
 
     void Write(const QByteArray& data); // move data into the thread.
 signals:
@@ -26,6 +34,9 @@ private slots:
     void HandleReadyRead();
 private:
     QString m_portName;
+    int m_portBaudRate;
+
+
     QString m_request;
     uint32_t m_waitTimeout = 0;
     QMutex m_mutex;

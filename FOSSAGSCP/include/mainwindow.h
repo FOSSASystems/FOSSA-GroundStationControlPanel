@@ -51,6 +51,10 @@ private slots:
     void on_baseOpsPingButton_clicked();
     void on_baseOpsDeploybutton_clicked();
 
+    void on_ControlPanelSettings_refreshSerialPortButton_clicked();
+
+    void on_ControlPanelSettings_serialPort_SetButton_clicked();
+
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h
@@ -67,9 +71,14 @@ private:
     MessageLog m_messageLog;
 
     // serial port thread.
-    SerialPortThread* m_serialPortThread;
+    SerialPortThread m_serialPortThread;
 
     bool m_handshakeReceived = false;
+
+    void LoadControlPanelSettingsUI();
+    void LoadGroundStationSettingsUI();
+    void LoadSatelliteConfigurationUI();
+    void LoadSatelliteControlsUI();
 
 public:
     ////////////////////////////////////////

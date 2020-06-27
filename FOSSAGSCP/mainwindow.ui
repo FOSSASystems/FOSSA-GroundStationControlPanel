@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>177</x>
-             <y>-3914</y>
+             <y>0</y>
              <width>449</width>
              <height>4627</height>
             </rect>
@@ -1411,7 +1411,7 @@
            <property name="geometry">
             <rect>
              <x>177</x>
-             <y>-848</y>
+             <y>0</y>
              <width>449</width>
              <height>1561</height>
             </rect>
@@ -2043,7 +2043,7 @@
            <property name="geometry">
             <rect>
              <x>212</x>
-             <y>-47</y>
+             <y>0</y>
              <width>378</width>
              <height>760</height>
             </rect>
@@ -2368,9 +2368,6 @@
                <string>Serial Port</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_37">
-               <item row="1" column="1">
-                <widget class="QSpinBox" name="ControlPanelSettings_serialPortBaudRateLineEdit"/>
-               </item>
                <item row="0" column="0">
                 <widget class="QLabel" name="label_76">
                  <property name="text">
@@ -2388,8 +2385,25 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0" colspan="2">
-                <widget class="QPushButton" name="ControlPanelSettings_serialPortSetButton">
+               <item row="1" column="1">
+                <widget class="QComboBox" name="ControlPanelSettings_serialPortBaudRate_ComboBox">
+                 <property name="currentText">
+                  <string/>
+                 </property>
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QPushButton" name="ControlPanelSettings_refreshSerialPortButton">
+                 <property name="text">
+                  <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QPushButton" name="ControlPanelSettings_serialPort_SetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
@@ -2497,22 +2511,22 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
   <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
   <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
  </buttongroups>
 </ui>
