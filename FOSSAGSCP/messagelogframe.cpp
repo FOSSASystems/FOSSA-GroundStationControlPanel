@@ -14,26 +14,52 @@ MessageLogFrame::MessageLogFrame(QWidget *parent) :
     ui->messageLogListView->setAutoScroll(true);
 }
 
-void MessageLogFrame::ReceivedMessageLogged(char* timestamp, char dirBit, char opId, char* payload)
+void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
 {
     m_messageLogListModel->insertRow(m_messageLogListModel->rowCount());
     QModelIndex row = m_messageLogListModel->index(m_messageLogListModel->rowCount() - 1, 0);
 
+
+    auto timestamp = std::chrono::system_clock::now();
+    auto timenow = std::chrono::system_clock::to_time_t(timestamp);
+    char* timestampString = std::ctime(&timenow);
+
+    char* payload = msg->GetPayload();
+    uint8_t payloadLength = msg->GetPayloadLengthByte();
+
     std::string loggedMessage;
     if (m_logTimestamps)
     {
-        loggedMessage += timestamp;
+        loggedMessage += timestampString;
     }
 
-    loggedMessage += "(dir=";
-    loggedMessage += std::to_string(dirBit);
-    loggedMessage += ") ";
+    // control byte as hex character string
+    char controlByteHexStr[2];
+    char controlByte = msg->GetControlByte();
+    sprintf(&(controlByteHexStr[0]), "%02x", (uint8_t)controlByte);
+    loggedMessage.append(controlByteHexStr);
 
-    loggedMessage += "(op=";
-    loggedMessage += std::to_string(opId);
-    loggedMessage += ") \r\n";
+    loggedMessage += ' ';
 
-    loggedMessage += payload;
+    // length byte as hex character string.
+    char lengthByteHexStr[2];
+    char payloadLengthByte = msg->GetPayloadLengthByte();
+    sprintf(&(lengthByteHexStr[0]), "%02x", (uint8_t)payloadLengthByte);
+    loggedMessage.append(lengthByteHexStr);
+
+    loggedMessage += " ";
+
+    if (payload != nullptr)
+    {
+        for (int i = 0; i < payloadLength; i++)
+        {
+            char hexChar[2];
+            char rawData = payload[i];
+            sprintf(&(hexChar[0]), "%02x", (uint8_t)rawData);
+            loggedMessage.append(hexChar);
+            loggedMessage.append(" ");
+        }
+    }
 
     const char * msgTolog = loggedMessage.c_str();
     m_messageLogListModel->setData(row, msgTolog);

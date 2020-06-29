@@ -20,6 +20,10 @@ public:
             m_payload = new char[lengthByte];
             memcpy(m_payload, payload, lengthByte);
         }
+        else
+        {
+            m_payload = nullptr;
+        }
     }
 
     GroundStationSerialMessage(const GroundStationSerialMessage& other)
@@ -68,7 +72,7 @@ public:
 
     virtual char GetDirectionBit() override
     {
-        return m_controlByte & 0b10000000;
+        return ((m_controlByte & 0b10000000) >> 7);
     }
 
     virtual char GetOperationID() override

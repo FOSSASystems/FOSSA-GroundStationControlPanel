@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -2405,7 +2405,7 @@
                <item row="3" column="0">
                 <widget class="QPushButton" name="ControlPanelSettings_serialPort_SetButton">
                  <property name="text">
-                  <string>Set</string>
+                  <string>Connect</string>
                  </property>
                 </widget>
                </item>
@@ -2419,7 +2419,11 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_38">
                <item row="1" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_securityKeyLineEdit"/>
+                <widget class="QLineEdit" name="ControlPanelSettings_securityKeyLineEdit">
+                 <property name="echoMode">
+                  <enum>QLineEdit::Password</enum>
+                 </property>
+                </widget>
                </item>
                <item row="0" column="0">
                 <widget class="QLabel" name="label_79">
@@ -2429,7 +2433,11 @@
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_securityPasswordLineEdit"/>
+                <widget class="QLineEdit" name="ControlPanelSettings_securityPasswordLineEdit">
+                 <property name="echoMode">
+                  <enum>QLineEdit::Password</enum>
+                 </property>
+                </widget>
                </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_80">

@@ -59,24 +59,16 @@ public:
         QSettings settings("settings.txt", QSettings::NativeFormat);
         QByteArray keyText = settings.value("key", "").toByteArray();
 
-        if (keyText.length() != 32)
+        if (keyText.length() != 16)
         {
             return false;
         }
 
         uint8_t tempKey[16];
-        for (uint8_t i = 0; i < 32; i+=2)
+        for (uint8_t i = 0; i < 16; i++)
         {
-            char asciiCharacterA = keyText[i];
-            char asciiCharacterB = keyText[i+1];
-            char byteHexStr[3];
-
-            byteHexStr[0] = asciiCharacterA;
-            byteHexStr[1] = asciiCharacterB;
-            byteHexStr[2] = '\0';
-
-            uint8_t hexValueAsByte= (uint8_t)strtol(byteHexStr, NULL, 16);
-            tempKey[i/2] = hexValueAsByte;
+            uint8_t v = keyText[i];
+            tempKey[i] = v;
         }
 
         this->SetKey(tempKey);
@@ -96,6 +88,7 @@ public:
             arr.push_back(key[i]);
         }
         settings.setValue("key", arr);
+        settings.sync();
     }
 
 
@@ -131,9 +124,17 @@ public:
         QSettings settings("settings.txt", QSettings::NativeFormat);
         QString passwordText = settings.value("password", "").toString();
         std::string password = passwordText.toStdString();
-        this->SetPassword(password);
 
-        return true;
+        if (password.length() <= 0)
+        {
+            return false;
+        }
+        else
+        {
+            this->SetPassword(password);
+
+            return true;
+        }
     }
 
     void SavePasswordToSettings()

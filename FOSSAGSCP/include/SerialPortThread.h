@@ -9,6 +9,7 @@
 #include <QThread>
 #include <QWaitCondition>
 #include <QTime>
+#include <iostream>
 
 class SerialPortThread : public QThread
 {
@@ -35,15 +36,9 @@ private slots:
 private:
     QString m_portName;
     int m_portBaudRate;
-
-
-    QString m_request;
-    uint32_t m_waitTimeout = 0;
-    QMutex m_mutex;
-    QWaitCondition m_condition;
-    bool m_quit = false;
-
     QSerialPort m_serialPort;
+
+    QByteArray m_receivedDataBuffer;
 };
 
 #endif // SerialPortThread_H

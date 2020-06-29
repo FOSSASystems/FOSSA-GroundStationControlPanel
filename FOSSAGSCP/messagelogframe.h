@@ -5,6 +5,11 @@
 #include <QStringListModel>
 #include <QFileDialog>
 
+#include <chrono>
+#include <ctime>
+
+#include "Interfaces/IGroundStationSerialMessage.h"
+
 namespace Ui {
 class MessageLogFrame;
 }
@@ -18,7 +23,7 @@ public:
     ~MessageLogFrame();
 
 public slots:
-    void ReceivedMessageLogged(char* timestamp, char dirBit, char opId, char* payload); // attached to MessageLog.h
+    void ReceivedMessageLogged(IGroundStationSerialMessage* msg); // attached to MessageLog.h
 private slots:
     void on_enableTimestampsCheckBox_stateChanged(int arg1);
 

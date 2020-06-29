@@ -42,40 +42,97 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::SendHandshake()
-{
-    //
-    // Handshake the ground station.
-    //
-    char handshakeMessage = 0b10000000;
-    QByteArray msg;
-    msg.append(handshakeMessage);
-    this->m_serialPortThread.Write(msg);
-}
-
-void MainWindow::ReceivedHandshake()
-{
-    QMessageBox msgBox;
-    msgBox.setText("Handshake received!");
-    msgBox.exec();
-}
-
-
 // Response received is a slot, this slot is signalled from the serial port thread.
 void MainWindow::HandleRead(QByteArray data)
 {
-    const char* respData = data.data();
+    // append the data to the buffer.
+    m_commandBuffer.push_back(data);
 
-    // interpret the serial data into the message.
-    IGroundStationSerialMessage* msg = this->SerialData_To_GroundStationSerialMessage(respData, data.size());
 
-    // push the message to the log panel.
-    m_messageLog.PushMessage(msg);
+    // search for the start of the frame.
+    for (int i = 0; i < m_commandBuffer.length(); i++)
+    {
+        uint8_t potentialControlByte = (uint8_t)m_commandBuffer[i];
 
-    // interpret the received message into function calls.
-    this->Interpret_Received_Message(msg);
+        // if this value is a control byte of dir 1 and op id 0
+        // then this value is a ctonrol byte data structure.
+        uint8_t dirCheckMask = 0b10000000;
+        uint8_t isCorrectDirection = potentialControlByte & dirCheckMask;
+        isCorrectDirection = isCorrectDirection >> 7;
+        if (isCorrectDirection)
+        {
+            uint8_t opIdCheckMask = 0b01111111;
+            uint8_t potentialOpId = potentialControlByte & opIdCheckMask;
+            if (potentialOpId == 0x0 ||
+                    potentialOpId == 0x1 ||
+                    potentialOpId == 0x2 ||
+                    potentialOpId == 0x3)
+            {
+                m_commandStartIndex = i;
+                m_commandStartFound = true;
 
-    delete msg;
+                break;
+            }
+        }
+    }
+
+
+    // if there is a start of a frame in the buffer.
+    if (m_commandStartFound)
+    {
+        // if there are bytes after the start index.
+
+        // check for the length byte.
+        if ( (m_commandStartIndex + 1) < m_commandBuffer.length() )
+        {
+            m_commandLength = m_commandBuffer[m_commandStartIndex + 1];
+            m_commandLengthFound = true;
+        }
+
+        if (m_commandLengthFound)
+        {
+            int endOfCommandIndex = m_commandStartIndex + 1 + 1 + m_commandLength;
+            // if we have enough data in the command buffer that the command specifies.
+            if (endOfCommandIndex <= m_commandBuffer.length())
+            {
+                //
+                // here we have all the data required.
+                //
+
+                // remove the bytes before the command frame in the buffer.
+                m_commandBuffer.remove(0, m_commandStartIndex);
+
+                // copy the command buffer to a new array.
+                QByteArray commandData = m_commandBuffer;
+
+                commandData.remove(endOfCommandIndex,
+                                   (m_commandBuffer.length() - endOfCommandIndex));
+
+                // remove the frame from the command buffer.
+                m_commandBuffer.remove(0, endOfCommandIndex);
+
+
+                // interpret the serial data into the message.
+                char *cmdData = commandData.data();
+
+                IGroundStationSerialMessage* msg = this->SerialData_To_GroundStationSerialMessage(cmdData, commandData.length());
+
+                // push the message to the log panel.
+                m_messageLog.PushMessage(msg);
+
+                // interpret the received message into function calls.
+                this->Interpret_Received_Message(msg);
+
+                delete msg;
+
+                // reset command buffer found flags.
+                m_commandStartFound = false;
+                m_commandLengthFound = false;
+
+                m_commandBuffer.clear();
+            }
+        }
+    }
 }
 
 // The IGroundStationSerialMessage object is created in Interpreter.h  function name: Create_GroundStationSerialMessage()
@@ -113,6 +170,41 @@ void MainWindow::TimeoutReceived(const QString &str)
 }
 
 
+void MainWindow::SendHandshake()
+{
+    //
+    // Handshake the ground station.
+    //
+    char handshakeMessage = 0b10000000;
+    QByteArray msg;
+    msg.append(handshakeMessage);
+    this->m_serialPortThread.Write(msg);
+}
+
+void MainWindow::ReceivedHandshake()
+{
+    QMessageBox msgBox;
+    msgBox.setText("Handshake received!");
+    msgBox.exec();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -131,6 +223,23 @@ void MainWindow::LoadSatelliteConfigurationUI()
 {
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -166,6 +275,32 @@ void MainWindow::on_handshakeSendButton_clicked()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /////////////////////////////////
 /// Control panel settings tab //
 /////////////////////////////////
@@ -177,20 +312,9 @@ void MainWindow::on_handshakeSendButton_clicked()
 //
 void MainWindow::LoadControlPanelSettingsUI()
 {
-    // load the key from the settings
-    bool keyLoaded = m_settings.LoadKeyFromSettings();
-    if (keyLoaded)
-    {
-        m_settings.SetKeySet();
-    }
-
-    // Load password from the settings
-    bool passwordLoaded = m_settings.LoadPasswordFromSettings();
-    if (passwordLoaded)
-    {
-        m_settings.SetPasswordSet();
-    }
-
+    //
+    // Load the serial port interface
+    //
     QMap<QString, QList<qint32>> baudRates;
 
     // get a list of available ports.
@@ -232,6 +356,38 @@ void MainWindow::LoadControlPanelSettingsUI()
         }
         this->ui->ControlPanelSettings_serialPortBaudRate_ComboBox->addItems(baudRatesStringList);
 
+    }
+
+
+    //
+    // Load the key and password into the UI.
+    //
+
+    // load the key from the settings
+    bool keyLoaded = m_settings.LoadKeyFromSettings();
+    if (keyLoaded)
+    {
+        m_settings.SetKeySet();
+        uint8_t* key = m_settings.GetKey();
+        QString keyAsStr;
+        for (int i = 0; i < 16; i++)
+        {
+            uint8_t v = key[i];
+            keyAsStr.push_back(v);
+        }
+
+        this->ui->ControlPanelSettings_securityKeyLineEdit->setText(keyAsStr);
+    }
+
+    // Load password from the settings
+    bool passwordLoaded = m_settings.LoadPasswordFromSettings();
+    if (passwordLoaded)
+    {
+        m_settings.SetPasswordSet();
+
+        std::string password = m_settings.GetPassword();
+        QString passwordStr = QString::fromStdString(password);
+        this->ui->ControlPanelSettings_securityKeyLineEdit->setText(passwordStr);
     }
 }
 
@@ -296,10 +452,68 @@ void MainWindow::on_ControlPanelSettings_serialPort_SetButton_clicked()
     this->ui->statusbar->showMessage("[SUCCESS] Port set to: " + portName + " @ " + QString::number(baudRate), 5000);
 }
 
+
+void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
+{
+    QString str = this->ui->ControlPanelSettings_securityPasswordLineEdit->text();
+
+    QString key = this->ui->ControlPanelSettings_securityKeyLineEdit->text();
+    QByteArray keyAsBytes = key.toLocal8Bit();
+
+    uint8_t keyBytes[16];
+    for (int i = 0; i < 16; i++)
+    {
+        uint8_t v = keyAsBytes[i];
+        keyBytes[i] = v;
+    }
+
+    m_settings.SetKey(keyBytes);
+    m_settings.SaveKeyToSettings();
+}
+
 /////////////////////////////////////
 /// Control panel settings tab END //
 /////////////////////////////////////
 #define ControlPanelSettingsTab_End }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 void MainWindow::on_actionView_Serial_Ports_triggered()
@@ -354,12 +568,59 @@ void MainWindow::on_baseOpsDeploybutton_clicked()
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ///
 /////////////////////////
 /// FOSSA INTERPRETER ///
 /////////////////////////
 ///
-IGroundStationSerialMessage *MainWindow::SerialData_To_GroundStationSerialMessage(const char *serialData, char serialDataLength)
+IGroundStationSerialMessage *MainWindow::SerialData_To_GroundStationSerialMessage(char *serialData, char serialDataLength)
 {
     // first byte is the control byte.
     char controlByte = serialData[0];
@@ -626,5 +887,4 @@ IGroundStationSerialMessage *MainWindow::Create_CMD_Deploy()
 
     return msg;
 }
-
 

@@ -18,19 +18,10 @@ public:
 
     void PushMessage(IGroundStationSerialMessage* msg)
     {
-        auto timestamp = std::chrono::system_clock::now();
-        auto timenow = std::chrono::system_clock::to_time_t(timestamp);
-
-        char* timestampString = std::ctime(&timenow);
-
-        char directionBit = msg->GetDirectionBit();
-        char operationId = msg->GetOperationID();
-        char* payload = msg->GetPayload();
-
-        emit MessageLogged(timestampString, directionBit, operationId, payload);
+        emit MessageLogged(msg);
     }
 signals:
-    void MessageLogged(char* timestamp, char dirBit, char opId, char* payload);
+    void MessageLogged(IGroundStationSerialMessage* msg);
 };
 
 

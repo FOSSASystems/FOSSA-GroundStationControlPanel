@@ -13,6 +13,7 @@
 #include <QSerialPort>
 #include <QSerialPortInfo>
 #include <QDir>
+#include <QByteArray>
 
 #include <FOSSA-Comms.h>
 
@@ -51,11 +52,11 @@ private slots:
     void on_baseOpsPingButton_clicked();
     void on_baseOpsDeploybutton_clicked();
 
+    // control panel settings tab.
     void on_ControlPanelSettings_refreshSerialPortButton_clicked();
-
     void on_ControlPanelSettings_serialPort_SetButton_clicked();
-
     void on_handshakeSendButton_clicked();
+    void on_ControlPanelSettings_securitySetButton_clicked();
 
 private:
 
@@ -74,6 +75,15 @@ private:
 
     // serial port thread.
     SerialPortThread m_serialPortThread;
+
+    // Since the serial port will not frame the commands correctly,
+    // we must manually interpret the received data into command frames.
+    bool m_commandBeingRead = false;
+    QByteArray m_commandBuffer;
+    bool m_commandStartFound = false;
+    int m_commandStartIndex;
+    uint8_t m_commandLength;
+    bool m_commandLengthFound = false;
 
     bool m_handshakeReceived = false;
 
@@ -119,7 +129,7 @@ public:
     /// The ground station serial message is an internal command structure.
     /// This creates it from raw serial datagrams.
     /// @todo checks on the serial data length.
-    IGroundStationSerialMessage* SerialData_To_GroundStationSerialMessage(const char* serialData, char serialDataLength);
+    IGroundStationSerialMessage* SerialData_To_GroundStationSerialMessage(char* serialData, char serialDataLength);
 
     // this is the base class for all the Create_CMD_XXX methods.
     IGroundStationSerialMessage* Create_GroundStationSerialMessage(char operationId, uint8_t functionId, uint8_t optDataLength, char* optData);

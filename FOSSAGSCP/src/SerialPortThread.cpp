@@ -54,7 +54,8 @@ void SerialPortThread::SetBaudRate(int baudRate)
 // when the serial port is ready for data, forward the private signal to the HandleRead public signal.
 void SerialPortThread::HandleReadyRead()
 {
-    emit HandleRead(m_serialPort.readAll());
+    QByteArray portData = m_serialPort.readAll();
+    emit HandleRead(portData);
 }
 
 void SerialPortThread::HandleBytesWritten(qint64 bytes)
