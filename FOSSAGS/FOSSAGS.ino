@@ -14,7 +14,7 @@
 // configuration
 #define USE_SX126X                          // uncomment to use SX126x
 #define SERIAL_PORT           Serial        // Serial port to use
-#define DEFAULT_BAUDRATE      115200        // default baud rate
+#define DEFAULT_BAUDRATE      9600        // default baud rate
 
 // pin definitions
 #define CS                    10            // SPI chip select
