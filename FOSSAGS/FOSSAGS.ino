@@ -200,6 +200,7 @@ void processDatagram() {
 
     case FGSP_OP_ID_HANDSHAKE:
       sendDatagram(FGSP_OP_ID_HANDSHAKE);
+      setDefaultRadioConfig();
       break;
 
     case FGSP_OP_ID_FREQUENCY_CHANGE: {
@@ -216,6 +217,30 @@ void processDatagram() {
       break;
 
   }
+}
+
+void setDefaultRadioConfig() {
+  // set default modem configuration
+  int16_t state = radio.begin(LORA_FREQUENCY,
+                              BANDWIDTH,
+                              SPREADING_FACTOR,
+                              CODING_RATE,
+                              SYNC_WORD,
+                              OUTPUT_POWER,
+                              CURRENT_LIMIT,
+                              LORA_PREAMBLE_LEN,
+                              TCXO_VOLTAGE);
+  if(state != ERR_NONE) {
+    sendConfigResponse(state);
+  }
+
+  state = radio.setCRC(true);
+  if(state != ERR_NONE) {
+    sendConfigResponse(state);
+  }
+
+  // send configuration response
+  sendConfigResponse(state);
 }
 
 // radio ISR
@@ -253,26 +278,7 @@ void setup() {
   }
 
   // set default modem configuration
-  int16_t state = radio.begin(LORA_FREQUENCY,
-                              BANDWIDTH,
-                              SPREADING_FACTOR,
-                              CODING_RATE,
-                              SYNC_WORD,
-                              OUTPUT_POWER,
-                              CURRENT_LIMIT,
-                              LORA_PREAMBLE_LEN,
-                              TCXO_VOLTAGE);
-  if(state != ERR_NONE) {
-    sendConfigResponse(state);
-  }
-
-  state = radio.setCRC(true);
-  if(state != ERR_NONE) {
-    sendConfigResponse(state);
-  }
-
-  // send configuration response
-  sendConfigResponse(state);
+  setDefaultRadioConfig();
 }
 
 void loop() {
