@@ -467,6 +467,8 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
         keyBytes[i] = v;
     }
 
+    m_settings.SetPassword("TEST");
+    m_settings.SavePasswordToSettings();
     m_settings.SetKey(keyBytes);
     m_settings.SaveKeyToSettings();
 }

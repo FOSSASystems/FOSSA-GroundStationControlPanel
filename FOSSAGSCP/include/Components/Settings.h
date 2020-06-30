@@ -9,6 +9,7 @@
 #include <QDir>
 #include <QCoreApplication>
 #include <QSettings>
+#include <QStandardPaths>
 
 ////////////////
 /// Settings ///
@@ -16,47 +17,12 @@
 class Settings
 {
 public:
-    bool LoadKeyFromFile()
-    {
-        std::string keyFilePath = QCoreApplication::applicationDirPath().toStdString();
-        keyFilePath += "/key.txt";
-
-        QFile file(keyFilePath.c_str());
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            return false;
-        }
-
-        while (!file.atEnd())
-        {
-            uint8_t tempKey[16];
-            QByteArray line = file.readLine();
-
-            for (uint8_t i = 0; i < 32u; i+=2)
-            {
-                char asciiCharacterA = line[i];
-                char asciiCharacterB = line[i+1];
-                char byteHexStr[3];
-
-                byteHexStr[0] = asciiCharacterA;
-                byteHexStr[1] = asciiCharacterB;
-                byteHexStr[2] = '\0';
-
-                uint8_t hexValueAsByte= (uint8_t)strtol(byteHexStr, NULL, 16);
-                tempKey[i/2] = hexValueAsByte;
-            }
-
-            this->SetKey(tempKey);
-
-            break; // only loop for 1 line.
-        }
-
-        return true;
-    }
-
     bool LoadKeyFromSettings()
     {
-        QSettings settings("settings.txt", QSettings::NativeFormat);
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
         QByteArray keyText = settings.value("key", "").toByteArray();
 
         if (keyText.length() != 16)
@@ -78,7 +44,9 @@ public:
 
     void SaveKeyToSettings()
     {
-        QSettings settings("settings.txt", QSettings::NativeFormat);
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
 
         uint8_t* key = this->GetKey();
 
@@ -93,35 +61,12 @@ public:
 
 
 
-
-
-
-
-    bool LoadPasswordFromFile()
-    {
-        std::string passwordFilePath = QCoreApplication::applicationDirPath().toStdString();
-        passwordFilePath += "/password.txt";
-
-        QFile file(passwordFilePath.c_str());
-
-        if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
-        {
-            return false;
-        }
-
-        while (!file.atEnd())
-        {
-            QByteArray line = file.readLine();
-            this->SetPassword(line.toStdString());
-            break; // only loop for 1 line.
-        }
-
-        return true;
-    }
-
     bool LoadPasswordFromSettings()
     {
-        QSettings settings("settings.txt", QSettings::NativeFormat);
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
         QString passwordText = settings.value("password", "").toString();
         std::string password = passwordText.toStdString();
 
@@ -139,7 +84,9 @@ public:
 
     void SavePasswordToSettings()
     {
-        QSettings settings("settings.txt", QSettings::NativeFormat);
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
 
         std::string password = this->GetPassword();
         QString str = QString::fromStdString(password);
