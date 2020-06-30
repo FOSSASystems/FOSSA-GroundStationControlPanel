@@ -172,13 +172,7 @@ void MainWindow::TimeoutReceived(const QString &str)
 
 void MainWindow::SendHandshake()
 {
-    //
-    // Handshake the ground station.
-    //
-    char handshakeMessage = 0b10000000;
-    QByteArray msg;
-    msg.append(handshakeMessage);
-    this->m_serialPortThread.Write(msg);
+
 }
 
 void MainWindow::ReceivedHandshake()
@@ -245,7 +239,7 @@ void MainWindow::LoadSatelliteConfigurationUI()
 
 
 ///////////////////////////////////
-/// CGround station settings tab //
+/// Ground station settings tab //
 ///////////////////////////////////
 
 #define GroundPanelSettingsTab_Start {
@@ -261,7 +255,13 @@ void MainWindow::LoadGroundStationSettingsUI()
 
 void MainWindow::on_handshakeSendButton_clicked()
 {
-    m_serialPortThread.Write(QByteArray("ABC"));
+    //
+    // Handshake the ground station.
+    //
+    char handshakeMessage = 0b10000000;
+    QByteArray msg;
+    msg.append(handshakeMessage);
+    this->m_serialPortThread.Write(msg);
 }
 
 ///////////////////////////////////////
@@ -762,6 +762,8 @@ void MainWindow::Interpret_Received_Message(IGroundStationSerialMessage *inMsg)
 void MainWindow::Interpret_Handshake(IGroundStationSerialMessage *inMsg)
 {
     GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
+
+    this->ui->handshookRadioButton->setChecked(true);
 }
 
 void MainWindow::Interpret_Config_Change(IGroundStationSerialMessage *inMsg)
