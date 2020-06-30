@@ -387,7 +387,7 @@ void MainWindow::LoadControlPanelSettingsUI()
 
         std::string password = m_settings.GetPassword();
         QString passwordStr = QString::fromStdString(password);
-        this->ui->ControlPanelSettings_securityKeyLineEdit->setText(passwordStr);
+        this->ui->ControlPanelSettings_securityPasswordLineEdit->setText(passwordStr);
     }
 }
 
@@ -455,7 +455,8 @@ void MainWindow::on_ControlPanelSettings_serialPort_SetButton_clicked()
 
 void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
 {
-    QString str = this->ui->ControlPanelSettings_securityPasswordLineEdit->text();
+    QString passwordStr = this->ui->ControlPanelSettings_securityPasswordLineEdit->text();
+    std::string passwordStdStr = passwordStr.toStdString();
 
     QString key = this->ui->ControlPanelSettings_securityKeyLineEdit->text();
     QByteArray keyAsBytes = key.toLocal8Bit();
@@ -467,8 +468,9 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
         keyBytes[i] = v;
     }
 
-    m_settings.SetPassword("TEST");
+    m_settings.SetPassword(passwordStdStr);
     m_settings.SavePasswordToSettings();
+
     m_settings.SetKey(keyBytes);
     m_settings.SaveKeyToSettings();
 }
