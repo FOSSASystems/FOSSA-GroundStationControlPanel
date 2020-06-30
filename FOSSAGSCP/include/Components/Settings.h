@@ -17,24 +17,35 @@
 class Settings
 {
 public:
+    ///
+    /// \brief This function takes the hex string from the settings file, and converts it to uint8_t array.
+    /// \return
+    ///
     bool LoadKeyFromSettings()
     {
         QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
         QString filename = "settings.ini" ;
         QSettings settings(path + "/"+ filename, QSettings::IniFormat);
 
-        QByteArray keyText = settings.value("key", "").toByteArray();
+        QString keyText = settings.value("key", "").toString(); // this is a string of hex ASCII characters e.g. FFAAFFAA
+        std::string keyTextStr = keyText.toStdString();
 
-        if (keyText.length() != 16)
+        if (keyText.length() != 32) // key must have 32 characters for 16 bytes.
         {
             return false;
         }
 
         uint8_t tempKey[16];
-        for (uint8_t i = 0; i < 16; i++)
+        for (uint8_t i = 0; i < 32; i+=2)
         {
-            uint8_t v = keyText[i];
-            tempKey[i] = v;
+            // convert 2 characters in the key tex to a string
+            // e.g. FA
+            char byteAsHexDigits[2];
+            byteAsHexDigits[1] = keyTextStr[i]; // str[1] = F
+            byteAsHexDigits[0] = keyTextStr[i+1]; // str[0] = A --> str = 'FA'
+
+            // convert 2 hex digits to byte.
+            tempKey[i/2] = (uint8_t)strtol(byteAsHexDigits, NULL, 16);
         }
 
         this->SetKey(tempKey);
@@ -48,14 +59,19 @@ public:
         QString filename = "settings.ini" ;
         QSettings settings(path + "/"+ filename, QSettings::IniFormat);
 
-        uint8_t* key = this->GetKey();
+        uint8_t* key = this->GetKey(); // 16 byte key needs to turn into a 32 hex string.
 
-        QByteArray arr;
+        QString str;
         for (uint8_t i = 0; i < 16; i++)
         {
-            arr.push_back(key[i]);
+            uint8_t keyValue = key[i];
+
+            // convert byte into 2 character hex (1 hex = 4 bits)
+            char hexStr[2];
+            sprintf(&(hexStr[0]), "%02x", (uint8_t)keyValue);
+            str.append(hexStr);
         }
-        settings.setValue("key", arr);
+        settings.setValue("key", str);
         settings.sync();
     }
 

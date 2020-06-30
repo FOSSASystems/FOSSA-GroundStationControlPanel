@@ -368,12 +368,16 @@ void MainWindow::LoadControlPanelSettingsUI()
     if (keyLoaded)
     {
         m_settings.SetKeySet();
+
         uint8_t* key = m_settings.GetKey();
         QString keyAsStr;
         for (int i = 0; i < 16; i++)
         {
             uint8_t v = key[i];
-            keyAsStr.push_back(v);
+
+            char hexStr[2];
+            sprintf(&(hexStr[0]), "%02x", (uint8_t)v);
+            keyAsStr.append(hexStr);
         }
 
         this->ui->ControlPanelSettings_securityKeyLineEdit->setText(keyAsStr);
@@ -473,6 +477,25 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
 
     m_settings.SetKey(keyBytes);
     m_settings.SaveKeyToSettings();
+}
+
+
+void MainWindow::on_ControlPanelSettings_Security_Reveal_Button_clicked()
+{
+    const QLineEdit::EchoMode currentEchoMode = this->ui->ControlPanelSettings_securityPasswordLineEdit->echoMode();
+
+    QLineEdit::EchoMode newEchoMode;
+    if (currentEchoMode == QLineEdit::EchoMode::Password)
+    {
+        newEchoMode = QLineEdit::EchoMode::Normal;
+    }
+    else
+    {
+        newEchoMode = QLineEdit::EchoMode::Password;
+    }
+
+    this->ui->ControlPanelSettings_securityPasswordLineEdit->setEchoMode(newEchoMode);
+    this->ui->ControlPanelSettings_securityKeyLineEdit->setEchoMode(newEchoMode);
 }
 
 /////////////////////////////////////
@@ -891,4 +914,5 @@ IGroundStationSerialMessage *MainWindow::Create_CMD_Deploy()
 
     return msg;
 }
+
 

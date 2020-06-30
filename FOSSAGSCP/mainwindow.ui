@@ -2346,9 +2346,9 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>286</x>
+             <x>270</x>
              <y>189</y>
-             <width>250</width>
+             <width>283</width>
              <height>335</height>
             </rect>
            </property>
@@ -2446,7 +2446,14 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0" colspan="2">
+               <item row="2" column="0">
+                <widget class="QPushButton" name="ControlPanelSettings_Security_Reveal_Button">
+                 <property name="text">
+                  <string>Reveal</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
                 <widget class="QPushButton" name="ControlPanelSettings_securitySetButton">
                  <property name="text">
                   <string>Set</string>
@@ -2519,22 +2526,22 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
  </buttongroups>
 </ui>
