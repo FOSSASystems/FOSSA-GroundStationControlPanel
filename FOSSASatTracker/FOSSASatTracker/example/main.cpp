@@ -51,10 +51,10 @@ int main(int argc, char* argv[])
 	//
 	gObserver observer;
 	double liverpoolLat, liverpoolLong, liverpoolAttitude;
-	birchwoodLat = 53.4084;
-	birchwoodLong = 2.9916;
-	birchwoodAttitude = 1345.0;
-	observer.setPosition(birchwoodLat, birchwoodLong, birchwoodAttitude);
+	liverpoolLat = 53.4084;
+	liverpoolLong = 2.9916;
+	liverpoolAttitude = 1345.0;
+	observer.setPosition(liverpoolLat, liverpoolLong, liverpoolAttitude);
 	
 	
 	//
