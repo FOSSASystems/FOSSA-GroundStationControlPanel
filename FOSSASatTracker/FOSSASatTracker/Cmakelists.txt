@@ -1,0 +1,31 @@
+cmake_minimum_required(VERSION 3.0.0)
+
+project (FOSSASatTracker)
+
+#################
+# C++ Standards #
+#################
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_BUILD_TYPE Debug)
+
+file(GLOB_RECURSE ALL_SRCS
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c*"
+        )
+file(GLOB_RECURSE ALL_HEADERS
+        "${CMAKE_CURRENT_SOURCE_DIR}/src/*.h*"
+        )
+
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ALL_SRCS})
+source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ALL_HEADERS})
+
+add_executable(FOSSASatTracker ${ALL_HEADERS} ${ALL_SRCS})
+target_include_directories(FOSSASatTracker PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+#########################
+# Add the GSAT library. #
+#########################
+find_path(GSAT_INCLUDE_DIRS GSAT)
+find_library(GSAT_LIBRARIES GSAT)
+target_link_libraries(FOSSASatTracker ${GSAT_LIBRARIES})
+target_include_directories(FOSSASatTracker PUBLIC ${GSAT_INCLUDE_DIRS}))
