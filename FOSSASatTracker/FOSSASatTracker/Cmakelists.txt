@@ -19,7 +19,8 @@ file(GLOB_RECURSE ALL_HEADERS
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ALL_SRCS})
 source_group(TREE "${CMAKE_CURRENT_SOURCE_DIR}" FILES ${ALL_HEADERS})
 
-add_executable(FOSSASatTracker ${ALL_HEADERS} ${ALL_SRCS})
+#add_executable(FOSSASatTracker ${ALL_HEADERS} ${ALL_SRCS})
+add_library(FOSSASatTracker SHARED ${ALL_HEADERS} ${ALL_SRCS})
 target_include_directories(FOSSASatTracker PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 #########################
