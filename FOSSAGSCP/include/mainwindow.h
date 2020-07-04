@@ -18,8 +18,10 @@
 #include <FOSSA-Comms.h>
 
 #include "SerialPortThread.h"
+
 #include "systeminformationpane.h"
 #include "messagelogframe.h"
+#include "mappane.h"
 
 #include "Components/GroundStationSerialMessage.h"
 #include "Components/MessageLog.h"
@@ -70,6 +72,7 @@ private:
     // GUI Frames
     systeminformationpane *m_sytemInfoPane;
     MessageLogFrame *m_messageLogFrame;
+    MapPane* m_mapFrame;
 
     // Logs and settings.
     Settings m_settings;

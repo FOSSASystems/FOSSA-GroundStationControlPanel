@@ -16,6 +16,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_messageLogFrame->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
     m_messageLogFrame->show();
 
+    // load the map window frame.
+    m_mapFrame = new MapPane();
+    m_mapFrame->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
+    m_mapFrame->show();
+
     // initialize the 4 main tabs.
     this->LoadControlPanelSettingsUI();
     this->LoadGroundStationSettingsUI();
@@ -38,6 +43,7 @@ MainWindow::~MainWindow()
 {
     m_serialPortThread.quit();
 
+    delete m_mapFrame;
     delete m_sytemInfoPane;
     delete ui;
 }
