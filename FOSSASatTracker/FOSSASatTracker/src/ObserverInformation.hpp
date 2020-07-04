@@ -46,11 +46,13 @@ public:
 	const double& GetElevation();
 	const double& GetRange();
 	const double& GetRangeRate();
+	double GetDopplerShift();
 private:
 	double m_azimuth;
 	double m_elevation;
 	double m_range;
 	double m_rangeRate;
+	double m_dopplerShift;
 };
 
 }

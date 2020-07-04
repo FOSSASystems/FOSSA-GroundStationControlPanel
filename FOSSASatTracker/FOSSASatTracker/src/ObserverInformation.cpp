@@ -72,6 +72,16 @@ const double& ObserverInformation::GetRangeRate()
 	return m_rangeRate;
 }
 
+double ObserverInformation::GetDopplerShift()
+{
+	const double c = 2.99792458e8;
+	
+	const double& rangeRate = this->GetRangeRate(); // in km/s
+	double v = rangeRate * 1000.0f; // range rate to metres.
+	
+	double dopplerShift = (c / (c+v));
+	return dopplerShift;
+}
 
 
 }
