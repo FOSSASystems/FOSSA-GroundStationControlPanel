@@ -143,6 +143,46 @@ public:
 
     std::string GetPassword() { return m_password; }
     bool IsPasswordSet() { return m_passwordSet; }
+
+
+
+
+
+    double GetLatitude() { return m_latitude; }
+    void SetLatitude(double latitude) { m_latitude = latitude; }
+    double GetLongitude() { return m_longitude; }
+    void SetLongitude(double latitude) { m_latitude = latitude; }
+    double GetAltitude() { return m_altitude;  }
+    void SetAltitude(double latitude) { m_latitude = latitude; }
+
+    void SaveLatLongAlt()
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+        settings.setValue("latitude", GetLatitude());
+        settings.setValue("longitude", GetLongitude());
+        settings.setValue("altitude", GetAltitude());
+    }
+
+    void LoadLatLongAlt()
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+        double latitude = settings.value("latitude", "").toDouble();
+        SetLatitude(latitude);
+
+        double longitude = settings.value("latitude", "").toDouble();
+        SetLongitude(longitude);
+
+        double altitude = settings.value("latitude", "").toDouble();
+        SetAltitude(altitude);
+    }
+
+protected:
 private:
     // AES KEY
     uint8_t m_key[16];
@@ -151,6 +191,10 @@ private:
     // Password.
     std::string m_password = "";
     bool m_passwordSet = false;
+
+    double m_latitude;
+    double m_longitude;
+    double m_altitude;
 
 };
 

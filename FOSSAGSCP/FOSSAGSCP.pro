@@ -15,6 +15,25 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTime.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTimeSpan.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleFileAccessor.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleParser.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVector.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/mathUtils.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4ext.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4io.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4unit.cpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/solarProcedures.cpp \
+    3rdparty/fossasattracker/src/ObserverInformation.cpp \
+    3rdparty/fossasattracker/src/SatelliteInformation.cpp \
+    3rdparty/fossasattracker/src/SatelliteSimulation.cpp \
+    3rdparty/fossasattracker/src/SimulationResult.cpp \
+    3rdparty/fossasattracker/src/TLE.cpp \
+    3rdparty/fossasattracker/src/main.cpp \
     3rdparty/tiny-aes/aes.cpp \
     mappane.cpp \
     messagelogframe.cpp \
@@ -25,6 +44,29 @@ SOURCES += \
 
 HEADERS += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.h \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gException.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrixTempl.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTime.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleFileAccessor.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleParser.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVector.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVectorTempl.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/mathUtils.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4ext.h \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4io.h \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4unit.h \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/solarProcedures.hpp \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/src/stdsat.h \
+    3rdparty/fossasattracker/src/372020.x \
+    3rdparty/fossasattracker/src/ObserverInformation.hpp \
+    3rdparty/fossasattracker/src/SatelliteInformation.hpp \
+    3rdparty/fossasattracker/src/SatelliteSimulation.hpp \
+    3rdparty/fossasattracker/src/SimulationResult.hpp \
+    3rdparty/fossasattracker/src/TLE.hpp \
+    3rdparty/fossasattracker/src/sunpos.x \
     3rdparty/tiny-aes/aes.h \
     include/Interfaces/IGroundStationSerialMessage.h \
     include/Interfaces/IMessage.h \
@@ -57,3 +99,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 RESOURCES += qmlResource.qrc
+
+DISTFILES += \
+    3rdparty/fossasattracker/libs/gsat-r11-fixed/Cmakelists.txt

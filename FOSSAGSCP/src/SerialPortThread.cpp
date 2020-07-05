@@ -33,7 +33,6 @@ void SerialPortThread::Close()
     m_serialPort.close();
 }
 
-// When the owning thread wants to write data to the serial port, this funciton is used directly.
 void SerialPortThread::Write(const QByteArray& data)
 {
     const qint64 bytesWritten = m_serialPort.write(data);

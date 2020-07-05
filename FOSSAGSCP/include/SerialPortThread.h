@@ -39,6 +39,9 @@ private:
     QSerialPort m_serialPort;
 
     QByteArray m_receivedDataBuffer;
+
+    volatile QByteArray m_writeBuffer;
+    QMutex m_writeMutex;
 };
 
 #endif // SerialPortThread_H
