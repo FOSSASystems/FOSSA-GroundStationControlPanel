@@ -33,7 +33,6 @@ SOURCES += \
     3rdparty/fossasattracker/src/SatelliteSimulation.cpp \
     3rdparty/fossasattracker/src/SimulationResult.cpp \
     3rdparty/fossasattracker/src/TLE.cpp \
-    3rdparty/fossasattracker/src/main.cpp \
     3rdparty/tiny-aes/aes.cpp \
     mappane.cpp \
     messagelogframe.cpp \
@@ -60,13 +59,11 @@ HEADERS += \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4unit.h \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/solarProcedures.hpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/stdsat.h \
-    3rdparty/fossasattracker/src/372020.x \
     3rdparty/fossasattracker/src/ObserverInformation.hpp \
     3rdparty/fossasattracker/src/SatelliteInformation.hpp \
     3rdparty/fossasattracker/src/SatelliteSimulation.hpp \
     3rdparty/fossasattracker/src/SimulationResult.hpp \
     3rdparty/fossasattracker/src/TLE.hpp \
-    3rdparty/fossasattracker/src/sunpos.x \
     3rdparty/tiny-aes/aes.h \
     include/Interfaces/IGroundStationSerialMessage.h \
     include/Interfaces/IMessage.h \

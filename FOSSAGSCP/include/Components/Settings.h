@@ -150,10 +150,12 @@ public:
 
     double GetLatitude() { return m_latitude; }
     void SetLatitude(double latitude) { m_latitude = latitude; }
+
     double GetLongitude() { return m_longitude; }
-    void SetLongitude(double latitude) { m_latitude = latitude; }
+    void SetLongitude(double longitude) { m_longitude = longitude; }
+
     double GetAltitude() { return m_altitude;  }
-    void SetAltitude(double latitude) { m_latitude = latitude; }
+    void SetAltitude(double altitude) { m_altitude = altitude; }
 
     void SaveLatLongAlt()
     {
@@ -164,22 +166,32 @@ public:
         settings.setValue("latitude", GetLatitude());
         settings.setValue("longitude", GetLongitude());
         settings.setValue("altitude", GetAltitude());
+        settings.setValue("llaset", true);
     }
 
-    void LoadLatLongAlt()
+    bool LoadLatLongAlt()
     {
         QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
         QString filename = "settings.ini" ;
         QSettings settings(path + "/"+ filename, QSettings::IniFormat);
 
-        double latitude = settings.value("latitude", "").toDouble();
-        SetLatitude(latitude);
 
-        double longitude = settings.value("latitude", "").toDouble();
-        SetLongitude(longitude);
 
-        double altitude = settings.value("latitude", "").toDouble();
-        SetAltitude(altitude);
+        bool llaSet = settings.value("llaset").toBool();
+
+        if (llaSet)
+        {
+            double latitude = settings.value("latitude", 0.0).toDouble();
+            SetLatitude(latitude);
+
+            double longitude = settings.value("longitude", 0.0).toDouble();
+            SetLongitude(longitude);
+
+            double altitude = settings.value("altitude", 0.0).toDouble();
+            SetAltitude(altitude);
+        }
+
+        return llaSet;
     }
 
 protected:

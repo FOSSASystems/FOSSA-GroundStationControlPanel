@@ -2562,7 +2562,7 @@
                 </widget>
                </item>
                <item row="4" column="1">
-                <widget class="QPushButton" name="pushButton">
+                <widget class="QPushButton" name="ControlPanelSettings_Doppler_Update_Settings_Button">
                  <property name="text">
                   <string>Update</string>
                  </property>

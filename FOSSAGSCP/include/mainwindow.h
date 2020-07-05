@@ -62,6 +62,8 @@ private slots:
 
     void on_ControlPanelSettings_Security_Reveal_Button_clicked();
 
+    void on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h

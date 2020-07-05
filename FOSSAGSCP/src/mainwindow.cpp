@@ -399,6 +399,39 @@ void MainWindow::LoadControlPanelSettingsUI()
         QString passwordStr = QString::fromStdString(password);
         this->ui->ControlPanelSettings_securityPasswordLineEdit->setText(passwordStr);
     }
+
+
+    //
+    // Load the latitude, longitude and altitude settings into the UI
+    //
+    bool latLongAltLoaded = m_settings.LoadLatLongAlt();
+
+    if (latLongAltLoaded)
+    {
+        QString latStr = QString::number(m_settings.GetLatitude());
+        QString lonStr = QString::number(m_settings.GetLongitude());
+        QString altStr = QString::number(m_settings.GetAltitude());
+
+        this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->setText(latStr);
+        this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->setText(lonStr);
+        this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->setText(altStr);
+
+        this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->setChecked(true);
+        this->ui->ControlPanelSettings_Doppler_Shift_Disable_RadioButton->setChecked(false);
+
+
+        //! @todo make the map pane move to this coordinate.
+    }
+    else
+    {
+        this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->setText("0.0");
+        this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->setText("0.0");
+        this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->setText("0.0");
+
+        this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->setChecked(false);
+        this->ui->ControlPanelSettings_Doppler_Shift_Disable_RadioButton->setChecked(true);
+    }
+
 }
 
 
@@ -502,6 +535,22 @@ void MainWindow::on_ControlPanelSettings_Security_Reveal_Button_clicked()
 
     this->ui->ControlPanelSettings_securityPasswordLineEdit->setEchoMode(newEchoMode);
     this->ui->ControlPanelSettings_securityKeyLineEdit->setEchoMode(newEchoMode);
+}
+
+
+void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked()
+{
+    double latitude = this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->text().toDouble();
+    double longitude = this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->text().toDouble();
+    double altitude = this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->text().toDouble();
+
+    m_settings.SetLatitude(latitude);
+    m_settings.SetLongitude(longitude);
+    m_settings.SetAltitude(altitude);
+
+    m_settings.SaveLatLongAlt();
+
+    //! @todo make the map pane move to this coordinate.
 }
 
 /////////////////////////////////////
@@ -922,5 +971,6 @@ IGroundStationSerialMessage *MainWindow::Create_CMD_Deploy()
 
     return msg;
 }
+
 
 
