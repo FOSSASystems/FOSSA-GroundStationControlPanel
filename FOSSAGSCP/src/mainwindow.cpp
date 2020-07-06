@@ -415,11 +415,6 @@ void MainWindow::LoadControlPanelSettingsUI()
         this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->setText(latStr);
         this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->setText(lonStr);
         this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->setText(altStr);
-
-        this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->setChecked(true);
-        this->ui->ControlPanelSettings_Doppler_Shift_Disable_RadioButton->setChecked(false);
-
-
         //! @todo make the map pane move to this coordinate.
     }
     else
@@ -427,7 +422,20 @@ void MainWindow::LoadControlPanelSettingsUI()
         this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->setText("0.0");
         this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->setText("0.0");
         this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->setText("0.0");
+    }
 
+    //
+    // Load the doppler shift correction into the UI
+    //
+    bool dopplerShiftCorrectionEnabled = m_settings.LoadDopplerShiftCorrectionEnabled();
+
+    if (dopplerShiftCorrectionEnabled)
+    {
+        this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->setChecked(true);
+        this->ui->ControlPanelSettings_Doppler_Shift_Disable_RadioButton->setChecked(false);
+    }
+    else
+    {
         this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->setChecked(false);
         this->ui->ControlPanelSettings_Doppler_Shift_Disable_RadioButton->setChecked(true);
     }
@@ -552,6 +560,11 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
     m_settings.SaveLatLongAlt();
 
     //! @todo make the map pane move to this coordinate.
+
+    bool dopplerShiftCorrectionEnabled = this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->isChecked();
+
+    m_settings.SetDopplerShiftCorrectionEnabled(dopplerShiftCorrectionEnabled);
+    m_settings.SaveDopplerShiftCorrectionEnabled();
 }
 
 /////////////////////////////////////

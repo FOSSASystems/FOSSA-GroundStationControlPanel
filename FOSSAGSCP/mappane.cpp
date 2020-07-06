@@ -8,6 +8,7 @@ MapPane::MapPane(QWidget *parent) :
     ui->setupUi(this);
 
     ui->quickWidget->setSource(QUrl("qrc:/qml/MapBoxQMLQuick.qml"));
+
 }
 
 MapPane::~MapPane()

@@ -175,8 +175,6 @@ public:
         QString filename = "settings.ini" ;
         QSettings settings(path + "/"+ filename, QSettings::IniFormat);
 
-
-
         bool llaSet = settings.value("llaset").toBool();
 
         if (llaSet)
@@ -194,6 +192,32 @@ public:
         return llaSet;
     }
 
+    bool GetDopplerShiftCorrectionEnabled() { return m_dopplerShiftCorrectionEnabled; }
+    void SetDopplerShiftCorrectionEnabled(bool dopplerShiftEnabled)
+    {
+        m_dopplerShiftCorrectionEnabled = dopplerShiftEnabled;
+        SaveDopplerShiftCorrectionEnabled();
+    }
+    void SaveDopplerShiftCorrectionEnabled()
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+        settings.setValue("dopplerShiftCorrectionEnabled", GetDopplerShiftCorrectionEnabled());
+    }
+    bool LoadDopplerShiftCorrectionEnabled()
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+        bool dopplerShiftCorrecEnabled = settings.value("dopplerShiftCorrectionEnabled", false).toBool();
+        SetDopplerShiftCorrectionEnabled(dopplerShiftCorrecEnabled);
+
+        return dopplerShiftCorrecEnabled;
+    }
+
 protected:
 private:
     // AES KEY
@@ -207,6 +231,7 @@ private:
     double m_latitude;
     double m_longitude;
     double m_altitude;
+    bool m_dopplerShiftCorrectionEnabled;
 
 };
 
