@@ -25,7 +25,7 @@ public slots:
     void SetPortName(QString portName);
     void SetBaudRate(int baudRate);
 
-    void Write(const QByteArray& data); // move data into the thread.
+    bool Write(const QByteArray& data); // move data into the thread.
 signals:
     void HandleError(const QString& str);    // move data out of the thread.
     void HandleTimeout(const QString& str);
@@ -40,7 +40,6 @@ private:
 
     QByteArray m_receivedDataBuffer;
 
-    volatile QByteArray m_writeBuffer;
     QMutex m_writeMutex;
 };
 

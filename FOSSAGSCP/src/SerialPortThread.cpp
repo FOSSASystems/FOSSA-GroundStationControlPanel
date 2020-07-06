@@ -33,9 +33,52 @@ void SerialPortThread::Close()
     m_serialPort.close();
 }
 
-void SerialPortThread::Write(const QByteArray& data)
+/*
+    // test that the serial ports mutex works.
+    // run 2 commands back to back.
+    QString a("a");
+    QString b("b");
+    QByteArray firstMessage = a.toUtf8();
+    QByteArray secondMessage = b.toUtf8();
+
+    while (!m_serialPortThread.Write(firstMessage))
+    {
+        // serial port is busy, wait.
+        //  Sleep(20);
+        qInfo("Wrote first message");
+    }
+
+    while (!m_serialPortThread.Write(secondMessage))
+    {
+        // busy wait
+        Sleep(20);
+        qInfo("Wrote second message");
+    }
+*/
+/**
+ * @brief SerialPortThread::Write
+ * @param data
+ * @return
+ */
+bool SerialPortThread::Write(const QByteArray& data)
 {
-    const qint64 bytesWritten = m_serialPort.write(data);
+    // if this function is called twice then we need to make sure
+    // that the serial port.write() is called one at a time.
+
+    bool aquiredLock = m_writeMutex.tryLock();
+
+    if (aquiredLock)
+    {
+        const qint64 bytesWritten = m_serialPort.write(data);
+        m_writeMutex.unlock();
+        return true;
+    }
+    else
+    {
+        return false; // if we did not get the lock then tell the calling code to wait.
+    }
+
+
 }
 
 void SerialPortThread::SetPortName(QString portName)

@@ -540,6 +540,7 @@ void MainWindow::on_ControlPanelSettings_Security_Reveal_Button_clicked()
 
 void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked()
 {
+
     double latitude = this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->text().toDouble();
     double longitude = this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->text().toDouble();
     double altitude = this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->text().toDouble();

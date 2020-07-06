@@ -48,7 +48,7 @@ void loop()
 	 * Wait for the handshake bytes and display if we receive them.
 	 *
 	 */
-	while (SerialB.available() > 0)
+	/*while (SerialB.available() > 0)
 	{
 		uint8_t c = SerialB.read();
 		
@@ -56,5 +56,14 @@ void loop()
         char hexStr[2];
         sprintf(&(hexStr[0]), "%02x", (uint8_t)c);
         Serial.print(hexStr);
+	}*/
+	while (SerialB.available() > 0)
+	{
+		char c = SerialB.read();
+		
+        // convert byte into 2 character hex (1 hex = 4 bits)
+        //char hexStr[2];
+        //sprintf(&(hexStr[0]), "%02x\r\n", (uint8_t)c);
+        Serial.print(c);
 	}
 }
