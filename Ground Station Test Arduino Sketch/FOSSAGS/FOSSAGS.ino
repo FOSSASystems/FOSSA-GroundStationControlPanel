@@ -12,33 +12,33 @@
 #include <FOSSA-Comms.h>
 
 // configuration
-#define USE_SX126X                          // uncomment to use SX126x
-#define SERIAL_PORT           Serial        // Serial port to use
-#define DEFAULT_BAUDRATE      9600        // default baud rate
+#define USE_SX126X                                  // uncomment to use SX126x
+#define SERIAL_PORT           Serial                // Serial port to use
+#define DEFAULT_BAUDRATE      9600                  // default baud rate
 
 // pin definitions
-#define CS                    10            // SPI chip select
-#define DIO                   2             // DIO0 for SX127x, DIO1 for SX126x
-#define NRST                  RADIOLIB_NC   // NRST pin (optional)
-#define BUSY                  9             // BUSY pin (SX126x-only)
+#define CS                    10                    // SPI chip select
+#define DIO                   2                     // DIO0 for SX127x, DIO1 for SX126x
+#define NRST                  RADIOLIB_NC           // NRST pin (optional)
+#define BUSY                  9                     // BUSY pin (SX126x-only)
 
 // default modem configuration
-#define LORA_FREQUENCY        436.7         // MHz
-#define FSK_FREQUENCY         436.9         // MHz
-#define BANDWIDTH             125.0         // kHz
-#define SPREADING_FACTOR      11            // -
-#define CODING_RATE           8             // 4/8
-#define SYNC_WORD             0x12          // used as LoRa "sync word", or twice repeated as FSK sync word (0x1212)
-#define OUTPUT_POWER          20            // dBm
-#define CURRENT_LIMIT         140           // mA
-#define LORA_PREAMBLE_LEN     8             // symbols
-#define BIT_RATE              9.6           // kbps
-#define FREQ_DEV              5.0           // kHz SSB
-#define RX_BANDWIDTH          39.0          // kHz SSB
-#define FSK_PREAMBLE_LEN      16            // bits
-#define DATA_SHAPING          0.5           // BT product
-#define TCXO_VOLTAGE          1.6           // V
-#define WHITENING_INITIAL     0x1FF         // initial whitening LFSR value
+#define LORA_FREQUENCY        436.7                 // MHz
+#define FSK_FREQUENCY         436.9                 // MHz
+#define BANDWIDTH             125.0                 // kHz
+#define SPREADING_FACTOR      11                    // -
+#define CODING_RATE           8                     // 4/8
+#define SYNC_WORD             0x12                  // used as LoRa "sync word", or twice repeated as FSK sync word (0x1212)
+#define OUTPUT_POWER          20                    // dBm
+#define CURRENT_LIMIT         140                   // mA
+#define LORA_PREAMBLE_LEN     8                     // symbols
+#define BIT_RATE              9.6                   // kbps
+#define FREQ_DEV              5.0                   // kHz SSB
+#define RX_BANDWIDTH          39.0                  // kHz SSB
+#define FSK_PREAMBLE_LEN      16                    // bits
+#define DATA_SHAPING          RADIOLIB_SHAPING_0_5  // BT product
+#define TCXO_VOLTAGE          1.6                   // V
+#define WHITENING_INITIAL     0x1FF                 // initial whitening LFSR value
 
 // FOSSA Ground Station Serial Protocol definitions
 #define FGSP_PANEL_TO_STATION               (0 << 7)
@@ -187,12 +187,18 @@ void processDatagram() {
       // set the configuration
       int16_t state = ERR_NONE;
       if(modem == 0x00) {
-        state = radio.begin(freq, loraBw, loraSf, loraCr, SYNC_WORD, power, ocp, loraPre, TCXO_VOLTAGE);
+        state = radio.begin(freq, loraBw, loraSf, loraCr, SYNC_WORD, power, loraPre, TCXO_VOLTAGE);
       } else if(modem == 0x01) {
-        state = radio.beginFSK(freq, gfskBr, gfskFdev, gfskRxbw, power, ocp, gfskPre, TCXO_VOLTAGE);
+        state = radio.beginFSK(freq, gfskBr, gfskFdev, gfskRxbw, power, gfskPre, TCXO_VOLTAGE);
       } else {
         state = ERR_WRONG_MODEM;
       }
+
+      if(state != ERR_NONE) {
+        sendConfigResponse(state);
+      }
+
+      state = radio.setCurrentLimit(ocp);
 
       // send the result
       sendConfigResponse(state);
@@ -227,9 +233,13 @@ void setDefaultRadioConfig() {
                               CODING_RATE,
                               SYNC_WORD,
                               OUTPUT_POWER,
-                              CURRENT_LIMIT,
                               LORA_PREAMBLE_LEN,
                               TCXO_VOLTAGE);
+  if(state != ERR_NONE) {
+    sendConfigResponse(state);
+  }
+
+  state = radio.setCurrentLimit(CURRENT_LIMIT);
   if(state != ERR_NONE) {
     sendConfigResponse(state);
   }
