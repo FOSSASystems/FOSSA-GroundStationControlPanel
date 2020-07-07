@@ -36,9 +36,10 @@ SOURCES += \
     3rdparty/tiny-aes/aes.cpp \
     mappane.cpp \
     messagelogframe.cpp \
-    src/SerialPortThread.cpp \
-    src/main.cpp \
-    src/mainwindow.cpp \
+    src/Interpreter.cpp \
+    SerialPortThread.cpp \
+    main.cpp \
+    mainwindow.cpp \
     systeminformationpane.cpp
 
 HEADERS += \
@@ -65,13 +66,14 @@ HEADERS += \
     3rdparty/fossasattracker/src/SimulationResult.hpp \
     3rdparty/fossasattracker/src/TLE.hpp \
     3rdparty/tiny-aes/aes.h \
+    include/Interpreter.h \
     include/Interfaces/IGroundStationSerialMessage.h \
     include/Interfaces/IMessage.h \
-    include/Components/MessageLog.h \
-    include/Components/Settings.h \
-    include/Components/GroundStationSerialMessage.h \
-    include/SerialPortThread.h \
-    include/mainwindow.h \
+    include/MessageLog.h \
+    include/Settings.h \
+    include/GroundStationSerialMessage.h \
+    SerialPortThread.h \
+    mainwindow.h \
     mappane.h \
     messagelogframe.h \
     systeminformationpane.h \
