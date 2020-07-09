@@ -165,7 +165,7 @@ void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
     while ( (this->m_serialPortThread.Write(byteArray)) == false )
     {
         // the serial thread is currently locked, wait for 10ms and try again.
-        Sleep(10);
+        QThread::msleep(20);
     }
 
     // delete the message.

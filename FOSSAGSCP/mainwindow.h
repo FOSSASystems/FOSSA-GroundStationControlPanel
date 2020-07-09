@@ -14,6 +14,7 @@
 #include <QSerialPortInfo>
 #include <QDir>
 #include <QByteArray>
+#include <QThread>
 
 #include <FOSSA-Comms.h>
 

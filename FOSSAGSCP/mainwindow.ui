@@ -72,10 +72,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>177</x>
+             <x>166</x>
              <y>0</y>
-             <width>449</width>
-             <height>4627</height>
+             <width>471</width>
+             <height>4640</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1410,10 +1410,10 @@
            </property>
            <property name="geometry">
             <rect>
-             <x>177</x>
+             <x>158</x>
              <y>0</y>
-             <width>449</width>
-             <height>1561</height>
+             <width>486</width>
+             <height>1607</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2042,10 +2042,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>212</x>
+             <x>205</x>
              <y>0</y>
-             <width>378</width>
-             <height>760</height>
+             <width>393</width>
+             <height>805</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2338,7 +2338,7 @@
         <string>Control Panel Settings</string>
        </attribute>
        <layout class="QGridLayout" name="gridLayout_43">
-        <item row="0" column="0">
+        <item row="1" column="0">
          <widget class="QScrollArea" name="scrollArea_4">
           <property name="widgetResizable">
            <bool>true</bool>
@@ -2349,10 +2349,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>270</x>
-             <y>81</y>
-             <width>283</width>
-             <height>551</height>
+             <x>243</x>
+             <y>43</y>
+             <width>316</width>
+             <height>611</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2365,6 +2365,56 @@
             <property name="sizeConstraint">
              <enum>QLayout::SetDefaultConstraint</enum>
             </property>
+            <item row="1" column="0">
+             <widget class="QGroupBox" name="groupBox_18">
+              <property name="title">
+               <string>Serial Port</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_37">
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_76">
+                 <property name="text">
+                  <string>Port Name:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="ControlPanelSettings_serialPortNameComboBox"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_77">
+                 <property name="text">
+                  <string>Baud Rate:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="ControlPanelSettings_serialPortBaudRate_ComboBox">
+                 <property name="currentText">
+                  <string/>
+                 </property>
+                 <property name="frame">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QPushButton" name="ControlPanelSettings_refreshSerialPortButton">
+                 <property name="text">
+                  <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QPushButton" name="ControlPanelSettings_serialPort_SetButton">
+                 <property name="text">
+                  <string>Connect</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
             <item row="3" column="0">
              <widget class="QGroupBox" name="groupBox_19">
               <property name="title">
@@ -2416,58 +2466,8 @@
               </layout>
              </widget>
             </item>
-            <item row="1" column="0">
-             <widget class="QGroupBox" name="groupBox_18">
-              <property name="title">
-               <string>Serial Port</string>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_37">
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_76">
-                 <property name="text">
-                  <string>Port Name:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QComboBox" name="ControlPanelSettings_serialPortNameComboBox"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_77">
-                 <property name="text">
-                  <string>Baud Rate:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="ControlPanelSettings_serialPortBaudRate_ComboBox">
-                 <property name="currentText">
-                  <string/>
-                 </property>
-                 <property name="frame">
-                  <bool>true</bool>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QPushButton" name="ControlPanelSettings_refreshSerialPortButton">
-                 <property name="text">
-                  <string>Refresh</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QPushButton" name="ControlPanelSettings_serialPort_SetButton">
-                 <property name="text">
-                  <string>Connect</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="0" column="0">
-             <spacer name="horizontalSpacer_22">
+            <item row="4" column="0">
+             <spacer name="horizontalSpacer_21">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -2492,8 +2492,8 @@
               </property>
              </spacer>
             </item>
-            <item row="4" column="0">
-             <spacer name="horizontalSpacer_21">
+            <item row="0" column="0">
+             <spacer name="horizontalSpacer_22">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
               </property>
@@ -2508,48 +2508,15 @@
             <item row="5" column="0">
              <widget class="QGroupBox" name="groupBox_20">
               <property name="title">
-               <string>Doppler Shift</string>
+               <string>Doppler Shift Correction</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_39">
-               <item row="0" column="0">
-                <widget class="QRadioButton" name="ControlPanelSettings_Doppler_Shift_Enable_RadioButton">
-                 <property name="text">
-                  <string>Enable</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">dopplerShiftEnableDisableRadioButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
                <item row="2" column="0">
                 <widget class="QLabel" name="label_78">
                  <property name="text">
-                  <string>Longitude:</string>
+                  <string>Observer Longitude:</string>
                  </property>
                 </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_15">
-                 <property name="text">
-                  <string>Latitude:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="label_81">
-                 <property name="text">
-                  <string>Altitude:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Longitude_LineEdit"/>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Altitude_LineEdit"/>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Latitude_LineEdit"/>
                </item>
                <item row="0" column="1">
                 <widget class="QRadioButton" name="ControlPanelSettings_Doppler_Shift_Disable_RadioButton">
@@ -2561,7 +2528,50 @@
                  </attribute>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_15">
+                 <property name="text">
+                  <string>Observer Latitude:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_81">
+                 <property name="text">
+                  <string>Observer Altitude:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Longitude_LineEdit"/>
+               </item>
+               <item row="0" column="0">
+                <widget class="QRadioButton" name="ControlPanelSettings_Doppler_Shift_Enable_RadioButton">
+                 <property name="text">
+                  <string>Enable</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">dopplerShiftEnableDisableRadioButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Altitude_LineEdit"/>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Latitude_LineEdit"/>
+               </item>
                <item row="4" column="1">
+                <widget class="QLineEdit" name="lineEdit"/>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_82">
+                 <property name="text">
+                  <string>Satellite TLE:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
                 <widget class="QPushButton" name="ControlPanelSettings_Doppler_Update_Settings_Button">
                  <property name="text">
                   <string>Update</string>
@@ -2587,7 +2597,7 @@
      <x>0</x>
      <y>0</y>
      <width>875</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">
@@ -2608,23 +2618,23 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="sendFullPictureButtonGroup"/>
   <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
   <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
  </buttongroups>
 </ui>

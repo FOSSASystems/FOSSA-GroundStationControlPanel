@@ -34,7 +34,6 @@ SOURCES += \
     3rdparty/fossasattracker/src/SimulationResult.cpp \
     3rdparty/fossasattracker/src/TLE.cpp \
     3rdparty/tiny-aes/aes.cpp \
-    mappane.cpp \
     messagelogframe.cpp \
     src/Interpreter.cpp \
     SerialPortThread.cpp \
@@ -66,6 +65,7 @@ HEADERS += \
     3rdparty/fossasattracker/src/SimulationResult.hpp \
     3rdparty/fossasattracker/src/TLE.hpp \
     3rdparty/tiny-aes/aes.h \
+    include/DopplerShiftCorrector.h \
     include/Interpreter.h \
     include/Interfaces/IGroundStationSerialMessage.h \
     include/Interfaces/IMessage.h \
@@ -74,7 +74,6 @@ HEADERS += \
     include/GroundStationSerialMessage.h \
     SerialPortThread.h \
     mainwindow.h \
-    mappane.h \
     messagelogframe.h \
     systeminformationpane.h \
 
@@ -85,7 +84,6 @@ INCLUDEPATH += 3rdparty/tiny-aes
 
 FORMS += \
     mainwindow.ui \
-    mappane.ui \
     messagelogframe.ui \
     systeminformationpane.ui
 
@@ -97,7 +95,7 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
-RESOURCES += qmlResource.qrc
+RESOURCES +=
 
 DISTFILES += \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/Cmakelists.txt
