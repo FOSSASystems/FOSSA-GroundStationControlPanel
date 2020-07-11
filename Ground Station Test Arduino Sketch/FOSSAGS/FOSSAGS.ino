@@ -179,10 +179,10 @@ void processDatagram() {
       memcpy(&gfskFdev, datagramBuff + 22, sizeof(gfskFdev));
       float gfskRxbw = 0;
       memcpy(&gfskRxbw, datagramBuff + 26, sizeof(gfskRxbw));
-      float gfskSh = 0;
-      memcpy(&gfskSh, datagramBuff + 30, sizeof(gfskSh));
       uint16_t gfskPre = 0;
-      memcpy(&gfskPre, datagramBuff + 34, sizeof(gfskPre));
+      memcpy(&gfskPre, datagramBuff + 30, sizeof(gfskPre));
+      uint8_t gfskSh = 0;
+      memcpy(&gfskSh, datagramBuff + 32, sizeof(gfskSh));
 
       // set the configuration
       int16_t state = ERR_NONE;
@@ -190,6 +190,7 @@ void processDatagram() {
         state = radio.begin(freq, loraBw, loraSf, loraCr, SYNC_WORD, power, loraPre, TCXO_VOLTAGE);
       } else if(modem == 0x01) {
         state = radio.beginFSK(freq, gfskBr, gfskFdev, gfskRxbw, power, gfskPre, TCXO_VOLTAGE);
+        state |= radio.setDataShaping(gfskSh);
       } else {
         state = ERR_WRONG_MODEM;
       }
