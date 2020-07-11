@@ -3,7 +3,7 @@
 
 #include <aes.h>
 #include <string.h>
-#include <stdint.h>
+#include <cstdlib>
 
 // version definitions
 #define FCP_VERSION_MAJOR  (0x01)
@@ -27,6 +27,7 @@
 #define STATS_FLAGS_VOLTAGES                          0b00000100
 #define STATS_FLAGS_LIGHT                             0b00001000
 #define STATS_FLAGS_IMU                               0b00010000
+#define STATS_FLAGS_POWER                             0b00100000
 
 // status codes
 #define ERR_NONE                                      0
@@ -110,8 +111,12 @@
 #define CMD_MANEUVER                                    (0x1B + PRIVATE_OFFSET)
 #define CMD_SET_ADCS_PARAMETERS                         (0x1C + PRIVATE_OFFSET)
 #define CMD_ERASE_FLASH                                 (0x1D + PRIVATE_OFFSET)
+#define CMD_SET_ADCS_CONTROLLER                         (0x1E + PRIVATE_OFFSET)
+#define CMD_SET_ADCS_EPHEMERIDES                        (0x1F + PRIVATE_OFFSET)
+#define CMD_DETUMBLE                                    (0x20 + PRIVATE_OFFSET)
+#define CMD_SET_IMU_OFFSET                              (0x21 + PRIVATE_OFFSET)
 
-#define NUM_PRIVATE_COMMANDS                            (0x1E)
+#define NUM_PRIVATE_COMMANDS                            (0x22)
 
 #define PRINT_BUFF(BUFF, LEN) { \
   for(size_t i = 0; i < LEN; i++) { \

@@ -248,7 +248,7 @@ int16_t FCP_Encode(uint8_t* frame, char* callsign, uint8_t functionId, uint8_t o
 
     // add padding
     for(uint8_t i = 0; i < paddingLen; i++) {
-      *(encSectionPtr + i) = (uint8_t)0x00;
+      *(encSectionPtr + i) = (uint8_t)(rand()%256);//random(0x00, 0x100);
     }
 
     // encrypt
