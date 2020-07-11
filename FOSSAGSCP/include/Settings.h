@@ -254,7 +254,7 @@ public:
         const char* tleLineData = tleLine.c_str();
         SetTLELine1(tleLineData);
 
-        tleLine = tleLine1.toStdString();
+        tleLine = tleLine2.toStdString();
         tleLineData = tleLine.c_str();
         SetTLELine2(tleLineData);
     }

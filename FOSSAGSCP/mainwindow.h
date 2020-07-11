@@ -27,6 +27,7 @@
 #include "MessageLog.h"
 #include "Settings.h"
 #include "Interpreter.h"
+#include "DopplerShiftCorrector.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -79,6 +80,7 @@ private:
     Settings m_settings;
     MessageLog m_messageLog;
     Interpreter* m_interpreter;
+    DopplerShiftCorrector m_dopplerShiftCorrector;
 
     // serial port thread.
     SerialPortThread m_serialPortThread;

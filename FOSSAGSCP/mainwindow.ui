@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -2531,7 +2531,7 @@
                <item row="3" column="0">
                 <widget class="QLabel" name="label_81">
                  <property name="text">
-                  <string>Observer Altitude:</string>
+                  <string>Observer Attitude:</string>
                  </property>
                 </widget>
                </item>

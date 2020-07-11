@@ -443,6 +443,33 @@ void MainWindow::LoadControlPanelSettingsUI()
         this->ui->ControlPanelSettings_Doppler_Shift_Disable_RadioButton->setChecked(true);
     }
 
+    //
+    // Load the TLE into the UI.
+    //
+    m_settings.LoadTLElines();
+
+    std::string tleLine1 = m_settings.GetTLELine1();
+    std::string tleLine2 = m_settings.GetTLELine2();
+
+    QString tleLine1Str = QString::fromStdString(tleLine1);
+    QString tleLine2Str = QString::fromStdString(tleLine2);
+
+    this->ui->ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit->setText(tleLine1Str);
+    this->ui->ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit->setText(tleLine2Str);
+
+    //
+    // Configure the simulation if enabled.
+    //
+    if (dopplerShiftCorrectionEnabled)
+    {
+        double latitude = m_settings.GetLatitude();
+        double longitude = m_settings.GetLongitude();
+        double attitude = m_settings.GetAltitude();
+
+        m_dopplerShiftCorrector.SetObserverParameters(latitude, longitude, attitude);
+        m_dopplerShiftCorrector.SetTLELines(tleLine1, tleLine2);
+        this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
+    }
 }
 
 
@@ -554,20 +581,38 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
 
     double latitude = this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->text().toDouble();
     double longitude = this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->text().toDouble();
-    double altitude = this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->text().toDouble();
+    double attitude = this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->text().toDouble();
 
     m_settings.SetLatitude(latitude);
     m_settings.SetLongitude(longitude);
-    m_settings.SetAltitude(altitude);
+    m_settings.SetAltitude(attitude);
 
     m_settings.SaveLatLongAlt();
-
-    //! @todo make the map pane move to this coordinate.
 
     bool dopplerShiftCorrectionEnabled = this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->isChecked();
 
     m_settings.SetDopplerShiftCorrectionEnabled(dopplerShiftCorrectionEnabled);
     m_settings.SaveDopplerShiftCorrectionEnabled();
+
+    std::string tleLine1 = this->ui->ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit->text().toStdString();
+    std::string tleLine2 = this->ui->ControlPanelSettings_Doppler_Shift_TLE_2_LineEdit->text().toStdString();
+
+    m_settings.SetTLELine1(tleLine1);
+    m_settings.SetTLELine2(tleLine2);
+
+    m_settings.SaveTLELines();
+
+
+    //
+    // Configure the simulation if enabled.
+    //
+    if (dopplerShiftCorrectionEnabled)
+    {
+        m_dopplerShiftCorrector.SetObserverParameters(latitude, longitude, attitude);
+        m_dopplerShiftCorrector.SetTLELines(tleLine1, tleLine2);
+
+        this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
+    }
 }
 
 /////////////////////////////////////
