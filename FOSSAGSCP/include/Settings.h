@@ -144,10 +144,6 @@ public:
     std::string GetPassword() { return m_password; }
     bool IsPasswordSet() { return m_passwordSet; }
 
-
-
-
-
     double GetLatitude() { return m_latitude; }
     void SetLatitude(double latitude) { m_latitude = latitude; }
 
@@ -218,6 +214,50 @@ public:
         return dopplerShiftCorrecEnabled;
     }
 
+
+
+
+    void SetTLELine1(std::string lineText)
+    {
+        m_tleLine1 = lineText;
+    }
+    std::string GetTLELine1() { return m_tleLine1; }
+
+    void SetTLELine2(std::string lineText)
+    {
+        m_tleLine2 = lineText;
+    }
+    std::string GetTLELine2() { return m_tleLine2; }
+
+    void SaveTLELines()
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+        const char* tleStr = GetTLELine1().c_str();
+        settings.setValue("tleLine1", tleStr);
+        tleStr = GetTLELine2().c_str();
+        settings.setValue("tleLine2", tleStr);
+    }
+
+    void LoadTLElines()
+    {
+        QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+        QString filename = "settings.ini" ;
+        QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+        QString tleLine1 = settings.value("tleLine1", "").toString();
+        QString tleLine2 = settings.value("tleLine2", "").toString();
+
+        std::string tleLine = tleLine1.toStdString();
+        const char* tleLineData = tleLine.c_str();
+        SetTLELine1(tleLineData);
+
+        tleLine = tleLine1.toStdString();
+        tleLineData = tleLine.c_str();
+        SetTLELine2(tleLineData);
+    }
 protected:
 private:
     // AES KEY
@@ -232,6 +272,9 @@ private:
     double m_longitude;
     double m_altitude;
     bool m_dopplerShiftCorrectionEnabled;
+
+    std::string m_tleLine1;
+    std::string m_tleLine2;
 
 };
 

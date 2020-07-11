@@ -2350,9 +2350,9 @@
            <property name="geometry">
             <rect>
              <x>243</x>
-             <y>43</y>
+             <y>27</y>
              <width>316</width>
-             <height>611</height>
+             <height>642</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2511,10 +2511,27 @@
                <string>Doppler Shift Correction</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_39">
-               <item row="2" column="0">
-                <widget class="QLabel" name="label_78">
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_15">
                  <property name="text">
-                  <string>Observer Longitude:</string>
+                  <string>Observer Latitude:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QRadioButton" name="ControlPanelSettings_Doppler_Shift_Enable_RadioButton">
+                 <property name="text">
+                  <string>Enable</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">dopplerShiftEnableDisableRadioButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_81">
+                 <property name="text">
+                  <string>Observer Altitude:</string>
                  </property>
                 </widget>
                </item>
@@ -2528,31 +2545,18 @@
                  </attribute>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_15">
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_78">
                  <property name="text">
-                  <string>Observer Latitude:</string>
+                  <string>Observer Longitude:</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="label_81">
+               <item row="6" column="1">
+                <widget class="QPushButton" name="ControlPanelSettings_Doppler_Update_Settings_Button">
                  <property name="text">
-                  <string>Observer Altitude:</string>
+                  <string>Update</string>
                  </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Longitude_LineEdit"/>
-               </item>
-               <item row="0" column="0">
-                <widget class="QRadioButton" name="ControlPanelSettings_Doppler_Shift_Enable_RadioButton">
-                 <property name="text">
-                  <string>Enable</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">dopplerShiftEnableDisableRadioButtonGroup</string>
-                 </attribute>
                 </widget>
                </item>
                <item row="3" column="1">
@@ -2561,20 +2565,26 @@
                <item row="1" column="1">
                 <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Latitude_LineEdit"/>
                </item>
-               <item row="4" column="1">
-                <widget class="QLineEdit" name="lineEdit"/>
-               </item>
                <item row="4" column="0">
                 <widget class="QLabel" name="label_82">
                  <property name="text">
-                  <string>Satellite TLE:</string>
+                  <string>Satellite TLE Line 1:</string>
                  </property>
                 </widget>
                </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Longitude_LineEdit"/>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit"/>
+               </item>
                <item row="5" column="1">
-                <widget class="QPushButton" name="ControlPanelSettings_Doppler_Update_Settings_Button">
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_TLE_2_LineEdit"/>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="label_83">
                  <property name="text">
-                  <string>Update</string>
+                  <string>Satellite TLE Line 2:</string>
                  </property>
                 </widget>
                </item>
@@ -2618,23 +2628,23 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
   <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
   <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
  </buttongroups>
 </ui>

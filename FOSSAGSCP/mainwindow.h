@@ -22,7 +22,6 @@
 
 #include "systeminformationpane.h"
 #include "messagelogframe.h"
-#include "mappane.h"
 
 #include "GroundStationSerialMessage.h"
 #include "MessageLog.h"
@@ -75,7 +74,6 @@ private:
     // GUI Frames
     systeminformationpane *m_sytemInfoPane;
     MessageLogFrame *m_messageLogFrame;
-    MapPane* m_mapFrame;
 
 
     Settings m_settings;
