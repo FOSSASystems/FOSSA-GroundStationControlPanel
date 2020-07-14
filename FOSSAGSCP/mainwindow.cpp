@@ -273,23 +273,55 @@ void MainWindow::SendDopplerShiftedFrequency()
 
 
 
-
-
-//
-// Satellite controls tab.
-//
+/////////////////////////////
+// Satellite controls tab. //
+/////////////////////////////
+#define SatelliteControlsTab_Start {
 void MainWindow::LoadSatelliteControlsUI()
 {
 
 }
 
-//
-// Satellite configuration tab.
-//
+
+// ping button
+void MainWindow::on_baseOpsPingButton_clicked()
+{
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Ping();
+    this->SendSerialData(msg);
+}
+
+// deploy button
+void MainWindow::on_baseOpsDeploybutton_clicked()
+{
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Deploy();
+    this->SendSerialData(msg);
+}
+
+
+
+
+#define SatelliteControlsTab_End }
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////////////
+// Satellite configuration tab. //
+//////////////////////////////////
+#define SatelliteConfigurationTab_Start {
 void MainWindow::LoadSatelliteConfigurationUI()
 {
 
 }
+#define SatelliteConfigurationTab_End }
 
 
 
@@ -314,7 +346,6 @@ void MainWindow::LoadSatelliteConfigurationUI()
 ///////////////////////////////////
 /// Ground station settings tab //
 ///////////////////////////////////
-
 #define GroundPanelSettingsTab_Start {
 
 //
@@ -771,73 +802,4 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
-
-//
-// Controls tab
-//
-
-// ping button
-void MainWindow::on_baseOpsPingButton_clicked()
-{
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Ping();
-    this->SendSerialData(msg);
-}
-
-void MainWindow::on_baseOpsDeploybutton_clicked()
-{
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Deploy();
-    this->SendSerialData(msg);
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

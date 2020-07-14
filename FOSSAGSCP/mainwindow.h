@@ -104,7 +104,9 @@ private:
     // Timer for dopplerShiftCorrector;
     QTimer* m_dopplerCorrectionTimer = nullptr;
 
-
+    // ****
+    // These are the main entry points for the program, each tab loads itself here.
+    // ****
     void LoadControlPanelSettingsUI();
     void LoadGroundStationSettingsUI();
     void LoadSatelliteConfigurationUI();
