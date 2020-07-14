@@ -197,17 +197,54 @@ void MainWindow::ReceivedHandshake()
 
 void MainWindow::SendDopplerShiftedFrequency()
 {
-    QString currentCarrierFreqStr = ui->GroundStationSettings_ConfigCarrierFrequencyLineEdit->text();
+    //return;
+
+    QString modemType = ui->GroundStationSettings_ModemTypeComboBox->currentText();
+
+    QString currentCarrierFreqStr;
+    if (modemType == "LoRa")
+    {
+        currentCarrierFreqStr = ui->GroundStationSettings_loraConfigurationCarrierFrequencyLineEdit->text();
+    }
+    else if (modemType == "GFSK")
+    {
+        currentCarrierFreqStr = ui->GroundStationSettings_GFSKConfigCarrierFrequencyLineEdit->text();
+    }
+
     QString currentSatelliteNameStr = ui->SatelliteConfig_callsignLineEdit->text();
     std::string currentSatelliteNameStdStr = currentSatelliteNameStr.toStdString();
 
+    // get the doppler amount.
     double dopplerShiftedFreq;
     m_dopplerShiftCorrector.GetDopplerShiftNow(currentSatelliteNameStdStr, &dopplerShiftedFreq);
 
+    // current configured frequency.
     double currentCarrierFrequency = currentCarrierFreqStr.toDouble();
-    double newCarrierFrequency = currentCarrierFrequency + dopplerShiftedFreq;
+
+    // new frequency = current + (current*dopplerShift)
+    double newCarrierFrequency = currentCarrierFrequency + (currentCarrierFrequency * (1.0 - dopplerShiftedFreq));
 
     ui->statusbar->showMessage(QString::number(newCarrierFrequency), 10000);
+
+    // Send to the ground station.
+    QByteArray msg;
+
+    uint8_t directionBit = 0x00;
+    uint8_t operationId = 0x03;
+    uint8_t controlByte = directionBit & operationId;
+    msg.append(controlByte);
+
+    uint8_t length = 4;
+    msg.append(length);
+
+
+    float freqAsFloat = (float)newCarrierFrequency;
+    QByteArray freqFloatByteArray;
+    QDataStream out(freqFloatByteArray);
+    out << freqAsFloat;
+    msg.append(freqFloatByteArray);
+
+    this->m_serialPortThread.Write(msg);
 }
 
 
@@ -472,7 +509,7 @@ void MainWindow::LoadControlPanelSettingsUI()
     QString tleLine2Str = QString::fromStdString(tleLine2);
 
     this->ui->ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit->setText(tleLine1Str);
-    this->ui->ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit->setText(tleLine2Str);
+    this->ui->ControlPanelSettings_Doppler_Shift_TLE_2_LineEdit->setText(tleLine2Str);
 
     //
     // Configure the simulation if enabled.

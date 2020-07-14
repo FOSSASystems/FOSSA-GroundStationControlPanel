@@ -235,10 +235,13 @@ public:
         QString filename = "settings.ini" ;
         QSettings settings(path + "/"+ filename, QSettings::IniFormat);
 
-        const char* tleStr = GetTLELine1().c_str();
-        settings.setValue("tleLine1", tleStr);
-        tleStr = GetTLELine2().c_str();
-        settings.setValue("tleLine2", tleStr);
+        std::string tleStr = GetTLELine1();
+        QString tleQtStr = QString::fromStdString(tleStr);
+        settings.setValue("tleLine1", tleQtStr);
+
+        tleStr = GetTLELine2();
+        tleQtStr = QString::fromStdString(tleStr);
+        settings.setValue("tleLine2", tleQtStr);
     }
 
     void LoadTLElines()

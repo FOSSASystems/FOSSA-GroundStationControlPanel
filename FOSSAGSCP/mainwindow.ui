@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -2689,10 +2689,18 @@
                 <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_Longitude_LineEdit"/>
                </item>
                <item row="4" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit"/>
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit">
+                 <property name="text">
+                  <string>1 44829U 19084F   20196.09556561  .00044631  00000-0  24522-3 0  9990</string>
+                 </property>
+                </widget>
                </item>
                <item row="5" column="1">
-                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_TLE_2_LineEdit"/>
+                <widget class="QLineEdit" name="ControlPanelSettings_Doppler_Shift_TLE_2_LineEdit">
+                 <property name="text">
+                  <string>2 44829  96.9706  65.3286 0027025 132.1851 228.1718 15.79088811 34647 </string>
+                 </property>
+                </widget>
                </item>
                <item row="5" column="0">
                 <widget class="QLabel" name="label_83">
