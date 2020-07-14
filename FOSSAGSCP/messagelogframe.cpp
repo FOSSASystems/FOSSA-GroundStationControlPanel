@@ -103,3 +103,9 @@ void MessageLogFrame::on_saveAsButton_clicked()
         }
     }
 }
+
+void MessageLogFrame::on_messageSendButton_clicked()
+{
+    QString messageToSend = ui->messageSubmitLineEdit->text();
+    this->SendDataFromMessageLogFrame(messageToSend);
+}

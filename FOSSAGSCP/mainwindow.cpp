@@ -35,6 +35,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // data piping from message log service to message log frame.
     connect(&m_messageLog, &MessageLog::MessageLogged, m_messageLogFrame, &MessageLogFrame::ReceivedMessageLogged, Qt::AutoConnection);
+    // data piping from message log frame to serial port thread.
+    connect(m_messageLogFrame, &MessageLogFrame::SendDataFromMessageLogFrame, this, &MainWindow::ReceivedMessagefromMessageLog);
 }
 
 MainWindow::~MainWindow()
@@ -193,6 +195,14 @@ void MainWindow::ReceivedHandshake()
     QMessageBox msgBox;
     msgBox.setText("Handshake received!");
     msgBox.exec();
+}
+
+
+
+void MainWindow::ReceivedMessagefromMessageLog(QString msg)
+{
+    QByteArray bytes = msg.toLocal8Bit();
+    m_serialPortThread.Write(bytes);
 }
 
 void MainWindow::SendDopplerShiftedFrequency()

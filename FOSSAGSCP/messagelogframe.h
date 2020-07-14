@@ -24,10 +24,14 @@ public:
 
 public slots:
     void ReceivedMessageLogged(IGroundStationSerialMessage* msg); // attached to MessageLog.h
+signals:
+    void SendDataFromMessageLogFrame(QString data);
 private slots:
     void on_enableTimestampsCheckBox_stateChanged(int arg1);
 
     void on_saveAsButton_clicked();
+
+    void on_messageSendButton_clicked();
 
 private:
     Ui::MessageLogFrame *ui;

@@ -67,6 +67,9 @@ private slots:
 
     // Doppler shift correction method.
     void SendDopplerShiftedFrequency();
+
+    // Receive message from message logger.
+    void ReceivedMessagefromMessageLog(QString msg);
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h
