@@ -65,6 +65,8 @@ private slots:
     void on_ControlPanelSettings_Security_Reveal_Button_clicked();
     void on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked();
 
+    // Doppler shift correction method.
+    void SendDopplerShiftedFrequency();
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h
@@ -96,6 +98,8 @@ private:
 
     bool m_handshakeReceived = false;
 
+    // Timer for dopplerShiftCorrector;
+    QTimer* m_dopplerCorrectionTimer = nullptr;
 
 
     void LoadControlPanelSettingsUI();

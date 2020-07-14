@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>2</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -72,10 +72,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>166</x>
+             <x>185</x>
              <y>0</y>
-             <width>471</width>
-             <height>4640</height>
+             <width>449</width>
+             <height>4872</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -172,7 +172,7 @@
                   <item row="1" column="1">
                    <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_Bandwidth_125_RadioButton">
                     <property name="text">
-                     <string>125 kHZ</string>
+                     <string>&amp;125 kHZ</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">retransmitBandwidthButtonGroup</string>
@@ -182,7 +182,7 @@
                   <item row="4" column="1">
                    <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_CodingRate_45_RadioButton">
                     <property name="text">
-                     <string>4/5</string>
+                     <string>&amp;4/5</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">retransmissionCodingRateButtonGroup</string>
@@ -206,7 +206,7 @@
                   <item row="0" column="1">
                    <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_Bandwidth_78_RadioButton">
                     <property name="text">
-                     <string>7.8 kHz</string>
+                     <string>&amp;7.8 kHz</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">retransmitBandwidthButtonGroup</string>
@@ -219,7 +219,7 @@
                   <item row="3" column="1">
                    <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_SpreadingFactor_SF12_RadioButton">
                     <property name="text">
-                     <string>SF12</string>
+                     <string>SF1&amp;2</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">retransmitSpreadingFactorButtonGroup</string>
@@ -239,7 +239,7 @@
                   <item row="5" column="1">
                    <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_CodingRate_48_RadioButton">
                     <property name="text">
-                     <string>4/8</string>
+                     <string>4/&amp;8</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">retransmissionCodingRateButtonGroup</string>
@@ -249,7 +249,7 @@
                   <item row="2" column="1">
                    <widget class="QRadioButton" name="TransmissionRouter_RetransmissionCustom_SpreadingFactor_SF5_RadioButton">
                     <property name="text">
-                     <string>SF5</string>
+                     <string>SF&amp;5</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">retransmitSpreadingFactorButtonGroup</string>
@@ -1047,7 +1047,7 @@
                   <item row="4" column="1">
                    <widget class="QRadioButton" name="CameraControl_PictureBurst_PublicPrivate_Public_RadioButton">
                     <property name="text">
-                     <string>Public Request</string>
+                     <string>Public Re&amp;quest</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">publicPrivateRequestButtonGroup</string>
@@ -1087,7 +1087,7 @@
                   <item row="5" column="1">
                    <widget class="QRadioButton" name="CameraControl_PictureBurst_PublicPrivate_Private_RadioButton">
                     <property name="text">
-                     <string>Private Request</string>
+                     <string>Pri&amp;vate Request</string>
                     </property>
                     <attribute name="buttonGroup">
                      <string notr="true">publicPrivateRequestButtonGroup</string>
@@ -1410,10 +1410,10 @@
            </property>
            <property name="geometry">
             <rect>
-             <x>158</x>
+             <x>177</x>
              <y>0</y>
-             <width>486</width>
-             <height>1607</height>
+             <width>465</width>
+             <height>1648</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1976,7 +1976,7 @@
                <item row="2" column="1">
                 <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveDisabled_RadioButton">
                  <property name="text">
-                  <string>Keep Alive Disabled</string>
+                  <string>&amp;Keep Alive Disabled</string>
                  </property>
                  <attribute name="buttonGroup">
                   <string notr="true">mpptKeepAliveButtonGroup</string>
@@ -1986,7 +1986,7 @@
                <item row="2" column="0">
                 <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveEnabled_RadioButton">
                  <property name="text">
-                  <string>Keep Alive Enabled</string>
+                  <string>Keep Ali&amp;ve Enabled</string>
                  </property>
                  <attribute name="buttonGroup">
                   <string notr="true">mpptKeepAliveButtonGroup</string>
@@ -2042,10 +2042,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>205</x>
-             <y>0</y>
-             <width>393</width>
-             <height>805</height>
+             <x>224</x>
+             <y>-122</y>
+             <width>370</width>
+             <height>898</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2061,7 +2061,7 @@
             <item row="0" column="0">
              <widget class="QRadioButton" name="handshookRadioButton">
               <property name="text">
-               <string>Handshook</string>
+               <string>Handshoo&amp;k</string>
               </property>
               <property name="checkable">
                <bool>true</bool>
@@ -2077,19 +2077,6 @@
                <string>Ground Station Configuration</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_21">
-               <item row="6" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_ConfigCurrentLimitLineEdit"/>
-               </item>
-               <item row="2" column="1">
-                <widget class="QSpinBox" name="GroundStationSettings_ConfigOutputPowerSpinBox"/>
-               </item>
-               <item row="6" column="0">
-                <widget class="QLabel" name="label_4">
-                 <property name="text">
-                  <string>Current Limit (mA):</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="0">
                 <widget class="QLabel" name="label">
                  <property name="text">
@@ -2111,31 +2098,14 @@
                  </item>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_2">
-                 <property name="text">
-                  <string>Carrier Frequency (MHz):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_ConfigCarrierFrequencyLineEdit"/>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="label_3">
-                 <property name="text">
-                  <string>Output Power (dBm):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="0">
+               <item row="4" column="0">
                 <widget class="QPushButton" name="GroundStationSettings_ConfigSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
-               <item row="7" column="1">
+               <item row="4" column="1">
                 <widget class="QPushButton" name="GroundStationSettings_ConfigRefreshButton">
                  <property name="text">
                   <string>Refresh</string>
@@ -2151,67 +2121,129 @@
                <string>GFSK Configuration</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_24">
-               <item row="0" column="0">
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigOutputPowerLineEdit">
+                 <property name="text">
+                  <string>20</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
                 <widget class="QLabel" name="label_9">
                  <property name="text">
                   <string>GFSK Bit rate (kb/s):</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigBitRateLineEdit"/>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigBitRateLineEdit">
+                 <property name="text">
+                  <string>9.6</string>
+                 </property>
+                </widget>
                </item>
-               <item row="1" column="0">
+               <item row="4" column="0">
                 <widget class="QLabel" name="label_10">
                  <property name="text">
                   <string>GFSK Frequency Deviation (kHz):</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigFreqDeviationLineEdit"/>
+               <item row="4" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigFreqDeviationLineEdit">
+                 <property name="text">
+                  <string>5.0</string>
+                 </property>
+                </widget>
                </item>
-               <item row="2" column="0">
+               <item row="5" column="0">
                 <widget class="QLabel" name="label_11">
                  <property name="text">
                   <string>GFSK Rx Bandwidth (kHz):</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigRxBandwidthLineEdit"/>
+               <item row="5" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigRxBandwidthLineEdit">
+                 <property name="text">
+                  <string>39.0</string>
+                 </property>
+                </widget>
                </item>
-               <item row="3" column="0">
+               <item row="6" column="0">
                 <widget class="QLabel" name="label_12">
                  <property name="text">
                   <string>GFSK Data Shaping BT Product:</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigDataShapingBTProductLineEdit"/>
+               <item row="6" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigDataShapingBTProductLineEdit">
+                 <property name="text">
+                  <string>0x02</string>
+                 </property>
+                </widget>
                </item>
-               <item row="4" column="0">
+               <item row="7" column="0">
                 <widget class="QLabel" name="label_13">
                  <property name="text">
                   <string>GFSK Preamble Length (bits):</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigPreambleLengthLineEdit"/>
+               <item row="7" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigPreambleLengthLineEdit">
+                 <property name="text">
+                  <string>16</string>
+                 </property>
+                </widget>
                </item>
-               <item row="5" column="0">
+               <item row="8" column="0">
                 <widget class="QPushButton" name="GroundStationSettings_GFSKConfigSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
+               <item row="8" column="1">
                 <widget class="QPushButton" name="GroundStationSettings_GFSKConfigRefreshButton">
                  <property name="text">
                   <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_86">
+                 <property name="text">
+                  <string>GFSK Output Power (dBm):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_85">
+                 <property name="text">
+                  <string>GFSK Carrier Frequency (MHz):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigCarrierFrequencyLineEdit">
+                 <property name="text">
+                  <string>436.9</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_88">
+                 <property name="text">
+                  <string>GFSK Current Limit (mA):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_GFSKConfigCurrentLimitLineEdit">
+                 <property name="text">
+                  <string>140.0</string>
                  </property>
                 </widget>
                </item>
@@ -2251,56 +2283,114 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_22">
                <item row="0" column="0">
+                <widget class="QLabel" name="label_84">
+                 <property name="text">
+                  <string>LoRa Carrier Frequency (MHz):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_loraConfigurationOutputPowerLineEdit">
+                 <property name="text">
+                  <string>20</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_loraConfigurationCarrierFrequencyLineEdit">
+                 <property name="text">
+                  <string>436.7</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
                 <widget class="QLabel" name="label_5">
                  <property name="text">
                   <string>LoRa Bandwidth (kHz):</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationSpreadingFactorSpinBox"/>
+               <item row="4" column="1">
+                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationSpreadingFactorSpinBox">
+                 <property name="value">
+                  <number>11</number>
+                 </property>
+                </widget>
                </item>
-               <item row="4" column="0">
+               <item row="7" column="0">
                 <widget class="QLabel" name="label_8">
                  <property name="text">
                   <string>LoRa Preamble Length:</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
+               <item row="6" column="0">
                 <widget class="QLabel" name="label_7">
                  <property name="text">
                   <string>LoRa Coding Rate:</string>
                  </property>
                 </widget>
                </item>
-               <item row="4" column="1">
-                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationPreambleLengthSpinBox"/>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLineEdit" name="GroundStationSettings_loraConfigurationBandwidthLineEdit"/>
+               <item row="7" column="1">
+                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationPreambleLengthSpinBox">
+                 <property name="value">
+                  <number>8</number>
+                 </property>
+                </widget>
                </item>
                <item row="3" column="1">
-                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationCodingRateSpinBox"/>
+                <widget class="QLineEdit" name="GroundStationSettings_loraConfigurationBandwidthLineEdit">
+                 <property name="text">
+                  <string>125.0</string>
+                 </property>
+                </widget>
                </item>
-               <item row="1" column="0">
+               <item row="6" column="1">
+                <widget class="QSpinBox" name="GroundStationSettings_loraConfigurationCodingRateSpinBox">
+                 <property name="value">
+                  <number>8</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0">
                 <widget class="QLabel" name="label_6">
                  <property name="text">
                   <string>LoRa Spreading Factor:</string>
                  </property>
                 </widget>
                </item>
-               <item row="5" column="0">
+               <item row="8" column="0">
                 <widget class="QPushButton" name="GroundStationSettings_loraSetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
+               <item row="8" column="1">
                 <widget class="QPushButton" name="GroundStationSettings_loraRefreshButton">
                  <property name="text">
                   <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_87">
+                 <property name="text">
+                  <string>LoRa Output Power (dBm):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>LoRa Current Limit (mA):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="GroundStationSettings_loraConfigurationCurrentLimitLineEdit">
+                 <property name="text">
+                  <string>140.0</string>
                  </property>
                 </widget>
                </item>
@@ -2349,10 +2439,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>243</x>
-             <y>27</y>
-             <width>316</width>
-             <height>642</height>
+             <x>267</x>
+             <y>39</y>
+             <width>299</width>
+             <height>639</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2607,12 +2697,12 @@
      <x>0</x>
      <y>0</y>
      <width>875</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">
     <property name="title">
-     <string>Tools</string>
+     <string>Too&amp;ls</string>
     </property>
     <addaction name="actionView_Serial_Ports"/>
    </widget>
@@ -2621,30 +2711,30 @@
   <widget class="QStatusBar" name="statusbar"/>
   <action name="actionView_Serial_Ports">
    <property name="text">
-    <string>View Serial Ports</string>
+    <string>&amp;View Serial Ports</string>
    </property>
   </action>
  </widget>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
   <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
  </buttongroups>
 </ui>

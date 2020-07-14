@@ -41,10 +41,14 @@ MainWindow::~MainWindow()
 {
     m_serialPortThread.quit();
 
+    m_dopplerCorrectionTimer->stop();
+    delete m_dopplerCorrectionTimer;
+
     delete m_interpreter;
     delete m_sytemInfoPane;
     delete ui;
 }
+
 
 // Response received is a slot, this slot is signalled from the serial port thread.
 void MainWindow::HandleRead(QByteArray data)
@@ -191,7 +195,20 @@ void MainWindow::ReceivedHandshake()
     msgBox.exec();
 }
 
+void MainWindow::SendDopplerShiftedFrequency()
+{
+    QString currentCarrierFreqStr = ui->GroundStationSettings_ConfigCarrierFrequencyLineEdit->text();
+    QString currentSatelliteNameStr = ui->SatelliteConfig_callsignLineEdit->text();
+    std::string currentSatelliteNameStdStr = currentSatelliteNameStr.toStdString();
 
+    double dopplerShiftedFreq;
+    m_dopplerShiftCorrector.GetDopplerShiftNow(currentSatelliteNameStdStr, &dopplerShiftedFreq);
+
+    double currentCarrierFrequency = currentCarrierFreqStr.toDouble();
+    double newCarrierFrequency = currentCarrierFrequency + dopplerShiftedFreq;
+
+    ui->statusbar->showMessage(QString::number(newCarrierFrequency), 10000);
+}
 
 
 
@@ -469,6 +486,17 @@ void MainWindow::LoadControlPanelSettingsUI()
         m_dopplerShiftCorrector.SetObserverParameters(latitude, longitude, attitude);
         m_dopplerShiftCorrector.SetTLELines(tleLine1, tleLine2);
         this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
+
+        if (m_dopplerCorrectionTimer == nullptr)
+        {
+            // Setup the doppler shift timer.
+            m_dopplerCorrectionTimer = new QTimer(this);
+            connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
+            if (m_settings.GetDopplerShiftCorrectionEnabled())
+            {
+                m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
+            }
+        }
     }
 }
 
@@ -612,8 +640,11 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
         m_dopplerShiftCorrector.SetTLELines(tleLine1, tleLine2);
 
         this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
+
+        m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
     }
 }
+
 
 /////////////////////////////////////
 /// Control panel settings tab END //
