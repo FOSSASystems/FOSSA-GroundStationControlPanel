@@ -1,10 +1,5 @@
 #include "Interpreter.h"
 
-Interpreter::Interpreter(Settings& settings, Ui::MainWindow* ui) : m_settings(settings), m_ui(ui)
-{
-
-}
-
 IGroundStationSerialMessage *Interpreter::SerialData_To_GroundStationSerialMessage(char *serialData, char serialDataLength)
 {
     // first byte is the control byte.
@@ -122,6 +117,12 @@ void Interpreter::Interpret_Handshake(IGroundStationSerialMessage *inMsg)
     GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
     m_ui->handshookRadioButton->setChecked(true);
+
+    m_settings.SetHandshookValue(true);
+
+    m_ui->statusbar->showMessage("Ground station handshook successfully");
+
+    emit ReceivedHandshake();
 }
 
 void Interpreter::Interpret_Config_Change(IGroundStationSerialMessage *inMsg)

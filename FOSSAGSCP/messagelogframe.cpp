@@ -37,7 +37,8 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     char controlByteHexStr[2];
     char controlByte = msg->GetControlByte();
     sprintf(&(controlByteHexStr[0]), "%02x", (uint8_t)controlByte);
-    loggedMessage.append(controlByteHexStr);
+    loggedMessage.push_back(controlByteHexStr[0]);
+    loggedMessage.push_back(controlByteHexStr[1]);
 
     loggedMessage += ' ';
 
@@ -45,7 +46,7 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     char lengthByteHexStr[2];
     char payloadLengthByte = msg->GetPayloadLengthByte();
     sprintf(&(lengthByteHexStr[0]), "%02x", (uint8_t)payloadLengthByte);
-    loggedMessage.append(lengthByteHexStr);
+    loggedMessage += lengthByteHexStr;
 
     loggedMessage += " ";
 
@@ -56,8 +57,9 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
             char hexChar[2];
             char rawData = payload[i];
             sprintf(&(hexChar[0]), "%02x", (uint8_t)rawData);
-            loggedMessage.append(hexChar);
-            loggedMessage.append(" ");
+            loggedMessage.push_back(hexChar[0]);
+            loggedMessage.push_back(hexChar[1]);
+            loggedMessage += " ";
         }
     }
 

@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>2</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -1564,7 +1564,7 @@
                <item row="0" column="0">
                 <widget class="QRadioButton" name="SatelliteConfig_LowPowerMode_Enabled_RadioButton">
                  <property name="text">
-                  <string>Low Power Mode Enabled</string>
+                  <string>Low Power &amp;Mode Enabled</string>
                  </property>
                  <attribute name="buttonGroup">
                   <string notr="true">lowPowerModeButtonGroup</string>
@@ -2749,23 +2749,23 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
   <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
   <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
  </buttongroups>
 </ui>

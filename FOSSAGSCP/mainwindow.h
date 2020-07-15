@@ -43,6 +43,8 @@ public:
 
     void SendSerialData(IGroundStationSerialMessage* datagram);
     void SendHandshake();
+
+public slots:
     void ReceivedHandshake();
 
 private slots:

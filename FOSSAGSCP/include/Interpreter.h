@@ -8,6 +8,7 @@
 ////////////////////////////////
 
 #include <FOSSA-Comms.h>
+#include <QObject>
 
 #include "GroundStationSerialMessage.h"
 #include "Settings.h"
@@ -41,10 +42,12 @@
 #define FCPI_CONFIG_OP 2
 
 
-class Interpreter
+class Interpreter : public QObject
 {
+    Q_OBJECT
 public:
-    Interpreter(Settings& settings, Ui::MainWindow* ui);
+    Interpreter(Settings& settings, Ui::MainWindow* ui) : m_settings(settings), m_ui(ui) {}
+    virtual ~Interpreter() {}
 
     /// The ground station serial message is an internal command structure.
     /// This creates it from raw serial datagrams.
@@ -108,6 +111,8 @@ public:
     IGroundStationSerialMessage* Create_CMD_Maneuver();
     IGroundStationSerialMessage* Create_CMD_Set_ADCS_Parameters();
     IGroundStationSerialMessage* Create_CMD_Erase_Flash();
+signals:
+    void ReceivedHandshake();
 private:
     Settings& m_settings;
     Ui::MainWindow* m_ui = nullptr;

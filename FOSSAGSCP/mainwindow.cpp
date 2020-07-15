@@ -33,8 +33,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleError, this, &MainWindow::ErrorReceived, Qt::AutoConnection);
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleTimeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
 
+    // signal piping from the interpeter to this.
+    connect(m_interpreter, &Interpreter::ReceivedHandshake, this, &MainWindow::ReceivedHandshake);
+
     // data piping from message log service to message log frame.
     connect(&m_messageLog, &MessageLog::MessageLogged, m_messageLogFrame, &MessageLogFrame::ReceivedMessageLogged, Qt::AutoConnection);
+
     // data piping from message log frame to serial port thread.
     connect(m_messageLogFrame, &MessageLogFrame::SendDataFromMessageLogFrame, this, &MainWindow::ReceivedMessagefromMessageLog);
 }
@@ -182,12 +186,6 @@ void MainWindow::ErrorReceived(const QString &str)
 void MainWindow::TimeoutReceived(const QString &str)
 {
     //throw std::runtime_error(str.toUtf8());
-}
-
-
-void MainWindow::SendHandshake()
-{
-
 }
 
 void MainWindow::ReceivedHandshake()
@@ -359,10 +357,12 @@ void MainWindow::LoadGroundStationSettingsUI()
 
 void MainWindow::on_handshakeSendButton_clicked()
 {
+    m_settings.SetHandshookValue(false);
+
     //
     // Handshake the ground station.
     //
-    char handshakeMessage = 0b10000000;
+    char handshakeMessage = 0x00;
     QByteArray msg;
     msg.append(handshakeMessage);
     this->m_serialPortThread.Write(msg);
@@ -570,9 +570,13 @@ void MainWindow::LoadControlPanelSettingsUI()
             // Setup the doppler shift timer.
             m_dopplerCorrectionTimer = new QTimer(this);
             connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
-            if (m_settings.GetDopplerShiftCorrectionEnabled())
+
+            if (m_settings.GetHandshookValue())
             {
-                m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
+                if (m_settings.GetDopplerShiftCorrectionEnabled())
+                {
+                    m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
+                }
             }
         }
     }
@@ -719,7 +723,10 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
 
         this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
 
-        m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
+        if (m_settings.GetHandshookValue())
+        {
+            m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
+        }
     }
 }
 

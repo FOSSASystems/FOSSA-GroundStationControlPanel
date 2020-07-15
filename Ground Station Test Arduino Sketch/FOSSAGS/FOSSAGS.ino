@@ -19,7 +19,7 @@
 // pin definitions
 #define CS                    10                    // SPI chip select
 #define DIO                   2                     // DIO0 for SX127x, DIO1 for SX126x
-#define NRST                  RADIOLIB_NC           // NRST pin (optional)
+#define NRST                  9           // NRST pin (optional)
 #define BUSY                  9                     // BUSY pin (SX126x-only)
 
 // default modem configuration
@@ -267,12 +267,13 @@ void setup() {
   // open serial port
   SERIAL_PORT.begin(DEFAULT_BAUDRATE);
   while(!SERIAL_PORT);
-
+  
   // wait for the handshake datagram
   bool handshakeReceived = false;
   while(!handshakeReceived) {
     // read incoming bytes one at a time
     while(!SERIAL_PORT.available());
+    
     uint8_t controlByte = SERIAL_PORT.read();
 
     // check opID

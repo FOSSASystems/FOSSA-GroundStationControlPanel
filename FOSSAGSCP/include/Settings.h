@@ -261,6 +261,9 @@ public:
         tleLineData = tleLine.c_str();
         SetTLELine2(tleLineData);
     }
+
+    bool GetHandshookValue() { return m_handshook; }
+    void SetHandshookValue(bool handshook) { m_handshook = handshook; }
 protected:
 private:
     // AES KEY
@@ -270,6 +273,8 @@ private:
     // Password.
     std::string m_password = "";
     bool m_passwordSet = false;
+
+    bool m_handshook = false;
 
     double m_latitude;
     double m_longitude;
