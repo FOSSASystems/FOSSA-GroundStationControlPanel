@@ -58,6 +58,15 @@ public:
             delete m_tle;
         }
 
+        if (line1.length() <= 0)
+        {
+            return;
+        }
+        if (line2.length() <= 0)
+        {
+            return;
+        }
+
         char line1str[70];
         char line2str[70];
         for (int i = 0; i < 70; i++)
