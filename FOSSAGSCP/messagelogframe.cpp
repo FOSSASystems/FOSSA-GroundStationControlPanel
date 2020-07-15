@@ -34,11 +34,13 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     }
 
     // control byte as hex character string
-    char controlByteHexStr[2];
+
+
     char controlByte = msg->GetControlByte();
-    sprintf(&(controlByteHexStr[0]), "%02x", (uint8_t)controlByte);
-    loggedMessage.push_back(controlByteHexStr[0]);
-    loggedMessage.push_back(controlByteHexStr[1]);
+    QByteArray array;
+    array.push_back(controlByte);
+    QString hexStr = QString(array.toHex());
+    loggedMessage.append(hexStr.toStdString());
 
     loggedMessage += ' ';
 
