@@ -16,10 +16,11 @@ MessageLogFrame::MessageLogFrame(QWidget *parent) :
 
 void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
 {
+    // insert a new empty row.
     m_messageLogListModel->insertRow(m_messageLogListModel->rowCount());
     QModelIndex row = m_messageLogListModel->index(m_messageLogListModel->rowCount() - 1, 0);
 
-
+    // fill a string with data.
     auto timestamp = std::chrono::system_clock::now();
     auto timenow = std::chrono::system_clock::to_time_t(timestamp);
     char* timestampString = std::ctime(&timenow);
@@ -34,8 +35,6 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     }
 
     // control byte as hex character string
-
-
     char controlByte = msg->GetControlByte();
     QByteArray array;
     array.push_back(controlByte);
@@ -65,9 +64,11 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
         }
     }
 
+    // put the data in the new empty row.
     const char * msgTolog = loggedMessage.c_str();
     m_messageLogListModel->setData(row, msgTolog);
 
+    // make sure we are always at the most recent row.
     ui->messageLogListView->scrollToBottom();
 }
 
@@ -76,10 +77,30 @@ MessageLogFrame::~MessageLogFrame()
     delete ui;
 }
 
+bool MessageLogFrame::GetEnableSerialSniffingState()
+{
+    return m_enableSerialSniffing;
+}
+
+void MessageLogFrame::RawWriteToLog(QString msg)
+{
+    // insert a new empty row.
+    m_messageLogListModel->insertRow(m_messageLogListModel->rowCount());
+    QModelIndex row = m_messageLogListModel->index(m_messageLogListModel->rowCount() - 1, 0);
+
+    m_messageLogListModel->setData(row, msg);
+}
+
 void MessageLogFrame::on_enableTimestampsCheckBox_stateChanged(int arg1)
 {
     m_logTimestamps = arg1;
 }
+
+void MessageLogFrame::on_enableSerialSniffingCheckBox_stateChanged(int arg1)
+{
+    m_enableSerialSniffing = arg1;
+}
+
 
 void MessageLogFrame::on_saveAsButton_clicked()
 {
@@ -107,6 +128,7 @@ void MessageLogFrame::on_saveAsButton_clicked()
         }
     }
 }
+
 
 void MessageLogFrame::on_messageSendButton_clicked()
 {

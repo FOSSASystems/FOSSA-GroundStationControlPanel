@@ -37,6 +37,16 @@
       </widget>
      </item>
      <item>
+      <widget class="QCheckBox" name="enableSerialSniffingCheckBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="text">
+        <string>Enable Serial Sniffing</string>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLineEdit" name="messageSubmitLineEdit"/>
      </item>
      <item>

@@ -62,6 +62,15 @@ void MainWindow::HandleRead(QByteArray data)
     // append the data to the buffer.
     m_commandBuffer.push_back(data);
 
+    // this is a debug mode switch, enable this to see all incoming data.
+    bool enableSerialSniffing = m_messageLogFrame->GetEnableSerialSniffingState();
+    if (enableSerialSniffing)
+    {
+        QByteArray dataHexValues = data.toHex();
+        QString rawMessage = QString(dataHexValues);
+        m_messageLogFrame->RawWriteToLog(rawMessage);
+    }
+
 
     // search for the start of the frame.
     for (int i = 0; i < m_commandBuffer.length(); i++)
@@ -91,7 +100,8 @@ void MainWindow::HandleRead(QByteArray data)
     }
 
 
-    // if there is a start of a frame in the buffer.
+    // if there is a start of a frame in the buffer search for
+    // the end which is the number of bytes we are looking for.
     if (m_commandStartFound)
     {
         // if there are bytes after the start index.
@@ -106,6 +116,7 @@ void MainWindow::HandleRead(QByteArray data)
         if (m_commandLengthFound)
         {
             int endOfCommandIndex = m_commandStartIndex + 1 + 1 + m_commandLength;
+
             // if we have enough data in the command buffer that the command specifies.
             if (endOfCommandIndex <= m_commandBuffer.length())
             {

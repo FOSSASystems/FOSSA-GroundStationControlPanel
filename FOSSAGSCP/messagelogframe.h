@@ -22,21 +22,27 @@ public:
     explicit MessageLogFrame(QWidget *parent = nullptr);
     ~MessageLogFrame();
 
+    bool GetEnableSerialSniffingState();
+    void RawWriteToLog(QString msg);
+
 public slots:
     void ReceivedMessageLogged(IGroundStationSerialMessage* msg); // attached to MessageLog.h
 signals:
     void SendDataFromMessageLogFrame(QString data);
 private slots:
+    void on_saveAsButton_clicked();
+    void on_messageSendButton_clicked();
+
+    void on_enableSerialSniffingCheckBox_stateChanged(int arg1);
     void on_enableTimestampsCheckBox_stateChanged(int arg1);
 
-    void on_saveAsButton_clicked();
-
-    void on_messageSendButton_clicked();
 
 private:
     Ui::MessageLogFrame *ui;
     QStringListModel * m_messageLogListModel;
+
     bool m_logTimestamps = false;
+    bool m_enableSerialSniffing = false;
 };
 
 #endif // MESSAGELOGFRAME_H
