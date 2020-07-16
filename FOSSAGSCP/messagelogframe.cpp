@@ -28,18 +28,17 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     char* payload = msg->GetPayload();
     uint8_t payloadLength = msg->GetPayloadLengthByte();
 
-    std::string loggedMessage;
+    QString loggedMessage;
     if (m_logTimestamps)
     {
         loggedMessage += timestampString;
     }
 
     // control byte as hex character string
+    char controlByteHexStr[2];
     char controlByte = msg->GetControlByte();
-    QByteArray array;
-    array.push_back(controlByte);
-    QString hexStr = QString(array.toHex());
-    loggedMessage.append(hexStr.toStdString());
+    sprintf(&(controlByteHexStr[0]), "%02x", (uint8_t)controlByte);
+    loggedMessage += controlByteHexStr;
 
     loggedMessage += ' ';
 
@@ -65,7 +64,7 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     }
 
     // put the data in the new empty row.
-    const char * msgTolog = loggedMessage.c_str();
+    const char * msgTolog = loggedMessage.toStdString().c_str();
     m_messageLogListModel->setData(row, msgTolog);
 
     // make sure we are always at the most recent row.

@@ -202,7 +202,8 @@ void MainWindow::TimeoutReceived(const QString &str)
 void MainWindow::ReceivedHandshake()
 {
     QMessageBox msgBox;
-    msgBox.setText("Handshake received!");
+    QString message = QString("Handshook the ground station!");
+    msgBox.setText(message);
     msgBox.exec();
 }
 
