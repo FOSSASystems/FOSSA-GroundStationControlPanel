@@ -16,6 +16,13 @@
 #define SERIAL_PORT           Serial                // Serial port to use
 #define DEFAULT_BAUDRATE      9600                  // default baud rate
 
+/*
+ * Ground station pins:
+ * #define CS                    7                    // SPI chip select
+ * #define DIO                   2                     // DIO0 for SX127x, DIO1 for SX126x
+ * #define NRST                  6           // NRST pin (optional)
+ * #define BUSY                  4 
+ */
 // pin definitions
 #define CS                    7                    // SPI chip select
 #define DIO                   2                     // DIO0 for SX127x, DIO1 for SX126x
