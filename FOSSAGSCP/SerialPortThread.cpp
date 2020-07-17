@@ -97,6 +97,7 @@ void SerialPortThread::SetBaudRate(int baudRate)
 void SerialPortThread::HandleReadyRead()
 {
     QByteArray portData = m_serialPort.readAll();
+    m_serialPort.clear();
     emit HandleRead(portData);
 }
 

@@ -205,6 +205,19 @@ void MainWindow::ReceivedHandshake()
     QString message = QString("Handshook the ground station!");
     msgBox.setText(message);
     msgBox.exec();
+
+    //
+    // Configure the simulation if enabled.
+    //
+    if (m_settings.GetDopplerShiftCorrectionEnabled())
+    {
+        if (m_settings.GetHandshookValue())
+        {
+            this->ui->statusbar->showMessage("Doppler shift correction started!", 10);
+
+            m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
+        }
+    }
 }
 
 
@@ -251,7 +264,7 @@ void MainWindow::SendDopplerShiftedFrequency()
 
     uint8_t directionBit = 0x00;
     uint8_t operationId = 0x03;
-    uint8_t controlByte = directionBit & operationId;
+    uint8_t controlByte = directionBit | operationId;
     msg.append(controlByte);
 
     uint8_t length = 4;
@@ -260,8 +273,13 @@ void MainWindow::SendDopplerShiftedFrequency()
 
     float freqAsFloat = (float)newCarrierFrequency;
     QByteArray freqFloatByteArray;
-    QDataStream out(freqFloatByteArray);
+    QDataStream out(&freqFloatByteArray,QIODevice::OpenModeFlag::WriteOnly);
+    out.setFloatingPointPrecision(QDataStream::FloatingPointPrecision::SinglePrecision);
     out << freqAsFloat;
+
+    // reverse to lsb first.
+    std::reverse(freqFloatByteArray.begin(), freqFloatByteArray.end());
+
     msg.append(freqFloatByteArray);
 
     this->m_serialPortThread.Write(msg);

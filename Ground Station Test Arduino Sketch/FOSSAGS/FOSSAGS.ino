@@ -17,10 +17,10 @@
 #define DEFAULT_BAUDRATE      9600                  // default baud rate
 
 // pin definitions
-#define CS                    10                    // SPI chip select
+#define CS                    7                    // SPI chip select
 #define DIO                   2                     // DIO0 for SX127x, DIO1 for SX126x
-#define NRST                  9           // NRST pin (optional)
-#define BUSY                  9                     // BUSY pin (SX126x-only)
+#define NRST                  6           // NRST pin (optional)
+#define BUSY                  4                     // BUSY pin (SX126x-only)
 
 // default modem configuration
 #define LORA_FREQUENCY        436.7                 // MHz
