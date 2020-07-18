@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>2</number>
+       <number>3</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -2749,23 +2749,23 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
   <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
  </buttongroups>
 </ui>

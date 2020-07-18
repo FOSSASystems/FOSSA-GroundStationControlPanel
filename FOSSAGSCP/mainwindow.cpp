@@ -773,6 +773,13 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
             m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
         }
     }
+    else
+    {
+        if (m_dopplerCorrectionTimer != nullptr)
+        {
+            m_dopplerCorrectionTimer->stop();
+        }
+    }
 }
 
 

@@ -28,16 +28,17 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     char* payload = msg->GetPayload();
     uint8_t payloadLength = msg->GetPayloadLengthByte();
 
-    QString loggedMessage;
+    QString loggedMessage = QString("");
     if (m_logTimestamps)
     {
         loggedMessage += timestampString;
     }
 
     // control byte as hex character string
-    char controlByteHexStr[2];
+    char controlByteHexStr[3];
     char controlByte = msg->GetControlByte();
     sprintf(&(controlByteHexStr[0]), "%02x", (uint8_t)controlByte);
+
     loggedMessage += controlByteHexStr;
 
     loggedMessage += ' ';
@@ -64,11 +65,17 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     }
 
     // put the data in the new empty row.
-    const char * msgTolog = loggedMessage.toStdString().c_str();
+    std::string logMessageStdString = loggedMessage.toStdString();
+
+    const char * msgTolog = logMessageStdString.c_str();
     m_messageLogListModel->setData(row, msgTolog);
 
     // make sure we are always at the most recent row.
     ui->messageLogListView->scrollToBottom();
+
+    // default serial sniffing to enabled.
+    m_enableSerialSniffing = true;
+    m_logTimestamps = true;
 }
 
 MessageLogFrame::~MessageLogFrame()
@@ -92,12 +99,26 @@ void MessageLogFrame::RawWriteToLog(QString msg)
 
 void MessageLogFrame::on_enableTimestampsCheckBox_stateChanged(int arg1)
 {
-    m_logTimestamps = arg1;
+    if (arg1 == 0)
+    {
+        m_logTimestamps = false;
+    }
+    else
+    {
+        m_logTimestamps = true;
+    }
 }
 
 void MessageLogFrame::on_enableSerialSniffingCheckBox_stateChanged(int arg1)
 {
-    m_enableSerialSniffing = arg1;
+    if (arg1 == 0)
+    {
+        m_enableSerialSniffing = false;
+    }
+    else
+    {
+        m_enableSerialSniffing = true;
+    }
 }
 
 
