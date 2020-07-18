@@ -43,7 +43,10 @@ public:
             FOSSASatTracker::ObserverInformation observerInformation = result.GetObserverInformation();
             double dopplerShift = observerInformation.GetDopplerShift();
             (*destDopplerShift) = dopplerShift;
+            return true;
         }
+
+        return false;
     }
 
     void SetObserverParameters(double latitude, double longitude, double attitude)

@@ -74,7 +74,7 @@ gTime gTime::getCurrentTime()
 	time(&rawtime);
 	timeinfo = gmtime(&rawtime);
 
-	return gTime(*timeinfo);
+    return gTime(*timeinfo);
 }
 
 
