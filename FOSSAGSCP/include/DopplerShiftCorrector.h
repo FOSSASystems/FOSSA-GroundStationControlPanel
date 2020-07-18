@@ -26,7 +26,7 @@ public:
         }
         if (m_tle == nullptr)
         {
-            throw std::runtime_error("Tried to start simulation with not TLE set.");
+            return false;
         }
 
         gTime time = gTime::getCurrentTime();

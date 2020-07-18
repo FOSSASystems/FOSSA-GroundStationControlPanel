@@ -47,8 +47,11 @@ MainWindow::~MainWindow()
 {
     m_serialPortThread.quit();
 
-    m_dopplerCorrectionTimer->stop();
-    delete m_dopplerCorrectionTimer;
+    if (m_dopplerCorrectionTimer != nullptr)
+    {
+        m_dopplerCorrectionTimer->stop();
+        delete m_dopplerCorrectionTimer;
+    }
 
     delete m_interpreter;
     delete m_sytemInfoPane;
@@ -232,6 +235,8 @@ void MainWindow::SendDopplerShiftedFrequency()
 {
     //return;
 
+    if (!m_settings.GetDopplerShiftCorrectionEnabled()) return;
+
     QString modemType = ui->GroundStationSettings_ModemTypeComboBox->currentText();
 
     QString currentCarrierFreqStr;
@@ -249,7 +254,10 @@ void MainWindow::SendDopplerShiftedFrequency()
 
     // get the doppler amount.
     double dopplerShiftedFreq;
-    m_dopplerShiftCorrector.GetDopplerShiftNow(currentSatelliteNameStdStr, &dopplerShiftedFreq);
+    bool dopplerShiftOk = m_dopplerShiftCorrector.GetDopplerShiftNow(currentSatelliteNameStdStr, &dopplerShiftedFreq);
+
+    if (!dopplerShiftOk) return;
+
 
     // current configured frequency.
     double currentCarrierFrequency = currentCarrierFreqStr.toDouble();
@@ -755,6 +763,13 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
 
         if (m_settings.GetHandshookValue())
         {
+            if (m_dopplerCorrectionTimer == nullptr)
+            {
+                // Setup the doppler shift timer.
+                m_dopplerCorrectionTimer = new QTimer(this);
+                connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
+            }
+
             m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
         }
     }
