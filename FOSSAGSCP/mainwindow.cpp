@@ -403,6 +403,7 @@ void MainWindow::on_handshakeSendButton_clicked()
     char handshakeMessage = 0x00;
     QByteArray msg;
     msg.append(handshakeMessage);
+    msg.append(handshakeMessage);
     this->m_serialPortThread.Write(msg);
 }
 
