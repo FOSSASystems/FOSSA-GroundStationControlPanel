@@ -31,7 +31,7 @@ IGroundStationSerialMessage* Interpreter::Create_GroundStationSerialMessage(char
     //
     // Get information
     //
-    std::string callsignStr = m_ui->SatelliteConfig_callsignLineEdit->text().toStdString();
+    std::string callsignStr = m_mainWindowUI->SatelliteConfig_callsignLineEdit->text().toStdString();
     std::string passwordStr = m_settings.GetPassword();
 
     const char* callsign = callsignStr.c_str();
@@ -116,11 +116,11 @@ void Interpreter::Interpret_Handshake(IGroundStationSerialMessage *inMsg)
 {
     GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
-    m_ui->handshookRadioButton->setChecked(true);
+    m_mainWindowUI->handshookRadioButton->setChecked(true);
 
     m_settings.SetHandshookValue(true);
 
-    m_ui->statusbar->showMessage("Ground station handshook successfully");
+    m_mainWindowUI->statusbar->showMessage("Ground station handshook successfully");
 
     emit ReceivedHandshake();
 }
@@ -146,7 +146,7 @@ void Interpreter::Interpret_FCP_Frame(IGroundStationSerialMessage *inMsg)
         frame[i] = (uint8_t)(payloadData[i]);
     }
 
-    char * callsign = (char*)m_ui->SatelliteConfig_callsignLineEdit->text().toStdString().c_str(); /// @todo fix stripping of const.
+    char * callsign = (char*)m_mainWindowUI->SatelliteConfig_callsignLineEdit->text().toStdString().c_str(); /// @todo fix stripping of const.
 
     // get the function ID.
     int16_t functionId = FCP_Get_FunctionID(callsign, frame, frameLength);
@@ -179,6 +179,38 @@ void Interpreter::Interpret_FCP_Frame(IGroundStationSerialMessage *inMsg)
         }
         else if (functionId == RESP_SYSTEM_INFO)
         {
+            assert(optionalDataLength == 23);
+
+            uint8_t mpptOutputVoltage = optionalData[0];
+            int16_t mpptOutputCurrent = optionalData[1] | (optionalData[2] << 8);
+
+            uint32_t unixTimestamp = optionalData[3];
+            unixTimestamp = unixTimestamp | (optionalData[4] << 8);
+            unixTimestamp = unixTimestamp | (optionalData[5] << 16);
+            unixTimestamp = unixTimestamp | (optionalData[6] << 24);
+
+            uint8_t powerConfiguration = optionalData[7];
+            uint8_t transmissionsEnabled = powerConfiguration & 1;
+            uint8_t lowPowerModeEnabled = (powerConfiguration >> 1) & 1;
+            uint8_t currentlyActivePowerMode = (powerConfiguration >> 2) & 0b00000011;
+            uint8_t mpptTemperatureSwitchEnabled = (powerConfiguration >> 5) & 1;
+            uint8_t mpptKeepAliveEnabled = (powerConfiguration >> 6) & 1;
+
+            uint16_t resetCounter = optionalData[8] | (optionalData[9] << 8);
+
+            uint8_t solarPanel_XA_Voltage = optionalData[10];
+            uint8_t solarPanel_XB_Voltage = optionalData[11];
+            uint8_t solarPanel_ZA_Voltage = optionalData[12];
+            uint8_t solarPanel_ZB_Voltage = optionalData[13];
+            uint8_t solarPanel_Y_Voltage = optionalData[14];
+
+            int16_t batteryTemperature = optionalData[15] | (optionalData[16] << 8);
+            int16_t obcBoardTemperature = optionalData[17] | (optionalData[18] << 8);
+
+            int32_t flashSystemInfoPageCRCErrorCounter = optionalData[19];
+            flashSystemInfoPageCRCErrorCounter |= (optionalData[20] << 8);
+            flashSystemInfoPageCRCErrorCounter |= (optionalData[21] << 16);
+            flashSystemInfoPageCRCErrorCounter |= (optionalData[22] << 24);
 
         }
         else if (functionId == RESP_PACKET_INFO)

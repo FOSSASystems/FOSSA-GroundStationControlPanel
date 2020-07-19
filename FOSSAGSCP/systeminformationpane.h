@@ -3,6 +3,8 @@
 
 #include <QWidget>
 
+#include "include/Interpreter.h"
+
 namespace Ui {
 class systeminformationpane;
 }
@@ -14,8 +16,6 @@ class systeminformationpane : public QWidget
 public:
     explicit systeminformationpane(QWidget *parent = nullptr);
     ~systeminformationpane();
-
-private:
     Ui::systeminformationpane *ui;
 };
 

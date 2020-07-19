@@ -13,6 +13,7 @@
 #include "GroundStationSerialMessage.h"
 #include "Settings.h"
 #include "ui_mainwindow.h"
+#include "ui_systeminformationpane.h"
 
 /////////////////////
 /// Direction Bit ///
@@ -46,7 +47,8 @@ class Interpreter : public QObject
 {
     Q_OBJECT
 public:
-    Interpreter(Settings& settings, Ui::MainWindow* ui) : m_settings(settings), m_ui(ui) {}
+    Interpreter(Settings& settings, Ui::MainWindow* mainWindowUI, Ui::systeminformationpane* systemInfoPaneUI)
+        : m_settings(settings), m_mainWindowUI(mainWindowUI), m_systemInfoUI(systemInfoPaneUI) {}
     virtual ~Interpreter() {}
 
     /// The ground station serial message is an internal command structure.
@@ -113,9 +115,11 @@ public:
     IGroundStationSerialMessage* Create_CMD_Erase_Flash();
 signals:
     void ReceivedHandshake();
+    void ReceivedSatelliteSystemInformation(IGroundStationSerialMessage* message);
 private:
     Settings& m_settings;
-    Ui::MainWindow* m_ui = nullptr;
+    Ui::MainWindow* m_mainWindowUI = nullptr;
+    Ui::systeminformationpane* m_systemInfoUI = nullptr;
 };
 
 #endif // Interpreter_H
