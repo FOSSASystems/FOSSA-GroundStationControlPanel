@@ -6,23 +6,27 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>361</height>
+    <width>489</width>
+    <height>613</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>Satellite System Information</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLabel" name="label">
-     <property name="text">
-      <string>System Information (NOT IMPLEMENTED YET):</string>
-     </property>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QTableView" name="SystemInformation_TableView"/>
+     </item>
+    </layout>
    </item>
    <item>
-    <widget class="QTableView" name="tableView"/>
+    <widget class="QPushButton" name="SystemInformation_RefreshButton">
+     <property name="text">
+      <string>Refresh</string>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
