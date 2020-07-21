@@ -24,7 +24,7 @@
     <bool>false</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>185</x>
-             <y>-4698</y>
+             <y>-3425</y>
              <width>449</width>
              <height>5415</height>
             </rect>
@@ -1613,9 +1613,9 @@
            <property name="geometry">
             <rect>
              <x>177</x>
-             <y>-931</y>
+             <y>-1296</y>
              <width>465</width>
-             <height>1648</height>
+             <height>2013</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2216,6 +2216,112 @@
                 <widget class="QPushButton" name="SatelliteConfig_MPPT_Refresh_Button">
                  <property name="text">
                   <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="19" column="0">
+             <widget class="QGroupBox" name="groupBox_27">
+              <property name="title">
+               <string>IMU</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_50">
+               <item row="9" column="0">
+                <widget class="QLabel" name="label_107">
+                 <property name="text">
+                  <string>Z axis magnetometer offset (T):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="label_103">
+                 <property name="text">
+                  <string>Y axis accelerometer offset (m/s^2):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisMagnetometerOffset_LineEdit"/>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisGyroOffset_LineEdit"/>
+               </item>
+               <item row="4" column="0">
+                <widget class="QLabel" name="label_102">
+                 <property name="text">
+                  <string>X axis accelerometer offset (m/s^2):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_100">
+                 <property name="text">
+                  <string>Y axis gyro offset (rad/s):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QLabel" name="label_105">
+                 <property name="text">
+                  <string>X axis magnetometer offset (T):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisAcceleOffset_LineEdit"/>
+               </item>
+               <item row="9" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisMagnetometerOffset_LineEdit"/>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisGyroOffset_LineEdit"/>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisAcceleOffset_LineEdit"/>
+               </item>
+               <item row="4" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisAcceleOffset_LineEdit"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_99">
+                 <property name="text">
+                  <string>X axis gyro offset (rad/s):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="label_104">
+                 <property name="text">
+                  <string>Z axis accelerometer offset (m/s^2):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="8" column="0">
+                <widget class="QLabel" name="label_106">
+                 <property name="text">
+                  <string>Y axis magnetometer offset (T):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisGyroOffset_LineEdit"/>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_101">
+                 <property name="text">
+                  <string>Z axis gyro offset (rad/s):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisMagnetometerOffset_LineEdit"/>
+               </item>
+               <item row="10" column="0" colspan="2">
+                <widget class="QPushButton" name="SatelliteConfig_IMU_Set_Button">
+                 <property name="text">
+                  <string>Set</string>
                  </property>
                 </widget>
                </item>
