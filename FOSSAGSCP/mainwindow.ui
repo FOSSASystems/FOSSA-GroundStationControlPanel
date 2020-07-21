@@ -24,7 +24,7 @@
     <bool>false</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
@@ -73,9 +73,9 @@
            <property name="geometry">
             <rect>
              <x>185</x>
-             <y>0</y>
+             <y>-4698</y>
              <width>449</width>
-             <height>4872</height>
+             <height>5415</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1100,58 +1100,6 @@
               </layout>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QGroupBox" name="baseOpsGroupBox">
-              <property name="font">
-               <font>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="autoFillBackground">
-               <bool>false</bool>
-              </property>
-              <property name="title">
-               <string>Base Ops</string>
-              </property>
-              <property name="flat">
-               <bool>false</bool>
-              </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_3">
-               <item row="8" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Abort_Button">
-                 <property name="text">
-                  <string>Abort</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="6" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Restart_Button">
-                 <property name="text">
-                  <string>Restart</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Deploy_Button">
-                 <property name="text">
-                  <string>Deploy</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Ping_Button">
-                 <property name="text">
-                  <string>Ping</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
             <item row="13" column="0">
              <spacer name="horizontalSpacer_17">
               <property name="orientation">
@@ -1168,7 +1116,7 @@
             <item row="16" column="0">
              <widget class="QGroupBox" name="adcManeuverGroupBox">
               <property name="title">
-               <string>ADCS Maneuvering</string>
+               <string>ACS</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -1177,41 +1125,27 @@
                <item row="0" column="0">
                 <widget class="QGroupBox" name="groupBox_17">
                  <property name="title">
-                  <string>Run Manual ADCS Maneuver (H-bridge magnitude)</string>
+                  <string>Run Manual ACS Maneuver (H-bridge magnitude)</string>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_36">
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_73">
-                    <property name="text">
-                     <string>H-bridge Z Axis magnitude:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="1">
+                  <item row="11" column="1">
                    <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_ZAxis_CheckBox">
                     <property name="text">
                      <string>Z axis</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_72">
-                    <property name="text">
-                     <string>H-bridge Y Axis magnitude:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1">
+                  <item row="10" column="1">
                    <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_YAxis_CheckBox">
                     <property name="text">
                      <string>Y axis</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="1">
+                  <item row="9" column="1">
                    <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_XAxis_CheckBox">
                     <property name="text">
                      <string>X axis</string>
@@ -1221,34 +1155,115 @@
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_71">
                     <property name="text">
-                     <string>H-bridge X Axis magnitude:</string>
+                     <string>X axis H-bridge high:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
+                  <item row="9" column="0">
                    <widget class="QLabel" name="label_74">
                     <property name="text">
                      <string>Ignore Faults From:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="0" colspan="2">
-                   <widget class="QPushButton" name="ADCSManeuvering_IgnoreFaults_RunADCManeuver_Button">
+                  <item row="12" column="0" colspan="2">
+                   <widget class="QPushButton" name="ADCSManeuvering_RunADCManeuver_Button">
                     <property name="text">
-                     <string>Run ADC Maneuver</string>
+                     <string>Run Manual ADC Maneuver</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_X_Low_SpinBox"/>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Y_Low_SpinBox"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_95">
+                    <property name="text">
+                     <string>Z axis H-bridge low:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_Y_PulseLength_SpinBox"/>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Z_High_SpinBox"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_92">
+                    <property name="text">
+                     <string>Y axis H-bridge high:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Z_Low_SpinBox"/>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_94">
+                    <property name="text">
+                     <string>Z axis H-bridge high:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_4">
+                    <property name="text">
+                     <string>X axis pulse length (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_72">
+                    <property name="text">
+                     <string>Y axis pulse length (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="label_73">
+                    <property name="text">
+                     <string>Z axis pulse length (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_X_PulseLength_SpinBox"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_91">
+                    <property name="text">
+                     <string>X axis H-bridge low:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Y_High_SpinBox"/>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_Z_PulseLength_SpinBox"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_93">
+                    <property name="text">
+                     <string>Y axis H-bridge low:</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_Hbridge_Xaxis_Mag_SpinBox"/>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_Hbridge_Yaxis_Mag_SpinBox"/>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_Hbridge_Zaxis_Mag_SpinBox"/>
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_X_High_SpinBox"/>
                   </item>
                  </layout>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_24">
+                 <property name="title">
+                  <string>Run Maneuver</string>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -1385,6 +1400,193 @@
               </property>
              </spacer>
             </item>
+            <item row="17" column="0">
+             <spacer name="horizontalSpacer_24">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="baseOpsGroupBox">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="title">
+               <string>Base Ops</string>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <item row="8" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Abort_Button">
+                 <property name="text">
+                  <string>Abort</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Restart_Button">
+                 <property name="text">
+                  <string>Restart</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Deploy_Button">
+                 <property name="text">
+                  <string>Deploy</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Ping_Button">
+                 <property name="text">
+                  <string>Ping</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="18" column="0">
+             <widget class="QGroupBox" name="groupBox_25">
+              <property name="title">
+               <string>Detumble</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_44">
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="groupBox_26">
+                 <property name="title">
+                  <string>Perform Detumbling</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_48">
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_90">
+                    <property name="text">
+                     <string>Override Y axis H-bridge fault check:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="label_98">
+                    <property name="text">
+                     <string>Dumble length (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_96">
+                    <property name="text">
+                     <string>Override Z axis H-bridge fault check:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QRadioButton" name="Detumble_OverrideXHBridge_FaultCheck_Disable_RadioButton">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QRadioButton" name="Detumble_OverrideZHBridge_FaultCheck_Disable_RadioButton">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QRadioButton" name="Detumble_OverrideYHBridge_FaultCheck_Disable_RadioButton">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QRadioButton" name="Detumble_OverrideAngleVelocity_FaultCheck_Enable_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QRadioButton" name="Detumble_OverrideXHBridge_FaultCheck_Enable_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QRadioButton" name="Detumble_OverrideYHBridge_FaultCheck_Enable_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QRadioButton" name="Detumble_OverrideZHBridge_FaultCheck_Enable_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="2">
+                   <widget class="QRadioButton" name="Detumble_OverrideAngleVelocity_FaultCheck_Disable_RadioButton">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_97">
+                    <property name="text">
+                     <string>Override detumbling ang vel. check:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="1" colspan="2">
+                   <widget class="QLineEdit" name="Detumble_Length_LineEdit"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_89">
+                    <property name="text">
+                     <string>Override X axis H-bridge fault check: </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="0" colspan="3">
+                   <widget class="QPushButton" name="pushButton">
+                    <property name="text">
+                     <string>Execute Detumbling</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
            </layout>
           </widget>
          </widget>
@@ -1411,7 +1613,7 @@
            <property name="geometry">
             <rect>
              <x>177</x>
-             <y>0</y>
+             <y>-931</y>
              <width>465</width>
              <height>1648</height>
             </rect>
@@ -2749,23 +2951,25 @@
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
   <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
   <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
   <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
   <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="adcsManeuveringOverrideEulerAngleToleranceButtonGroup"/>
+  <buttongroup name="adcsManeuveringOverrideAngulaVelocityToleranceButtonGroup"/>
  </buttongroups>
 </ui>
