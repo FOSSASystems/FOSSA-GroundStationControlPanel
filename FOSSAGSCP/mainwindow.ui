@@ -24,7 +24,7 @@
     <bool>false</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="0" column="0">
+    <item row="1" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
@@ -1762,9 +1762,9 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>166</x>
-             <y>-1562</y>
+             <y>-2390</y>
              <width>487</width>
-             <height>2311</height>
+             <height>3176</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1774,6 +1774,187 @@ tolerance check:</string>
             </sizepolicy>
            </property>
            <layout class="QGridLayout" name="gridLayout_20">
+            <item row="19" column="0">
+             <widget class="QGroupBox" name="groupBox_27">
+              <property name="title">
+               <string>IMU</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_50">
+               <item row="10" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_29">
+                 <property name="title">
+                  <string>Offset</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_51">
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisAcceleOffset_LineEdit"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_102">
+                    <property name="text">
+                     <string>X axis accelerometer offset (m/s^2):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_99">
+                    <property name="text">
+                     <string>X axis gyro offset (rad/s):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_103">
+                    <property name="text">
+                     <string>Y axis accelerometer offset (m/s^2):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisMagnetometerOffset_LineEdit"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisGyroOffset_LineEdit"/>
+                  </item>
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="label_107">
+                    <property name="text">
+                     <string>Z axis magnetometer offset (T):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisGyroOffset_LineEdit"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_104">
+                    <property name="text">
+                     <string>Z axis accelerometer offset (m/s^2):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_106">
+                    <property name="text">
+                     <string>Y axis magnetometer offset (T):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_105">
+                    <property name="text">
+                     <string>X axis magnetometer offset (T):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisAcceleOffset_LineEdit"/>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisMagnetometerOffset_LineEdit"/>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisMagnetometerOffset_LineEdit"/>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisAcceleOffset_LineEdit"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_100">
+                    <property name="text">
+                     <string>Y axis gyro offset (rad/s):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_101">
+                    <property name="text">
+                     <string>Z axis gyro offset (rad/s):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisGyroOffset_LineEdit"/>
+                  </item>
+                  <item row="9" column="0" colspan="2">
+                   <widget class="QPushButton" name="SatelliteConfig_IMU_Set_Button">
+                    <property name="text">
+                     <string>Set</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="11" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_30">
+                 <property name="title">
+                  <string>Calibration</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_54">
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_115">
+                    <property name="text">
+                     <string>Bias Vector:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A31_LineEdit"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A21_LineEdit"/>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A13_LineEdit"/>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A23_LineEdit"/>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A32_LineEdit"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorX_LineEdit"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A11_LineEdit"/>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorY_LineEdit"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_114">
+                    <property name="text">
+                     <string>Transformation Matrix:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A12_LineEdit"/>
+                  </item>
+                  <item row="5" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorZ_LineEdit"/>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A33_LineEdit"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A22_LineEdit"/>
+                  </item>
+                  <item row="6" column="0" colspan="3">
+                   <widget class="QPushButton" name="pushButton_2">
+                    <property name="text">
+                     <string>Set</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
             <item row="15" column="0" rowspan="2">
              <widget class="QGroupBox" name="RTCGroupBox">
               <property name="title">
@@ -2371,180 +2552,239 @@ tolerance check:</string>
               </layout>
              </widget>
             </item>
-            <item row="19" column="0">
-             <widget class="QGroupBox" name="groupBox_27">
+            <item row="20" column="0">
+             <widget class="QGroupBox" name="groupBox_26">
               <property name="title">
-               <string>IMU</string>
+               <string>ADCS</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_50">
-               <item row="10" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_29">
+              <layout class="QGridLayout" name="gridLayout_56">
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_32">
                  <property name="title">
-                  <string>Offset</string>
+                  <string>Controller</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_51">
-                  <item row="5" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisAcceleOffset_LineEdit"/>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_102">
-                    <property name="text">
-                     <string>X axis accelerometer offset (m/s^2):</string>
-                    </property>
-                   </widget>
-                  </item>
+                 <layout class="QGridLayout" name="gridLayout_57">
                   <item row="0" column="0">
-                   <widget class="QLabel" name="label_99">
+                   <widget class="QLabel" name="label_116">
                     <property name="text">
-                     <string>X axis gyro offset (rad/s):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_103">
-                    <property name="text">
-                     <string>Y axis accelerometer offset (m/s^2):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisMagnetometerOffset_LineEdit"/>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisGyroOffset_LineEdit"/>
-                  </item>
-                  <item row="8" column="0">
-                   <widget class="QLabel" name="label_107">
-                    <property name="text">
-                     <string>Z axis magnetometer offset (T):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisGyroOffset_LineEdit"/>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="label_104">
-                    <property name="text">
-                     <string>Z axis accelerometer offset (m/s^2):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="0">
-                   <widget class="QLabel" name="label_106">
-                    <property name="text">
-                     <string>Y axis magnetometer offset (T):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0">
-                   <widget class="QLabel" name="label_105">
-                    <property name="text">
-                     <string>X axis magnetometer offset (T):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisAcceleOffset_LineEdit"/>
-                  </item>
-                  <item row="7" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisMagnetometerOffset_LineEdit"/>
-                  </item>
-                  <item row="8" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisMagnetometerOffset_LineEdit"/>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisAcceleOffset_LineEdit"/>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_100">
-                    <property name="text">
-                     <string>Y axis gyro offset (rad/s):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_101">
-                    <property name="text">
-                     <string>Z axis gyro offset (rad/s):</string>
+                     <string>Controller ID:</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisGyroOffset_LineEdit"/>
-                  </item>
-                  <item row="9" column="0" colspan="2">
-                   <widget class="QPushButton" name="SatelliteConfig_IMU_Set_Button">
-                    <property name="text">
-                     <string>Set</string>
-                    </property>
-                   </widget>
+                   <widget class="QLineEdit" name="lineEdit"/>
                   </item>
                  </layout>
                 </widget>
                </item>
-               <item row="11" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_30">
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="groupBox_33">
                  <property name="title">
-                  <string>Calibration</string>
+                  <string>Parameters</string>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_54">
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_115">
+                 <layout class="QGridLayout" name="gridLayout_59">
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_121">
                     <property name="text">
-                     <string>Bias Vector:</string>
+                     <string>Min inertial moment:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A31_LineEdit"/>
+                  <item row="13" column="0">
+                   <widget class="QLabel" name="label_131">
+                    <property name="text">
+                     <string>ADC update time step (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="10" column="0">
+                   <widget class="QLabel" name="label_128">
+                    <property name="text">
+                     <string>Rotation verification trigger
+level:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="2" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A21_LineEdit"/>
+                   <widget class="QLabel" name="label_120">
+                    <property name="text">
+                     <string>Detumbling ang. vel. change tol.:</string>
+                    </property>
+                   </widget>
                   </item>
-                  <item row="1" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A13_LineEdit"/>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A23_LineEdit"/>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A32_LineEdit"/>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorX_LineEdit"/>
+                  <item row="15" column="0">
+                   <widget class="QLabel" name="label_133">
+                    <property name="text">
+                     <string>H-bridge value for 'High' output:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="1" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A11_LineEdit"/>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorY_LineEdit"/>
+                   <widget class="QLabel" name="label_119">
+                    <property name="text">
+                     <string>Max Pulse Length:</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="0" column="0">
-                   <widget class="QLabel" name="label_114">
+                   <widget class="QLabel" name="label_117">
                     <property name="text">
-                     <string>Transformation Matrix:</string>
+                     <string>Max Pulse Intensity:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="12" column="0">
+                   <widget class="QLabel" name="label_130">
+                    <property name="text">
+                     <string>Kalman filter noise covariance:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="11" column="0">
+                   <widget class="QLabel" name="label_129">
+                    <property name="text">
+                     <string>Kalman filter disturbance covar-
+iance:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="label_126">
+                    <property name="text">
+                     <string>Eclipse threshold:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxPulseIntensity_LineEdit"/>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_125">
+                    <property name="text">
+                     <string>Active control angular
+velocity change tolerance:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_124">
+                    <property name="text">
+                     <string>Active control Euler angle
+change tolerance:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_122">
+                    <property name="text">
+                     <string>Pulse amplitude</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="16" column="0">
+                   <widget class="QLabel" name="label_134">
+                    <property name="text">
+                     <string>H-bridge value for 'Low' output:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="14" column="0">
+                   <widget class="QLabel" name="label_132">
+                    <property name="text">
+                     <string>H-Bridge update time period (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_123">
+                    <property name="text">
+                     <string>Calculation tolerance:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="9" column="0">
+                   <widget class="QLabel" name="label_127">
+                    <property name="text">
+                     <string>Rotation matrix weight radio:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="17" column="0">
+                   <widget class="QLabel" name="label_135">
+                    <property name="text">
+                     <string>Controller number:</string>
                     </property>
                    </widget>
                   </item>
                   <item row="1" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A12_LineEdit"/>
-                  </item>
-                  <item row="5" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorZ_LineEdit"/>
-                  </item>
-                  <item row="3" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A33_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxPulseLength_LineEdit"/>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A22_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_DetumblingAngVelChangeTol_LineEdit"/>
                   </item>
-                  <item row="6" column="0" colspan="3">
-                   <widget class="QPushButton" name="pushButton_2">
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxInertialMoment_LineEdit"/>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_PulseAmplitude_LineEdit"/>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_CalculationTolerance_LineEdit"/>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_ActiveControlEulerAngleChangeTol_LineEdit"/>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_ActiveControlAngularVelChangeTol_LineEdit"/>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_EclipseThreshold_LineEdit"/>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_RotationMatrixWeightRatio_LineEdit"/>
+                  </item>
+                  <item row="10" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_RotationVerificationTriggerLevel_LineEdit"/>
+                  </item>
+                  <item row="11" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_KalmanFilterDistrubanceCovariance_LineEdit"/>
+                  </item>
+                  <item row="12" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_KalmanFilterNoiseCovariance_LineEdit"/>
+                  </item>
+                  <item row="13" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_ADCUpdateTimeStep_SpinBox"/>
+                  </item>
+                  <item row="14" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeUpdateTimePeriod_SpinBox"/>
+                  </item>
+                  <item row="15" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeValueForHighOutput_SpinBox"/>
+                  </item>
+                  <item row="16" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeValueForLowOutput_SpinBox"/>
+                  </item>
+                  <item row="17" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_ControllerNumber_SpinBox"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QGroupBox" name="groupBox_35">
+                 <property name="title">
+                  <string>Ephemerides</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_60">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_118">
                     <property name="text">
-                     <string>Set</string>
+                     <string>TextLabel</string>
                     </property>
                    </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEdit_3"/>
                   </item>
                  </layout>
                 </widget>
