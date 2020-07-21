@@ -1761,10 +1761,10 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>166</x>
-             <y>-2390</y>
-             <width>487</width>
-             <height>3176</height>
+             <x>89</x>
+             <y>-2838</y>
+             <width>640</width>
+             <height>3555</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2564,6 +2564,9 @@ tolerance check:</string>
                   <string>Controller</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_57">
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="lineEdit"/>
+                  </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_116">
                     <property name="text">
@@ -2571,8 +2574,12 @@ tolerance check:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit"/>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_136">
+                    <property name="text">
+                     <string>ADCS Controller Matrix:</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -2605,6 +2612,9 @@ level:</string>
                     </property>
                    </widget>
                   </item>
+                  <item row="7" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_ActiveControlAngularVelChangeTol_LineEdit"/>
+                  </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_120">
                     <property name="text">
@@ -2625,6 +2635,9 @@ level:</string>
                      <string>Max Pulse Length:</string>
                     </property>
                    </widget>
+                  </item>
+                  <item row="16" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeValueForLowOutput_SpinBox"/>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_117">
@@ -2648,6 +2661,18 @@ iance:</string>
                     </property>
                    </widget>
                   </item>
+                  <item row="11" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_KalmanFilterDistrubanceCovariance_LineEdit"/>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_PulseAmplitude_LineEdit"/>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_ActiveControlEulerAngleChangeTol_LineEdit"/>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_EclipseThreshold_LineEdit"/>
+                  </item>
                   <item row="8" column="0">
                    <widget class="QLabel" name="label_126">
                     <property name="text">
@@ -2655,8 +2680,42 @@ iance:</string>
                     </property>
                    </widget>
                   </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_DetumblingAngVelChangeTol_LineEdit"/>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_CalculationTolerance_LineEdit"/>
+                  </item>
                   <item row="0" column="1">
                    <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxPulseIntensity_LineEdit"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxPulseLength_LineEdit"/>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxInertialMoment_LineEdit"/>
+                  </item>
+                  <item row="13" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_ADCUpdateTimeStep_SpinBox"/>
+                  </item>
+                  <item row="17" column="0">
+                   <widget class="QLabel" name="label_135">
+                    <property name="text">
+                     <string>Controller number:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="17" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_ControllerNumber_SpinBox"/>
+                  </item>
+                  <item row="15" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeValueForHighOutput_SpinBox"/>
+                  </item>
+                  <item row="9" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_RotationMatrixWeightRatio_LineEdit"/>
+                  </item>
+                  <item row="14" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeUpdateTimePeriod_SpinBox"/>
                   </item>
                   <item row="7" column="0">
                    <widget class="QLabel" name="label_125">
@@ -2673,6 +2732,12 @@ velocity change tolerance:</string>
 change tolerance:</string>
                     </property>
                    </widget>
+                  </item>
+                  <item row="10" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_RotationVerificationTriggerLevel_LineEdit"/>
+                  </item>
+                  <item row="12" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_KalmanFilterNoiseCovariance_LineEdit"/>
                   </item>
                   <item row="4" column="0">
                    <widget class="QLabel" name="label_122">
@@ -2709,63 +2774,12 @@ change tolerance:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="17" column="0">
-                   <widget class="QLabel" name="label_135">
+                  <item row="18" column="0" colspan="2">
+                   <widget class="QPushButton" name="SatelliteConfig_ADCs_Parameters_Set_Button">
                     <property name="text">
-                     <string>Controller number:</string>
+                     <string>Set</string>
                     </property>
                    </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxPulseLength_LineEdit"/>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_DetumblingAngVelChangeTol_LineEdit"/>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_MaxInertialMoment_LineEdit"/>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_PulseAmplitude_LineEdit"/>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_CalculationTolerance_LineEdit"/>
-                  </item>
-                  <item row="6" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_ActiveControlEulerAngleChangeTol_LineEdit"/>
-                  </item>
-                  <item row="7" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_ActiveControlAngularVelChangeTol_LineEdit"/>
-                  </item>
-                  <item row="8" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_EclipseThreshold_LineEdit"/>
-                  </item>
-                  <item row="9" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_RotationMatrixWeightRatio_LineEdit"/>
-                  </item>
-                  <item row="10" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_RotationVerificationTriggerLevel_LineEdit"/>
-                  </item>
-                  <item row="11" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_KalmanFilterDistrubanceCovariance_LineEdit"/>
-                  </item>
-                  <item row="12" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Parameters_KalmanFilterNoiseCovariance_LineEdit"/>
-                  </item>
-                  <item row="13" column="1">
-                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_ADCUpdateTimeStep_SpinBox"/>
-                  </item>
-                  <item row="14" column="1">
-                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeUpdateTimePeriod_SpinBox"/>
-                  </item>
-                  <item row="15" column="1">
-                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeValueForHighOutput_SpinBox"/>
-                  </item>
-                  <item row="16" column="1">
-                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_HBridgeValueForLowOutput_SpinBox"/>
-                  </item>
-                  <item row="17" column="1">
-                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Parameters_ControllerNumber_SpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -2776,15 +2790,112 @@ change tolerance:</string>
                   <string>Ephemerides</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_60">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_118">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_137">
                     <property name="text">
-                     <string>TextLabel</string>
+                     <string>Solar Ephemeris:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="lineEdit_3"/>
+                  <item row="4" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_Y_LineEdit"/>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QGroupBox" name="groupBox_36">
+                    <property name="title">
+                     <string>Ephermerides Data Stack Controls</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_61">
+                     <item row="1" column="0">
+                      <widget class="QPushButton" name="Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button">
+                       <property name="text">
+                        <string>Clear Ephemerides
+Data stack</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="0">
+                      <widget class="QPushButton" name="Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button">
+                       <property name="text">
+                        <string>Push Ephemerides Data
+ to Stack</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="2" column="0">
+                      <widget class="QPushButton" name="aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button">
+                       <property name="text">
+                        <string>Send Data Stack</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="0" column="3">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox"/>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_Y_LineEdit"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_138">
+                    <property name="text">
+                     <string>Magnetic Ephemeris</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_X_LineEdit"/>
+                  </item>
+                  <item row="5" column="3">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox"/>
+                  </item>
+                  <item row="4" column="3">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_Z_LineEdit"/>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_Z_LineEdit"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_139">
+                    <property name="text">
+                     <string>Controller ID</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_118">
+                    <property name="text">
+                     <string>Chunk ID</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_X_LineEdit"/>
+                  </item>
+                  <item row="6" column="2" colspan="2">
+                   <widget class="QGroupBox" name="groupBox_38">
+                    <property name="title">
+                     <string>Data Stack Information</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_62">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_140">
+                       <property name="text">
+                        <string>Number Of Ephemerdies Stack Entries:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QSpinBox" name="Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
