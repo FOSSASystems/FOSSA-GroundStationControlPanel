@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,9 +73,9 @@
            <property name="geometry">
             <rect>
              <x>185</x>
-             <y>-3425</y>
+             <y>-4892</y>
              <width>449</width>
-             <height>5415</height>
+             <height>5641</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1264,6 +1264,130 @@
                  <property name="title">
                   <string>Run Maneuver</string>
                  </property>
+                 <layout class="QGridLayout" name="gridLayout_53">
+                  <item row="1" column="2">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_YAxisHbridgeFaultCheck_RadioButton">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_113">
+                    <property name="text">
+                     <string>Maneuver length (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_EnableOverride_AngularVelocityToleranceCheck_RadioButton_2">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_EnableOverride_EulerAngleToleranceCheck_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_EulerAngleToleranceCheck_RadioButton_2">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1" colspan="2">
+                   <widget class="QLineEdit" name="SatelliteControls_ManeuverLength_LineEdit"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_EnableOverride_ZAxisHbridgeFaultCheck_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_EnableOverride_YAxisHbridgeFaultCheck_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_ZAxisHbridgeFaultCheck_RadioButton">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_111">
+                    <property name="text">
+                     <string>Override Euler angle tolerance check:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_AngularVelocityToleranceCheck_RadioButton_2">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_112">
+                    <property name="text">
+                     <string>Override ang. vel. tolerance check:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_108">
+                    <property name="text">
+                     <string>Override X axis H-bridge fault check: </string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_EnableOverride_XAxisHbridgeFaultCheck_RadioButton">
+                    <property name="text">
+                     <string>Enable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_109">
+                    <property name="text">
+                     <string>Override Y axis H-bridge fault check:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_110">
+                    <property name="text">
+                     <string>Override Z axis H-bridge fault check:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_XAxisHbridgeFaultCheck_RadioButton">
+                    <property name="text">
+                     <string>Disable</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0" colspan="3">
+                   <widget class="QPushButton" name="SatelliteControls_Maneuver_Run_Button">
+                    <property name="text">
+                     <string>Run Maneuver</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>
@@ -1475,7 +1599,7 @@
               </property>
               <layout class="QGridLayout" name="gridLayout_44">
                <item row="0" column="0">
-                <widget class="QGroupBox" name="groupBox_26">
+                <widget class="QGroupBox" name="Detumble_Execute_Button">
                  <property name="title">
                   <string>Perform Detumbling</string>
                  </property>
@@ -1506,6 +1630,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="4" column="2">
@@ -1513,6 +1640,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_3</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="2" column="2">
@@ -1520,6 +1650,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_2</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="7" column="1">
@@ -1527,6 +1660,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_4</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="0" column="1">
@@ -1534,6 +1670,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="2" column="1">
@@ -1541,6 +1680,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_2</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="4" column="1">
@@ -1548,6 +1690,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_3</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="7" column="2">
@@ -1555,12 +1700,16 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_4</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="7" column="0">
                    <widget class="QLabel" name="label_97">
                     <property name="text">
-                     <string>Override detumbling ang vel. check:</string>
+                     <string>Override detumbling ang vel. 
+tolerance check:</string>
                     </property>
                    </widget>
                   </item>
@@ -1613,9 +1762,9 @@
            <property name="geometry">
             <rect>
              <x>177</x>
-             <y>-1296</y>
+             <y>-49</y>
              <width>465</width>
-             <height>2013</height>
+             <height>2103</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2228,100 +2377,116 @@
                <string>IMU</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_50">
-               <item row="9" column="0">
-                <widget class="QLabel" name="label_107">
-                 <property name="text">
-                  <string>Z axis magnetometer offset (T):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="0">
-                <widget class="QLabel" name="label_103">
-                 <property name="text">
-                  <string>Y axis accelerometer offset (m/s^2):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="8" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisMagnetometerOffset_LineEdit"/>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisGyroOffset_LineEdit"/>
-               </item>
-               <item row="4" column="0">
-                <widget class="QLabel" name="label_102">
-                 <property name="text">
-                  <string>X axis accelerometer offset (m/s^2):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="label_100">
-                 <property name="text">
-                  <string>Y axis gyro offset (rad/s):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="0">
-                <widget class="QLabel" name="label_105">
-                 <property name="text">
-                  <string>X axis magnetometer offset (T):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="6" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisAcceleOffset_LineEdit"/>
-               </item>
-               <item row="9" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisMagnetometerOffset_LineEdit"/>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisGyroOffset_LineEdit"/>
-               </item>
-               <item row="5" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisAcceleOffset_LineEdit"/>
-               </item>
-               <item row="4" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisAcceleOffset_LineEdit"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_99">
-                 <property name="text">
-                  <string>X axis gyro offset (rad/s):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="6" column="0">
-                <widget class="QLabel" name="label_104">
-                 <property name="text">
-                  <string>Z axis accelerometer offset (m/s^2):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="8" column="0">
-                <widget class="QLabel" name="label_106">
-                 <property name="text">
-                  <string>Y axis magnetometer offset (T):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisGyroOffset_LineEdit"/>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="label_101">
-                 <property name="text">
-                  <string>Z axis gyro offset (rad/s):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisMagnetometerOffset_LineEdit"/>
-               </item>
                <item row="10" column="0" colspan="2">
-                <widget class="QPushButton" name="SatelliteConfig_IMU_Set_Button">
-                 <property name="text">
-                  <string>Set</string>
+                <widget class="QGroupBox" name="groupBox_29">
+                 <property name="title">
+                  <string>Offset</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_51">
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisAcceleOffset_LineEdit"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_102">
+                    <property name="text">
+                     <string>X axis accelerometer offset (m/s^2):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_99">
+                    <property name="text">
+                     <string>X axis gyro offset (rad/s):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_103">
+                    <property name="text">
+                     <string>Y axis accelerometer offset (m/s^2):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisMagnetometerOffset_LineEdit"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisGyroOffset_LineEdit"/>
+                  </item>
+                  <item row="8" column="0">
+                   <widget class="QLabel" name="label_107">
+                    <property name="text">
+                     <string>Z axis magnetometer offset (T):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisGyroOffset_LineEdit"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_104">
+                    <property name="text">
+                     <string>Z axis accelerometer offset (m/s^2):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_106">
+                    <property name="text">
+                     <string>Y axis magnetometer offset (T):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_105">
+                    <property name="text">
+                     <string>X axis magnetometer offset (T):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisAcceleOffset_LineEdit"/>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisMagnetometerOffset_LineEdit"/>
+                  </item>
+                  <item row="8" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_ZAxisMagnetometerOffset_LineEdit"/>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_YAxisAcceleOffset_LineEdit"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_100">
+                    <property name="text">
+                     <string>Y axis gyro offset (rad/s):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_101">
+                    <property name="text">
+                     <string>Z axis gyro offset (rad/s):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_XAxisGyroOffset_LineEdit"/>
+                  </item>
+                  <item row="9" column="0" colspan="2">
+                   <widget class="QPushButton" name="SatelliteConfig_IMU_Set_Button">
+                    <property name="text">
+                     <string>Set</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="11" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_30">
+                 <property name="title">
+                  <string>Calibration</string>
                  </property>
                 </widget>
                </item>
@@ -3077,5 +3242,9 @@
   <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
   <buttongroup name="adcsManeuveringOverrideEulerAngleToleranceButtonGroup"/>
   <buttongroup name="adcsManeuveringOverrideAngulaVelocityToleranceButtonGroup"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_4"/>
  </buttongroups>
 </ui>
