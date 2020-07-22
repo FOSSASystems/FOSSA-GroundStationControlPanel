@@ -24,7 +24,7 @@
     <bool>false</bool>
    </property>
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="0">
+    <item row="0" column="0">
      <widget class="QTabWidget" name="tabWidget">
       <property name="tabPosition">
        <enum>QTabWidget::North</enum>
@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>185</x>
-             <y>-4892</y>
+             <y>0</y>
              <width>449</width>
              <height>5641</height>
             </rect>
@@ -1761,10 +1761,10 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>89</x>
-             <y>-2838</y>
-             <width>640</width>
-             <height>3555</height>
+             <x>0</x>
+             <y>-234</y>
+             <width>883</width>
+             <height>3683</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2564,7 +2564,40 @@ tolerance check:</string>
                   <string>Controller</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_57">
-                  <item row="0" column="1">
+                  <item row="4" column="3">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M32_LineEdit"/>
+                  </item>
+                  <item row="2" column="5">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M50_LineEdit"/>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M11_LineEdit"/>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M12_LineEdit"/>
+                  </item>
+                  <item row="4" column="5">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M52_LineEdit"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M01_LineEdit"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M00_LineEdit"/>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M22_LineEdit"/>
+                  </item>
+                  <item row="3" column="4">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M41_LineEdit"/>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M02_LineEdit"/>
+                  </item>
+                  <item row="2" column="4">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M40_LineEdit"/>
+                  </item>
+                  <item row="0" column="5">
                    <widget class="QLineEdit" name="lineEdit"/>
                   </item>
                   <item row="0" column="0">
@@ -2578,6 +2611,34 @@ tolerance check:</string>
                    <widget class="QLabel" name="label_136">
                     <property name="text">
                      <string>ADCS Controller Matrix:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M20_LineEdit"/>
+                  </item>
+                  <item row="2" column="3">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M30_LineEdit"/>
+                  </item>
+                  <item row="3" column="3">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M31_LineEdit"/>
+                  </item>
+                  <item row="4" column="4">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M42_LineEdit"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M10_LineEdit"/>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M21_LineEdit"/>
+                  </item>
+                  <item row="3" column="5">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M51_LineEdit"/>
+                  </item>
+                  <item row="5" column="2" colspan="2">
+                   <widget class="QPushButton" name="SatelliteConfig_IMU_Controller_Set_Button">
+                    <property name="text">
+                     <string>Set</string>
                     </property>
                    </widget>
                   </item>
@@ -3632,16 +3693,10 @@ Data stack</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
@@ -3649,12 +3704,16 @@ Data stack</string>
    </property>
   </buttongroup>
   <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="adcsManeuveringOverrideEulerAngleToleranceButtonGroup"/>
-  <buttongroup name="adcsManeuveringOverrideAngulaVelocityToleranceButtonGroup"/>
   <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
   <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
  </buttongroups>
 </ui>
