@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>875</width>
-    <height>833</height>
+    <width>1291</width>
+    <height>1119</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -72,7 +72,7 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>185</x>
+             <x>393</x>
              <y>0</y>
              <width>449</width>
              <height>5641</height>
@@ -1761,10 +1761,10 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>0</x>
-             <y>0</y>
-             <width>883</width>
-             <height>3683</height>
+             <x>369</x>
+             <y>-2552</y>
+             <width>497</width>
+             <height>3587</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1892,36 +1892,8 @@ tolerance check:</string>
                   <string>Calibration</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_54">
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_115">
-                    <property name="text">
-                     <string>Bias Vector:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A31_LineEdit"/>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A21_LineEdit"/>
-                  </item>
-                  <item row="1" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A13_LineEdit"/>
-                  </item>
-                  <item row="2" column="2">
+                  <item row="2" column="1">
                    <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A23_LineEdit"/>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A32_LineEdit"/>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorX_LineEdit"/>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A11_LineEdit"/>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorY_LineEdit"/>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_114">
@@ -1930,24 +1902,28 @@ tolerance check:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A12_LineEdit"/>
-                  </item>
-                  <item row="5" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorZ_LineEdit"/>
-                  </item>
-                  <item row="3" column="2">
+                  <item row="3" column="1">
                    <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A33_LineEdit"/>
                   </item>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A22_LineEdit"/>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_115">
+                    <property name="text">
+                     <string>Bias Vector:</string>
+                    </property>
+                   </widget>
                   </item>
-                  <item row="6" column="0" colspan="3">
+                  <item row="5" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorZ_LineEdit"/>
+                  </item>
+                  <item row="6" column="0" colspan="2">
                    <widget class="QPushButton" name="pushButton_2">
                     <property name="text">
                      <string>Set</string>
                     </property>
                    </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A13_LineEdit"/>
                   </item>
                  </layout>
                 </widget>
@@ -2564,46 +2540,16 @@ tolerance check:</string>
                   <string>Controller</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_57">
-                  <item row="4" column="3">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M32_LineEdit"/>
+                  <item row="4" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M51_LineEdit"/>
                   </item>
-                  <item row="2" column="5">
+                  <item row="1" column="2">
                    <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M50_LineEdit"/>
                   </item>
-                  <item row="3" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M11_LineEdit"/>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M12_LineEdit"/>
-                  </item>
-                  <item row="4" column="5">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M52_LineEdit"/>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M01_LineEdit"/>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M00_LineEdit"/>
-                  </item>
-                  <item row="4" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M22_LineEdit"/>
-                  </item>
-                  <item row="3" column="4">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M41_LineEdit"/>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M02_LineEdit"/>
-                  </item>
-                  <item row="2" column="4">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M40_LineEdit"/>
-                  </item>
-                  <item row="0" column="5">
-                   <widget class="QLineEdit" name="lineEdit"/>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_116">
+                  <item row="6" column="0" colspan="4">
+                   <widget class="QPushButton" name="SatelliteConfig_IMU_Controller_Set_Button">
                     <property name="text">
-                     <string>Controller ID:</string>
+                     <string>Set</string>
                     </property>
                    </widget>
                   </item>
@@ -2614,33 +2560,18 @@ tolerance check:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M20_LineEdit"/>
-                  </item>
-                  <item row="2" column="3">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M30_LineEdit"/>
-                  </item>
-                  <item row="3" column="3">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M31_LineEdit"/>
-                  </item>
-                  <item row="4" column="4">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M42_LineEdit"/>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M10_LineEdit"/>
-                  </item>
-                  <item row="3" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M21_LineEdit"/>
-                  </item>
-                  <item row="3" column="5">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M51_LineEdit"/>
-                  </item>
-                  <item row="5" column="2" colspan="2">
-                   <widget class="QPushButton" name="SatelliteConfig_IMU_Controller_Set_Button">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_116">
                     <property name="text">
-                     <string>Set</string>
+                     <string>Controller ID:</string>
                     </property>
                    </widget>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QLineEdit" name="lineEdit"/>
+                  </item>
+                  <item row="5" column="2">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M52_LineEdit"/>
                   </item>
                  </layout>
                 </widget>
@@ -2851,17 +2782,65 @@ change tolerance:</string>
                   <string>Ephemerides</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_60">
-                  <item row="1" column="0">
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_Z_LineEdit"/>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox"/>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QGroupBox" name="groupBox_38">
+                    <property name="title">
+                     <string>Data Stack Information</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_62">
+                     <item row="0" column="0">
+                      <widget class="QLabel" name="label_140">
+                       <property name="text">
+                        <string>Number Of 
+Stack Entries:</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="0" column="1">
+                      <widget class="QSpinBox" name="Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox">
+                       <property name="readOnly">
+                        <bool>true</bool>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_118">
+                    <property name="text">
+                     <string>Chunk ID</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
                    <widget class="QLabel" name="label_137">
                     <property name="text">
                      <string>Solar Ephemeris:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="4" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_Y_LineEdit"/>
-                  </item>
                   <item row="6" column="0">
+                   <widget class="QLabel" name="label_139">
+                    <property name="text">
+                     <string>Controller ID</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_138">
+                    <property name="text">
+                     <string>Magnetic Ephemeris</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
                    <widget class="QGroupBox" name="groupBox_36">
                     <property name="title">
                      <string>Ephermerides Data Stack Controls</string>
@@ -2893,70 +2872,11 @@ Data stack</string>
                     </layout>
                    </widget>
                   </item>
-                  <item row="0" column="3">
-                   <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox"/>
-                  </item>
-                  <item row="2" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_Y_LineEdit"/>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_138">
-                    <property name="text">
-                     <string>Magnetic Ephemeris</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_X_LineEdit"/>
-                  </item>
-                  <item row="5" column="3">
+                  <item row="6" column="1">
                    <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox"/>
                   </item>
-                  <item row="4" column="3">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_Z_LineEdit"/>
-                  </item>
-                  <item row="2" column="3">
+                  <item row="2" column="1">
                    <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_Z_LineEdit"/>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="label_139">
-                    <property name="text">
-                     <string>Controller ID</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_118">
-                    <property name="text">
-                     <string>Chunk ID</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_X_LineEdit"/>
-                  </item>
-                  <item row="6" column="2" colspan="2">
-                   <widget class="QGroupBox" name="groupBox_38">
-                    <property name="title">
-                     <string>Data Stack Information</string>
-                    </property>
-                    <layout class="QGridLayout" name="gridLayout_62">
-                     <item row="0" column="0">
-                      <widget class="QLabel" name="label_140">
-                       <property name="text">
-                        <string>Number Of Ephemerdies Stack Entries:</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="1">
-                      <widget class="QSpinBox" name="Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox">
-                       <property name="readOnly">
-                        <bool>true</bool>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
-                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -2986,8 +2906,8 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>223</x>
-             <y>0</y>
+             <x>438</x>
+             <y>23</y>
              <width>373</width>
              <height>956</height>
             </rect>
@@ -3406,8 +3326,8 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>267</x>
-             <y>39</y>
+             <x>475</x>
+             <y>182</y>
              <width>299</width>
              <height>639</height>
             </rect>
@@ -3671,7 +3591,7 @@ Data stack</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>875</width>
+     <width>1291</width>
      <height>23</height>
     </rect>
    </property>
@@ -3693,27 +3613,27 @@ Data stack</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="lowPowerModeButtonGroup"/>
  </buttongroups>
 </ui>
