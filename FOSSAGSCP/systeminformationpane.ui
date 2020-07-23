@@ -27,7 +27,7 @@
        <string>Satellite Live System Information</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="1" column="0">
+       <item row="0" column="0">
         <widget class="QScrollArea" name="scrollArea">
          <property name="widgetResizable">
           <bool>true</bool>
@@ -39,7 +39,7 @@
           <property name="geometry">
            <rect>
             <x>165</x>
-            <y>-1039</y>
+            <y>-1032</y>
             <width>450</width>
             <height>2050</height>
            </rect>
@@ -68,7 +68,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_3">
+               <widget class="QLineEdit" name="SystemInformation_UnixTimestamp_LineEdit">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -101,10 +101,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_5"/>
+               <widget class="QLineEdit" name="SystemInformation_Sensors_YPanelLightSensor_LineEdit"/>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_6"/>
+               <widget class="QLineEdit" name="SystemInformation_Sensors_TopBoardLightSensor_LineEdit"/>
               </item>
               <item row="2" column="0" colspan="2">
                <widget class="QGroupBox" name="groupBox_11">
@@ -146,7 +146,7 @@
                  <item row="5" column="0">
                   <widget class="QLabel" name="label_40">
                    <property name="text">
-                    <string>Current Sensor XA:</string>
+                    <string>Current Sensor ZA:</string>
                    </property>
                   </widget>
                  </item>
@@ -172,28 +172,28 @@
                   </widget>
                  </item>
                  <item row="1" column="1">
-                  <widget class="QSpinBox" name="spinBox_24"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox"/>
                  </item>
                  <item row="2" column="1">
-                  <widget class="QSpinBox" name="spinBox_25"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox"/>
                  </item>
                  <item row="0" column="1">
-                  <widget class="QSpinBox" name="spinBox_23"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorTop_SpinBox"/>
                  </item>
                  <item row="3" column="1">
-                  <widget class="QSpinBox" name="spinBox_26"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox"/>
                  </item>
                  <item row="4" column="1">
-                  <widget class="QSpinBox" name="spinBox_27"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox"/>
                  </item>
                  <item row="5" column="1">
-                  <widget class="QSpinBox" name="spinBox_28"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZA_SpinBox"/>
                  </item>
                  <item row="6" column="1">
-                  <widget class="QSpinBox" name="spinBox_29"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox"/>
                  </item>
                  <item row="7" column="1">
-                  <widget class="QSpinBox" name="spinBox_30"/>
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXA_SpinBox_2"/>
                  </item>
                 </layout>
                </widget>
@@ -253,22 +253,22 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBox_14"/>
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_YPanelTemperature_SpinBox"/>
               </item>
               <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBox_15"/>
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_OBCBoardTemperature_SpinBox"/>
               </item>
               <item row="2" column="1">
-               <widget class="QSpinBox" name="spinBox_16"/>
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_BottomBoardTemperature_SpinBox"/>
               </item>
               <item row="3" column="1">
-               <widget class="QSpinBox" name="spinBox_17"/>
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_BatteryTemperature_SpinBox"/>
               </item>
               <item row="4" column="1">
-               <widget class="QSpinBox" name="spinBox_18"/>
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_SecondBatteryTemperature_SpinBox"/>
               </item>
               <item row="5" column="1">
-               <widget class="QSpinBox" name="spinBox_19"/>
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_MCUTemperature_SpinBox"/>
               </item>
              </layout>
             </widget>
@@ -276,7 +276,7 @@
            <item row="9" column="0">
             <widget class="QGroupBox" name="groupBox_8">
              <property name="title">
-              <string>Most Recent H-bridge Faults</string>
+              <string>Last H-bridge Faults</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
@@ -304,13 +304,13 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBox_20"/>
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_XAxisHBridgeFault_SpinBox"/>
               </item>
               <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBox_21"/>
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_YAxisHBridgeFault_SpinBox"/>
               </item>
               <item row="2" column="1">
-               <widget class="QSpinBox" name="spinBox_22"/>
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_ZAxisHBridgeFault_SpinBox"/>
               </item>
              </layout>
             </widget>
@@ -332,7 +332,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBox">
+               <widget class="QSpinBox" name="SystemInformation_Counter_SpinBox">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -406,7 +406,7 @@
                </spacer>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBox_4"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelXAVoltage_SpinBox"/>
               </item>
               <item row="4" column="0">
                <widget class="QLabel" name="label_14">
@@ -437,7 +437,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBox_5"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelXACurrent_SpinBox"/>
               </item>
               <item row="8" column="0" colspan="2">
                <spacer name="horizontalSpacer_3">
@@ -479,28 +479,28 @@
                </spacer>
               </item>
               <item row="3" column="1">
-               <widget class="QSpinBox" name="spinBox_6"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelXBVoltage_SpinBox"/>
               </item>
               <item row="4" column="1">
-               <widget class="QSpinBox" name="spinBox_7"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelXBCurrent_SpinBox"/>
               </item>
               <item row="6" column="1">
-               <widget class="QSpinBox" name="spinBox_8"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelZAVoltage_SpinBox"/>
               </item>
               <item row="7" column="1">
-               <widget class="QSpinBox" name="spinBox_9"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelZACurrent_SpinBox"/>
               </item>
               <item row="9" column="1">
-               <widget class="QSpinBox" name="spinBox_10"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelZBVoltage_SpinBox"/>
               </item>
               <item row="10" column="1">
-               <widget class="QSpinBox" name="spinBox_11"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelZBCurrent_SpinBox"/>
               </item>
               <item row="12" column="1">
-               <widget class="QSpinBox" name="spinBox_12"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelYVoltage_SpinBox"/>
               </item>
               <item row="13" column="1">
-               <widget class="QSpinBox" name="spinBox_13"/>
+               <widget class="QSpinBox" name="SystemInformation_SolarPanelsPowerInformation_SolarPanelYCurrent_SpinBox"/>
               </item>
              </layout>
             </widget>
@@ -515,7 +515,7 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_3">
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit">
+               <widget class="QLineEdit" name="SystemInformation_MPPT_OutputVoltage_LineEdit">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -524,7 +524,7 @@
               <item row="0" column="0">
                <widget class="QLabel" name="label">
                 <property name="text">
-                 <string>Output Voltage (mA): </string>
+                 <string>Output Voltage (mV): </string>
                 </property>
                </widget>
               </item>
@@ -536,7 +536,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QLineEdit" name="lineEdit_2">
+               <widget class="QLineEdit" name="SystemInformation_MPPT_OutputCurrent_LineEdit">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -555,7 +555,7 @@
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
               <item row="2" column="1">
-               <widget class="QRadioButton" name="radioButton_5">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerModeActive_Activated_RadioButton">
                 <property name="text">
                  <string>Activated</string>
                 </property>
@@ -568,7 +568,7 @@
                </widget>
               </item>
               <item row="0" column="2">
-               <widget class="QRadioButton" name="radioButton_2">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_TransmissionsEnabled_Disabled_RadioButton">
                 <property name="text">
                  <string>Disabled</string>
                 </property>
@@ -581,7 +581,7 @@
                </widget>
               </item>
               <item row="1" column="2">
-               <widget class="QRadioButton" name="radioButton_4">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_RadioButton_4">
                 <property name="text">
                  <string>Disabled</string>
                 </property>
@@ -594,7 +594,7 @@
                </widget>
               </item>
               <item row="3" column="2">
-               <widget class="QRadioButton" name="radioButton_8">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_MPPTTemperatureSwitchEnabled_Disabled_RadioButton">
                 <property name="text">
                  <string>Disabled</string>
                 </property>
@@ -614,7 +614,7 @@
                </widget>
               </item>
               <item row="2" column="2">
-               <widget class="QRadioButton" name="radioButton_6">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerModeActive_Deactivated_RadioButton">
                 <property name="text">
                  <string>Deactivated</string>
                 </property>
@@ -634,7 +634,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QRadioButton" name="radioButton">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_TransmissionsEnabled_Enabled_RadioButton">
                 <property name="text">
                  <string>Enabled</string>
                 </property>
@@ -647,7 +647,7 @@
                </widget>
               </item>
               <item row="1" column="1">
-               <widget class="QRadioButton" name="radioButton_3">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton">
                 <property name="text">
                  <string>Enabled</string>
                 </property>
@@ -674,7 +674,7 @@
                </widget>
               </item>
               <item row="4" column="1">
-               <widget class="QRadioButton" name="radioButton_9">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Enabled_RadioButton">
                 <property name="text">
                  <string>Enabled</string>
                 </property>
@@ -687,7 +687,7 @@
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QRadioButton" name="radioButton_7">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_MPPTTemperatureSwitchEnabled_Enabled_RadioButton">
                 <property name="text">
                  <string>Enabled</string>
                 </property>
@@ -700,7 +700,7 @@
                </widget>
               </item>
               <item row="4" column="2">
-               <widget class="QRadioButton" name="radioButton_10">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Disabled_RadioButton">
                 <property name="text">
                  <string>Disabled</string>
                 </property>
@@ -727,7 +727,7 @@
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QRadioButton" name="radioButton_11">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_ScienceModeActive_Activated_RadioButton">
                 <property name="text">
                  <string>Activated</string>
                 </property>
@@ -740,7 +740,7 @@
                </widget>
               </item>
               <item row="5" column="2">
-               <widget class="QRadioButton" name="radioButton_12">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_ScienceModeActive_Deactivated_RadioButton">
                 <property name="text">
                  <string>Deactivated</string>
                 </property>
@@ -779,10 +779,10 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="spinBox_2"/>
+               <widget class="QSpinBox" name="SystemInformation_WindowReceiveLength_FSKWindowReceiveLength_SpinBox"/>
               </item>
               <item row="1" column="1">
-               <widget class="QSpinBox" name="spinBox_3"/>
+               <widget class="QSpinBox" name="SystemInformation_WindowReceiveLength_LoraWindowReceiveLength_SpinBox"/>
               </item>
              </layout>
             </widget>
@@ -804,7 +804,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_7"/>
+               <widget class="QLineEdit" name="SystemInformation_FlashInformation_CRCError_LineEdit"/>
               </item>
              </layout>
             </widget>
@@ -826,7 +826,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="lineEdit_4"/>
+               <widget class="QLineEdit" name="SystemInformation_ADCResult_LastADCSResult_LineEdit"/>
               </item>
              </layout>
             </widget>
