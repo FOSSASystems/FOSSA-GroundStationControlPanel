@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -1762,7 +1762,7 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>0</x>
-             <y>-234</y>
+             <y>0</y>
              <width>883</width>
              <height>3683</height>
             </rect>
@@ -3693,27 +3693,27 @@ Data stack</string>
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
   <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
  </buttongroups>
 </ui>
