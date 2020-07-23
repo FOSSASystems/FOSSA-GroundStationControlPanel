@@ -39,9 +39,9 @@
           <property name="geometry">
            <rect>
             <x>165</x>
-            <y>-1032</y>
+            <y>-1281</y>
             <width>450</width>
-            <height>2050</height>
+            <height>2310</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -51,7 +51,7 @@
            </sizepolicy>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="1" column="0">
+           <item row="2" column="0">
             <widget class="QGroupBox" name="groupBox_2">
              <property name="title">
               <string>Time</string>
@@ -77,7 +77,72 @@
              </layout>
             </widget>
            </item>
-           <item row="8" column="0">
+           <item row="13" column="0">
+            <spacer name="horizontalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="7" column="0">
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="11" column="0">
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="9" column="0">
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="0">
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="16" column="0">
             <widget class="QGroupBox" name="groupBox_7">
              <property name="title">
               <string>Sensors</string>
@@ -201,7 +266,7 @@
              </layout>
             </widget>
            </item>
-           <item row="7" column="0">
+           <item row="14" column="0">
             <widget class="QGroupBox" name="groupBox_6">
              <property name="title">
               <string>Temperature Information</string>
@@ -273,7 +338,7 @@
              </layout>
             </widget>
            </item>
-           <item row="9" column="0">
+           <item row="18" column="0">
             <widget class="QGroupBox" name="groupBox_8">
              <property name="title">
               <string>Last H-bridge Faults</string>
@@ -315,7 +380,20 @@
              </layout>
             </widget>
            </item>
-           <item row="3" column="0">
+           <item row="17" column="0">
+            <spacer name="horizontalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="6" column="0">
             <widget class="QGroupBox" name="groupBox_4">
              <property name="title">
               <string>Counter</string>
@@ -341,7 +419,7 @@
              </layout>
             </widget>
            </item>
-           <item row="6" column="0">
+           <item row="12" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
               <string>Solar Panels Power Information</string>
@@ -545,7 +623,20 @@
              </layout>
             </widget>
            </item>
-           <item row="2" column="0">
+           <item row="1" column="0">
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="4" column="0">
             <widget class="QGroupBox" name="groupBox_3">
              <property name="title">
               <string>Power Configuration</string>
@@ -755,7 +846,7 @@
              </layout>
             </widget>
            </item>
-           <item row="4" column="0">
+           <item row="8" column="0">
             <widget class="QGroupBox" name="groupBox_10">
              <property name="title">
               <string>Window Receive Length</string>
@@ -788,6 +879,28 @@
             </widget>
            </item>
            <item row="10" column="0">
+            <widget class="QGroupBox" name="groupBox_12">
+             <property name="title">
+              <string>ADCS Result</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_14">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_43">
+                <property name="text">
+                 <string>Last ADCS Result:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="SystemInformation_ADCResult_LastADCSResult_LineEdit"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="20" column="0">
             <widget class="QGroupBox" name="groupBox_9">
              <property name="title">
               <string>Flash Information</string>
@@ -810,26 +923,43 @@
             </widget>
            </item>
            <item row="5" column="0">
-            <widget class="QGroupBox" name="groupBox_12">
-             <property name="title">
-              <string>ADCS Result</string>
+            <spacer name="horizontalSpacer_7">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
              </property>
-             <layout class="QGridLayout" name="gridLayout_14">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_43">
-                <property name="text">
-                 <string>Last ADCS Result:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="SystemInformation_ADCResult_LastADCSResult_LineEdit"/>
-              </item>
-             </layout>
-            </widget>
+            </spacer>
+           </item>
+           <item row="15" column="0">
+            <spacer name="horizontalSpacer_12">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="19" column="0">
+            <spacer name="horizontalSpacer_14">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
