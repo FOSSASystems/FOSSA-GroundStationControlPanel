@@ -344,6 +344,27 @@ void MainWindow::on_CameraControl_Capture_Button_clicked()
                                                                                 contrast);
     this->SendSerialData(msg);
 }
+
+
+
+void MainWindow::on_CameraControl_GetPictureLength_GetPictureLength_Button_clicked()
+{
+}
+
+void MainWindow::on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked()
+{
+    char pictureSlot = (char)this->ui->CameraControl_PictureBurst_PictureSlot_SpinBox->value();
+
+    QString id = this->ui->CameraControl_PictureBurst_PicturePacketID_LineEdit->text();
+    uint16_t packetId = id.toUInt();
+
+    // 1 is full picture, 0 is scan data.
+    char fullPictureOrScandata = (char)this->ui->CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton->isChecked();
+
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Get_Picture_Burst(pictureSlot, packetId, fullPictureOrScandata);
+
+    this->SendSerialData(msg);
+}
 #define SatelliteControlsTab_End }
 
 
@@ -870,3 +891,4 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
+

@@ -101,8 +101,8 @@ public:
     IGroundStationSerialMessage* Create_CMD_Log_GPS();
     IGroundStationSerialMessage* Create_CMD_Get_GPS_Log();
     IGroundStationSerialMessage* Create_CMD_Get_Flash_Contents();
-    IGroundStationSerialMessage* Create_CMD_Get_Picture_Length();
-    IGroundStationSerialMessage* Create_CMD_Get_Picture_Burst();
+    IGroundStationSerialMessage *Create_CMD_Get_Picture_Length();
+    IGroundStationSerialMessage* Create_CMD_Get_Picture_Burst(char pictureSlot, uint16_t pictureId, char fullOrScandata);
     IGroundStationSerialMessage* Create_CMD_Route();
     IGroundStationSerialMessage* Create_CMD_Set_Flash_Contents();
     IGroundStationSerialMessage* Create_CMD_Set_TLE();

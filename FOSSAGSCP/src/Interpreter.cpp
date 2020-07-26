@@ -320,6 +320,23 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Camera_Capture(char picture
     return msg;
 }
 
+IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Picture_Length()
+{
+
+}
+
+IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Picture_Burst(char pictureSlot, uint16_t pictureId, char fullOrScandata)
+{
+    char optData[4];
+    optData[0] = pictureSlot;
+    optData[1] = pictureId;
+    optData[2] = pictureId >> 8;
+    optData[3] = fullOrScandata;
+
+    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_FULL_SYSTEM_INFO, 4, optData);
+    return msg;
+}
+
 IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Full_System_Info()
 {
     IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_FULL_SYSTEM_INFO, 0, nullptr);
