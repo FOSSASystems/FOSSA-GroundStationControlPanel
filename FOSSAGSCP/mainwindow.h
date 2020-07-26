@@ -55,10 +55,6 @@ private slots:
     void ErrorReceived(const QString& str);
     void TimeoutReceived(const QString& str);
 
-    // controls tab
-    void on_baseOpsPingButton_clicked();
-    void on_baseOpsDeploybutton_clicked();
-
     // control panel settings tab.
     void on_handshakeSendButton_clicked();
     void on_ControlPanelSettings_refreshSerialPortButton_clicked();
@@ -74,9 +70,11 @@ private slots:
     void ReceivedMessagefromMessageLog(QString msg);
     void ReceivedMessagefromSystemInformationPane(IGroundStationSerialMessage* msg);
 
-    void on_SatelliteControls_BaseOps_Ping_Button_clicked();
-
     void on_CameraControl_Capture_Button_clicked();
+
+    void on_CameraControl_GetPictureLength_GetPictureLength_Button_clicked();
+
+    void on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked();
 
 private:
 

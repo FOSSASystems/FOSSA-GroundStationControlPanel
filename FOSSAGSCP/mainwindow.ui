@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,9 +73,9 @@
            <property name="geometry">
             <rect>
              <x>28</x>
-             <y>-952</y>
+             <y>-4569</y>
              <width>449</width>
-             <height>5331</height>
+             <height>5277</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1013,53 +1013,8 @@
                   <bool>true</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_52">
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_51">
-                    <property name="text">
-                     <string>Public/Private:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_40">
-                    <property name="text">
-                     <string>Picture Packet ID:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeOnlyScanData_RadioButton">
-                    <property name="text">
-                     <string>Send Only Scan Data</string>
-                    </property>
-                    <attribute name="buttonGroup">
-                     <string notr="true">sendFullPictureButtonGroup</string>
-                    </attribute>
-                   </widget>
-                  </item>
-                  <item row="8" column="0" colspan="2">
-                   <widget class="QPushButton" name="CameraControl_PictureBurst_GetPictureBurst_Button">
-                    <property name="text">
-                     <string>Get Picture Burst</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QRadioButton" name="CameraControl_PictureBurst_PublicPrivate_Public_RadioButton">
-                    <property name="text">
-                     <string>Public Re&amp;quest</string>
-                    </property>
-                    <attribute name="buttonGroup">
-                     <string notr="true">publicPrivateRequestButtonGroup</string>
-                    </attribute>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_37">
-                    <property name="text">
-                     <string>Picture Slot:</string>
-                    </property>
-                   </widget>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="CameraControl_PictureBurst_PictureSlot_SpinBox"/>
                   </item>
                   <item row="2" column="1">
                    <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton">
@@ -1078,20 +1033,38 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="CameraControl_PictureBurst_PictureSlot_SpinBox"/>
+                  <item row="6" column="0" colspan="2">
+                   <widget class="QPushButton" name="CameraControl_PictureBurst_GetPictureBurst_Button">
+                    <property name="text">
+                     <string>Get Picture Burst</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeOnlyScanData_RadioButton">
+                    <property name="text">
+                     <string>Send Only Scan Data</string>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">sendFullPictureButtonGroup</string>
+                    </attribute>
+                   </widget>
                   </item>
                   <item row="1" column="1">
                    <widget class="QLineEdit" name="CameraControl_PictureBurst_PicturePacketID_LineEdit"/>
                   </item>
-                  <item row="5" column="1">
-                   <widget class="QRadioButton" name="CameraControl_PictureBurst_PublicPrivate_Private_RadioButton">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_37">
                     <property name="text">
-                     <string>Pri&amp;vate Request</string>
+                     <string>Picture Slot:</string>
                     </property>
-                    <attribute name="buttonGroup">
-                     <string notr="true">publicPrivateRequestButtonGroup</string>
-                    </attribute>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_40">
+                    <property name="text">
+                     <string>Picture Packet ID:</string>
+                    </property>
                    </widget>
                   </item>
                  </layout>
@@ -1762,7 +1735,7 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>-1289</y>
+             <y>-2638</y>
              <width>465</width>
              <height>3346</height>
             </rect>
@@ -3616,7 +3589,6 @@ Data stack</string>
   <buttongroup name="mpptKeepAliveButtonGroup"/>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
   <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
   <buttongroup name="sendFullPictureButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">

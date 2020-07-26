@@ -320,11 +320,6 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Camera_Capture(char picture
     return msg;
 }
 
-IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Picture_Length()
-{
-
-}
-
 IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Picture_Burst(char pictureSlot, uint16_t pictureId, char fullOrScandata)
 {
     char optData[4];
