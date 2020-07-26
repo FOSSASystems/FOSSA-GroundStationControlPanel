@@ -17,7 +17,7 @@ public:
     ~systeminformationpane();
     Ui::systeminformationpane *ui;
 signals:
-    void SendDataFromSystemInformationPane(QString data);
+    void SendDataFromSystemInformationPane(IGroundStationSerialMessage* message);
 private:
     Interpreter* m_interpreter = nullptr;
 private slots:

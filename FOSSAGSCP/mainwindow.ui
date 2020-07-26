@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1291</width>
-    <height>1119</height>
+    <width>577</width>
+    <height>828</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -72,7 +72,7 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>393</x>
+             <x>36</x>
              <y>0</y>
              <width>449</width>
              <height>5641</height>
@@ -1761,8 +1761,8 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>369</x>
-             <y>-2552</y>
+             <x>12</x>
+             <y>0</y>
              <width>497</width>
              <height>3587</height>
             </rect>
@@ -2906,8 +2906,8 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>438</x>
-             <y>23</y>
+             <x>74</x>
+             <y>0</y>
              <width>373</width>
              <height>956</height>
             </rect>
@@ -3326,8 +3326,8 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>475</x>
-             <y>182</y>
+             <x>118</x>
+             <y>37</y>
              <width>299</width>
              <height>639</height>
             </rect>
@@ -3591,7 +3591,7 @@ Data stack</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1291</width>
+     <width>577</width>
      <height>23</height>
     </rect>
    </property>
@@ -3614,26 +3614,26 @@ Data stack</string>
  <connections/>
  <buttongroups>
   <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
   <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
   <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="mpptKeepAliveButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
+  <buttongroup name="buttonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
   <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
   <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
  </buttongroups>
 </ui>

@@ -17,5 +17,5 @@ systeminformationpane::~systeminformationpane()
 void systeminformationpane::on_SystemInformation_RequestFullSystemInformation_clicked()
 {
     IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Get_Full_System_Info();
-    this->SendSerialData(msg);
+    this->SendDataFromSystemInformationPane(msg);
 }

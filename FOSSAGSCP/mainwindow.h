@@ -72,7 +72,7 @@ private slots:
 
     // Receive message from message logger.
     void ReceivedMessagefromMessageLog(QString msg);
-    void ReceivedMessagefromSystemInformationPane(QString msg);
+    void ReceivedMessagefromSystemInformationPane(IGroundStationSerialMessage* msg);
 
     void on_SatelliteControls_BaseOps_Ping_Button_clicked();
 

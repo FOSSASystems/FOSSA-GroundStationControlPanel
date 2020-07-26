@@ -226,17 +226,15 @@ void MainWindow::ReceivedHandshake()
 }
 
 
-
 void MainWindow::ReceivedMessagefromMessageLog(QString msg)
 {
     QByteArray bytes = msg.toLocal8Bit();
     m_serialPortThread.Write(bytes);
 }
 
-void MainWindow::ReceivedMessagefromSystemInformationPane(QString msg)
+void MainWindow::ReceivedMessagefromSystemInformationPane(IGroundStationSerialMessage* msg)
 {
-    QByteArray bytes = msg.toLocal8Bit();
-    m_serialPortThread.Write(bytes);
+    this->SendSerialData(msg);
 }
 
 void MainWindow::SendDopplerShiftedFrequency()
