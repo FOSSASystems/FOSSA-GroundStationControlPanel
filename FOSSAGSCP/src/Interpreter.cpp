@@ -365,25 +365,28 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Set_ADCS_Ephemerides(uint16
     optDataLen += sizeof(uint16_t);
 
 
-    char optData[optDataLen];
-    optData[0] = chunkId;
-    optData[1] = chunkId >> 8;
+    std::vector<char> optData;
+    optData.push_back(chunkId);
+    optData.push_back(chunkId >> 8);
 
-    int dataCounter = 0;
     for (int i = 0; i < ephemeridesDataQueue.size(); i++)
     {
         ephemerides_t ephemeridesStruct = ephemeridesDataQueue[i];
 
-        size_t startIndex = dataCounter * sizeof(ephemerides_t);
+        // convert the struct to a char* array
+        char* ephemeridesData = (char*)&ephemeridesStruct;
 
-        ephemerides_t* ptr = &ephemeridesStruct;
-
-        memcpy(&(optData[startIndex]), (void*)ptr, sizeof(ephemerides_t));
-
-        dataCounter++;
+        // for each byte, push it to the optDataVector.
+        for (int k = 0; k < sizeof(ephemerides_t); k++)
+        {
+            optData.push_back(ephemeridesData[k]);
+        }
     }
 
-    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_SET_ADCS_EPHEMERIDES, optDataLen, optData);
+    // get the vector as char array.
+    char* data = optData.data();
+
+    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_SET_ADCS_EPHEMERIDES, optDataLen, data);
     return msg;
 }
 
