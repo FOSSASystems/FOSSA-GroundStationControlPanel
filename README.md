@@ -4,7 +4,9 @@ This is the repository of the Qt based control panel. It contains a interpreter 
 
 ![Indev Image](/Documentation/img/20200723.png "In-Dev image 20/02/2020")
 
-It conforms to the FCP document for FOSSASAT-2 as of 26/06/2020.
+It conforms to the FCP document for FOSSASAT-2 as of:
+- 26/06/2020 (RB)
+- 23/07/2020 (RB)
 
 ## About the protocols
 The ground station wraps the FCP packets with a header that specifies extra data such as direction (to or from ground stations), these are defined in the /docs/ directory.
