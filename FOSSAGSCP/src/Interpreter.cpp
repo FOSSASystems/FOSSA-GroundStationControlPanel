@@ -308,10 +308,21 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Deploy()
     return msg;
 }
 
+IGroundStationSerialMessage *Interpreter::Create_CMD_Camera_Capture(char pictureSlot, char lightMode, char pictureSize, char brightness, char saturation, char specialFilter, char contrast)
+{
+    char optData[4];
+    optData[0] = pictureSlot;
+    optData[1] = (pictureSize << 4) | lightMode;
+    optData[2] = (saturation << 4) | brightness;
+    optData[3] = (contrast << 4) | specialFilter;
+
+    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_CAMERA_CAPTURE, 4, optData);
+    return msg;
+}
+
 IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Full_System_Info()
 {
     IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_FULL_SYSTEM_INFO, 0, nullptr);
-
     return msg;
 }
 

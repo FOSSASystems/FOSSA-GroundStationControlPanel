@@ -76,6 +76,8 @@ private slots:
 
     void on_SatelliteControls_BaseOps_Ping_Button_clicked();
 
+    void on_CameraControl_Capture_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h

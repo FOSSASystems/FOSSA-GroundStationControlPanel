@@ -72,10 +72,10 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>36</x>
-             <y>0</y>
+             <x>28</x>
+             <y>-952</y>
              <width>449</width>
-             <height>5641</height>
+             <height>5331</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1761,10 +1761,10 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>12</x>
-             <y>0</y>
-             <width>497</width>
-             <height>3587</height>
+             <x>20</x>
+             <y>-1289</y>
+             <width>465</width>
+             <height>3346</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2906,10 +2906,10 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>74</x>
+             <x>62</x>
              <y>0</y>
-             <width>373</width>
-             <height>956</height>
+             <width>380</width>
+             <height>903</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -3326,10 +3326,10 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>118</x>
-             <y>37</y>
-             <width>299</width>
-             <height>639</height>
+             <x>109</x>
+             <y>50</y>
+             <width>306</width>
+             <height>609</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -3592,7 +3592,7 @@ Data stack</string>
      <x>0</x>
      <y>0</y>
      <width>577</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuTools">
@@ -3613,27 +3613,27 @@ Data stack</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="spreadingFactorButtonGroup"/>
-  <buttongroup name="publicPrivateRequestButtonGroup"/>
   <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="buttonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="publicPrivateRequestButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
   <buttongroup name="transmissionsEnabledDisabledButtonGroup">
    <property name="exclusive">
     <bool>true</bool>
    </property>
   </buttongroup>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup"/>
   <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
   <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
   <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
+  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
  </buttongroups>
 </ui>

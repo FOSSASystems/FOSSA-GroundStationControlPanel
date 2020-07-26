@@ -93,7 +93,7 @@ public:
     IGroundStationSerialMessage* Create_CMD_Set_Low_Power_Mode_Enable();
     IGroundStationSerialMessage* Create_CMD_Set_Receive_Windows();
     IGroundStationSerialMessage* Create_CMD_Record_Solar_Cells();
-    IGroundStationSerialMessage* Create_CMD_Camera_Capture();
+    IGroundStationSerialMessage* Create_CMD_Camera_Capture(char pictureSlot, char lightMode, char pictureSize, char brightness, char saturation, char specialFilter, char contrast);
     IGroundStationSerialMessage* Create_CMD_Set_Power_Limits();
     IGroundStationSerialMessage* Create_CMD_Set_RTC();
     IGroundStationSerialMessage* Create_CMD_Record_IMU();

@@ -325,23 +325,25 @@ void MainWindow::LoadSatelliteControlsUI()
 }
 
 
-// ping button
-void MainWindow::on_baseOpsPingButton_clicked()
+void MainWindow::on_CameraControl_Capture_Button_clicked()
 {
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Ping();
+    char pictureSlot = (char)this->ui->CameraControl_PictureSlot_SpinBox->value();
+    char lightMode = (char)this->ui->CameraControl_LightMode_SpinBox->value();
+    char pictureSize = (char)this->ui->CameraControl_PictureSisze_SpinBox->value();
+    char brightness = (char)this->ui->CameraControl_Brightness_SpinBox->value();
+    char saturation = (char)this->ui->CameraControl_Saturation_SpinBox->value();
+    char specialFilter = (char)this->ui->CameraControl_SpecialFilter_SpinBox->value();
+    char contrast = (char)this->ui->CameraControl_Contrast_SpinBox->value();
+
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Camera_Capture(pictureSlot,
+                                                                                lightMode,
+                                                                                pictureSize,
+                                                                                brightness,
+                                                                                saturation,
+                                                                                specialFilter,
+                                                                                contrast);
     this->SendSerialData(msg);
 }
-
-// deploy button
-void MainWindow::on_baseOpsDeploybutton_clicked()
-{
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Deploy();
-    this->SendSerialData(msg);
-}
-
-
-
-
 #define SatelliteControlsTab_End }
 
 
@@ -867,10 +869,4 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
     msgBox.setDetailedText(str);
 
     msgBox.exec();
-}
-
-
-void MainWindow::on_SatelliteControls_BaseOps_Ping_Button_clicked()
-{
-
 }
