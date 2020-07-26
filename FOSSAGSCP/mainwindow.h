@@ -72,6 +72,10 @@ private slots:
 
     // Receive message from message logger.
     void ReceivedMessagefromMessageLog(QString msg);
+    void ReceivedMessagefromSystemInformationPane(QString msg);
+
+    void on_SatelliteControls_BaseOps_Ping_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h

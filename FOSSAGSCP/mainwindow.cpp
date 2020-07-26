@@ -41,6 +41,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // data piping from message log frame to serial port thread.
     connect(m_messageLogFrame, &MessageLogFrame::SendDataFromMessageLogFrame, this, &MainWindow::ReceivedMessagefromMessageLog);
+    // data piping from the system information frame to the serial port thread.
+    connect(m_sytemInfoPane, &systeminformationpane::SendDataFromSystemInformationPane, this, &MainWindow::ReceivedMessagefromSystemInformationPane);
 }
 
 MainWindow::~MainWindow()
@@ -226,6 +228,12 @@ void MainWindow::ReceivedHandshake()
 
 
 void MainWindow::ReceivedMessagefromMessageLog(QString msg)
+{
+    QByteArray bytes = msg.toLocal8Bit();
+    m_serialPortThread.Write(bytes);
+}
+
+void MainWindow::ReceivedMessagefromSystemInformationPane(QString msg)
 {
     QByteArray bytes = msg.toLocal8Bit();
     m_serialPortThread.Write(bytes);
@@ -863,3 +871,8 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
     msgBox.exec();
 }
 
+
+void MainWindow::on_SatelliteControls_BaseOps_Ping_Button_clicked()
+{
+
+}

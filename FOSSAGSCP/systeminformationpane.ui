@@ -39,9 +39,9 @@
           <property name="geometry">
            <rect>
             <x>165</x>
-            <y>-1281</y>
+            <y>0</y>
             <width>450</width>
-            <height>2310</height>
+            <height>2387</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -51,59 +51,7 @@
            </sizepolicy>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="2" column="0">
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="title">
-              <string>Time</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_4">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_3">
-                <property name="text">
-                 <string>Unix Timestamp:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="SystemInformation_UnixTimestamp_LineEdit">
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="13" column="0">
-            <spacer name="horizontalSpacer_11">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="7" column="0">
-            <spacer name="horizontalSpacer_8">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="11" column="0">
+           <item row="12" column="0">
             <spacer name="horizontalSpacer_10">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -116,310 +64,7 @@
              </property>
             </spacer>
            </item>
-           <item row="9" column="0">
-            <spacer name="horizontalSpacer_9">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="3" column="0">
-            <spacer name="horizontalSpacer_6">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="16" column="0">
-            <widget class="QGroupBox" name="groupBox_7">
-             <property name="title">
-              <string>Sensors</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_9">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_28">
-                <property name="text">
-                 <string>Top Board Light Sensor (lux):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_27">
-                <property name="text">
-                 <string>Y Panel Light Sensor (lux):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="SystemInformation_Sensors_YPanelLightSensor_LineEdit"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="SystemInformation_Sensors_TopBoardLightSensor_LineEdit"/>
-              </item>
-              <item row="2" column="0" colspan="2">
-               <widget class="QGroupBox" name="groupBox_11">
-                <property name="title">
-                 <string>Sensor States</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_13">
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_36">
-                   <property name="text">
-                    <string>Light Sensor Y:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_37">
-                   <property name="text">
-                    <string>Current Sensor MPPT:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="label_39">
-                   <property name="text">
-                    <string>Current Sensor ZB:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_38">
-                   <property name="text">
-                    <string>Current Sensor Y:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="label_40">
-                   <property name="text">
-                    <string>Current Sensor ZA:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="0">
-                  <widget class="QLabel" name="label_41">
-                   <property name="text">
-                    <string>Current Sensor XB:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="0">
-                  <widget class="QLabel" name="label_42">
-                   <property name="text">
-                    <string>Current Sensor XA:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_35">
-                   <property name="text">
-                    <string>Light Sensor Top:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox"/>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox"/>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorTop_SpinBox"/>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox"/>
-                 </item>
-                 <item row="4" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox"/>
-                 </item>
-                 <item row="5" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZA_SpinBox"/>
-                 </item>
-                 <item row="6" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox"/>
-                 </item>
-                 <item row="7" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXA_SpinBox_2"/>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="14" column="0">
-            <widget class="QGroupBox" name="groupBox_6">
-             <property name="title">
-              <string>Temperature Information</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_8">
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_23">
-                <property name="text">
-                 <string>Bottom Board Temperatire (C):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_22">
-                <property name="text">
-                 <string>OBC Board Temperature (C):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_25">
-                <property name="text">
-                 <string>Second Battery Temperature (C):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_24">
-                <property name="text">
-                 <string>Battery Temperature (C):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_26">
-                <property name="text">
-                 <string>MCU Temperature (C):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_21">
-                <property name="text">
-                 <string>Y Panel Temperature (C):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_YPanelTemperature_SpinBox"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_OBCBoardTemperature_SpinBox"/>
-              </item>
-              <item row="2" column="1">
-               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_BottomBoardTemperature_SpinBox"/>
-              </item>
-              <item row="3" column="1">
-               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_BatteryTemperature_SpinBox"/>
-              </item>
-              <item row="4" column="1">
-               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_SecondBatteryTemperature_SpinBox"/>
-              </item>
-              <item row="5" column="1">
-               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_MCUTemperature_SpinBox"/>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="18" column="0">
-            <widget class="QGroupBox" name="groupBox_8">
-             <property name="title">
-              <string>Last H-bridge Faults</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_10">
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_31">
-                <property name="text">
-                 <string>Last Z Axis H-bridge Fault:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_29">
-                <property name="text">
-                 <string>Last X Axis H-bridge Fault:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_30">
-                <property name="text">
-                 <string>Last Y Axis H-bridge Fault:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_XAxisHBridgeFault_SpinBox"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_YAxisHBridgeFault_SpinBox"/>
-              </item>
-              <item row="2" column="1">
-               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_ZAxisHBridgeFault_SpinBox"/>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="17" column="0">
-            <spacer name="horizontalSpacer_13">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="6" column="0">
-            <widget class="QGroupBox" name="groupBox_4">
-             <property name="title">
-              <string>Counter</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_6">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_10">
-                <property name="text">
-                 <string>Reset Counter:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_Counter_SpinBox">
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="12" column="0">
+           <item row="13" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
               <string>Solar Panels Power Information</string>
@@ -583,7 +228,7 @@
              </layout>
             </widget>
            </item>
-           <item row="0" column="0">
+           <item row="1" column="0">
             <widget class="QGroupBox" name="groupBox">
              <property name="title">
               <string>MPPT</string>
@@ -592,28 +237,28 @@
               <set>Qt::AlignCenter</set>
              </property>
              <layout class="QGridLayout" name="gridLayout_3">
-              <item row="0" column="1">
+              <item row="1" column="1">
                <widget class="QLineEdit" name="SystemInformation_MPPT_OutputVoltage_LineEdit">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="label">
                 <property name="text">
                  <string>Output Voltage (mV): </string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="0">
+              <item row="2" column="0">
                <widget class="QLabel" name="label_2">
                 <property name="text">
                  <string>Output Current (uA):</string>
                 </property>
                </widget>
               </item>
-              <item row="1" column="1">
+              <item row="2" column="1">
                <widget class="QLineEdit" name="SystemInformation_MPPT_OutputCurrent_LineEdit">
                 <property name="readOnly">
                  <bool>true</bool>
@@ -623,7 +268,7 @@
              </layout>
             </widget>
            </item>
-           <item row="1" column="0">
+           <item row="2" column="0">
             <spacer name="horizontalSpacer_5">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -636,7 +281,7 @@
              </property>
             </spacer>
            </item>
-           <item row="4" column="0">
+           <item row="5" column="0">
             <widget class="QGroupBox" name="groupBox_3">
              <property name="title">
               <string>Power Configuration</string>
@@ -648,7 +293,7 @@
               <item row="2" column="1">
                <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerModeActive_Activated_RadioButton">
                 <property name="text">
-                 <string>Activated</string>
+                 <string>A&amp;ctivated</string>
                 </property>
                 <property name="checkable">
                  <bool>false</bool>
@@ -846,7 +491,7 @@
              </layout>
             </widget>
            </item>
-           <item row="8" column="0">
+           <item row="9" column="0">
             <widget class="QGroupBox" name="groupBox_10">
              <property name="title">
               <string>Window Receive Length</string>
@@ -879,6 +524,361 @@
             </widget>
            </item>
            <item row="10" column="0">
+            <spacer name="horizontalSpacer_9">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="17" column="0">
+            <widget class="QGroupBox" name="groupBox_7">
+             <property name="title">
+              <string>Sensors</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>Top Board Light Sensor (lux):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string>Y Panel Light Sensor (lux):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="SystemInformation_Sensors_YPanelLightSensor_LineEdit"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="SystemInformation_Sensors_TopBoardLightSensor_LineEdit"/>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_11">
+                <property name="title">
+                 <string>Sensor States</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_13">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_36">
+                   <property name="text">
+                    <string>Light Sensor Y:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_37">
+                   <property name="text">
+                    <string>Current Sensor MPPT:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_39">
+                   <property name="text">
+                    <string>Current Sensor ZB:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_38">
+                   <property name="text">
+                    <string>Current Sensor Y:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabel" name="label_40">
+                   <property name="text">
+                    <string>Current Sensor ZA:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="label_41">
+                   <property name="text">
+                    <string>Current Sensor XB:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0">
+                  <widget class="QLabel" name="label_42">
+                   <property name="text">
+                    <string>Current Sensor XA:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_35">
+                   <property name="text">
+                    <string>Light Sensor Top:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox"/>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox"/>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorTop_SpinBox"/>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox"/>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox"/>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZA_SpinBox"/>
+                 </item>
+                 <item row="6" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox"/>
+                 </item>
+                 <item row="7" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXA_SpinBox_2"/>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="18" column="0">
+            <spacer name="horizontalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="14" column="0">
+            <spacer name="horizontalSpacer_11">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="7" column="0">
+            <widget class="QGroupBox" name="groupBox_4">
+             <property name="title">
+              <string>Counter</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_6">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_10">
+                <property name="text">
+                 <string>Reset Counter:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="SystemInformation_Counter_SpinBox">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="19" column="0">
+            <widget class="QGroupBox" name="groupBox_8">
+             <property name="title">
+              <string>Last H-bridge Faults</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_31">
+                <property name="text">
+                 <string>Last Z Axis H-bridge Fault:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_29">
+                <property name="text">
+                 <string>Last X Axis H-bridge Fault:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_30">
+                <property name="text">
+                 <string>Last Y Axis H-bridge Fault:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_XAxisHBridgeFault_SpinBox"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_YAxisHBridgeFault_SpinBox"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_ZAxisHBridgeFault_SpinBox"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="4" column="0">
+            <spacer name="horizontalSpacer_6">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="3" column="0">
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>Time</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>Unix Timestamp:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="SystemInformation_UnixTimestamp_LineEdit">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="15" column="0">
+            <widget class="QGroupBox" name="groupBox_6">
+             <property name="title">
+              <string>Temperature Information</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_8">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_23">
+                <property name="text">
+                 <string>Bottom Board Temperatire (C):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_22">
+                <property name="text">
+                 <string>OBC Board Temperature (C):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_25">
+                <property name="text">
+                 <string>Second Battery Temperature (C):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_24">
+                <property name="text">
+                 <string>Battery Temperature (C):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_26">
+                <property name="text">
+                 <string>MCU Temperature (C):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_21">
+                <property name="text">
+                 <string>Y Panel Temperature (C):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_YPanelTemperature_SpinBox"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_OBCBoardTemperature_SpinBox"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_BottomBoardTemperature_SpinBox"/>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_BatteryTemperature_SpinBox"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_SecondBatteryTemperature_SpinBox"/>
+              </item>
+              <item row="5" column="1">
+               <widget class="QSpinBox" name="SystemInformation_TemperatureInformation_MCUTemperature_SpinBox"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="11" column="0">
             <widget class="QGroupBox" name="groupBox_12">
              <property name="title">
               <string>ADCS Result</string>
@@ -900,7 +900,7 @@
              </layout>
             </widget>
            </item>
-           <item row="20" column="0">
+           <item row="21" column="0">
             <widget class="QGroupBox" name="groupBox_9">
              <property name="title">
               <string>Flash Information</string>
@@ -922,7 +922,7 @@
              </layout>
             </widget>
            </item>
-           <item row="5" column="0">
+           <item row="6" column="0">
             <spacer name="horizontalSpacer_7">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -935,7 +935,7 @@
              </property>
             </spacer>
            </item>
-           <item row="15" column="0">
+           <item row="16" column="0">
             <spacer name="horizontalSpacer_12">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -948,7 +948,7 @@
              </property>
             </spacer>
            </item>
-           <item row="19" column="0">
+           <item row="20" column="0">
             <spacer name="horizontalSpacer_14">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -960,6 +960,22 @@
               </size>
              </property>
             </spacer>
+           </item>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_13">
+             <property name="title">
+              <string>Requesting</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_15">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="SystemInformation_RequestFullSystemInformation">
+                <property name="text">
+                 <string>Request Full System Information</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
           </layout>
          </widget>

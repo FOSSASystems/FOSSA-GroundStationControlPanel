@@ -307,3 +307,11 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Deploy()
 
     return msg;
 }
+
+IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Full_System_Info()
+{
+    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_FULL_SYSTEM_INFO, 0, nullptr);
+
+    return msg;
+}
+

@@ -12,11 +12,16 @@ class systeminformationpane;
 class systeminformationpane : public QWidget
 {
     Q_OBJECT
-
 public:
-    explicit systeminformationpane(QWidget *parent = nullptr);
+    systeminformationpane(QWidget *parent = nullptr, Interpreter* interpreter = nullptr);
     ~systeminformationpane();
     Ui::systeminformationpane *ui;
+signals:
+    void SendDataFromSystemInformationPane(QString data);
+private:
+    Interpreter* m_interpreter = nullptr;
+private slots:
+    void on_SystemInformation_RequestFullSystemInformation_clicked();
 };
 
 #endif // SYSTEMINFORMATIONPANE_H
