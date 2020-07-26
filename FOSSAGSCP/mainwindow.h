@@ -76,6 +76,10 @@ private slots:
 
     void on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked();
 
+    void on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked();
+
+    void on_SatelliteConfig_ADCs_Controller_Set_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h

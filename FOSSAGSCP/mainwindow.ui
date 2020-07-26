@@ -1735,9 +1735,9 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>-2638</y>
+             <y>-2341</y>
              <width>465</width>
-             <height>3346</height>
+             <height>3356</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2514,13 +2514,17 @@ tolerance check:</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_57">
                   <item row="4" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M51_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Controller_M51_LineEdit"/>
                   </item>
                   <item row="1" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M50_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Controller_M50_LineEdit">
+                    <property name="text">
+                     <string>1.0,2.0,3.0</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="6" column="0" colspan="4">
-                   <widget class="QPushButton" name="SatelliteConfig_IMU_Controller_Set_Button">
+                   <widget class="QPushButton" name="SatelliteConfig_ADCs_Controller_Set_Button">
                     <property name="text">
                      <string>Set</string>
                     </property>
@@ -2529,7 +2533,8 @@ tolerance check:</string>
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_136">
                     <property name="text">
-                     <string>ADCS Controller Matrix:</string>
+                     <string>ADCS Controller Matrix
+(Seperate with commas):</string>
                     </property>
                    </widget>
                   </item>
@@ -2541,10 +2546,10 @@ tolerance check:</string>
                    </widget>
                   </item>
                   <item row="0" column="2">
-                   <widget class="QLineEdit" name="lineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Controller_ControllerID_LineEdit"/>
                   </item>
                   <item row="5" column="2">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Controller_M52_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Controller_M52_LineEdit"/>
                   </item>
                  </layout>
                 </widget>
@@ -2880,7 +2885,7 @@ Data stack</string>
            <property name="geometry">
             <rect>
              <x>62</x>
-             <y>0</y>
+             <y>-195</y>
              <width>380</width>
              <height>903</height>
             </rect>

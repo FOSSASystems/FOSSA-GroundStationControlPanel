@@ -112,6 +112,9 @@ public:
     IGroundStationSerialMessage* Create_CMD_Abort();
     IGroundStationSerialMessage* Create_CMD_Maneuver();
     IGroundStationSerialMessage* Create_CMD_Set_ADCS_Parameters();
+    IGroundStationSerialMessage *Create_CMD_Set_ADCS_Controller(char controllerId, float controllerMatrix[3][6]);
+    IGroundStationSerialMessage* Create_CMD_Set_ADCS_Ephemerides();
+    IGroundStationSerialMessage* Create_CMD_Set_ADCS_Detumble();
     IGroundStationSerialMessage* Create_CMD_Erase_Flash();
 signals:
     void ReceivedHandshake();

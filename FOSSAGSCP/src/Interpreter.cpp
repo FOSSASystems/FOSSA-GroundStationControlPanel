@@ -332,6 +332,33 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Picture_Burst(char pict
     return msg;
 }
 
+IGroundStationSerialMessage *Interpreter::Create_CMD_Set_ADCS_Controller(char controllerId, float controllerMatrix[3][6])
+{
+    char optData[77];
+    optData[0] = controllerId;
+
+
+    int i = 1;
+    for (int x = 0; x < 3; x++)
+    {
+        for (int y = 0; y < 6; y++)
+        {
+            float value = controllerMatrix[x][y];
+            char* valueAsArray = (char*)&value;
+
+            optData[i] = valueAsArray[0];
+            optData[i+1] = valueAsArray[1];
+            optData[i+2] = valueAsArray[2];
+            optData[i+3] = valueAsArray[3];
+
+            i += 4;
+        }
+    }
+
+    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_SET_ADCS_CONTROLLER, 77, optData);
+    return msg;
+}
+
 IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Full_System_Info()
 {
     IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_FULL_SYSTEM_INFO, 0, nullptr);

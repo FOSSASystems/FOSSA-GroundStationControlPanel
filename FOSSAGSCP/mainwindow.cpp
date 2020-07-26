@@ -365,6 +365,70 @@ void MainWindow::on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked()
 
     this->SendSerialData(msg);
 }
+
+
+void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
+{
+    char controllerId =(char)this->ui->SatelliteConfig_ADCs_Controller_ControllerID_LineEdit->text().toStdString()[0];
+
+    QString firstLine = this->ui->SatelliteConfig_ADCs_Controller_M50_LineEdit->text();
+    QString secondLine = this->ui->SatelliteConfig_ADCs_Controller_M51_LineEdit->text();
+    QString thirdLine = this->ui->SatelliteConfig_ADCs_Controller_M52_LineEdit->text();
+
+    QStringList firstLineElements;
+    firstLineElements = firstLine.split(',');
+
+    if (firstLineElements.length() != 6)
+    {
+        throw "Number of elements != 3";
+    }
+
+    QStringList secondLineElements;
+    secondLineElements = secondLine.split(',');
+
+    if (secondLineElements.length() != 6)
+    {
+        throw "Number of elements != 6";
+    }
+
+    QStringList thirdLineElements;
+    thirdLineElements = thirdLine.split(',');
+
+    if (thirdLineElements.length() != 6)
+    {
+        throw "Number of elements != 6";
+    }
+
+
+    float controllerMatrix[3][6];
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = firstLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[0][i] = val;
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = secondLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[1][i] = val;
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = thirdLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[2][i] = val;
+    }
+
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
+
+    this->SendSerialData(msg);
+}
+
+void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
+{
+}
+
 #define SatelliteControlsTab_End }
 
 
@@ -891,4 +955,5 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
+
 
