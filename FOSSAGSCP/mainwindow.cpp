@@ -425,8 +425,51 @@ void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
     this->SendSerialData(msg);
 }
 
+
+
+static std::vector<ephemerides_t> g_ephemeridesControllerStack;
+
 void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
 {
+    QString solar = ui->SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit->text();
+    QStringList solarElements = solar.split(',');
+
+    QString magnetic = ui->SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_LineEdit->text();
+    QStringList magneticElements = magnetic.split(',');
+
+    uint8_t controllerId = ui->SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox->text().toUInt();
+
+    ephemerides_t ephemeridesStruct;
+    ephemeridesStruct.solar_x = solarElements[0].toFloat();
+    ephemeridesStruct.solar_y = solarElements[1].toFloat();
+    ephemeridesStruct.solar_z = solarElements[2].toFloat();
+    ephemeridesStruct.magnetic_x = magneticElements[0].toFloat();
+    ephemeridesStruct.magnetic_y = magneticElements[1].toFloat();
+    ephemeridesStruct.magnetic_z = magneticElements[2].toFloat();
+    ephemeridesStruct.controllerId = controllerId;
+
+    g_ephemeridesControllerStack.push_back(ephemeridesStruct);
+
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
+
+
+void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button_clicked()
+{
+    g_ephemeridesControllerStack.clear();
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
+
+void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked()
+{
+    uint16_t chunkId = ui->SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox->value();
+
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
+    this->SendSerialData(msg);
+
+    g_ephemeridesControllerStack.clear();
+
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
 }
 
 #define SatelliteControlsTab_End }
@@ -955,5 +998,7 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
+
+
 
 

@@ -65,6 +65,7 @@ HEADERS += \
     3rdparty/fossasattracker/src/SimulationResult.hpp \
     3rdparty/fossasattracker/src/TLE.hpp \
     3rdparty/tiny-aes/aes.h \
+    include/CStructs.h \
     include/DopplerShiftCorrector.h \
     include/Interpreter.h \
     include/Interfaces/IGroundStationSerialMessage.h \

@@ -337,12 +337,12 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Set_ADCS_Controller(char co
     char optData[77];
     optData[0] = controllerId;
 
-
     int i = 1;
     for (int x = 0; x < 3; x++)
     {
         for (int y = 0; y < 6; y++)
         {
+            /// @todo check for endianess here.
             float value = controllerMatrix[x][y];
             char* valueAsArray = (char*)&value;
 
@@ -356,6 +356,34 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Set_ADCS_Controller(char co
     }
 
     IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_SET_ADCS_CONTROLLER, 77, optData);
+    return msg;
+}
+
+IGroundStationSerialMessage *Interpreter::Create_CMD_Set_ADCS_Ephemerides(uint16_t chunkId, std::vector<ephemerides_t> ephemeridesDataQueue)
+{
+    size_t optDataLen = ephemeridesDataQueue.size() * sizeof(ephemerides_t);
+    optDataLen += sizeof(uint16_t);
+
+
+    char optData[optDataLen];
+    optData[0] = chunkId;
+    optData[1] = chunkId >> 8;
+
+    int dataCounter = 0;
+    for (int i = 0; i < ephemeridesDataQueue.size(); i++)
+    {
+        ephemerides_t ephemeridesStruct = ephemeridesDataQueue[i];
+
+        size_t startIndex = dataCounter * sizeof(ephemerides_t);
+
+        ephemerides_t* ptr = &ephemeridesStruct;
+
+        memcpy(&(optData[startIndex]), (void*)ptr, sizeof(ephemerides_t));
+
+        dataCounter++;
+    }
+
+    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_SET_ADCS_EPHEMERIDES, optDataLen, optData);
     return msg;
 }
 

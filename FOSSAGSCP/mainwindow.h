@@ -15,6 +15,9 @@
 #include <QDir>
 #include <QByteArray>
 #include <QThread>
+#include <queue>
+
+#include "CStructs.h"
 
 #include <FOSSA-Comms.h>
 
@@ -79,6 +82,10 @@ private slots:
     void on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked();
 
     void on_SatelliteConfig_ADCs_Controller_Set_Button_clicked();
+
+    void on_Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button_clicked();
+
+    void on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked();
 
 private:
 

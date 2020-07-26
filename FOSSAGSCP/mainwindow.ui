@@ -1735,7 +1735,7 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>-2341</y>
+             <y>-2648</y>
              <width>465</width>
              <height>3356</height>
             </rect>
@@ -2761,7 +2761,11 @@ change tolerance:</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_60">
                   <item row="4" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_Z_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_LineEdit">
+                    <property name="text">
+                     <string>x,y,z</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="0" column="1">
                    <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox"/>
@@ -2854,7 +2858,11 @@ Data stack</string>
                    <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox"/>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_Z_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit">
+                    <property name="text">
+                     <string>x,y,z</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
