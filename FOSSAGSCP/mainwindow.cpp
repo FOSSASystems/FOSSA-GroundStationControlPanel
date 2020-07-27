@@ -873,13 +873,19 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
     std::string passwordStdStr = passwordStr.toStdString();
 
     QString key = this->ui->ControlPanelSettings_securityKeyLineEdit->text();
-    QByteArray keyAsBytes = key.toLocal8Bit();
 
-    uint8_t keyBytes[16];
-    for (int i = 0; i < 16; i++)
+    QByteArray keyBytes;
+    QStringList keyHexElements = key.split(',');
+    for (int i = 0; i < keyHexElements.size(); i++)
     {
-        uint8_t v = keyAsBytes[i];
-        keyBytes[i] = v;
+        QString hexElement = keyHexElements[i];
+        bool status = false;
+        uint8_t hexDigit = hexElement.toUInt(&status, 16);
+        if (status == false)
+        {
+            throw "could not convert hex digit, e.g. 0x01";
+        }
+        keyBytes.push_back(hexDigit);
     }
 
     m_settings.SetPassword(passwordStdStr);
