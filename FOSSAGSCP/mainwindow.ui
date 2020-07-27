@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>577</width>
-    <height>828</height>
+    <width>983</width>
+    <height>1004</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -72,8 +72,8 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>28</x>
-             <y>-4569</y>
+             <x>231</x>
+             <y>-4393</y>
              <width>449</width>
              <height>5277</height>
             </rect>
@@ -1734,10 +1734,10 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>20</x>
+             <x>223</x>
              <y>0</y>
              <width>465</width>
-             <height>3425</height>
+             <height>3460</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2884,13 +2884,6 @@ Data stack</string>
                <string>Satellite Version</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_63">
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_51">
-                 <property name="text">
-                  <string>Version Name:</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="1">
                 <widget class="QComboBox" name="SatelliteConfig_SatelliteVersion_ComboBox">
                  <item>
@@ -2903,6 +2896,20 @@ Data stack</string>
                    <string>FOSSASAT-1B</string>
                   </property>
                  </item>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_51">
+                 <property name="text">
+                  <string>Version Name:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="SatelliteConfig_SatelliteVersion_SetVersion_PushButton">
+                 <property name="text">
+                  <string>Set Satellite Version</string>
+                 </property>
                 </widget>
                </item>
               </layout>
@@ -2930,8 +2937,8 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>62</x>
-             <y>-195</y>
+             <x>265</x>
+             <y>-19</y>
              <width>380</width>
              <height>903</height>
             </rect>
@@ -3350,8 +3357,8 @@ Data stack</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>109</x>
-             <y>50</y>
+             <x>312</x>
+             <y>138</y>
              <width>306</width>
              <height>609</height>
             </rect>
@@ -3615,7 +3622,7 @@ Data stack</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>577</width>
+     <width>983</width>
      <height>26</height>
     </rect>
    </property>

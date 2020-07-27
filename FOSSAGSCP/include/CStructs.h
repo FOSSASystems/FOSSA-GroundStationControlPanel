@@ -1,6 +1,8 @@
 #ifndef CSTRUCTS_H
 #define CSTRUCTS_H
 
+#include <cstdint>
+
 struct ephemerides_t
 {
     float solar_x;

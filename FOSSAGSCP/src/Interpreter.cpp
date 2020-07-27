@@ -306,6 +306,18 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Ping()
     return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_PING, 0, nullptr);
 }
 
+IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Statistics()
+{
+    if (m_satVersion == QString("FOSSASAT-1B"))
+    {
+
+    }
+    else if (m_satVersion == QString("FOSSASAT-2"))
+    {
+
+    }
+}
+
 IGroundStationSerialMessage *Interpreter::Create_CMD_Deploy()
 {
     IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_DEPLOY, 0, nullptr);

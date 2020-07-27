@@ -493,6 +493,19 @@ void MainWindow::LoadSatelliteConfigurationUI()
 {
 
 }
+
+
+void MainWindow::on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_clicked()
+{
+    QString text = ui->SatelliteConfig_SatelliteVersion_ComboBox->currentText();
+
+    if ( (text != "FOSSASAT-1B") && (text != "FOSSASAT-2") )
+    {
+        throw "invalid satellite version.";
+    }
+
+    m_interpreter->SetSatelliteVersion(text);
+}
 #define SatelliteConfigurationTab_End }
 
 
@@ -998,7 +1011,5 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
-
-
 
 
