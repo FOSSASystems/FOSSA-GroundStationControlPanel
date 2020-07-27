@@ -20,7 +20,7 @@
       <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -992,12 +992,12 @@
      </widget>
      <widget class="QWidget" name="tab_2">
       <attribute name="title">
-       <string>Live Packet Information</string>
+       <string>Packet Information</string>
       </attribute>
      </widget>
      <widget class="QWidget" name="tab_3">
       <attribute name="title">
-       <string>Live Statistics</string>
+       <string>Statistics</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout_16">
        <item row="1" column="0">
