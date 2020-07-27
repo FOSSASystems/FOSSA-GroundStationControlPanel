@@ -14,8 +14,44 @@ systeminformationpane::~systeminformationpane()
     delete ui;
 }
 
+
+
+//////////////////////////////////////
+// Satellite system information tab //
+//////////////////////////////////////
+#define SatelliteStatsTab_Start {
+
 void systeminformationpane::on_SystemInformation_RequestFullSystemInformation_clicked()
 {
     IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Get_Full_System_Info();
     this->SendDataFromSystemInformationPane(msg);
 }
+
+void systeminformationpane::on_SystemInformation_RequestSystemInformation_PushButton_clicked()
+{
+
+}
+
+#define SatelliteStatsTab_End }
+
+
+
+
+
+////////////////////////////
+// Packet information tab //
+///////////////////////////
+#define SatellitePacketTab_Start {
+#define SatellitePacketTab_Start }
+
+
+
+
+
+
+
+////////////////////////////////
+// Statistics information tab //
+////////////////////////////////
+#define SatelliteStatsTab_Start {
+#define SatelliteStatsTab_Start }

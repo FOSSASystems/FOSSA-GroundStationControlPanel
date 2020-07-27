@@ -90,6 +90,11 @@ IGroundStationSerialMessage* Interpreter::Create_GroundStationSerialMessage(char
     return dynamic_cast<IGroundStationSerialMessage*>(msg);
 }
 
+void Interpreter::SetSatelliteVersion(QString satVersion)
+{
+    m_satVersion = satVersion;
+}
+
 void Interpreter::Interpret_Received_Message(IGroundStationSerialMessage *inMsg)
 {
     // route via the operation id
@@ -363,6 +368,11 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Set_ADCS_Ephemerides(uint16
 {
     size_t optDataLen = ephemeridesDataQueue.size() * sizeof(ephemerides_t);
     optDataLen += sizeof(uint16_t);
+
+    if (optDataLen > 192)
+    {
+        throw "too much data in ephemerides stack (max is 192 bytes)";
+    }
 
 
     std::vector<char> optData;

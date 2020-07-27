@@ -62,6 +62,9 @@ public:
     // this is the base class for all the Create_CMD_XXX methods.
     IGroundStationSerialMessage* Create_GroundStationSerialMessage(char operationId, uint8_t functionId, uint8_t optDataLength, char* optData);
 
+    // set the satellite version
+    void SetSatelliteVersion(QString satVersion);
+
 
     void Interpret_Received_Message(IGroundStationSerialMessage* inMsg);
     void Interpret_Handshake(IGroundStationSerialMessage* inMsg);
@@ -126,6 +129,7 @@ private:
     Settings& m_settings;
     Ui::MainWindow* m_mainWindowUI = nullptr;
     Ui::systeminformationpane* m_systemInfoUI = nullptr;
+    QString m_satVersion;
 };
 
 #endif // Interpreter_H
