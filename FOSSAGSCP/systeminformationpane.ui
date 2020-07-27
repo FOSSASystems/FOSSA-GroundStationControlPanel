@@ -20,7 +20,7 @@
       <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -1171,7 +1171,7 @@
             <x>44</x>
             <y>0</y>
             <width>417</width>
-            <height>1125</height>
+            <height>1583</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -1181,7 +1181,7 @@
            </sizepolicy>
           </property>
           <layout class="QGridLayout" name="gridLayout_17">
-           <item row="1" column="0">
+           <item row="2" column="0">
             <widget class="QGroupBox" name="groupBox_14">
              <property name="title">
               <string>Statistics</string>
@@ -1246,15 +1246,319 @@
               <string>Controls</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_19">
-              <item row="0" column="0">
+              <item row="2" column="0" colspan="2">
                <widget class="QPushButton" name="LiveStatistics_Request_PushButton">
                 <property name="text">
                  <string>Request Statistics</string>
                 </property>
                </widget>
               </item>
+              <item row="0" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_20">
+                <property name="title">
+                 <string>FOSSASAT-1B Flags</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_26">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_57">
+                   <property name="text">
+                    <string>Charging Current:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_59">
+                   <property name="text">
+                    <string>Solar Cell A:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="label_61">
+                   <property name="text">
+                    <string>Battery Temperature:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_ChargingCurrent_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_BatteryVoltage_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_56">
+                   <property name="text">
+                    <string>Charging Voltage:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_SolarCellC_Enbled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0">
+                  <widget class="QLabel" name="label_62">
+                   <property name="text">
+                    <string>Board Temperature</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_60">
+                   <property name="text">
+                    <string>Solar Cell B:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_SolarCellB_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_BatteryTemperature_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabel" name="label_55">
+                   <property name="text">
+                    <string>Solar Cell C:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_SolarCellA_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_58">
+                   <property name="text">
+                    <string>Battery Voltage:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_BoardTemperature_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_ChargingVoltage_Enable">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_ChargingVoltage_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_ChargingCurrent_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_BatteryVoltage_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_SolarCellA_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_SolarCellB_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_SolarCellC_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_BatteryTemperature_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_1B_BoardTemperature_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+              <item row="1" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_21">
+                <property name="title">
+                 <string>FOSSASAT-2 Flags</string>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_27">
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_64">
+                   <property name="text">
+                    <string>Currents:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_65">
+                   <property name="text">
+                    <string>Voltages:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_Temperatures_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_66">
+                   <property name="text">
+                    <string>Light Sensors:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_67">
+                   <property name="text">
+                    <string>IMU:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_63">
+                   <property name="text">
+                    <string>Temperatures:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_Temperatures_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_Currents_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_Currents_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_Voltages_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_Voltages_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_LightSensors_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_LightSensors_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_IMU_Enabled">
+                   <property name="text">
+                    <string>Enable</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QRadioButton" name="StatisticsControls_Flags_2_IMU_Disabled">
+                   <property name="text">
+                    <string>Disable</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
              </layout>
             </widget>
+           </item>
+           <item row="1" column="0">
+            <spacer name="horizontalSpacer_15">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>

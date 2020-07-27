@@ -54,4 +54,12 @@ void systeminformationpane::on_SystemInformation_RequestSystemInformation_PushBu
 // Statistics information tab //
 ////////////////////////////////
 #define SatelliteStatsTab_Start {
+
+
+void systeminformationpane::on_LiveStatistics_Request_PushButton_clicked()
+{
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Get_Statistics()
+}
+
+
 #define SatelliteStatsTab_Start }
