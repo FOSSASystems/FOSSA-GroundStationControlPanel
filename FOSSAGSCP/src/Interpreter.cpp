@@ -324,14 +324,14 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Ping()
     return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_PING, 0, nullptr);
 }
 
-IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Statistics(char flags)
+IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Statistics(char flagsB, char flags)
 {
     IGroundStationSerialMessage* msg = nullptr;
 
     if (m_satVersion == VERSION_1B)
     {
         char optData[1]; // copy the parameter into this locally scoped variable for safety.
-        optData[0] = flags;
+        optData[0] = flagsB;
         msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_STATISTICS, 1, optData);
     }
     else if (m_satVersion == VERSION_2)
@@ -393,6 +393,22 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Set_Transmit_Enable(char tr
         this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_WIPE_EEPROM, 3, optData);
     }
 
+    return msg;
+}
+
+IGroundStationSerialMessage *Interpreter::Create_CMD_Record_Solar_Cells(char numSamples, uint16_t samplingPeriod)
+{
+    if (m_satVersion != VERSION_1B)
+    {
+        throw "only compatable with fossasat-1b";
+    }
+
+    char optData[3];
+    optData[0] = numSamples;
+    optData[1] = samplingPeriod;
+    optData[2] = samplingPeriod >> 8;
+
+    IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_RECORD_SOLAR_CELLS, 3, optData);
     return msg;
 }
 

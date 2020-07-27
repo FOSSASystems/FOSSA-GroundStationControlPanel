@@ -92,8 +92,6 @@ private slots:
 
     void on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked();
 
-    void on_SatelliteConfig_SatelliteVersion_ComboBox_currentIndexChanged(const QString &arg1);
-
     void on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_clicked();
 
     void on_EEPROM_Control_Wipe_Button_clicked();
@@ -105,7 +103,9 @@ private:
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h
                         // this means that we can't pass it to other systems, therefore
                         // we must do all UI interactivity in this class or create functions for
-                        // all elements? 21:52 25/06/2020 R.G.Bamford
+                        // all elements? 21:52 25/06/2020 R.G.Bamford.
+                        //
+                        // ui can be passed around fine, it just requiers ui_mainwindow.h includes
 
     // GUI Frames
     systeminformationpane *m_sytemInfoPane;

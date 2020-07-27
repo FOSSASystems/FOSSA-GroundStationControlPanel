@@ -22,3 +22,15 @@ Control Panel Source Code/ - This directory contains the Qt C++ source code file
 
 ## Versions
 0.1.2 - Camera control, ephemerides controller matrix
+
+0.1.3 - Compatability with 1B ui elements
+	  - Wipe eeprom
+	  - Record solar cells
+	  - Camera Capture
+	  - Picture burst
+	  - Set ADCS controller
+	  - Get statistics
+	  - Set adcs ephemerides
+	  - Get statistics
+
+0.1.4 - Record solar cells 1B

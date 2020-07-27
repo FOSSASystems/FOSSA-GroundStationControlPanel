@@ -1042,4 +1042,3 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
-

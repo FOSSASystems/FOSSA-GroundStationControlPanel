@@ -83,7 +83,8 @@ public:
     IGroundStationSerialMessage* Create_CMD_Retransmit_Custom();
     IGroundStationSerialMessage* Create_CMD_Transmit_System_Info();
     IGroundStationSerialMessage* Create_CMD_Get_Packet_Info();
-    IGroundStationSerialMessage *Create_CMD_Get_Statistics(char flags);
+    /// flagsB is for FOSSASAT-1B and flags is for FOSSASAT-2
+    IGroundStationSerialMessage *Create_CMD_Get_Statistics(char flagsB, char flags);
     IGroundStationSerialMessage* Create_CMD_Get_Full_System_Info();
     IGroundStationSerialMessage* Create_CMD_Store_And_Forward_Add();
     IGroundStationSerialMessage* Create_CMD_Store_And_Forward_Request();
@@ -101,7 +102,7 @@ public:
     IGroundStationSerialMessage* Create_CMD_Set_MPPT_Mode();
     IGroundStationSerialMessage* Create_CMD_Set_Low_Power_Mode_Enable();
     IGroundStationSerialMessage* Create_CMD_Set_Receive_Windows();
-    IGroundStationSerialMessage* Create_CMD_Record_Solar_Cells();
+    IGroundStationSerialMessage* Create_CMD_Record_Solar_Cells(char numSamples, uint16_t samplingPeriod);
     IGroundStationSerialMessage* Create_CMD_Camera_Capture(char pictureSlot, char lightMode, char pictureSize, char brightness, char saturation, char specialFilter, char contrast);
     IGroundStationSerialMessage* Create_CMD_Set_Power_Limits();
     IGroundStationSerialMessage* Create_CMD_Set_RTC();
