@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -1360,6 +1360,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_6</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="5" column="0">
@@ -1374,6 +1377,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_9</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="3" column="1">
@@ -1381,6 +1387,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_8</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="3" column="2">
@@ -1388,6 +1397,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_8</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="5" column="1" colspan="2">
@@ -1398,6 +1410,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_7</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="1" column="1">
@@ -1405,6 +1420,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_6</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="2" column="2">
@@ -1412,6 +1430,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_7</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="3" column="0">
@@ -1426,6 +1447,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_9</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="4" column="0">
@@ -1447,6 +1471,9 @@
                     <property name="text">
                      <string>Enable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_5</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="1" column="0">
@@ -1468,6 +1495,9 @@
                     <property name="text">
                      <string>Disable</string>
                     </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">buttonGroup_5</string>
+                    </attribute>
                    </widget>
                   </item>
                   <item row="6" column="0" colspan="3">
@@ -1605,7 +1635,7 @@
                      <string>Disable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup</string>
+                     <string notr="true">buttonGroup_10</string>
                     </attribute>
                    </widget>
                   </item>
@@ -1615,7 +1645,7 @@
                      <string>Disable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup_3</string>
+                     <string notr="true">buttonGroup_2</string>
                     </attribute>
                    </widget>
                   </item>
@@ -1625,7 +1655,7 @@
                      <string>Disable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup_2</string>
+                     <string notr="true">buttonGroup</string>
                     </attribute>
                    </widget>
                   </item>
@@ -1635,7 +1665,7 @@
                      <string>Enable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup_4</string>
+                     <string notr="true">buttonGroup_3</string>
                     </attribute>
                    </widget>
                   </item>
@@ -1645,7 +1675,7 @@
                      <string>Enable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup</string>
+                     <string notr="true">buttonGroup_10</string>
                     </attribute>
                    </widget>
                   </item>
@@ -1655,7 +1685,7 @@
                      <string>Enable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup_2</string>
+                     <string notr="true">buttonGroup</string>
                     </attribute>
                    </widget>
                   </item>
@@ -1665,7 +1695,7 @@
                      <string>Enable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup_3</string>
+                     <string notr="true">buttonGroup_2</string>
                     </attribute>
                    </widget>
                   </item>
@@ -1675,7 +1705,7 @@
                      <string>Disable</string>
                     </property>
                     <attribute name="buttonGroup">
-                     <string notr="true">buttonGroup_4</string>
+                     <string notr="true">buttonGroup_3</string>
                     </attribute>
                    </widget>
                   </item>
@@ -2038,7 +2068,7 @@ tolerance check:</string>
                   <string>Temperature Switch Disabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">mpptTemperatureSwitchButtonGroup</string>
+                  <string notr="true">buttonGroup_14</string>
                  </attribute>
                 </widget>
                </item>
@@ -2048,7 +2078,7 @@ tolerance check:</string>
                   <string>&amp;Keep Alive Disabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">mpptKeepAliveButtonGroup</string>
+                  <string notr="true">buttonGroup_15</string>
                  </attribute>
                 </widget>
                </item>
@@ -2058,7 +2088,7 @@ tolerance check:</string>
                   <string>Keep Ali&amp;ve Enabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">mpptKeepAliveButtonGroup</string>
+                  <string notr="true">buttonGroup_15</string>
                  </attribute>
                 </widget>
                </item>
@@ -2068,7 +2098,7 @@ tolerance check:</string>
                   <string>Temperature Switch Enabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">mpptTemperatureSwitchButtonGroup</string>
+                  <string notr="true">buttonGroup_14</string>
                  </attribute>
                 </widget>
                </item>
@@ -2608,6 +2638,9 @@ Data stack</string>
                  <property name="text">
                   <string>Enabled</string>
                  </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">buttonGroup_12</string>
+                 </attribute>
                 </widget>
                </item>
                <item row="2" column="2">
@@ -2615,6 +2648,9 @@ Data stack</string>
                  <property name="text">
                   <string>Disabled</string>
                  </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">buttonGroup_12</string>
+                 </attribute>
                 </widget>
                </item>
                <item row="1" column="2">
@@ -2623,7 +2659,7 @@ Data stack</string>
                   <string>Disabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
+                  <string notr="true">buttonGroup_11</string>
                  </attribute>
                 </widget>
                </item>
@@ -2633,7 +2669,7 @@ Data stack</string>
                   <string>Enabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
+                  <string notr="true">buttonGroup_4</string>
                  </attribute>
                 </widget>
                </item>
@@ -2650,7 +2686,7 @@ Data stack</string>
                   <string>Disabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
+                  <string notr="true">buttonGroup_4</string>
                  </attribute>
                 </widget>
                </item>
@@ -2660,7 +2696,7 @@ Data stack</string>
                   <string>Enabled</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
+                  <string notr="true">buttonGroup_11</string>
                  </attribute>
                 </widget>
                </item>
@@ -2734,7 +2770,7 @@ large packets:</string>
                   <string>Alternative Setting</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">spreadingFactorButtonGroup</string>
+                  <string notr="true">buttonGroup_13</string>
                  </attribute>
                 </widget>
                </item>
@@ -2744,7 +2780,7 @@ large packets:</string>
                   <string>Standard Setting</string>
                  </property>
                  <attribute name="buttonGroup">
-                  <string notr="true">spreadingFactorButtonGroup</string>
+                  <string notr="true">buttonGroup_13</string>
                  </attribute>
                 </widget>
                </item>
@@ -3106,7 +3142,7 @@ Sleep Interval (mV):</string>
            <property name="geometry">
             <rect>
              <x>265</x>
-             <y>-19</y>
+             <y>0</y>
              <width>380</width>
              <height>903</height>
             </rect>
@@ -3812,26 +3848,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="automatedStatisticsEnabledDisabledButtonGroup"/>
-  <buttongroup name="mpptTemperatureSwitchButtonGroup"/>
-  <buttongroup name="transmissionsEnabledDisabledButtonGroup">
-   <property name="exclusive">
-    <bool>true</bool>
-   </property>
-  </buttongroup>
-  <buttongroup name="spreadingFactorButtonGroup"/>
+  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_14"/>
   <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup"/>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="mpptKeepAliveButtonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup_3"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_10"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="lowPowerModeButtonGroup"/>
  </buttongroups>
 </ui>

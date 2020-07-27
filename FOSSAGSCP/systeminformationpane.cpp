@@ -1,17 +1,21 @@
 #include "systeminformationpane.h"
 #include "ui_systeminformationpane.h"
 
-systeminformationpane::systeminformationpane(QWidget *parent, Interpreter* interpreter) :
+systeminformationpane::systeminformationpane(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::systeminformationpane)
 {
     ui->setupUi(this);
-    m_interpreter = interpreter;
 }
 
 systeminformationpane::~systeminformationpane()
 {
     delete ui;
+}
+
+void systeminformationpane::SetInterpreter(Interpreter *interpreter)
+{
+    m_interpreter = interpreter;
 }
 
 
@@ -21,15 +25,16 @@ systeminformationpane::~systeminformationpane()
 //////////////////////////////////////
 #define SatelliteStatsTab_Start {
 
-void systeminformationpane::on_SystemInformation_RequestFullSystemInformation_clicked()
+void systeminformationpane::on_SystemInformation_RequestFullSystemInformation_PushButton_clicked()
 {
     IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Get_Full_System_Info();
-    this->SendDataFromSystemInformationPane(msg);
+    emit this->SendDataFromSystemInformationPane(msg);
 }
 
 void systeminformationpane::on_SystemInformation_RequestSystemInformation_PushButton_clicked()
 {
-
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Transmit_System_Info();
+    emit this->SendDataFromSystemInformationPane(msg);
 }
 
 void systeminformationpane::on_SystemInformation_RecordSolarCells_PushButton_clicked()
@@ -38,7 +43,7 @@ void systeminformationpane::on_SystemInformation_RecordSolarCells_PushButton_cli
     uint16_t samplingPeriod = ui->SystemInformation_RecordSolarCells_NumSamples_SpinBox->value();
 
     IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Record_Solar_Cells(numSamples, samplingPeriod);
-    this->SendDataFromSystemInformationPane(msg);
+    emit this->SendDataFromSystemInformationPane(msg);
 }
 
 
@@ -101,7 +106,7 @@ void systeminformationpane::on_LiveStatistics_Request_PushButton_clicked()
     flags = flags | (imu << 4);
 
     IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Get_Statistics(flagsB, flags);
-    this->SendDataFromSystemInformationPane(msg);
+    emit this->SendDataFromSystemInformationPane(msg);
 }
 
 

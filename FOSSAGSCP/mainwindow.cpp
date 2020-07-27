@@ -17,7 +17,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_messageLogFrame->show();
 
     // initialize the interpereter.
-    m_interpreter = new Interpreter(m_settings, ui, m_sytemInfoPane->ui);
+    assert(ui != nullptr);
+
+    m_interpreter = new Interpreter(m_settings, ui);
+    m_interpreter->SetSystemInformationPane(m_sytemInfoPane->ui);
+    m_sytemInfoPane->SetInterpreter(m_interpreter);
 
     // initialize the 4 main tabs.
     this->LoadControlPanelSettingsUI();

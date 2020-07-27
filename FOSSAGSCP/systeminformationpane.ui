@@ -27,7 +27,7 @@
        <string>Satellite System Information</string>
       </attribute>
       <layout class="QGridLayout" name="gridLayout">
-       <item row="0" column="1">
+       <item row="0" column="0">
         <widget class="QScrollArea" name="scrollArea">
          <property name="widgetResizable">
           <bool>true</bool>
@@ -39,9 +39,9 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>-897</y>
+            <y>-1974</y>
             <width>439</width>
-            <height>2813</height>
+            <height>2852</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -154,10 +154,10 @@
               <set>Qt::AlignCenter</set>
              </property>
              <layout class="QGridLayout" name="gridLayout_3">
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="SystemInformation_MPPT_OutputVoltage_LineEdit">
-                <property name="readOnly">
-                 <bool>true</bool>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_2">
+                <property name="text">
+                 <string>Output Current (uA):</string>
                 </property>
                </widget>
               </item>
@@ -168,15 +168,15 @@
                 </property>
                </widget>
               </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_2">
-                <property name="text">
-                 <string>Output Current (uA):</string>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_MPPT_OutputVoltage_SpinBox">
+                <property name="readOnly">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
-              <item row="2" column="1">
-               <widget class="QLineEdit" name="SystemInformation_MPPT_OutputCurrent_LineEdit">
+              <item row="4" column="1">
+               <widget class="QSpinBox" name="SystemInformation_MPPT_OutputCurrent_SpinBox">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -435,8 +435,23 @@
                 </property>
                </widget>
               </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_79">
+                <property name="text">
+                 <string>Time Since Last
+Reset (1B):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="SystemInformation_1B_TimeSinceLastReset_SpinBox">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+               </widget>
+              </item>
               <item row="0" column="1">
-               <widget class="QLineEdit" name="SystemInformation_UnixTimestamp_LineEdit">
+               <widget class="QSpinBox" name="SystemInformation_UnixTimestamp_SpinBox">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -709,7 +724,7 @@
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_Counter_SpinBox">
+               <widget class="QSpinBox" name="SystemInformation_ResetCounter_SpinBox">
                 <property name="readOnly">
                  <bool>true</bool>
                 </property>
@@ -930,6 +945,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_3</string>
+                </attribute>
                </widget>
               </item>
               <item row="0" column="2">
@@ -943,10 +961,13 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup</string>
+                </attribute>
                </widget>
               </item>
               <item row="1" column="2">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_RadioButton_4">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerMode_Disabled_RadioButton">
                 <property name="text">
                  <string>Disabled</string>
                 </property>
@@ -956,6 +977,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_2</string>
+                </attribute>
                </widget>
               </item>
               <item row="3" column="2">
@@ -969,6 +993,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_4</string>
+                </attribute>
                </widget>
               </item>
               <item row="3" column="0">
@@ -989,6 +1016,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_3</string>
+                </attribute>
                </widget>
               </item>
               <item row="2" column="0">
@@ -1009,6 +1039,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup</string>
+                </attribute>
                </widget>
               </item>
               <item row="1" column="1">
@@ -1022,6 +1055,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_2</string>
+                </attribute>
                </widget>
               </item>
               <item row="0" column="0">
@@ -1049,6 +1085,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_5</string>
+                </attribute>
                </widget>
               </item>
               <item row="3" column="1">
@@ -1062,6 +1101,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_4</string>
+                </attribute>
                </widget>
               </item>
               <item row="4" column="2">
@@ -1075,6 +1117,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_5</string>
+                </attribute>
                </widget>
               </item>
               <item row="1" column="0">
@@ -1102,6 +1147,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_6</string>
+                </attribute>
                </widget>
               </item>
               <item row="5" column="2">
@@ -1115,6 +1163,9 @@
                 <property name="autoExclusive">
                  <bool>false</bool>
                 </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_6</string>
+                </attribute>
                </widget>
               </item>
              </layout>
@@ -1129,15 +1180,15 @@
               <set>Qt::AlignCenter</set>
              </property>
              <layout class="QGridLayout" name="gridLayout_11">
-              <item row="0" column="0">
+              <item row="1" column="0">
                <widget class="QLabel" name="label_32">
                 <property name="text">
                  <string>Info Page CRC Error Counter:</string>
                 </property>
                </widget>
               </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="SystemInformation_FlashInformation_CRCError_LineEdit"/>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_FlashInformation_CRCError_SpinBox"/>
               </item>
              </layout>
             </widget>
@@ -1219,9 +1270,9 @@
          <widget class="QWidget" name="scrollAreaWidgetContents_3">
           <property name="geometry">
            <rect>
-            <x>143</x>
+            <x>140</x>
             <y>244</y>
-            <width>238</width>
+            <width>244</width>
             <height>384</height>
            </rect>
           </property>
@@ -1382,7 +1433,7 @@
           <property name="geometry">
            <rect>
             <x>44</x>
-            <y>-711</y>
+            <y>0</y>
             <width>417</width>
             <height>1583</height>
            </rect>
@@ -1785,4 +1836,12 @@
  </widget>
  <resources/>
  <connections/>
+ <buttongroups>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_4"/>
+ </buttongroups>
 </ui>

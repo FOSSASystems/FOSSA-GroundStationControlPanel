@@ -53,9 +53,10 @@ class Interpreter : public QObject
 {
     Q_OBJECT
 public:
-    Interpreter(Settings& settings, Ui::MainWindow* mainWindowUI, Ui::systeminformationpane* systemInfoPaneUI)
-        : m_settings(settings), m_mainWindowUI(mainWindowUI), m_systemInfoUI(systemInfoPaneUI) {}
+    Interpreter(Settings& settings, Ui::MainWindow* mainWindowUI);
     virtual ~Interpreter() {}
+
+    void SetSystemInformationPane(Ui::systeminformationpane* systemInfoPaneUI);
 
     /// The ground station serial message is an internal command structure.
     /// This creates it from raw serial datagrams.
@@ -135,9 +136,10 @@ public:
 signals:
     void ReceivedHandshake();
     void ReceivedSatelliteSystemInformation(IGroundStationSerialMessage* message);
+protected:
+    Ui::MainWindow* m_mainWindowUI = nullptr;
 private:
     Settings& m_settings;
-    Ui::MainWindow* m_mainWindowUI = nullptr;
     Ui::systeminformationpane* m_systemInfoUI = nullptr;
     QString m_satVersion = "FOSSASAT-2";
 };
