@@ -19,3 +19,6 @@ Release 32-bit/ - This directory contains a prebuild 32-bit .exe for windows 10.
 Ground Station Test Arduino Sketch - This directory contains the sketch used to simulate the ground station.
 Documentation/ - This directory contains documents, at the moment it only contains information reguarding the ground station's protocol.
 Control Panel Source Code/ - This directory contains the Qt C++ source code files and project files (including required libs).
+
+## Versions
+0.1.2 - Camera control, ephemerides controller matrix

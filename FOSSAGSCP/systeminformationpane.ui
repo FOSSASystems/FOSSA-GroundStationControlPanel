@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>837</width>
-    <height>1073</height>
+    <width>577</width>
+    <height>941</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,7 +20,7 @@
       <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -38,10 +38,10 @@
          <widget class="QWidget" name="scrollAreaWidgetContents">
           <property name="geometry">
            <rect>
-            <x>165</x>
+            <x>33</x>
             <y>0</y>
-            <width>450</width>
-            <height>2387</height>
+            <width>439</width>
+            <height>2218</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -964,13 +964,20 @@
            <item row="0" column="0">
             <widget class="QGroupBox" name="groupBox_13">
              <property name="title">
-              <string>Requesting</string>
+              <string>Controls</string>
              </property>
              <layout class="QGridLayout" name="gridLayout_15">
-              <item row="0" column="0">
-               <widget class="QPushButton" name="SystemInformation_RequestFullSystemInformation">
+              <item row="1" column="0">
+               <widget class="QPushButton" name="SystemInformation_RequestFullSystemInformation_PushButton">
                 <property name="text">
                  <string>Request Full System Information</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="SystemInformation_RequestSystemInformation_PushButton">
+                <property name="text">
+                 <string>Request System Information</string>
                 </property>
                </widget>
               </item>
@@ -992,6 +999,111 @@
       <attribute name="title">
        <string>Live Statistics</string>
       </attribute>
+      <layout class="QGridLayout" name="gridLayout_16">
+       <item row="1" column="0">
+        <widget class="QScrollArea" name="scrollArea_2">
+         <property name="widgetResizable">
+          <bool>true</bool>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <widget class="QWidget" name="scrollAreaWidgetContents_2">
+          <property name="geometry">
+           <rect>
+            <x>44</x>
+            <y>-253</y>
+            <width>417</width>
+            <height>1125</height>
+           </rect>
+          </property>
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <layout class="QGridLayout" name="gridLayout_17">
+           <item row="1" column="0">
+            <widget class="QGroupBox" name="groupBox_14">
+             <property name="title">
+              <string>Statistics</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_18">
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_48">
+                <property name="text">
+                 <string>IMU:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QPlainTextEdit" name="LiveStatistics_Currents_PlainTextEdit"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_47">
+                <property name="text">
+                 <string>Light Sensors:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_45">
+                <property name="text">
+                 <string>Currents (uA):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QPlainTextEdit" name="LiveStatistics_Temperatures_PlainTextEdit"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QPlainTextEdit" name="LiveStatistics_Voltages_PlainTextEdit"/>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_46">
+                <property name="text">
+                 <string>Voltages (mV):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_44">
+                <property name="text">
+                 <string>Temperatures (C):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QPlainTextEdit" name="LiveStatistics_LightSensors_PlainTextEdit"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QPlainTextEdit" name="LiveStatistics_IMU_PlainTextEdit"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_15">
+             <property name="title">
+              <string>Controls</string>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_19">
+              <item row="0" column="0">
+               <widget class="QPushButton" name="LiveStatistics_Request_PushButton">
+                <property name="text">
+                 <string>Request Statistics</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </widget>
     </widget>
    </item>
