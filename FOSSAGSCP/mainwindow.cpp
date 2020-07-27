@@ -427,6 +427,8 @@ void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
 
 
 
+
+
 static std::vector<ephemerides_t> g_ephemeridesControllerStack;
 
 void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
@@ -488,6 +490,18 @@ void MainWindow::on_EEPROM_Control_Wipe_Button_clicked()
     IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Wipe_EEPROM(flags);
     this->SendSerialData(msg);
 }
+
+void MainWindow::on_SatelliteConfig_Transmission_Send_Button_clicked()
+{
+    // fossasat-2.
+    char transmitEnabled = ui->SatelliteConfig_Transmission_Enabled_RadioButton->isChecked();
+    char automatedStatsTransmissionEnabled = ui->SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton->isChecked();
+    char FSKMandatedForLargePacketsEnabled = ui->SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton->isChecked();
+
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Set_Transmit_Enable(transmitEnabled, automatedStatsTransmissionEnabled, FSKMandatedForLargePacketsEnabled);
+    this->SendSerialData(msg);
+}
+
 
 #define SatelliteControlsTab_End }
 
@@ -1028,5 +1042,4 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
-
 

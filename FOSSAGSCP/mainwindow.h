@@ -98,6 +98,8 @@ private slots:
 
     void on_EEPROM_Control_Wipe_Button_clicked();
 
+    void on_SatelliteConfig_Transmission_Send_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h

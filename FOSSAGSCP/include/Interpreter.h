@@ -95,7 +95,7 @@ public:
     IGroundStationSerialMessage* Create_CMD_Deploy();
     IGroundStationSerialMessage* Create_CMD_Restart();
     IGroundStationSerialMessage *Create_CMD_Wipe_EEPROM(char flags);
-    IGroundStationSerialMessage* Create_CMD_Set_Transmit_Enable();
+    IGroundStationSerialMessage* Create_CMD_Set_Transmit_Enable(char transmitEnabled, char autoStatsEnabled, char fskMandatedEnabled);
     IGroundStationSerialMessage* Create_CMD_Set_Callsign();
     IGroundStationSerialMessage* Create_CMD_Set_SF_Mode();
     IGroundStationSerialMessage* Create_CMD_Set_MPPT_Mode();

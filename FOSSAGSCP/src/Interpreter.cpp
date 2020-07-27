@@ -372,6 +372,30 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Wipe_EEPROM(char flags)
     return msg;
 }
 
+IGroundStationSerialMessage *Interpreter::Create_CMD_Set_Transmit_Enable(char transmitEnabled, char autoStatsEnabled, char fskMandatedEnabled)
+{
+    IGroundStationSerialMessage* msg;
+
+    if (m_satVersion == VERSION_1B)
+    {
+        char optData[1];
+        optData[0] = transmitEnabled;
+
+        this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_SET_TRANSMIT_ENABLE, 1, optData);
+    }
+    else if (m_satVersion == VERSION_2)
+    {
+        char optData[3];
+        optData[0] = transmitEnabled;
+        optData[1] = autoStatsEnabled;
+        optData[2] = fskMandatedEnabled;
+
+        this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_WIPE_EEPROM, 3, optData);
+    }
+
+    return msg;
+}
+
 IGroundStationSerialMessage *Interpreter::Create_CMD_Camera_Capture(char pictureSlot, char lightMode, char pictureSize, char brightness, char saturation, char specialFilter, char contrast)
 {
     char optData[4];

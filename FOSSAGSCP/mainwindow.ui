@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -1749,9 +1749,9 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>223</x>
-             <y>0</y>
+             <y>-596</y>
              <width>465</width>
-             <height>3460</height>
+             <height>3499</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2025,69 +2025,6 @@ tolerance check:</string>
                </size>
               </property>
              </spacer>
-            </item>
-            <item row="10" column="0" colspan="3">
-             <widget class="QGroupBox" name="transmittingGroupBox">
-              <property name="title">
-               <string>Transmission Enable/Disable</string>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_17">
-               <item row="0" column="1">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Disabled_RadioButton">
-                 <property name="text">
-                  <string>Transmissions Disabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton">
-                 <property name="text">
-                  <string>Automated Statistics Enabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsDisabled_RadioButton">
-                 <property name="text">
-                  <string>Automated Statistics Disabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Enabled_RadioButton">
-                 <property name="text">
-                  <string>Transmissions Enabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QPushButton" name="SatelliteConfig_Transmission_Send_Button">
-                 <property name="text">
-                  <string>Set</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_Transmission_Refresh_Button">
-                 <property name="text">
-                  <string>Refresh</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
             </item>
             <item row="14" column="0" colspan="3">
              <widget class="QGroupBox" name="MPPTGroupBox">
@@ -2923,6 +2860,105 @@ Data stack</string>
                 <widget class="QPushButton" name="SatelliteConfig_SatelliteVersion_SetVersion_PushButton">
                  <property name="text">
                   <string>Set Satellite Version</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="10" column="0">
+             <widget class="QGroupBox" name="transmittingGroupBox">
+              <property name="title">
+               <string>Transmission Enable/Disable</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_17">
+               <item row="2" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton">
+                 <property name="text">
+                  <string>Enabled</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_FSKMandated_Disabled_RadioButton">
+                 <property name="text">
+                  <string>Disabled</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsDisabled_RadioButton">
+                 <property name="text">
+                  <string>Disabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Enabled_RadioButton">
+                 <property name="text">
+                  <string>Enabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QPushButton" name="SatelliteConfig_Transmission_Send_Button">
+                 <property name="text">
+                  <string>Set</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Disabled_RadioButton">
+                 <property name="text">
+                  <string>Disabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton">
+                 <property name="text">
+                  <string>Enabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QPushButton" name="SatelliteConfig_Transmission_Refresh_Button">
+                 <property name="text">
+                  <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_141">
+                 <property name="text">
+                  <string>Transmissions:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_142">
+                 <property name="text">
+                  <string>Auto. Stats. Transmission:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_143">
+                 <property name="text">
+                  <string>FSK Mandated for
+large packets:</string>
                  </property>
                 </widget>
                </item>
