@@ -472,6 +472,23 @@ void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clic
     ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
 }
 
+void MainWindow::on_EEPROM_Control_Wipe_Button_clicked()
+{
+    // fossasat-2.
+    char wipeSystemInfo = ui->EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox->isChecked();
+    char wipeStatistics = ui->EEPROM_Control_Wipe_Statistics_CheckBox->isChecked();
+    char wipeStoreAndForward = ui->EEPROM_Control_Wipe_StoreAndForwardFrames_CheckBox->isChecked();
+    char wipeNMEALog = ui->EEPROM_Control_Wipe_NMEALOG_CheckBox->isChecked();
+    char wipeImageStorage = ui->EEPROM_Control_Wipe_ImageStorage_CheckBox->isChecked();
+    char wipeADCSparameters = ui->EEPROM_Control_Wipe_ADCS_CheckBox->isChecked();
+    char wipeADCSEphemerides = ui->EEPROM_Control_Wipe_Ephemerides_CheckBox->isChecked();
+
+    char flags = wipeSystemInfo | wipeStatistics | wipeStoreAndForward | wipeNMEALog | wipeImageStorage | wipeADCSparameters | wipeADCSEphemerides;
+
+    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Wipe_EEPROM(flags);
+    this->SendSerialData(msg);
+}
+
 #define SatelliteControlsTab_End }
 
 

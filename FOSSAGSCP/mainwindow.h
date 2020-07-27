@@ -73,6 +73,11 @@ private slots:
     void ReceivedMessagefromMessageLog(QString msg);
     void ReceivedMessagefromSystemInformationPane(IGroundStationSerialMessage* msg);
 
+
+
+
+
+
     void on_CameraControl_Capture_Button_clicked();
 
     void on_CameraControl_GetPictureLength_GetPictureLength_Button_clicked();
@@ -88,6 +93,10 @@ private slots:
     void on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked();
 
     void on_SatelliteConfig_SatelliteVersion_ComboBox_currentIndexChanged(const QString &arg1);
+
+    void on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_clicked();
+
+    void on_EEPROM_Control_Wipe_Button_clicked();
 
 private:
 

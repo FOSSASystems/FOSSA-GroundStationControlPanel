@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,9 +73,9 @@
            <property name="geometry">
             <rect>
              <x>231</x>
-             <y>-4393</y>
+             <y>0</y>
              <width>449</width>
-             <height>5277</height>
+             <height>5304</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -350,13 +350,6 @@
                   <bool>true</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_12">
-                  <item row="0" column="0">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox">
-                    <property name="text">
-                     <string>System Info And Config</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="0" column="1">
                    <widget class="QCheckBox" name="EEPROM_Control_Wipe_Statistics_CheckBox">
                     <property name="text">
@@ -364,10 +357,10 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="0">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ADCS_CheckBox">
+                  <item row="2" column="1">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_StoreAndForwardFrames_CheckBox">
                     <property name="text">
-                     <string>ADCS Paramaters</string>
+                     <string>Store and forward Frames</string>
                     </property>
                    </widget>
                   </item>
@@ -385,10 +378,31 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="0" colspan="2">
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox">
+                    <property name="text">
+                     <string>System Info And Config</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0" colspan="2">
                    <widget class="QPushButton" name="EEPROM_Control_Wipe_Button">
                     <property name="text">
                      <string>Wipe</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ADCS_CheckBox">
+                    <property name="text">
+                     <string>ADCS Parameters</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_Ephemerides_CheckBox">
+                    <property name="text">
+                     <string>Ephemerides</string>
                     </property>
                    </widget>
                   </item>

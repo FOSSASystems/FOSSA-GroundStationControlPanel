@@ -301,6 +301,24 @@ void Interpreter::Interpret_FCP_Frame(IGroundStationSerialMessage *inMsg)
     delete[] frame;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 IGroundStationSerialMessage *Interpreter::Create_CMD_Ping()
 {
     return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_PING, 0, nullptr);
@@ -310,13 +328,13 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Statistics(char flags)
 {
     IGroundStationSerialMessage* msg = nullptr;
 
-    if (m_satVersion == QString("FOSSASAT-1B"))
+    if (m_satVersion == VERSION_1B)
     {
         char optData[1]; // copy the parameter into this locally scoped variable for safety.
         optData[0] = flags;
         msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_STATISTICS, 1, optData);
     }
-    else if (m_satVersion == QString("FOSSASAT-2"))
+    else if (m_satVersion == VERSION_2)
     {
         char optData[1];
         optData[0] = flags;
@@ -332,6 +350,24 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Statistics(char flags)
 IGroundStationSerialMessage *Interpreter::Create_CMD_Deploy()
 {
     IGroundStationSerialMessage* msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_DEPLOY, 0, nullptr);
+    return msg;
+}
+
+IGroundStationSerialMessage *Interpreter::Create_CMD_Wipe_EEPROM(char flags)
+{
+    IGroundStationSerialMessage* msg;
+
+    if (m_satVersion == VERSION_1B)
+    {
+        this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_WIPE_EEPROM, 0, nullptr);
+    }
+    else if (m_satVersion == VERSION_2)
+    {
+        char optData[1];
+        optData[0] = flags;
+
+        this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_WIPE_EEPROM, 1, optData);
+    }
 
     return msg;
 }

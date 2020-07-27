@@ -45,6 +45,9 @@
 //
 #define FCPI_CONFIG_OP 2
 
+#define VERSION_1B QString("FOSSASAT-1B")
+#define VERSION_2 QString("FOSSASAT-2")
+
 
 class Interpreter : public QObject
 {
@@ -91,7 +94,7 @@ public:
     /////
     IGroundStationSerialMessage* Create_CMD_Deploy();
     IGroundStationSerialMessage* Create_CMD_Restart();
-    IGroundStationSerialMessage* Create_CMD_Wipe_EEPROM();
+    IGroundStationSerialMessage *Create_CMD_Wipe_EEPROM(char flags);
     IGroundStationSerialMessage* Create_CMD_Set_Transmit_Enable();
     IGroundStationSerialMessage* Create_CMD_Set_Callsign();
     IGroundStationSerialMessage* Create_CMD_Set_SF_Mode();

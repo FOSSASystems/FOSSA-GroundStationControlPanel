@@ -22,6 +22,8 @@ private:
     Interpreter* m_interpreter = nullptr;
 private slots:
     void on_SystemInformation_RequestFullSystemInformation_clicked();
+    void on_SystemInformation_RequestSystemInformation_PushButton_clicked();
+    void on_LiveStatistics_Request_PushButton_clicked();
 };
 
 #endif // SYSTEMINFORMATIONPANE_H
