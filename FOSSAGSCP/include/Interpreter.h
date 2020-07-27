@@ -80,7 +80,7 @@ public:
     IGroundStationSerialMessage* Create_CMD_Retransmit_Custom();
     IGroundStationSerialMessage* Create_CMD_Transmit_System_Info();
     IGroundStationSerialMessage* Create_CMD_Get_Packet_Info();
-    IGroundStationSerialMessage* Create_CMD_Get_Statistics();
+    IGroundStationSerialMessage *Create_CMD_Get_Statistics(char flags);
     IGroundStationSerialMessage* Create_CMD_Get_Full_System_Info();
     IGroundStationSerialMessage* Create_CMD_Store_And_Forward_Add();
     IGroundStationSerialMessage* Create_CMD_Store_And_Forward_Request();
@@ -129,7 +129,7 @@ private:
     Settings& m_settings;
     Ui::MainWindow* m_mainWindowUI = nullptr;
     Ui::systeminformationpane* m_systemInfoUI = nullptr;
-    QString m_satVersion;
+    QString m_satVersion = "FOSSASAT-2";
 };
 
 #endif // Interpreter_H

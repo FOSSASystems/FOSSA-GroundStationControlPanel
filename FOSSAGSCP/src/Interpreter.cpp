@@ -306,15 +306,26 @@ IGroundStationSerialMessage *Interpreter::Create_CMD_Ping()
     return this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_PING, 0, nullptr);
 }
 
-IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Statistics()
+IGroundStationSerialMessage *Interpreter::Create_CMD_Get_Statistics(char flags)
 {
+    IGroundStationSerialMessage* msg = nullptr;
+
     if (m_satVersion == QString("FOSSASAT-1B"))
     {
-
+        char optData[1]; // copy the parameter into this locally scoped variable for safety.
+        optData[0] = flags;
+        msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_STATISTICS, 1, optData);
     }
     else if (m_satVersion == QString("FOSSASAT-2"))
     {
+        char optData[1];
+        optData[0] = flags;
+        msg = this->Create_GroundStationSerialMessage(FCPI_FRAME_OP, CMD_GET_STATISTICS, 1, optData);
+    }
 
+    if (msg == nullptr)
+    {
+        throw "get statistics failed, unknown satellite version";
     }
 }
 
