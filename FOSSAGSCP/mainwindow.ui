@@ -1748,10 +1748,10 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>223</x>
-             <y>-1490</y>
-             <width>465</width>
-             <height>3499</height>
+             <x>218</x>
+             <y>-876</y>
+             <width>475</width>
+             <height>3857</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1804,7 +1804,7 @@ tolerance check:</string>
               </layout>
              </widget>
             </item>
-            <item row="20" column="0">
+            <item row="22" column="0">
              <widget class="QGroupBox" name="groupBox_27">
               <property name="title">
                <string>IMU</string>
@@ -2000,7 +2000,7 @@ tolerance check:</string>
               </layout>
              </widget>
             </item>
-            <item row="15" column="0">
+            <item row="17" column="0">
              <spacer name="horizontalSpacer_7">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -2013,7 +2013,7 @@ tolerance check:</string>
               </property>
              </spacer>
             </item>
-            <item row="13" column="0">
+            <item row="15" column="0">
              <spacer name="horizontalSpacer_6">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -2026,7 +2026,7 @@ tolerance check:</string>
               </property>
              </spacer>
             </item>
-            <item row="14" column="0" colspan="3">
+            <item row="16" column="0" colspan="3">
              <widget class="QGroupBox" name="MPPTGroupBox">
               <property name="title">
                <string>MPPT</string>
@@ -2089,7 +2089,7 @@ tolerance check:</string>
               </layout>
              </widget>
             </item>
-            <item row="19" column="0" colspan="3">
+            <item row="21" column="0" colspan="3">
              <widget class="QGroupBox" name="SatelliteConfig_LowPowerMode_Refresh_Button">
               <property name="title">
                <string>Low Power Mode</string>
@@ -2132,7 +2132,7 @@ tolerance check:</string>
               </layout>
              </widget>
             </item>
-            <item row="18" column="0">
+            <item row="20" column="0">
              <spacer name="horizontalSpacer_8">
               <property name="orientation">
                <enum>Qt::Horizontal</enum>
@@ -2181,7 +2181,7 @@ tolerance check:</string>
               </layout>
              </widget>
             </item>
-            <item row="21" column="0">
+            <item row="23" column="0">
              <widget class="QGroupBox" name="groupBox_26">
               <property name="title">
                <string>ADCS</string>
@@ -2584,6 +2584,105 @@ Data stack</string>
               </property>
              </spacer>
             </item>
+            <item row="10" column="0">
+             <widget class="QGroupBox" name="transmittingGroupBox">
+              <property name="title">
+               <string>Transmission Enable/Disable</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_17">
+               <item row="2" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton">
+                 <property name="text">
+                  <string>Enabled</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_FSKMandated_Disabled_RadioButton">
+                 <property name="text">
+                  <string>Disabled</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsDisabled_RadioButton">
+                 <property name="text">
+                  <string>Disabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Enabled_RadioButton">
+                 <property name="text">
+                  <string>Enabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QPushButton" name="SatelliteConfig_Transmission_Send_Button">
+                 <property name="text">
+                  <string>Set</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Disabled_RadioButton">
+                 <property name="text">
+                  <string>Disabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton">
+                 <property name="text">
+                  <string>Enabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="QPushButton" name="SatelliteConfig_Transmission_Refresh_Button">
+                 <property name="text">
+                  <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_141">
+                 <property name="text">
+                  <string>Transmissions:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_142">
+                 <property name="text">
+                  <string>Auto. Stats. Transmission:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_143">
+                 <property name="text">
+                  <string>FSK Mandated for
+large packets:</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
             <item row="11" column="0">
              <spacer name="horizontalSpacer_5">
               <property name="orientation">
@@ -2736,7 +2835,149 @@ Data stack</string>
               </layout>
              </widget>
             </item>
-            <item row="16" column="0" rowspan="2">
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="groupBox_39">
+              <property name="title">
+               <string>Satellite Version</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_63">
+               <item row="0" column="1">
+                <widget class="QComboBox" name="SatelliteConfig_SatelliteVersion_ComboBox">
+                 <item>
+                  <property name="text">
+                   <string>FOSSASAT-2</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>FOSSASAT-1B</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_51">
+                 <property name="text">
+                  <string>Version Name:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QPushButton" name="SatelliteConfig_SatelliteVersion_SetVersion_PushButton">
+                 <property name="text">
+                  <string>Set Satellite Version</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="14" column="0">
+             <widget class="QGroupBox" name="groupBox_40">
+              <property name="title">
+               <string>Sleep Intervals</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_64">
+               <item row="4" column="0">
+                <widget class="QGroupBox" name="groupBox_41">
+                 <property name="title">
+                  <string>Sleep Intervals Stack Controls</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_65">
+                  <item row="0" column="0">
+                   <widget class="QPushButton" name="SatelliteConfig_SleepInterval_PushToStack_Button">
+                    <property name="text">
+                     <string>Push Interval To Stack</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QPushButton" name="SatelliteConfig_SleepInterval_ClearInterval_Button">
+                    <property name="text">
+                     <string>Clear Interval Stack</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QPushButton" name="SatelliteConfig_SleepInterval_SendoStack_Button">
+                    <property name="text">
+                     <string>Send Interval Stack</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_146">
+                 <property name="text">
+                  <string>Second Sleep Interval
+Voltages and Length:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="label_145">
+                 <property name="text">
+                  <string>First Sleep Interval Length (s):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_144">
+                 <property name="text">
+                  <string>Voltage Level Of First
+Sleep Interval (mV):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="label_147">
+                 <property name="text">
+                  <string>Third Sleep Interval Voltage
+ and length:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="1">
+                <widget class="QGroupBox" name="groupBox_42">
+                 <property name="title">
+                  <string>Sleep Intervals Stack Information</string>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_66">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_148">
+                    <property name="text">
+                     <string>Stack Count:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_Stack_StackCount_SpinBox">
+                    <property name="readOnly">
+                     <bool>true</bool>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_VoltageLevelFirst_SpinBox"/>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_FirstSleepIntervalLength_SpinBox"/>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_SecondSleepIntervalVoltages_SpinBox"/>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_ThirdSleepInterval_SpinBox"/>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="18" column="0" rowspan="2">
              <widget class="QGroupBox" name="RTCGroupBox">
               <property name="title">
                <string>RTC</string>
@@ -2829,141 +3070,18 @@ Data stack</string>
               </layout>
              </widget>
             </item>
-            <item row="0" column="0">
-             <widget class="QGroupBox" name="groupBox_39">
-              <property name="title">
-               <string>Satellite Version</string>
+            <item row="13" column="0">
+             <spacer name="horizontalSpacer_25">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
               </property>
-              <layout class="QGridLayout" name="gridLayout_63">
-               <item row="0" column="1">
-                <widget class="QComboBox" name="SatelliteConfig_SatelliteVersion_ComboBox">
-                 <item>
-                  <property name="text">
-                   <string>FOSSASAT-2</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string>FOSSASAT-1B</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_51">
-                 <property name="text">
-                  <string>Version Name:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_SatelliteVersion_SetVersion_PushButton">
-                 <property name="text">
-                  <string>Set Satellite Version</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="10" column="0">
-             <widget class="QGroupBox" name="transmittingGroupBox">
-              <property name="title">
-               <string>Transmission Enable/Disable</string>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
               </property>
-              <layout class="QGridLayout" name="gridLayout_17">
-               <item row="2" column="1">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton">
-                 <property name="text">
-                  <string>Enabled</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="2">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_FSKMandated_Disabled_RadioButton">
-                 <property name="text">
-                  <string>Disabled</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsDisabled_RadioButton">
-                 <property name="text">
-                  <string>Disabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Enabled_RadioButton">
-                 <property name="text">
-                  <string>Enabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_Transmission_Send_Button">
-                 <property name="text">
-                  <string>Set</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="2">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_Disabled_RadioButton">
-                 <property name="text">
-                  <string>Disabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">transmissionsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QRadioButton" name="SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton">
-                 <property name="text">
-                  <string>Enabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">automatedStatisticsEnabledDisabledButtonGroup</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="3" column="2">
-                <widget class="QPushButton" name="SatelliteConfig_Transmission_Refresh_Button">
-                 <property name="text">
-                  <string>Refresh</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QLabel" name="label_141">
-                 <property name="text">
-                  <string>Transmissions:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_142">
-                 <property name="text">
-                  <string>Auto. Stats. Transmission:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="label_143">
-                 <property name="text">
-                  <string>FSK Mandated for
-large packets:</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
+             </spacer>
             </item>
            </layout>
           </widget>

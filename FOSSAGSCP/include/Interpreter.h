@@ -107,7 +107,7 @@ public:
     IGroundStationSerialMessage* Create_CMD_Set_Receive_Windows(uint8_t fskReceiveWindowLength, uint8_t loraReceiveWindowLength);
     IGroundStationSerialMessage* Create_CMD_Record_Solar_Cells(char numSamples, uint16_t samplingPeriod);
     IGroundStationSerialMessage* Create_CMD_Camera_Capture(char pictureSlot, char lightMode, char pictureSize, char brightness, char saturation, char specialFilter, char contrast);
-    IGroundStationSerialMessage* Create_CMD_Set_Power_Limits(int16_t deploymentVoltageLimit, int16_t heaterVoltageLimit, int16_t cwBeepVoltageLimit, float heaterTemperatureLimit, float mpptSwitchtemperatureLimit);
+    IGroundStationSerialMessage* Create_CMD_Set_Power_Limits(int16_t deploymentVoltageLimit, int16_t heaterVoltageLimit, int16_t cwBeepVoltageLimit, int16_t lowPowerVoltageLimit,  float heaterTemperatureLimit, float mpptSwitchtemperatureLimit, uint8_t heaterDutyCycle);
     IGroundStationSerialMessage* Create_CMD_Set_RTC(uint8_t year, uint8_t month, uint8_t day, uint8_t dayOfWeek, uint8_t hours, uint8_t minutes, uint8_t seconds); // year is offset from 2000.
     IGroundStationSerialMessage* Create_CMD_Record_IMU(uint16_t sampleNumber, uint16_t samplingPeriod, uint8_t flags);
     IGroundStationSerialMessage* Create_CMD_Run_Manual_ACS(int8_t xHighBridgeMag, int8_t xLowBridgeMag, int8_t yHighBridgeMag, int8_t yLowBrightMag, int8_t zHBridgeHighMag, int8_t zBridgeLowMag, uint32_t xPulseLength, uint32_t yPulseLength, uint32_t zPulseLength, uint32_t maneuverDuration, uint8_t hbridgefaultFlags);
@@ -117,18 +117,18 @@ public:
     IGroundStationSerialMessage *Create_CMD_Get_Picture_Length(uint8_t pictureSlot);
     IGroundStationSerialMessage* Create_CMD_Get_Picture_Burst(char pictureSlot, uint16_t pictureId, char fullOrScandata);
     IGroundStationSerialMessage* Create_CMD_Route(char* fcpFrame);
-    IGroundStationSerialMessage* Create_CMD_Set_Flash_Contents(uint32_t flashAddress, char* data);
-    IGroundStationSerialMessage* Create_CMD_Set_TLE(char* tle);
+    IGroundStationSerialMessage* Create_CMD_Set_Flash_Contents(uint32_t flashAddress, char* data); // data MUST include a null terminator
+    IGroundStationSerialMessage* Create_CMD_Set_TLE(char* tle); // MUST include a null terminator.
     IGroundStationSerialMessage* Create_CMD_Get_GPS_Log_State();
     IGroundStationSerialMessage* Create_CMD_Run_GPS_Command(char* skyTraqBinaryProtocolMessage);
-    IGroundStationSerialMessage* Create_CMD_Set_Sleep_Intervals(int16_t firstSleepIntervalVoltageLevel, int16_t firstSleepIntervalLength, uint32_t secondSleepIntervalVoltageLevelAndLength, uint32_t thirdSleepIntervalVoltageLevelAndLength);
+    IGroundStationSerialMessage* Create_CMD_Set_Sleep_Intervals(std::vector<sleep_interval_t> sleepIntervals);
     IGroundStationSerialMessage* Create_CMD_Abort();
     IGroundStationSerialMessage* Create_CMD_Maneuver(uint8_t controlFlags, uint32_t maneuverLength);
-    IGroundStationSerialMessage* Create_CMD_Set_ADCS_Parameters(float maximumPulseIntensity, float maximumPulseLength, float detumblingAngularVelocity, float minimumIntertialMoment, float pulseAmplitude, float calculationTolerance, float activeControlEulerAngleChangeTolerance, float activeControlAngularVelocityChangeTolerance, float eclipseThreshold, float rotationMatrixWeightRatio, float rotationVerificationTriggerLevel, float kalmanFilterDisturbanceCovariance, float kalmanFilterNoiseCovariance, uint32_t adcsUpdateTimeStepPeriod, int8_t hbridgeValueHighOutput, int8_t hbridgeValueLowOutput, uint8_t numControllers);
+    IGroundStationSerialMessage* Create_CMD_Set_ADCS_Parameters(float maximumPulseIntensity, float maximumPulseLength, float detumblingAngularVelocity, float minimumIntertialMoment, float pulseAmplitude, float calculationTolerance, float activeControlEulerAngleChangeTolerance, float activeControlAngularVelocityChangeTolerance, float eclipseThreshold, float rotationMatrixWeightRatio, float rotationVerificationTriggerLevel, float kalmanFilterDisturbanceCovariance, float kalmanFilterNoiseCovariance, uint32_t adcsUpdateTimeStepPeriod, uint32_t hbridgeTimerUpdatePeriod, int8_t hbridgeValueHighOutput, int8_t hbridgeValueLowOutput, uint8_t numControllers);
     IGroundStationSerialMessage* Create_CMD_Erase_Flash(uint32_t sectorAddress);
     IGroundStationSerialMessage *Create_CMD_Set_ADCS_Controller(char controllerId, float controllerMatrix[3][6]);
     IGroundStationSerialMessage* Create_CMD_Set_ADCS_Ephemerides(uint16_t chunkId, std::vector<ephemerides_t> ephemeridesDataQueue);
-    IGroundStationSerialMessage* Create_CMD_Set_ADCS_Detumble(uint8_t controlFlags, uint32_t detumblingLength);
+    IGroundStationSerialMessage* Create_CMD_Detumble(uint8_t flags, uint32_t length);
     IGroundStationSerialMessage* Create_CMD_Set_IMU_Offset(uint8_t xAxisGyroOffset, uint8_t yAxisGyroOffset, uint8_t zAxisGyroOffset, uint8_t xAxisAcceleOffset, uint8_t yAxisAcceleOffset, uint8_t zAxisAcceleOffset, uint8_t xAxisMagneticOffset, uint8_t yAxisMagneticOffset, uint8_t zAxisMagneticOffset);
     IGroundStationSerialMessage* Create_CMD_Set_IMU_Calibration(float transformationMatrix[9], float biasVector[3]);
 

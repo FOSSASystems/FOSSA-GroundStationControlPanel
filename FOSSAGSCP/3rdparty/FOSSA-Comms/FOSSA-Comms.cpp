@@ -248,7 +248,7 @@ int16_t FCP_Encode(uint8_t* frame, char* callsign, uint8_t functionId, uint8_t o
 
     // add padding
     for(uint8_t i = 0; i < paddingLen; i++) {
-      *(encSectionPtr + i) = (uint8_t)(rand()%256);//random(0x00, 0x100);
+      *(encSectionPtr + i) = (uint8_t)rand() % 256;;
     }
 
     // encrypt
@@ -374,7 +374,7 @@ float FCP_System_Info_Get_Current(uint8_t* optData, uint8_t pos) {
   if(optData == NULL) {
     return(0);
   }
-  
+
   int16_t raw;
   memcpy(&raw, optData + pos, sizeof(int16_t));
   return((float)raw * ((float)CURRENT_MULTIPLIER / (float)CURRENT_UNIT));

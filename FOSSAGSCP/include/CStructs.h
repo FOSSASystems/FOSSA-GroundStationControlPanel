@@ -14,4 +14,14 @@ struct ephemerides_t
     uint8_t controllerId;
 };
 
+
+struct sleep_interval_t
+{
+    int16_t firstSleepIntervalVoltageLevel;
+    int16_t firstSleepIntervalLength;
+    int16_t secondSleepIntervalLength;
+    int16_t thirdSleepIntervalLength;
+};
+
+
 #endif // CSTRUCTS_H
