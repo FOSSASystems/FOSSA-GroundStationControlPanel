@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -85,7 +85,878 @@
             </sizepolicy>
            </property>
            <layout class="QGridLayout" name="gridLayout_45">
-            <item row="10" column="0">
+            <item row="5" column="0">
+             <widget class="QGroupBox" name="gpsControlGroupBox">
+              <property name="title">
+               <string>GPS Control</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_5">
+               <property name="leftMargin">
+                <number>11</number>
+               </property>
+               <property name="topMargin">
+                <number>11</number>
+               </property>
+               <property name="rightMargin">
+                <number>11</number>
+               </property>
+               <property name="bottomMargin">
+                <number>11</number>
+               </property>
+               <item row="3" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_21">
+                 <property name="font">
+                  <font>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="title">
+                  <string>Log GPS</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_40">
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="GPSControl_LogGPS_LoggingDuration_LineEdit"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_29">
+                    <property name="text">
+                     <string>Logging Start Offset (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_30">
+                    <property name="text">
+                     <string>Logging Duration (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="GPSControl_LogGPS_StartOffset_LineEdit"/>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QPushButton" name="GPSControl_LogGPS_StartLogging_Button">
+                    <property name="text">
+                     <string>Start Logging</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_28">
+                 <property name="font">
+                  <font>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="mouseTracking">
+                  <bool>false</bool>
+                 </property>
+                 <property name="title">
+                  <string>Get GPS State</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <property name="checkable">
+                  <bool>false</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_49">
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="GPSControl_GetGPSState_LastEntryAddress_LineEdit"/>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="GPSControl_GetGPSState_Length_LineEdit"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_36">
+                    <property name="text">
+                     <string>Last Fix Address:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="GPSControl_GetGPSState_LastFixAddress_LineEdit"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_34">
+                    <property name="text">
+                     <string>Length:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_35">
+                    <property name="text">
+                     <string>Last Entry Address:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0" colspan="2">
+                   <widget class="QPushButton" name="GPSControl_GetGPSState_GetLogState_Button">
+                    <property name="text">
+                     <string>Get Log State</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_23">
+                 <property name="font">
+                  <font>
+                   <weight>50</weight>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="title">
+                  <string>Get GPS Log</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_42">
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_31">
+                    <property name="text">
+                     <string>Offset (num NMEA seq.):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_32">
+                    <property name="text">
+                     <string>NMEA sentance count (0=all):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0" colspan="2">
+                   <widget class="QPushButton" name="GPSControl_GetGPSLog_GetLog_Button">
+                    <property name="text">
+                     <string>Get Log</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QRadioButton" name="GPSControl_GetGPSLog_NewestFirst_RadioButton">
+                    <property name="text">
+                     <string>Newest First</string>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">gpsLogOldestOrNewestFirstButtonGroup</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QRadioButton" name="GPSControl_GetGPSLog_OldestFirst_RadioButton">
+                    <property name="text">
+                     <string>Oldest First</string>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">gpsLogOldestOrNewestFirstButtonGroup</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="GPSControl_GetGPSLog_Offset_SpinBox"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="GPSControl_GetGPSLog_NMEASeqCount_SpinBox"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="5" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_8">
+                 <property name="font">
+                  <font>
+                   <weight>50</weight>
+                   <italic>false</italic>
+                   <bold>false</bold>
+                  </font>
+                 </property>
+                 <property name="title">
+                  <string>Run GPS Command</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_28">
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="GPSControl_RunGPSCmd_SkytraqBinary_LineEdit"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_33">
+                    <property name="text">
+                     <string>SkyTraq binary message:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QPushButton" name="GPSControl_RunGPSCmd_RunCommand_Button">
+                    <property name="text">
+                     <string>Run Command</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QGroupBox" name="baseOpsGroupBox">
+              <property name="font">
+               <font>
+                <weight>50</weight>
+                <bold>false</bold>
+               </font>
+              </property>
+              <property name="autoFillBackground">
+               <bool>false</bool>
+              </property>
+              <property name="title">
+               <string>Base Ops</string>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+              <property name="checkable">
+               <bool>false</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <item row="8" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Abort_Button">
+                 <property name="text">
+                  <string>Abort</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Restart_Button">
+                 <property name="text">
+                  <string>Restart</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Deploy_Button">
+                 <property name="text">
+                  <string>Deploy</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QPushButton" name="SatelliteControls_BaseOps_Ping_Button">
+                 <property name="text">
+                  <string>Ping</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="9" column="0">
+             <widget class="QGroupBox" name="storeAndForwardGroupBox">
+              <property name="title">
+               <string>Store And Forward</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4">
+               <item row="1" column="0">
+                <widget class="QGroupBox" name="groupBox_6">
+                 <property name="title">
+                  <string>Request Message</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_26">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_50">
+                    <property name="text">
+                     <string>Message ID:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="StoreAndForward_RequestMessage_MessageID_SpinBox"/>
+                  </item>
+                  <item row="1" column="0" colspan="2">
+                   <widget class="QPushButton" name="storeAndForwardStoreAndForward_RequestMessage_RequestMessage_Button">
+                    <property name="text">
+                     <string>Request Message</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="groupBox_4">
+                 <property name="title">
+                  <string>Add Message</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_25">
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="StoreAndForward_Message_MessageID_SpinBox"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_48">
+                    <property name="text">
+                     <string>Message ID:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QPushButton" name="StoreAndForward_Message_AddMessage_Button">
+                    <property name="text">
+                     <string>Add Message</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QPlainTextEdit" name="StoreAndForward_Message_MessageContent_PlainTextEdit"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_49">
+                    <property name="text">
+                     <string>Message Content:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="15" column="0">
+             <widget class="QGroupBox" name="flashControlGroupBox">
+              <property name="title">
+               <string>Flash Control</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_10">
+               <item row="2" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_14">
+                 <property name="title">
+                  <string>Erase Flash</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_33">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_66">
+                    <property name="text">
+                     <string>Sector Address:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="FlashControl_EraseFlash_Address_LineEdit"/>
+                  </item>
+                  <item row="1" column="0" colspan="2">
+                   <widget class="QPushButton" name="FlashControl_EraseFlash_Erase_Button">
+                    <property name="text">
+                     <string>Erase Flash Content</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="1" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_15">
+                 <property name="title">
+                  <string>Get Flash Contents</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_34">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_67">
+                    <property name="text">
+                     <string>Flash Address:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="FlashControl_GetFlashContent_Address_LineEdit"/>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_68">
+                    <property name="text">
+                     <string>Number of Bytes:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="FlashControl_GetFlashContent_NumberOfBytes_SpinBox"/>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QPushButton" name="FlashControl_GetFlashContent_Get_Button">
+                    <property name="text">
+                     <string>Get Flash Content</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_16">
+                 <property name="title">
+                  <string>Set Flash Contents</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_35">
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_69">
+                    <property name="text">
+                     <string>Flash Address:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_70">
+                    <property name="text">
+                     <string>Flash Data:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLineEdit" name="FlashControl_FlashAddress_LineEdit"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QPlainTextEdit" name="FlashControl_FlashData_PlainTextBox"/>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QPushButton" name="FlashControl_SetFlashContent_Button">
+                    <property name="text">
+                     <string>Set Flash Content</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="12" column="0">
+             <spacer name="horizontalSpacer_16">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="8" column="0">
+             <spacer name="horizontalSpacer_14">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="18" column="0">
+             <spacer name="horizontalSpacer_24">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="14" column="0">
+             <spacer name="horizontalSpacer_17">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="7" column="0">
+             <widget class="QGroupBox" name="cameraControlGroupBox">
+              <property name="title">
+               <string>Camera Control</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <property name="flat">
+               <bool>false</bool>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_7">
+               <item row="2" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_34">
+                 <property name="title">
+                  <string>Get Picture Length</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_55">
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="CameraControl_GetPictureLength_PictureSlot_SpinBox"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_38">
+                    <property name="text">
+                     <string>Picture Slot:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0" colspan="2">
+                   <widget class="QPushButton" name="CameraControl_GetPictureLength_GetPictureLength_Button">
+                    <property name="text">
+                     <string>Get Picture Length</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="0" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_37">
+                 <property name="title">
+                  <string>Capture</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_58">
+                  <item row="18" column="1">
+                   <widget class="QSpinBox" name="CameraControl_SpecialFilter_SpinBox"/>
+                  </item>
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_45">
+                    <property name="text">
+                     <string>Contrast:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="18" column="0">
+                   <widget class="QLabel" name="label_47">
+                    <property name="text">
+                     <string>Special Filter:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_46">
+                    <property name="text">
+                     <string>Picture Size:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="19" column="0" colspan="2">
+                   <widget class="QPushButton" name="CameraControl_Capture_Button">
+                    <property name="text">
+                     <string>Capture</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="CameraControl_PictureSlot_SpinBox"/>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QLabel" name="label_43">
+                    <property name="text">
+                     <string>Saturation:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_39">
+                    <property name="text">
+                     <string>Picture Slot:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="CameraControl_LightMode_SpinBox"/>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QSpinBox" name="CameraControl_Saturation_SpinBox"/>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="CameraControl_PictureSisze_SpinBox"/>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QSpinBox" name="CameraControl_Contrast_SpinBox"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_42">
+                    <property name="text">
+                     <string>Light Mode:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_44">
+                    <property name="text">
+                     <string>Bridghtness:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QSpinBox" name="CameraControl_Brightness_SpinBox"/>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QGroupBox" name="groupBox_31">
+                 <property name="title">
+                  <string>Picture Burst</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_52">
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="CameraControl_PictureBurst_PictureSlot_SpinBox"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton">
+                    <property name="text">
+                     <string>Send Full Picture</string>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">sendFullPictureButtonGroup</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_41">
+                    <property name="text">
+                     <string>Full Picture Mode:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0" colspan="2">
+                   <widget class="QPushButton" name="CameraControl_PictureBurst_GetPictureBurst_Button">
+                    <property name="text">
+                     <string>Get Picture Burst</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="1">
+                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeOnlyScanData_RadioButton">
+                    <property name="text">
+                     <string>Send Only Scan Data</string>
+                    </property>
+                    <attribute name="buttonGroup">
+                     <string notr="true">sendFullPictureButtonGroup</string>
+                    </attribute>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QLineEdit" name="CameraControl_PictureBurst_PicturePacketID_LineEdit"/>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_37">
+                    <property name="text">
+                     <string>Picture Slot:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="0">
+                   <widget class="QLabel" name="label_40">
+                    <property name="text">
+                     <string>Picture Packet ID:</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <spacer name="horizontalSpacer_12">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="6" column="0">
+             <spacer name="horizontalSpacer_13">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="4" column="0">
+             <spacer name="horizontalSpacer_11">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="16" column="0">
+             <spacer name="horizontalSpacer_18">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="13" column="0">
+             <widget class="QGroupBox" name="imuControlGroupBox">
+              <property name="title">
+               <string>IMU Control</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_9">
+               <item row="0" column="0">
+                <widget class="QGroupBox" name="groupBox_13">
+                 <property name="title">
+                  <string>Record IMU</string>
+                 </property>
+                 <property name="flat">
+                  <bool>true</bool>
+                 </property>
+                 <layout class="QGridLayout" name="gridLayout_32">
+                  <item row="1" column="1">
+                   <widget class="QLabel" name="label_53">
+                    <property name="text">
+                     <string>Sampling Period (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1" colspan="2">
+                   <widget class="QPushButton" name="RecordIMU_RecordIMU_Button">
+                    <property name="text">
+                     <string>Record IMU</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QLabel" name="label_54">
+                    <property name="text">
+                     <string>Device Selection:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="2">
+                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Accelerometer_Checkbox">
+                    <property name="text">
+                     <string>Accelerometer</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="2">
+                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Gyroscope_Checkbox">
+                    <property name="text">
+                     <string>Gyroscope</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="1">
+                   <widget class="QLabel" name="label_52">
+                    <property name="text">
+                     <string>Number of samples:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="2">
+                   <widget class="QSpinBox" name="RecordIMU_SamplingPeriod_SpinBox"/>
+                  </item>
+                  <item row="0" column="2">
+                   <widget class="QSpinBox" name="RecordIMU_NumberOfSamples_SpinBox"/>
+                  </item>
+                  <item row="4" column="2">
+                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Magnetometer_Checkbox">
+                    <property name="text">
+                     <string>Magnetometer</string>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="11" column="0">
              <widget class="QGroupBox" name="transmisionRouterGroupBox">
               <property name="title">
                <string>Transmission Router</string>
@@ -332,775 +1203,7 @@
               </layout>
              </widget>
             </item>
-            <item row="2" column="0">
-             <widget class="QGroupBox" name="groupBox_22">
-              <property name="title">
-               <string>EEPROM Control</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_41">
-               <item row="0" column="0">
-                <widget class="QGroupBox" name="groupBox_5">
-                 <property name="title">
-                  <string>Wipe EEPROM</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_12">
-                  <item row="0" column="1">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_Statistics_CheckBox">
-                    <property name="text">
-                     <string>Statistics</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_StoreAndForwardFrames_CheckBox">
-                    <property name="text">
-                     <string>Store and forward Frames</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_NMEALOG_CheckBox">
-                    <property name="text">
-                     <string>NMEA Log</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ImageStorage_CheckBox">
-                    <property name="text">
-                     <string>Image Storage</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox">
-                    <property name="text">
-                     <string>System Info And Config</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0" colspan="2">
-                   <widget class="QPushButton" name="EEPROM_Control_Wipe_Button">
-                    <property name="text">
-                     <string>Wipe</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ADCS_CheckBox">
-                    <property name="text">
-                     <string>ADCS Parameters</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_Ephemerides_CheckBox">
-                    <property name="text">
-                     <string>Ephemerides</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="11" column="0">
-             <spacer name="horizontalSpacer_16">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="5" column="0">
-             <spacer name="horizontalSpacer_13">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="15" column="0">
-             <spacer name="horizontalSpacer_18">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="14" column="0">
-             <widget class="QGroupBox" name="flashControlGroupBox">
-              <property name="title">
-               <string>Flash Control</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_10">
-               <item row="2" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_14">
-                 <property name="title">
-                  <string>Erase Flash</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_33">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_66">
-                    <property name="text">
-                     <string>Sector Address:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="FlashControl_EraseFlash_Address_LineEdit"/>
-                  </item>
-                  <item row="1" column="0" colspan="2">
-                   <widget class="QPushButton" name="FlashControl_EraseFlash_Erase_Button">
-                    <property name="text">
-                     <string>Erase Flash Content</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="1" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_15">
-                 <property name="title">
-                  <string>Get Flash Contents</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_34">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_67">
-                    <property name="text">
-                     <string>Flash Address:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="FlashControl_GetFlashContent_Address_LineEdit"/>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_68">
-                    <property name="text">
-                     <string>Number of Bytes:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QSpinBox" name="FlashControl_GetFlashContent_NumberOfBytes_SpinBox"/>
-                  </item>
-                  <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="FlashControl_GetFlashContent_Get_Button">
-                    <property name="text">
-                     <string>Get Flash Content</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="0" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_16">
-                 <property name="title">
-                  <string>Set Flash Contents</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_35">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_69">
-                    <property name="text">
-                     <string>Flash Address:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_70">
-                    <property name="text">
-                     <string>Flash Data:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="FlashControl_FlashAddress_LineEdit"/>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QPlainTextEdit" name="FlashControl_FlashData_PlainTextBox"/>
-                  </item>
-                  <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="FlashControl_SetFlashContent_Button">
-                    <property name="text">
-                     <string>Set Flash Content</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="8" column="0">
-             <widget class="QGroupBox" name="storeAndForwardGroupBox">
-              <property name="title">
-               <string>Store And Forward</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="flat">
-               <bool>false</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_4">
-               <item row="1" column="0">
-                <widget class="QGroupBox" name="groupBox_6">
-                 <property name="title">
-                  <string>Request Message</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_26">
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_50">
-                    <property name="text">
-                     <string>Message ID:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="StoreAndForward_RequestMessage_MessageID_SpinBox"/>
-                  </item>
-                  <item row="1" column="0" colspan="2">
-                   <widget class="QPushButton" name="storeAndForwardStoreAndForward_RequestMessage_RequestMessage_Button">
-                    <property name="text">
-                     <string>Request Message</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="0" column="0">
-                <widget class="QGroupBox" name="groupBox_4">
-                 <property name="title">
-                  <string>Add Message</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_25">
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="StoreAndForward_Message_MessageID_SpinBox"/>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_48">
-                    <property name="text">
-                     <string>Message ID:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="StoreAndForward_Message_AddMessage_Button">
-                    <property name="text">
-                     <string>Add Message</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QPlainTextEdit" name="StoreAndForward_Message_MessageContent_PlainTextEdit"/>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_49">
-                    <property name="text">
-                     <string>Message Content:</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="4" column="0">
-             <widget class="QGroupBox" name="gpsControlGroupBox">
-              <property name="title">
-               <string>GPS Control</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="flat">
-               <bool>false</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_5">
-               <property name="leftMargin">
-                <number>11</number>
-               </property>
-               <property name="topMargin">
-                <number>11</number>
-               </property>
-               <property name="rightMargin">
-                <number>11</number>
-               </property>
-               <property name="bottomMargin">
-                <number>11</number>
-               </property>
-               <item row="3" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_21">
-                 <property name="font">
-                  <font>
-                   <weight>50</weight>
-                   <italic>false</italic>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="title">
-                  <string>Log GPS</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_40">
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="GPSControl_LogGPS_LoggingDuration_LineEdit"/>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_29">
-                    <property name="text">
-                     <string>Logging Start Offset (ms):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_30">
-                    <property name="text">
-                     <string>Logging Duration (ms):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="GPSControl_LogGPS_StartOffset_LineEdit"/>
-                  </item>
-                  <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="GPSControl_LogGPS_StartLogging_Button">
-                    <property name="text">
-                     <string>Start Logging</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="0" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_28">
-                 <property name="font">
-                  <font>
-                   <weight>50</weight>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="mouseTracking">
-                  <bool>false</bool>
-                 </property>
-                 <property name="title">
-                  <string>Get GPS State</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <property name="checkable">
-                  <bool>false</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_49">
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="GPSControl_GetGPSState_LastEntryAddress_LineEdit"/>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="GPSControl_GetGPSState_Length_LineEdit"/>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_36">
-                    <property name="text">
-                     <string>Last Fix Address:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="GPSControl_GetGPSState_LastFixAddress_LineEdit"/>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_34">
-                    <property name="text">
-                     <string>Length:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_35">
-                    <property name="text">
-                     <string>Last Entry Address:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0" colspan="2">
-                   <widget class="QPushButton" name="GPSControl_GetGPSState_GetLogState_Button">
-                    <property name="text">
-                     <string>Get Log State</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="4" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_23">
-                 <property name="font">
-                  <font>
-                   <weight>50</weight>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="title">
-                  <string>Get GPS Log</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_42">
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_31">
-                    <property name="text">
-                     <string>Offset (num NMEA seq.):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_32">
-                    <property name="text">
-                     <string>NMEA sentance count (0=all):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="0" colspan="2">
-                   <widget class="QPushButton" name="GPSControl_GetGPSLog_GetLog_Button">
-                    <property name="text">
-                     <string>Get Log</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QRadioButton" name="GPSControl_GetGPSLog_NewestFirst_RadioButton">
-                    <property name="text">
-                     <string>Newest First</string>
-                    </property>
-                    <attribute name="buttonGroup">
-                     <string notr="true">gpsLogOldestOrNewestFirstButtonGroup</string>
-                    </attribute>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QRadioButton" name="GPSControl_GetGPSLog_OldestFirst_RadioButton">
-                    <property name="text">
-                     <string>Oldest First</string>
-                    </property>
-                    <attribute name="buttonGroup">
-                     <string notr="true">gpsLogOldestOrNewestFirstButtonGroup</string>
-                    </attribute>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QSpinBox" name="GPSControl_GetGPSLog_Offset_SpinBox"/>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QSpinBox" name="GPSControl_GetGPSLog_NMEASeqCount_SpinBox"/>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="5" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_8">
-                 <property name="font">
-                  <font>
-                   <weight>50</weight>
-                   <italic>false</italic>
-                   <bold>false</bold>
-                  </font>
-                 </property>
-                 <property name="title">
-                  <string>Run GPS Command</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_28">
-                  <item row="0" column="1">
-                   <widget class="QLineEdit" name="GPSControl_RunGPSCmd_SkytraqBinary_LineEdit"/>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_33">
-                    <property name="text">
-                     <string>SkyTraq binary message:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="GPSControl_RunGPSCmd_RunCommand_Button">
-                    <property name="text">
-                     <string>Run Command</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="6" column="0">
-             <widget class="QGroupBox" name="cameraControlGroupBox">
-              <property name="title">
-               <string>Camera Control</string>
-              </property>
-              <property name="alignment">
-               <set>Qt::AlignCenter</set>
-              </property>
-              <property name="flat">
-               <bool>false</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_7">
-               <item row="2" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_34">
-                 <property name="title">
-                  <string>Get Picture Length</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_55">
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="CameraControl_GetPictureLength_PictureSlot_SpinBox"/>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_38">
-                    <property name="text">
-                     <string>Picture Slot:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="0" colspan="2">
-                   <widget class="QPushButton" name="CameraControl_GetPictureLength_GetPictureLength_Button">
-                    <property name="text">
-                     <string>Get Picture Length</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="0" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_37">
-                 <property name="title">
-                  <string>Capture</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_58">
-                  <item row="18" column="1">
-                   <widget class="QSpinBox" name="CameraControl_SpecialFilter_SpinBox"/>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="label_45">
-                    <property name="text">
-                     <string>Contrast:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="18" column="0">
-                   <widget class="QLabel" name="label_47">
-                    <property name="text">
-                     <string>Special Filter:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_46">
-                    <property name="text">
-                     <string>Picture Size:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="19" column="0" colspan="2">
-                   <widget class="QPushButton" name="CameraControl_Capture_Button">
-                    <property name="text">
-                     <string>Capture</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="CameraControl_PictureSlot_SpinBox"/>
-                  </item>
-                  <item row="3" column="0">
-                   <widget class="QLabel" name="label_43">
-                    <property name="text">
-                     <string>Saturation:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_39">
-                    <property name="text">
-                     <string>Picture Slot:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QSpinBox" name="CameraControl_LightMode_SpinBox"/>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QSpinBox" name="CameraControl_Saturation_SpinBox"/>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QSpinBox" name="CameraControl_PictureSisze_SpinBox"/>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="QSpinBox" name="CameraControl_Contrast_SpinBox"/>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_42">
-                    <property name="text">
-                     <string>Light Mode:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_44">
-                    <property name="text">
-                     <string>Bridghtness:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QSpinBox" name="CameraControl_Brightness_SpinBox"/>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-               <item row="4" column="0" colspan="2">
-                <widget class="QGroupBox" name="groupBox_31">
-                 <property name="title">
-                  <string>Picture Burst</string>
-                 </property>
-                 <property name="flat">
-                  <bool>true</bool>
-                 </property>
-                 <layout class="QGridLayout" name="gridLayout_52">
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="CameraControl_PictureBurst_PictureSlot_SpinBox"/>
-                  </item>
-                  <item row="2" column="1">
-                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton">
-                    <property name="text">
-                     <string>Send Full Picture</string>
-                    </property>
-                    <attribute name="buttonGroup">
-                     <string notr="true">sendFullPictureButtonGroup</string>
-                    </attribute>
-                   </widget>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_41">
-                    <property name="text">
-                     <string>Full Picture Mode:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="6" column="0" colspan="2">
-                   <widget class="QPushButton" name="CameraControl_PictureBurst_GetPictureBurst_Button">
-                    <property name="text">
-                     <string>Get Picture Burst</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QRadioButton" name="CameraControl_PictureBurst_FullPictureModeOnlyScanData_RadioButton">
-                    <property name="text">
-                     <string>Send Only Scan Data</string>
-                    </property>
-                    <attribute name="buttonGroup">
-                     <string notr="true">sendFullPictureButtonGroup</string>
-                    </attribute>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QLineEdit" name="CameraControl_PictureBurst_PicturePacketID_LineEdit"/>
-                  </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_37">
-                    <property name="text">
-                     <string>Picture Slot:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="0">
-                   <widget class="QLabel" name="label_40">
-                    <property name="text">
-                     <string>Picture Packet ID:</string>
-                    </property>
-                   </widget>
-                  </item>
-                 </layout>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="13" column="0">
-             <spacer name="horizontalSpacer_17">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="16" column="0">
+            <item row="17" column="0">
              <widget class="QGroupBox" name="adcManeuverGroupBox">
               <property name="title">
                <string>ACS</string>
@@ -1380,102 +1483,77 @@
               </layout>
              </widget>
             </item>
-            <item row="7" column="0">
-             <spacer name="horizontalSpacer_14">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="9" column="0">
-             <spacer name="horizontalSpacer_15">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="12" column="0">
-             <widget class="QGroupBox" name="imuControlGroupBox">
+            <item row="3" column="0">
+             <widget class="QGroupBox" name="groupBox_22">
               <property name="title">
-               <string>IMU Control</string>
+               <string>EEPROM Control</string>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
               </property>
-              <layout class="QGridLayout" name="gridLayout_9">
+              <layout class="QGridLayout" name="gridLayout_41">
                <item row="0" column="0">
-                <widget class="QGroupBox" name="groupBox_13">
+                <widget class="QGroupBox" name="groupBox_5">
                  <property name="title">
-                  <string>Record IMU</string>
+                  <string>Wipe EEPROM</string>
                  </property>
                  <property name="flat">
                   <bool>true</bool>
                  </property>
-                 <layout class="QGridLayout" name="gridLayout_32">
-                  <item row="1" column="1">
-                   <widget class="QLabel" name="label_53">
+                 <layout class="QGridLayout" name="gridLayout_12">
+                  <item row="0" column="1">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_Statistics_CheckBox">
                     <property name="text">
-                     <string>Sampling Period (ms):</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="1" colspan="2">
-                   <widget class="QPushButton" name="RecordIMU_RecordIMU_Button">
-                    <property name="text">
-                     <string>Record IMU</string>
+                     <string>Statistics</string>
                     </property>
                    </widget>
                   </item>
                   <item row="2" column="1">
-                   <widget class="QLabel" name="label_54">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_StoreAndForwardFrames_CheckBox">
                     <property name="text">
-                     <string>Device Selection:</string>
+                     <string>Store and forward Frames</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="3" column="2">
-                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Accelerometer_Checkbox">
+                  <item row="1" column="1">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_NMEALOG_CheckBox">
                     <property name="text">
-                     <string>Accelerometer</string>
+                     <string>NMEA Log</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="2">
-                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Gyroscope_Checkbox">
+                  <item row="1" column="0">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ImageStorage_CheckBox">
                     <property name="text">
-                     <string>Gyroscope</string>
+                     <string>Image Storage</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QLabel" name="label_52">
+                  <item row="0" column="0">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox">
                     <property name="text">
-                     <string>Number of samples:</string>
+                     <string>System Info And Config</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="1" column="2">
-                   <widget class="QSpinBox" name="RecordIMU_SamplingPeriod_SpinBox"/>
-                  </item>
-                  <item row="0" column="2">
-                   <widget class="QSpinBox" name="RecordIMU_NumberOfSamples_SpinBox"/>
-                  </item>
-                  <item row="4" column="2">
-                   <widget class="QCheckBox" name="RecordIMU_DeviceSelection_Magnetometer_Checkbox">
+                  <item row="4" column="0" colspan="2">
+                   <widget class="QPushButton" name="EEPROM_Control_Wipe_Button">
                     <property name="text">
-                     <string>Magnetometer</string>
+                     <string>Wipe</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_ADCS_CheckBox">
+                    <property name="text">
+                     <string>ADCS Parameters</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="3" column="0">
+                   <widget class="QCheckBox" name="EEPROM_Control_Wipe_Ephemerides_CheckBox">
+                    <property name="text">
+                     <string>Ephemerides</string>
                     </property>
                    </widget>
                   </item>
@@ -1485,98 +1563,7 @@
               </layout>
              </widget>
             </item>
-            <item row="3" column="0">
-             <spacer name="horizontalSpacer_11">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="1" column="0">
-             <spacer name="horizontalSpacer_12">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="17" column="0">
-             <spacer name="horizontalSpacer_24">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
-            </item>
-            <item row="0" column="0">
-             <widget class="QGroupBox" name="baseOpsGroupBox">
-              <property name="font">
-               <font>
-                <weight>50</weight>
-                <bold>false</bold>
-               </font>
-              </property>
-              <property name="autoFillBackground">
-               <bool>false</bool>
-              </property>
-              <property name="title">
-               <string>Base Ops</string>
-              </property>
-              <property name="flat">
-               <bool>false</bool>
-              </property>
-              <property name="checkable">
-               <bool>false</bool>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_3">
-               <item row="8" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Abort_Button">
-                 <property name="text">
-                  <string>Abort</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="6" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Restart_Button">
-                 <property name="text">
-                  <string>Restart</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Deploy_Button">
-                 <property name="text">
-                  <string>Deploy</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="0">
-                <widget class="QPushButton" name="SatelliteControls_BaseOps_Ping_Button">
-                 <property name="text">
-                  <string>Ping</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
-            </item>
-            <item row="18" column="0">
+            <item row="19" column="0">
              <widget class="QGroupBox" name="groupBox_25">
               <property name="title">
                <string>Detumble</string>
@@ -1723,6 +1710,19 @@ tolerance check:</string>
               </layout>
              </widget>
             </item>
+            <item row="10" column="0">
+             <spacer name="horizontalSpacer_15">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
           </widget>
          </widget>
@@ -1749,7 +1749,7 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>218</x>
-             <y>-876</y>
+             <y>0</y>
              <width>475</width>
              <height>3857</height>
             </rect>
@@ -2180,6 +2180,19 @@ tolerance check:</string>
                </item>
               </layout>
              </widget>
+            </item>
+            <item row="13" column="0">
+             <spacer name="horizontalSpacer_25">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
             <item row="23" column="0">
              <widget class="QGroupBox" name="groupBox_26">
@@ -3069,19 +3082,6 @@ Sleep Interval (mV):</string>
                </item>
               </layout>
              </widget>
-            </item>
-            <item row="13" column="0">
-             <spacer name="horizontalSpacer_25">
-              <property name="orientation">
-               <enum>Qt::Horizontal</enum>
-              </property>
-              <property name="sizeHint" stdset="0">
-               <size>
-                <width>40</width>
-                <height>20</height>
-               </size>
-              </property>
-             </spacer>
             </item>
            </layout>
           </widget>

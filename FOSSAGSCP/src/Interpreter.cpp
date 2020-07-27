@@ -217,6 +217,8 @@ void Interpreter::Interpret_FCP_Frame(IGroundStationSerialMessage *inMsg)
             flashSystemInfoPageCRCErrorCounter |= (optionalData[21] << 16);
             flashSystemInfoPageCRCErrorCounter |= (optionalData[22] << 24);
 
+            m_systemInfoUI->SystemInformation_MPPT_OutputVoltage_LineEdit->setText(QString(mpptOutputVoltage));
+
         }
         else if (functionId == RESP_PACKET_INFO)
         {
