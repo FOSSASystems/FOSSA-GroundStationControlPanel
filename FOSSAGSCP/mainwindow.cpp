@@ -874,7 +874,7 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
 
     QString key = this->ui->ControlPanelSettings_securityKeyLineEdit->text();
 
-    QByteArray keyBytes;
+    uint8_t keyBytes[16];
     QStringList keyHexElements = key.split(',');
     for (int i = 0; i < keyHexElements.size(); i++)
     {
@@ -885,8 +885,9 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
         {
             throw "could not convert hex digit, e.g. 0x01";
         }
-        keyBytes.push_back(hexDigit);
+        keyBytes[i] = hexDigit;
     }
+
 
     m_settings.SetPassword(passwordStdStr);
     m_settings.SavePasswordToSettings();
