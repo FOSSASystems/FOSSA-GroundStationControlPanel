@@ -15,6 +15,8 @@
 #include <QDir>
 #include <QByteArray>
 #include <QThread>
+#include <QDebug>
+
 #include <queue>
 
 #include "CStructs.h"
@@ -141,6 +143,17 @@ private:
     void LoadGroundStationSettingsUI();
     void LoadSatelliteConfigurationUI();
     void LoadSatelliteControlsUI();
+
+
+
+    bool m_frameStreaming = false;
+    bool m_lengthByte = false;
+    uint8_t m_messageLength = 0;
+    uint8_t m_fcpFrameLength = 0;
+    QByteArray m_frameData;
+
+    void ReceivedByte(Interpreter* interperter, MessageLog* messageLog, uint8_t data);
+
 
 public:
 

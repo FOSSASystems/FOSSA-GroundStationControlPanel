@@ -1,4 +1,5 @@
 #include "SerialPortThread.h"
+#include <QDebug>
 
 SerialPortThread::SerialPortThread(QObject *parent) :
     QThread(parent)

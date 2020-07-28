@@ -25,44 +25,16 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     auto timenow = std::chrono::system_clock::to_time_t(timestamp);
     char* timestampString = std::ctime(&timenow);
 
-    char* payload = msg->GetPayload();
-    uint8_t payloadLength = msg->GetPayloadLengthByte();
-
     QString loggedMessage = QString("");
+
     if (m_logTimestamps)
     {
         loggedMessage += timestampString;
     }
 
-    // control byte as hex character string
-    char controlByteHexStr[3];
-    char controlByte = msg->GetControlByte();
-    sprintf(&(controlByteHexStr[0]), "%02x", (uint8_t)controlByte);
+    QString rawData = msg->AsString();
 
-    loggedMessage += controlByteHexStr;
-
-    loggedMessage += ' ';
-
-    // length byte as hex character string.
-    char lengthByteHexStr[2];
-    char payloadLengthByte = msg->GetPayloadLengthByte();
-    sprintf(&(lengthByteHexStr[0]), "%02x", (uint8_t)payloadLengthByte);
-    loggedMessage += lengthByteHexStr;
-
-    loggedMessage += " ";
-
-    if (payload != nullptr)
-    {
-        for (int i = 0; i < payloadLength; i++)
-        {
-            char hexChar[2];
-            char rawData = payload[i];
-            sprintf(&(hexChar[0]), "%02x", (uint8_t)rawData);
-            loggedMessage.push_back(hexChar[0]);
-            loggedMessage.push_back(hexChar[1]);
-            loggedMessage += " ";
-        }
-    }
+    loggedMessage.append(rawData);
 
     // put the data in the new empty row.
     std::string logMessageStdString = loggedMessage.toStdString();
@@ -76,6 +48,7 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
     // default serial sniffing to enabled.
     m_enableSerialSniffing = true;
     m_logTimestamps = true;
+
 }
 
 MessageLogFrame::~MessageLogFrame()
@@ -85,7 +58,7 @@ MessageLogFrame::~MessageLogFrame()
 
 bool MessageLogFrame::GetEnableSerialSniffingState()
 {
-    return m_enableSerialSniffing;
+    return ui->enableSerialSniffingCheckBox->isChecked();
 }
 
 void MessageLogFrame::RawWriteToLog(QString msg)

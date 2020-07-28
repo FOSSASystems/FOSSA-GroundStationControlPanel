@@ -36,3 +36,5 @@ Control Panel Source Code/ - This directory contains the Qt C++ source code file
 0.1.4 - Record solar cells 1B
 	  - System information decoding 1b and 2
 	  - get system information
+
+0.1.5 - key entry now works with hex ascii e.g. 0x01,0x02,0x04.etc

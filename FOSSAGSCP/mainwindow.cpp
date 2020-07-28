@@ -65,11 +65,89 @@ MainWindow::~MainWindow()
 }
 
 
+
+bool IsControlByte(uint8_t value)
+{
+    uint8_t dir = value >> 7;
+    uint8_t op = value & 0b01111111;
+
+    if (dir == 1)
+    {
+        if (op == 0 || op == 1 || op == 2 || op == 3)
+        {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+void MainWindow::ReceivedByte(Interpreter* interperter, MessageLog* messageLog, uint8_t data)
+{
+    if (m_frameStreaming)
+    {
+        m_frameData.push_back(data);
+
+        if (m_lengthByte)
+        {
+            m_messageLength = data + 2;
+            m_fcpFrameLength = data - 2;
+
+            m_lengthByte = false;
+        }
+
+        if (m_frameData.size() >= m_messageLength)
+        {
+            // create a temp array for the frame buffer.
+            char* messageMemoryBlock = new char[m_messageLength];
+
+            // copy the data from the g_frameBuffer into the temp array.
+            memcpy_s(messageMemoryBlock, m_messageLength, m_frameData.constData(), m_messageLength);
+
+            // pass the temp array into the msg creation (ctor copies array by value)
+            IGroundStationSerialMessage* msg = interperter->SerialData_To_GroundStationSerialMessage(messageMemoryBlock, m_frameData.size());
+
+            // push the message to the log panel.
+            messageLog->PushMessage(msg);
+
+            // interpret the received message into function calls.
+            interperter->Interpret_Received_Message(msg);
+
+            delete msg;
+
+            delete[] messageMemoryBlock;
+
+            // reset data and flags
+            m_frameData.clear();
+
+            m_frameStreaming = false;
+        }
+
+        return;
+    }
+    else
+    {
+        if (IsControlByte(data))
+        {
+            m_frameData.push_back(data);
+
+            m_frameStreaming = true;
+
+            m_lengthByte = true;
+
+            return;
+        }
+    }
+}
+
 // Response received is a slot, this slot is signalled from the serial port thread.
 void MainWindow::HandleRead(QByteArray data)
 {
-    // append the data to the buffer.
-    m_commandBuffer.push_back(data);
+    for (int i = 0; i < data.length(); i++)
+    {
+        uint8_t v = data[i];
+        ReceivedByte(m_interpreter, &m_messageLog, v);
+    }
 
     // this is a debug mode switch, enable this to see all incoming data.
     bool enableSerialSniffing = m_messageLogFrame->GetEnableSerialSniffingState();
@@ -79,94 +157,6 @@ void MainWindow::HandleRead(QByteArray data)
         QString rawMessage = QString(dataHexValues);
         m_messageLogFrame->RawWriteToLog(rawMessage);
     }
-
-
-    // search for the start of the frame.
-    for (int i = 0; i < m_commandBuffer.length(); i++)
-    {
-        uint8_t potentialControlByte = (uint8_t)m_commandBuffer[i];
-
-        // if this value is a control byte of dir 1 and op id 0
-        // then this value is a ctonrol byte data structure.
-        uint8_t dirCheckMask = 0b10000000;
-        uint8_t isCorrectDirection = potentialControlByte & dirCheckMask;
-        isCorrectDirection = isCorrectDirection >> 7;
-        if (isCorrectDirection)
-        {
-            uint8_t opIdCheckMask = 0b01111111;
-            uint8_t potentialOpId = potentialControlByte & opIdCheckMask;
-            if (potentialOpId == 0x0 ||
-                    potentialOpId == 0x1 ||
-                    potentialOpId == 0x2 ||
-                    potentialOpId == 0x3)
-            {
-                m_commandStartIndex = i;
-                m_commandStartFound = true;
-
-                break;
-            }
-        }
-    }
-
-
-    // if there is a start of a frame in the buffer search for
-    // the end which is the number of bytes we are looking for.
-    if (m_commandStartFound)
-    {
-        // if there are bytes after the start index.
-
-        // check for the length byte.
-        if ( (m_commandStartIndex + 1) < m_commandBuffer.length() )
-        {
-            m_commandLength = m_commandBuffer[m_commandStartIndex + 1];
-            m_commandLengthFound = true;
-        }
-
-        if (m_commandLengthFound)
-        {
-            int endOfCommandIndex = m_commandStartIndex + 1 + 1 + m_commandLength;
-
-            // if we have enough data in the command buffer that the command specifies.
-            if (endOfCommandIndex <= m_commandBuffer.length())
-            {
-                //
-                // here we have all the data required.
-                //
-
-                // remove the bytes before the command frame in the buffer.
-                m_commandBuffer.remove(0, m_commandStartIndex);
-
-                // copy the command buffer to a new array.
-                QByteArray commandData = m_commandBuffer;
-
-                commandData.remove(endOfCommandIndex,
-                                   (m_commandBuffer.length() - endOfCommandIndex));
-
-                // remove the frame from the command buffer.
-                m_commandBuffer.remove(0, endOfCommandIndex);
-
-
-                // interpret the serial data into the message.
-                char *cmdData = commandData.data();
-
-                IGroundStationSerialMessage* msg = m_interpreter->SerialData_To_GroundStationSerialMessage(cmdData, commandData.length());
-
-                // push the message to the log panel.
-                m_messageLog.PushMessage(msg);
-
-                // interpret the received message into function calls.
-                m_interpreter->Interpret_Received_Message(msg);
-
-                delete msg;
-
-                // reset command buffer found flags.
-                m_commandStartFound = false;
-                m_commandLengthFound = false;
-
-                m_commandBuffer.clear();
-            }
-        }
-    }
 }
 
 // The IGroundStationSerialMessage object is created in Interpreter.h  function name: Create_GroundStationSerialMessage()
@@ -175,15 +165,26 @@ void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
     // log the message.
     m_messageLog.PushMessage(msg);
 
-    // get the string.
-    std::string cmdDataStr = msg->GetRawData();
+
+
+
+    // get the ground station message.
+    // control byte, length byte, fcp frame.
+    int groundStationDataLength = msg->GetDataForGroundStationLength();
+    uint8_t* groundStationData = new uint8_t[groundStationDataLength];
+    msg->GetDataForGroundStation(groundStationData);
 
     // convert it to a byte array.
     QByteArray byteArray;
-    for (char& v : cmdDataStr)
+    for (int i = 0; i < groundStationDataLength; i++)
     {
+        uint8_t v = groundStationData[i];
         byteArray.push_back(v);
     }
+
+    delete[] groundStationData;
+
+
 
     // send the message to the ground station via serial and block until successful.
     while ( (this->m_serialPortThread.Write(byteArray)) == false )
@@ -191,6 +192,9 @@ void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
         // the serial thread is currently locked, wait for 10ms and try again.
         QThread::msleep(20);
     }
+
+
+
 
     // delete the message.
     delete msg;
@@ -205,7 +209,7 @@ void MainWindow::ErrorReceived(const QString &str)
 
 void MainWindow::TimeoutReceived(const QString &str)
 {
-    //throw std::runtime_error(str.toUtf8());
+    throw std::runtime_error(str.toUtf8());
 }
 
 void MainWindow::ReceivedHandshake()

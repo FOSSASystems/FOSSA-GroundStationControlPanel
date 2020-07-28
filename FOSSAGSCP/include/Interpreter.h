@@ -10,6 +10,7 @@
 #include <FOSSA-Comms.h>
 #include <QObject>
 #include <vector>
+#include <QDebug>
 
 #include "CStructs.h"
 

@@ -16,16 +16,21 @@ IGroundStationSerialMessage *Interpreter::SerialData_To_GroundStationSerialMessa
     char controlByte = serialData[0];
 
     // second byte is the payload length.
-    char lengthByte = serialData[1];
+    uint8_t lengthByte = (uint8_t)serialData[1];
+
+    // third and fourth byte is the radiolib status code.
+    /// @todo handle status codes.
+    int16_t radiolibStatusCode = serialData[2] | (serialData[3] << 8);
 
     // rest of the bytes is the payload.
-    char* payload = new char[lengthByte];
-    memcpy(payload, &(serialData[2]), lengthByte);
+    int fcpFrameLength = lengthByte - 2;
+    uint8_t* fcpFrame = new uint8_t[fcpFrameLength];
+    memcpy(fcpFrame, &(serialData[4]), fcpFrameLength);
 
-    GroundStationSerialMessage* message = new GroundStationSerialMessage(controlByte, lengthByte, payload);
+    GroundStationSerialMessage* message = new GroundStationSerialMessage(controlByte, lengthByte, fcpFrame, radiolibStatusCode);
 
     // delete the payload, it is copied in the datagram ctor.
-    delete[] payload;
+    delete[] fcpFrame;
 
     return dynamic_cast<IGroundStationSerialMessage*>(message);
 }
@@ -96,7 +101,7 @@ IGroundStationSerialMessage* Interpreter::Create_GroundStationSerialMessage(char
     // Send the frame wrapped in the gcs protocol.
     //
     char controlByte = directionBit | operationId;
-    GroundStationSerialMessage* msg = new GroundStationSerialMessage(controlByte, (char)frameLength, (char*)frame); // the payload IS the FCP Frame above.
+    GroundStationSerialMessage* msg = new GroundStationSerialMessage(controlByte, frameLength, frame); // the payload IS the FCP Frame above.
 
     delete[] frame;
 
@@ -152,31 +157,33 @@ void Interpreter::Interpret_FCP_Frame(IGroundStationSerialMessage *inMsg)
 {
     GroundStationSerialMessage* msg = dynamic_cast<GroundStationSerialMessage*>(inMsg);
 
-    // raw characters
-    char* payloadData = msg->GetPayload();
-    char payloadLength = msg->GetPayloadLengthByte();
+    // get the callsign
+    QString callsignQStr = m_mainWindowUI->SatelliteConfig_callsignLineEdit->text();
+    std::string callsignStr = callsignQStr.toStdString();
+    char * callsignCStr = (char*)callsignStr.c_str();
+    uint32_t callsignLen = callsignStr.size();
 
-    // converted to uint8_t
-    uint8_t frameLength = (uint8_t)payloadLength;
+    // FCP Frame.
+    uint8_t frameLength = (uint8_t) msg->GetFCPFrameLength();
     uint8_t* frame = new uint8_t[frameLength];
-    for (int i = 0; i < frameLength; i++)
-    {
-        frame[i] = (uint8_t)(payloadData[i]);
-    }
-
-    char * callsign = (char*)m_mainWindowUI->SatelliteConfig_callsignLineEdit->text().toStdString().c_str(); /// @todo fix stripping of const.
+    msg->GetFCPFrame(frame);
 
     // get the function ID.
-    int16_t functionId = FCP_Get_FunctionID(callsign, frame, frameLength);
+    int16_t functionId = FCP_Get_FunctionID(callsignCStr, (uint8_t*)frame, frameLength);
 
     // get the optional data length.
-    int16_t optionalDataLength = FCP_Get_OptData_Length(callsign, frame, frameLength, NULL, NULL);
+    int16_t optionalDataLength = FCP_Get_OptData_Length(callsignCStr, (uint8_t*)frame, frameLength);
 
+    // for (int i = 0; i < payloadLength; i++)
+     //{
+         qInfo() << functionId;
+         qInfo() << optionalDataLength;
+     //}
     if (optionalDataLength >= 0)
     {
         // frame contains metadata
         uint8_t* optionalData = new uint8_t[optionalDataLength];
-        FCP_Get_OptData(callsign, frame, frameLength, optionalData, NULL, NULL);
+        FCP_Get_OptData(callsignCStr, (uint8_t*)frame, frameLength, optionalData, NULL, NULL);
 
         ///////////////////////////////
         /// Interpret the commands. ///
