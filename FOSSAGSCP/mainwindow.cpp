@@ -6,11 +6,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 {
     ui->setupUi(this);
 
-    // load the system information pane
-    m_sytemInfoPane = new systeminformationpane();
-    m_sytemInfoPane->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
-    m_sytemInfoPane->show();
-
     // load the message log frame
     m_messageLogFrame = new MessageLogFrame();
     m_messageLogFrame->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
@@ -19,9 +14,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // initialize the interpereter.
     assert(ui != nullptr);
 
-    m_interpreter = new Interpreter(m_settings, ui);
-    m_interpreter->SetSystemInformationPane(m_sytemInfoPane->ui);
-    m_sytemInfoPane->SetInterpreter(m_interpreter);
+    // create the interpreter
+    m_interpreter = new DatagramInterpreter(ui);
+
+    // load the system information pane
+    m_sytemInfoPane = new systeminformationpane(m_interpreter);
+    m_sytemInfoPane->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
+    m_sytemInfoPane->show();
+
+    // create the processor
+    m_processor = new DatagramProcessor(ui, m_sytemInfoPane->ui);
 
     // initialize the 4 main tabs.
     this->LoadControlPanelSettingsUI();
@@ -38,15 +40,13 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleTimeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
 
     // signal piping from the interpeter to this.
-    connect(m_interpreter, &Interpreter::ReceivedHandshake, this, &MainWindow::ReceivedHandshake);
-
-    // data piping from message log service to message log frame.
-    connect(&m_messageLog, &MessageLog::MessageLogged, m_messageLogFrame, &MessageLogFrame::ReceivedMessageLogged, Qt::AutoConnection);
+    connect(m_interpreter, &DatagramInterpreter::ReceivedHandshake, this, &MainWindow::StartDopplerCorrector);
 
     // data piping from message log frame to serial port thread.
     connect(m_messageLogFrame, &MessageLogFrame::SendDataFromMessageLogFrame, this, &MainWindow::ReceivedMessagefromMessageLog);
+
     // data piping from the system information frame to the serial port thread.
-    connect(m_sytemInfoPane, &systeminformationpane::SendDataFromSystemInformationPane, this, &MainWindow::ReceivedMessagefromSystemInformationPane);
+    connect(m_sytemInfoPane, &systeminformationpane::SendDataFromSystemInformationPane, this, &MainWindow::ReceivedDatagramfromSystemInformationPane);
 }
 
 MainWindow::~MainWindow()
@@ -82,7 +82,7 @@ bool IsControlByte(uint8_t value)
     return false;
 }
 
-void MainWindow::ReceivedByte(Interpreter* interperter, MessageLog* messageLog, uint8_t data)
+void MainWindow::ReceivedByte(uint8_t data)
 {
     if (m_frameStreaming)
     {
@@ -98,24 +98,15 @@ void MainWindow::ReceivedByte(Interpreter* interperter, MessageLog* messageLog, 
 
         if (m_frameData.size() >= m_messageLength)
         {
-            // create a temp array for the frame buffer.
-            char* messageMemoryBlock = new char[m_messageLength];
+            IDatagram* datagram = m_interpreter->SerialData_To_Datagram(m_frameData);
 
-            // copy the data from the g_frameBuffer into the temp array.
-            memcpy_s(messageMemoryBlock, m_messageLength, m_frameData.constData(), m_messageLength);
+            // push the datagram to the log panel.
+            m_messageLogFrame->WriteDatagram(datagram);
 
-            // pass the temp array into the msg creation (ctor copies array by value)
-            IGroundStationSerialMessage* msg = interperter->SerialData_To_GroundStationSerialMessage(messageMemoryBlock, m_frameData.size());
+            // process the received datagram into function calls.
+            m_processor->ProcessDatagram(datagram);
 
-            // push the message to the log panel.
-            messageLog->PushMessage(msg);
-
-            // interpret the received message into function calls.
-            interperter->Interpret_Received_Message(msg);
-
-            delete msg;
-
-            delete[] messageMemoryBlock;
+            delete datagram;
 
             // reset data and flags
             m_frameData.clear();
@@ -146,7 +137,7 @@ void MainWindow::HandleRead(QByteArray data)
     for (int i = 0; i < data.length(); i++)
     {
         uint8_t v = data[i];
-        ReceivedByte(m_interpreter, &m_messageLog, v);
+        ReceivedByte(v);
     }
 
     // this is a debug mode switch, enable this to see all incoming data.
@@ -159,45 +150,30 @@ void MainWindow::HandleRead(QByteArray data)
     }
 }
 
-// The IGroundStationSerialMessage object is created in Interpreter.h  function name: Create_GroundStationSerialMessage()
-void MainWindow::SendSerialData(IGroundStationSerialMessage* msg)
+void MainWindow::SendDatagram(const IDatagram* datagram)
 {
-    // log the message.
-    m_messageLog.PushMessage(msg);
+    // log the datagram.
+    m_messageLogFrame->WriteDatagram(datagram);
 
+    // convert the datagram to a byte array.
+    uint32_t datagramDataLength = datagram->GetLength();
+    const uint8_t* datagramData = datagram->GetData();
 
-
-
-    // get the ground station message.
-    // control byte, length byte, fcp frame.
-    int groundStationDataLength = msg->GetDataForGroundStationLength();
-    uint8_t* groundStationData = new uint8_t[groundStationDataLength];
-    msg->GetDataForGroundStation(groundStationData);
-
-    // convert it to a byte array.
-    QByteArray byteArray;
-    for (int i = 0; i < groundStationDataLength; i++)
+    QByteArray datagramDataArr;
+    for (int i = 0; i < datagramDataLength; i++)
     {
-        uint8_t v = groundStationData[i];
-        byteArray.push_back(v);
+        uint8_t v = datagramData[i];
+        datagramDataArr.push_back(v);
     }
 
-    delete[] groundStationData;
-
-
+    delete[] datagramData;
 
     // send the message to the ground station via serial and block until successful.
-    while ( (this->m_serialPortThread.Write(byteArray)) == false )
+    while ( (this->m_serialPortThread.Write(datagramDataArr)) == false )
     {
         // the serial thread is currently locked, wait for 10ms and try again.
         QThread::msleep(20);
     }
-
-
-
-
-    // delete the message.
-    delete msg;
 }
 
 
@@ -212,7 +188,7 @@ void MainWindow::TimeoutReceived(const QString &str)
     throw std::runtime_error(str.toUtf8());
 }
 
-void MainWindow::ReceivedHandshake()
+void MainWindow::StartDopplerCorrector()
 {
     QMessageBox msgBox;
     QString message = QString("Handshook the ground station!");
@@ -222,9 +198,9 @@ void MainWindow::ReceivedHandshake()
     //
     // Configure the simulation if enabled.
     //
-    if (m_settings.GetDopplerShiftCorrectionEnabled())
+    if (Settings::GetDopplerShiftCorrectionEnabled())
     {
-        if (m_settings.GetHandshookValue())
+        if (Settings::GetHandshookValue())
         {
             this->ui->statusbar->showMessage("Doppler shift correction started!", 10);
 
@@ -240,16 +216,16 @@ void MainWindow::ReceivedMessagefromMessageLog(QString msg)
     m_serialPortThread.Write(bytes);
 }
 
-void MainWindow::ReceivedMessagefromSystemInformationPane(IGroundStationSerialMessage* msg)
+void MainWindow::ReceivedDatagramfromSystemInformationPane(IDatagram* datagram)
 {
-    this->SendSerialData(msg);
+    this->SendDatagram(datagram);
 }
 
 void MainWindow::SendDopplerShiftedFrequency()
 {
     //return;
 
-    if (!m_settings.GetDopplerShiftCorrectionEnabled()) return;
+    if (!Settings::GetDopplerShiftCorrectionEnabled()) return;
 
     QString modemType = ui->GroundStationSettings_ModemTypeComboBox->currentText();
 
@@ -343,14 +319,14 @@ void MainWindow::on_CameraControl_Capture_Button_clicked()
     char specialFilter = (char)this->ui->CameraControl_SpecialFilter_SpinBox->value();
     char contrast = (char)this->ui->CameraControl_Contrast_SpinBox->value();
 
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Camera_Capture(pictureSlot,
-                                                                                lightMode,
-                                                                                pictureSize,
-                                                                                brightness,
-                                                                                saturation,
-                                                                                specialFilter,
-                                                                                contrast);
-    this->SendSerialData(msg);
+    IDatagram* datagram = m_interpreter->Create_CMD_Camera_Capture(pictureSlot,
+                                                                            lightMode,
+                                                                            pictureSize,
+                                                                            brightness,
+                                                                            saturation,
+                                                                            specialFilter,
+                                                                            contrast);
+    this->SendDatagram(datagram);
 }
 
 
@@ -369,9 +345,9 @@ void MainWindow::on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked()
     // 1 is full picture, 0 is scan data.
     char fullPictureOrScandata = (char)this->ui->CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton->isChecked();
 
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Get_Picture_Burst(pictureSlot, packetId, fullPictureOrScandata);
+    IDatagram* datagram = m_interpreter->Create_CMD_Get_Picture_Burst(pictureSlot, packetId, fullPictureOrScandata);
 
-    this->SendSerialData(msg);
+    this->SendDatagram(datagram);
 }
 
 
@@ -428,9 +404,9 @@ void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
         controllerMatrix[2][i] = val;
     }
 
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
 
-    this->SendSerialData(msg);
+    this->SendDatagram(datagram);
 }
 
 
@@ -474,8 +450,8 @@ void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clic
 {
     uint16_t chunkId = ui->SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox->value();
 
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
-    this->SendSerialData(msg);
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
+    this->SendDatagram(datagram);
 
     g_ephemeridesControllerStack.clear();
 
@@ -495,8 +471,8 @@ void MainWindow::on_EEPROM_Control_Wipe_Button_clicked()
 
     char flags = wipeSystemInfo | wipeStatistics | wipeStoreAndForward | wipeNMEALog | wipeImageStorage | wipeADCSparameters | wipeADCSEphemerides;
 
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Wipe_EEPROM(flags);
-    this->SendSerialData(msg);
+    IDatagram* datagram = m_interpreter->Create_CMD_Wipe_EEPROM(flags);
+    this->SendDatagram(datagram);
 }
 
 void MainWindow::on_SatelliteConfig_Transmission_Send_Button_clicked()
@@ -506,8 +482,8 @@ void MainWindow::on_SatelliteConfig_Transmission_Send_Button_clicked()
     char automatedStatsTransmissionEnabled = ui->SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton->isChecked();
     char FSKMandatedForLargePacketsEnabled = ui->SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton->isChecked();
 
-    IGroundStationSerialMessage* msg = m_interpreter->Create_CMD_Set_Transmit_Enable(transmitEnabled, automatedStatsTransmissionEnabled, FSKMandatedForLargePacketsEnabled);
-    this->SendSerialData(msg);
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Transmit_Enable(transmitEnabled, automatedStatsTransmissionEnabled, FSKMandatedForLargePacketsEnabled);
+    this->SendDatagram(datagram);
 }
 
 
@@ -543,7 +519,7 @@ void MainWindow::on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_click
         throw "invalid satellite version.";
     }
 
-    m_interpreter->SetSatelliteVersion(text);
+    Settings::SetSatVersion(text);
 }
 #define SatelliteConfigurationTab_End }
 
@@ -583,7 +559,7 @@ void MainWindow::LoadGroundStationSettingsUI()
 
 void MainWindow::on_handshakeSendButton_clicked()
 {
-    m_settings.SetHandshookValue(false);
+    Settings::SetHandshookValue(false);
 
     //
     // Handshake the ground station.
@@ -695,12 +671,12 @@ void MainWindow::LoadControlPanelSettingsUI()
     //
 
     // load the key from the settings
-    bool keyLoaded = m_settings.LoadKeyFromSettings();
+    bool keyLoaded = Settings::LoadKeyFromSettings();
     if (keyLoaded)
     {
-        m_settings.SetKeySet();
+        Settings::SetKeySet();
 
-        uint8_t* key = m_settings.GetKey();
+        uint8_t* key = Settings::GetKey();
         QString keyAsStr;
         for (int i = 0; i < 16; i++)
         {
@@ -715,12 +691,12 @@ void MainWindow::LoadControlPanelSettingsUI()
     }
 
     // Load password from the settings
-    bool passwordLoaded = m_settings.LoadPasswordFromSettings();
+    bool passwordLoaded = Settings::LoadPasswordFromSettings();
     if (passwordLoaded)
     {
-        m_settings.SetPasswordSet();
+        Settings::SetPasswordSet();
 
-        std::string password = m_settings.GetPassword();
+        std::string password = Settings::GetPassword();
         QString passwordStr = QString::fromStdString(password);
         this->ui->ControlPanelSettings_securityPasswordLineEdit->setText(passwordStr);
     }
@@ -729,13 +705,13 @@ void MainWindow::LoadControlPanelSettingsUI()
     //
     // Load the latitude, longitude and altitude settings into the UI
     //
-    bool latLongAltLoaded = m_settings.LoadLatLongAlt();
+    bool latLongAltLoaded = Settings::LoadLatLongAlt();
 
     if (latLongAltLoaded)
     {
-        QString latStr = QString::number(m_settings.GetLatitude());
-        QString lonStr = QString::number(m_settings.GetLongitude());
-        QString altStr = QString::number(m_settings.GetAltitude());
+        QString latStr = QString::number(Settings::GetLatitude());
+        QString lonStr = QString::number(Settings::GetLongitude());
+        QString altStr = QString::number(Settings::GetAltitude());
 
         this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->setText(latStr);
         this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->setText(lonStr);
@@ -752,7 +728,7 @@ void MainWindow::LoadControlPanelSettingsUI()
     //
     // Load the doppler shift correction into the UI
     //
-    bool dopplerShiftCorrectionEnabled = m_settings.LoadDopplerShiftCorrectionEnabled();
+    bool dopplerShiftCorrectionEnabled = Settings::LoadDopplerShiftCorrectionEnabled();
 
     if (dopplerShiftCorrectionEnabled)
     {
@@ -768,10 +744,10 @@ void MainWindow::LoadControlPanelSettingsUI()
     //
     // Load the TLE into the UI.
     //
-    m_settings.LoadTLElines();
+    Settings::LoadTLElines();
 
-    std::string tleLine1 = m_settings.GetTLELine1();
-    std::string tleLine2 = m_settings.GetTLELine2();
+    std::string tleLine1 = Settings::GetTLELine1();
+    std::string tleLine2 = Settings::GetTLELine2();
 
     QString tleLine1Str = QString::fromStdString(tleLine1);
     QString tleLine2Str = QString::fromStdString(tleLine2);
@@ -784,9 +760,9 @@ void MainWindow::LoadControlPanelSettingsUI()
     //
     if (dopplerShiftCorrectionEnabled)
     {
-        double latitude = m_settings.GetLatitude();
-        double longitude = m_settings.GetLongitude();
-        double attitude = m_settings.GetAltitude();
+        double latitude = Settings::GetLatitude();
+        double longitude = Settings::GetLongitude();
+        double attitude = Settings::GetAltitude();
 
         m_dopplerShiftCorrector.SetObserverParameters(latitude, longitude, attitude);
         m_dopplerShiftCorrector.SetTLELines(tleLine1, tleLine2);
@@ -798,9 +774,9 @@ void MainWindow::LoadControlPanelSettingsUI()
             m_dopplerCorrectionTimer = new QTimer(this);
             connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
 
-            if (m_settings.GetHandshookValue())
+            if (Settings::GetHandshookValue())
             {
-                if (m_settings.GetDopplerShiftCorrectionEnabled())
+                if (Settings::GetDopplerShiftCorrectionEnabled())
                 {
                     m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
                 }
@@ -893,11 +869,11 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
     }
 
 
-    m_settings.SetPassword(passwordStdStr);
-    m_settings.SavePasswordToSettings();
+    Settings::SetPassword(passwordStdStr);
+    Settings::SavePasswordToSettings();
 
-    m_settings.SetKey(keyBytes);
-    m_settings.SaveKeyToSettings();
+    Settings::SetKey(keyBytes);
+    Settings::SaveKeyToSettings();
 }
 
 
@@ -927,24 +903,24 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
     double longitude = this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->text().toDouble();
     double attitude = this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->text().toDouble();
 
-    m_settings.SetLatitude(latitude);
-    m_settings.SetLongitude(longitude);
-    m_settings.SetAltitude(attitude);
+    Settings::SetLatitude(latitude);
+    Settings::SetLongitude(longitude);
+    Settings::SetAltitude(attitude);
 
-    m_settings.SaveLatLongAlt();
+    Settings::SaveLatLongAlt();
 
     bool dopplerShiftCorrectionEnabled = this->ui->ControlPanelSettings_Doppler_Shift_Enable_RadioButton->isChecked();
 
-    m_settings.SetDopplerShiftCorrectionEnabled(dopplerShiftCorrectionEnabled);
-    m_settings.SaveDopplerShiftCorrectionEnabled();
+    Settings::SetDopplerShiftCorrectionEnabled(dopplerShiftCorrectionEnabled);
+    Settings::SaveDopplerShiftCorrectionEnabled();
 
     std::string tleLine1 = this->ui->ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit->text().toStdString();
     std::string tleLine2 = this->ui->ControlPanelSettings_Doppler_Shift_TLE_2_LineEdit->text().toStdString();
 
-    m_settings.SetTLELine1(tleLine1);
-    m_settings.SetTLELine2(tleLine2);
+    Settings::SetTLELine1(tleLine1);
+    Settings::SetTLELine2(tleLine2);
 
-    m_settings.SaveTLELines();
+    Settings::SaveTLELines();
 
 
     //
@@ -957,7 +933,7 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
 
         this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
 
-        if (m_settings.GetHandshookValue())
+        if (Settings::GetHandshookValue())
         {
             if (m_dopplerCorrectionTimer == nullptr)
             {

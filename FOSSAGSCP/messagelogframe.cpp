@@ -14,7 +14,7 @@ MessageLogFrame::MessageLogFrame(QWidget *parent) :
     ui->messageLogListView->setAutoScroll(true);
 }
 
-void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
+void MessageLogFrame::WriteDatagram(const IDatagram* datagram)
 {
     // insert a new empty row.
     m_messageLogListModel->insertRow(m_messageLogListModel->rowCount());
@@ -32,7 +32,7 @@ void MessageLogFrame::ReceivedMessageLogged(IGroundStationSerialMessage* msg)
         loggedMessage += timestampString;
     }
 
-    QString rawData = msg->AsString();
+    QString rawData = datagram->ToString();
 
     loggedMessage.append(rawData);
 

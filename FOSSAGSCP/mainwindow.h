@@ -2,12 +2,6 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
-#include <iostream>
-#include <string.h>
-#include <cstring>
-#include <stdexcept>
-
 #include <QtCore>
 #include <QtWidgets>
 #include <QSerialPort>
@@ -18,21 +12,25 @@
 #include <QDebug>
 
 #include <queue>
-
-#include "CStructs.h"
+#include <iostream>
+#include <string.h>
+#include <cstring>
+#include <stdexcept>
 
 #include <FOSSA-Comms.h>
 
-#include "SerialPortThread.h"
+#include "CStructs.h"
 
 #include "systeminformationpane.h"
 #include "messagelogframe.h"
+#include "SerialPortThread.h"
 
-#include "GroundStationSerialMessage.h"
-#include "MessageLog.h"
-#include "Settings.h"
-#include "Interpreter.h"
+#include "DatagramInterpreter.h"
+#include "DatagramProcessor.h"
+
 #include "DopplerShiftCorrector.h"
+#include "Settings.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -46,12 +44,10 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void SendSerialData(IGroundStationSerialMessage* datagram);
+    void SendDatagram(const IDatagram* datagram);
     void SendHandshake();
-
 public slots:
-    void ReceivedHandshake();
-
+    void StartDopplerCorrector();
 private slots:
     void on_actionView_Serial_Ports_triggered();
 
@@ -73,11 +69,7 @@ private slots:
 
     // Receive message from message logger.
     void ReceivedMessagefromMessageLog(QString msg);
-    void ReceivedMessagefromSystemInformationPane(IGroundStationSerialMessage* msg);
-
-
-
-
+    void ReceivedDatagramfromSystemInformationPane(IDatagram* datagram);
 
 
     void on_CameraControl_Capture_Button_clicked();
@@ -102,43 +94,25 @@ private slots:
 
 private:
 
-    Ui::MainWindow *ui; // this pointer is private and only available in mainwindow.h
-                        // this means that we can't pass it to other systems, therefore
-                        // we must do all UI interactivity in this class or create functions for
-                        // all elements? 21:52 25/06/2020 R.G.Bamford.
-                        //
-                        // ui can be passed around fine, it just requiers ui_mainwindow.h includes
+    Ui::MainWindow *ui;
 
     // GUI Frames
     systeminformationpane *m_sytemInfoPane;
     MessageLogFrame *m_messageLogFrame;
 
+    DatagramInterpreter* m_interpreter;
+    DatagramProcessor* m_processor;
 
-    Settings m_settings;
-    MessageLog m_messageLog;
-    Interpreter* m_interpreter;
     DopplerShiftCorrector m_dopplerShiftCorrector;
 
     // serial port thread.
     SerialPortThread m_serialPortThread;
-
-    // Since the serial port will not frame the commands correctly,
-    // we must manually interpret the received data into command frames.
-    bool m_commandBeingRead = false;
-    QByteArray m_commandBuffer;
-    bool m_commandStartFound = false;
-    int m_commandStartIndex;
-    uint8_t m_commandLength;
-    bool m_commandLengthFound = false;
 
     bool m_handshakeReceived = false;
 
     // Timer for dopplerShiftCorrector;
     QTimer* m_dopplerCorrectionTimer = nullptr;
 
-    // ****
-    // These are the main entry points for the program, each tab loads itself here.
-    // ****
     void LoadControlPanelSettingsUI();
     void LoadGroundStationSettingsUI();
     void LoadSatelliteConfigurationUI();
@@ -152,9 +126,7 @@ private:
     uint8_t m_fcpFrameLength = 0;
     QByteArray m_frameData;
 
-    void ReceivedByte(Interpreter* interperter, MessageLog* messageLog, uint8_t data);
-
-
+    void ReceivedByte(uint8_t data);
 public:
 
 

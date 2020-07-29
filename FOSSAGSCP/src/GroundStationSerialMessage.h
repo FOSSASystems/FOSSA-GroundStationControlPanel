@@ -19,7 +19,7 @@ public:
         m_statusCode = statusCode;
         m_fcpFrameLength = m_lengthByte - 2;
 
-        if (lengthByte > 0)
+        if (m_fcpFrameLength > 0)
         {
             m_fcpFrame = new uint8_t[m_fcpFrameLength];
             memcpy(m_fcpFrame, fcpFrame, m_fcpFrameLength);
@@ -43,8 +43,15 @@ public:
 
         if (other.m_fcpFrame != nullptr)
         {
-            m_fcpFrame = new uint8_t[m_fcpFrameLength];
-            memcpy(m_fcpFrame, other.m_fcpFrame, m_fcpFrameLength);
+            if (other.m_fcpFrameLength > 0)
+            {
+                m_fcpFrame = new uint8_t[m_fcpFrameLength];
+                memcpy(m_fcpFrame, other.m_fcpFrame, m_fcpFrameLength);
+            }
+            else
+            {
+                m_fcpFrame = nullptr;
+            }
         }
     }
 

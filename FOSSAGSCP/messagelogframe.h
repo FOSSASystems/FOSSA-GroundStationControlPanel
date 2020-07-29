@@ -8,7 +8,7 @@
 #include <chrono>
 #include <ctime>
 
-#include "Interfaces/IGroundStationSerialMessage.h"
+#include "src/IDatagram.h"
 
 namespace Ui {
 class MessageLogFrame;
@@ -26,7 +26,7 @@ public:
     void RawWriteToLog(QString msg);
 
 public slots:
-    void ReceivedMessageLogged(IGroundStationSerialMessage* msg); // attached to MessageLog.h
+    void WriteDatagram(const IDatagram* datagram); // attached to MessageLog.h
 signals:
     void SendDataFromMessageLogFrame(QString data);
 private slots:
