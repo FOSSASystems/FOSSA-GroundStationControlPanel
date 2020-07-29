@@ -38,3 +38,5 @@ Control Panel Source Code/ - This directory contains the Qt C++ source code file
 	  - get system information
 
 0.1.5 - key entry now works with hex ascii e.g. 0x01,0x02,0x04.etc
+
+0.2.0 - refactor entire system to accound for inbound and outbound datagram differences.
