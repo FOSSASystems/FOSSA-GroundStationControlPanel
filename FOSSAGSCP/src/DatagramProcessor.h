@@ -12,6 +12,8 @@
 
 #include "ui_mainwindow.h"
 #include "ui_systeminformationpane.h"
+#include "ui_messagelogframe.h"
+#include "messagelogframe.h"
 
 #include <FOSSA-Comms.h>
 #include <QObject>
@@ -22,7 +24,7 @@ class DatagramProcessor : public QObject
 {
     Q_OBJECT
 public:
-    DatagramProcessor(Ui::MainWindow* mainWindowUI, Ui::systeminformationpane* systemInfoUI);
+    DatagramProcessor(Ui::MainWindow* mainWindowUI, Ui::systeminformationpane* systemInfoUI, MessageLogFrame* messageLogFrame);
 
     void ProcessDatagram(IDatagram* datagram);
 
@@ -36,6 +38,7 @@ signals:
 private:
     Ui::MainWindow* m_mainWindowUI;
     Ui::systeminformationpane* m_systemInfoUI;
+    MessageLogFrame* m_messageLog;
 
     void ProcessHandshake(IDatagram *datagram);
     void ProcessGroundStationConfigurationChange(IDatagram *datagram);

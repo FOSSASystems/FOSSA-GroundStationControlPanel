@@ -1,8 +1,13 @@
 #include "DatagramInterpreter.h"
 
-DatagramInterpreter::DatagramInterpreter(Ui::MainWindow *mainWindowUI)
-    : m_mainWindowUI(mainWindowUI)
+DatagramInterpreter::DatagramInterpreter(Ui::MainWindow *mainWindowUI,  MessageLogFrame* messageLogFrame)
+    : m_mainWindowUI(mainWindowUI), m_messageLog(messageLogFrame)
 {
+}
+
+void DatagramInterpreter::SetSystemInformationPane(Ui::systeminformationpane *systemInfoUI)
+{
+    m_systemInfoUI = systemInfoUI;
 }
 
 IDatagram *DatagramInterpreter::SerialData_To_Datagram(QByteArray datagramData)
@@ -12,11 +17,6 @@ IDatagram *DatagramInterpreter::SerialData_To_Datagram(QByteArray datagramData)
 
     // second byte is the payload length.
     uint8_t lengthByte = (uint8_t)datagramData[1];
-
-    if (lengthByte < (datagramData.size() - 4))
-    {
-        return nullptr;
-    }
 
     // third and fourth byte is the radiolib status code.
     /// @todo handle status codes.

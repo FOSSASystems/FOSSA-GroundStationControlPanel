@@ -36,16 +36,19 @@ QString InboundDatagram::ToString() const
     hexChar[4] = '\0';
     datagramStr.append(hexChar);
 
-    sprintf(&(hexChar[0]), "%02x, ", (uint8_t)m_radiolibStatusCode);
-    hexChar[4] = '\0';
-    datagramStr.append(hexChar);
+    if (m_lengthByte != 0)
+    {
+        sprintf(&(hexChar[0]), "%02x, ", (uint8_t)m_radiolibStatusCode);
+        hexChar[4] = '\0';
+        datagramStr.append(hexChar);
 
-    sprintf(&(hexChar[0]), "%02x, ", (uint8_t)(m_radiolibStatusCode >> 8));
-    hexChar[4] = '\0';
-    datagramStr.append(hexChar);
+        sprintf(&(hexChar[0]), "%02x, ", (uint8_t)(m_radiolibStatusCode >> 8));
+        hexChar[4] = '\0';
+        datagramStr.append(hexChar);
 
-    QString frameStr = m_frame->ToString();
-    datagramStr.append(frameStr);
+        QString frameStr = m_frame->ToString();
+        datagramStr.append(frameStr);
+    }
 
     return datagramStr;
 }

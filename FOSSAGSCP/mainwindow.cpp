@@ -15,15 +15,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     assert(ui != nullptr);
 
     // create the interpreter
-    m_interpreter = new DatagramInterpreter(ui);
+    m_interpreter = new DatagramInterpreter(ui, m_messageLogFrame);
 
     // load the system information pane
     m_sytemInfoPane = new systeminformationpane(m_interpreter);
     m_sytemInfoPane->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
     m_sytemInfoPane->show();
 
+    m_interpreter->SetSystemInformationPane(m_sytemInfoPane->ui);
+
     // create the processor
-    m_processor = new DatagramProcessor(ui, m_sytemInfoPane->ui);
+    m_processor = new DatagramProcessor(ui, m_sytemInfoPane->ui, m_messageLogFrame);
 
     // initialize the 4 main tabs.
     this->LoadControlPanelSettingsUI();
@@ -40,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleTimeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
 
     // signal piping from the interpeter to this.
-    connect(m_interpreter, &DatagramInterpreter::ReceivedHandshake, this, &MainWindow::StartDopplerCorrector);
+    connect(m_processor, &DatagramProcessor::StartDopplerCorrector, this, &MainWindow::StartDopplerCorrector);
 
     // data piping from message log frame to serial port thread.
     connect(m_messageLogFrame, &MessageLogFrame::SendDataFromMessageLogFrame, this, &MainWindow::ReceivedMessagefromMessageLog);
@@ -246,7 +248,14 @@ void MainWindow::SendDopplerShiftedFrequency()
     double dopplerShiftedFreq;
     bool dopplerShiftOk = m_dopplerShiftCorrector.GetDopplerShiftNow(currentSatelliteNameStdStr, &dopplerShiftedFreq);
 
-    if (!dopplerShiftOk) return;
+    if (!dopplerShiftOk)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("TLE, LLA or Observer Position are invalid.");
+        msgBox.exec();
+        throw "tle lla or observer are invalid";
+        return;
+    }
 
 
     // current configured frequency.

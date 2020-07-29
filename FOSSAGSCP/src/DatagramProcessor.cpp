@@ -1,7 +1,7 @@
 #include "DatagramProcessor.h"
 
-DatagramProcessor::DatagramProcessor(Ui::MainWindow* mainWindowUI, Ui::systeminformationpane* systemInfoIUI)
-    : m_mainWindowUI(mainWindowUI), m_systemInfoUI(systemInfoIUI)
+DatagramProcessor::DatagramProcessor(Ui::MainWindow *mainWindowUI,  Ui::systeminformationpane* systemInfoUI, MessageLogFrame* messageLogFrame)
+    : m_mainWindowUI(mainWindowUI), m_messageLog(messageLogFrame), m_systemInfoUI(systemInfoUI)
 {
 
 }
@@ -79,8 +79,8 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
 
     // for (int i = 0; i < payloadLength; i++)
      //{
-         qInfo() << functionId;
-         qInfo() << optionalDataLength;
+        // qInfo() << functionId;
+         //qInfo() << optionalDataLength;
      //}
     if (optionalDataLength >= 0)
     {
@@ -107,6 +107,9 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_SYSTEM_INFO)
         {
+            // message the messageframe
+            m_messageLog->RawWriteToLog("[System information frame]");
+
             if (Settings::GetSatVersion() == VERSION_1B)
             {
                 uint8_t batteryVoltage = optionalData[0];

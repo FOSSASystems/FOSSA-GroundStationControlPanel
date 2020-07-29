@@ -17,6 +17,8 @@
 
 #include "ui_mainwindow.h"
 #include "ui_systeminformationpane.h"
+#include "ui_messagelogframe.h"
+#include "messagelogframe.h"
 
 #include <FOSSA-Comms.h>
 #include <QObject>
@@ -58,8 +60,10 @@ class DatagramInterpreter : public QObject
 {
     Q_OBJECT
 public:
-    DatagramInterpreter(Ui::MainWindow* mainWindowUI);
+    DatagramInterpreter(Ui::MainWindow* mainWindowUI, MessageLogFrame* messageLogFrame);
     virtual ~DatagramInterpreter() {}
+
+    void SetSystemInformationPane(Ui::systeminformationpane* systemInfoUI);
 
     IDatagram *SerialData_To_Datagram(QByteArray datagramData);
     IDatagram *Create_Datagram(char operationId, uint8_t functionId, uint8_t optDataLength, char *optData);
@@ -128,6 +132,7 @@ signals:
 protected:
     Ui::MainWindow* m_mainWindowUI = nullptr;
     Ui::systeminformationpane* m_systemInfoUI = nullptr;
+    MessageLogFrame* m_messageLog = nullptr;
 };
 
 #endif // Interpreter_H

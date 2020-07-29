@@ -25,6 +25,7 @@ public:
     bool GetEnableSerialSniffingState();
     void RawWriteToLog(QString msg);
 
+    Ui::MessageLogFrame *ui;
 public slots:
     void WriteDatagram(const IDatagram* datagram); // attached to MessageLog.h
 signals:
@@ -38,7 +39,6 @@ private slots:
 
 
 private:
-    Ui::MessageLogFrame *ui;
     QStringListModel * m_messageLogListModel;
 
     bool m_logTimestamps = false;
