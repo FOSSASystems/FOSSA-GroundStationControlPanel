@@ -227,10 +227,6 @@ void MainWindow::ReceivedDatagramfromSystemInformationPane(IDatagram* datagram)
 
 void MainWindow::SendDopplerShiftedFrequency()
 {
-    //return;
-
-    if (!Settings::GetDopplerShiftCorrectionEnabled()) return;
-
     QString modemType = ui->GroundStationSettings_ModemTypeComboBox->currentText();
 
     QString currentCarrierFreqStr;
@@ -253,9 +249,8 @@ void MainWindow::SendDopplerShiftedFrequency()
     if (!dopplerShiftOk)
     {
         QMessageBox msgBox;
-        msgBox.setText("TLE, LLA or Observer Position are invalid.");
+        msgBox.setText("TLE, LLA or Observer Position are invalid. No frequency correction datagram sent.");
         msgBox.exec();
-        throw "tle lla or observer are invalid";
         return;
     }
 
