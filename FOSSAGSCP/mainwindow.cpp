@@ -31,6 +31,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->LoadSatelliteConfigurationUI();
     this->LoadSatelliteControlsUI();
 
+    // create the doppler correction timer.
+    m_dopplerCorrectionTimer = new QTimer(this);
+    connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
+
     // startup the serial port thread.
     m_serialPortThread.start();
 
@@ -773,22 +777,10 @@ void MainWindow::LoadControlPanelSettingsUI()
 
         m_dopplerShiftCorrector.SetObserverParameters(latitude, longitude, attitude);
         m_dopplerShiftCorrector.SetTLELines(tleLine1, tleLine2);
+
         this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
 
-        if (m_dopplerCorrectionTimer == nullptr)
-        {
-            // Setup the doppler shift timer.
-            m_dopplerCorrectionTimer = new QTimer(this);
-            connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
-
-            if (Settings::GetHandshookValue())
-            {
-                if (Settings::GetDopplerShiftCorrectionEnabled())
-                {
-                    m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
-                }
-            }
-        }
+        m_dopplerCorrectionTimer->start(1000 * 10);
     }
 }
 
@@ -905,7 +897,6 @@ void MainWindow::on_ControlPanelSettings_Security_Reveal_Button_clicked()
 
 void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked()
 {
-
     double latitude = this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->text().toDouble();
     double longitude = this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->text().toDouble();
     double attitude = this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->text().toDouble();
@@ -928,37 +919,29 @@ void MainWindow::on_ControlPanelSettings_Doppler_Update_Settings_Button_clicked(
     Settings::SetTLELine2(tleLine2);
 
     Settings::SaveTLELines();
+}
 
 
-    //
-    // Configure the simulation if enabled.
-    //
-    if (dopplerShiftCorrectionEnabled)
-    {
-        m_dopplerShiftCorrector.SetObserverParameters(latitude, longitude, attitude);
-        m_dopplerShiftCorrector.SetTLELines(tleLine1, tleLine2);
+void MainWindow::on_ControlPanelSettings_Doppler_Shift_Enable_RadioButton_clicked()
+{
+    double latitude = this->ui->ControlPanelSettings_Doppler_Shift_Latitude_LineEdit->text().toDouble();
+    double longitude = this->ui->ControlPanelSettings_Doppler_Shift_Longitude_LineEdit->text().toDouble();
+    double attitude = this->ui->ControlPanelSettings_Doppler_Shift_Altitude_LineEdit->text().toDouble();
 
-        this->ui->statusbar->showMessage("Doppler shift correction configured successfully.", 10);
+    std::string tleLine1 = this->ui->ControlPanelSettings_Doppler_Shift_TLE_1_LineEdit->text().toStdString();
+    std::string tleLine2 = this->ui->ControlPanelSettings_Doppler_Shift_TLE_2_LineEdit->text().toStdString();
 
-        if (Settings::GetHandshookValue())
-        {
-            if (m_dopplerCorrectionTimer == nullptr)
-            {
-                // Setup the doppler shift timer.
-                m_dopplerCorrectionTimer = new QTimer(this);
-                connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
-            }
+    this->ui->statusbar->showMessage("Doppler shift correction started!", 10);
 
-            m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
-        }
-    }
-    else
-    {
-        if (m_dopplerCorrectionTimer != nullptr)
-        {
-            m_dopplerCorrectionTimer->stop();
-        }
-    }
+    m_dopplerCorrectionTimer->start(1000 * 10); // 10s between doppler shift corrections.
+}
+
+
+void MainWindow::on_ControlPanelSettings_Doppler_Shift_Disable_RadioButton_clicked()
+{
+    this->ui->statusbar->showMessage("Doppler shift correction stopped.", 10);
+
+    m_dopplerCorrectionTimer->stop();
 }
 
 

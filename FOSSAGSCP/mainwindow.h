@@ -92,6 +92,10 @@ private slots:
 
     void on_SatelliteConfig_Transmission_Send_Button_clicked();
 
+    void on_ControlPanelSettings_Doppler_Shift_Enable_RadioButton_clicked();
+
+    void on_ControlPanelSettings_Doppler_Shift_Disable_RadioButton_clicked();
+
 private:
 
     Ui::MainWindow *ui;
