@@ -43,3 +43,4 @@ Control Panel Source Code/ - This directory contains the Qt C++ source code file
 
 0.2.1 - removed "always on top" flag from windows
 	  - fixed doppler timer being ran when disabled.
+	  - changed doppler correction system to print a more descriptive method.
