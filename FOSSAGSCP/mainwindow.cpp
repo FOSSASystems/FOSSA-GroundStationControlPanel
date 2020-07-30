@@ -8,7 +8,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // load the message log frame
     m_messageLogFrame = new MessageLogFrame();
-    m_messageLogFrame->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
     m_messageLogFrame->show();
 
     // initialize the interpereter.
@@ -19,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
 
     // load the system information pane
     m_sytemInfoPane = new systeminformationpane(m_interpreter);
-    m_sytemInfoPane->setWindowFlag(Qt::WindowType::WindowStaysOnTopHint);
     m_sytemInfoPane->show();
 
     m_interpreter->SetSystemInformationPane(m_sytemInfoPane->ui);
