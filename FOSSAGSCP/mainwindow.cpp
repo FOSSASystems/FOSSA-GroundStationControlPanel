@@ -25,15 +25,18 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // create the processor
     m_processor = new DatagramProcessor(ui, m_sytemInfoPane->ui, m_messageLogFrame);
 
+    // create the doppler correction timer.
+    // must be initialized before the UI
+    m_dopplerCorrectionTimer = new QTimer(this);
+    connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
+
+
     // initialize the 4 main tabs.
     this->LoadControlPanelSettingsUI();
     this->LoadGroundStationSettingsUI();
     this->LoadSatelliteConfigurationUI();
     this->LoadSatelliteControlsUI();
 
-    // create the doppler correction timer.
-    m_dopplerCorrectionTimer = new QTimer(this);
-    connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
 
     // startup the serial port thread.
     m_serialPortThread.start();
