@@ -53,7 +53,7 @@ const uint8_t* OutboundDatagram::GetData() const
     uint8_t* outDatagramData = new uint8_t[datagramLength];
     outDatagramData[0] = controlByte;
     outDatagramData[1] = lengthByte;
-    memcpy_s(&(outDatagramData[2]), frameLength, frameData, frameLength);
+    memcpy(&(outDatagramData[2]), frameData, frameLength);
 
     // control byte, length byte, fcp frame
     return outDatagramData;

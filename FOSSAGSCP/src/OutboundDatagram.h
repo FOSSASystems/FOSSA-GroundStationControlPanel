@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <string>
+#include <string.h>
 
 // outbound datagrams do not have the radiolib status code
 class OutboundDatagram : public IDatagram

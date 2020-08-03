@@ -93,7 +93,7 @@ const uint8_t *InboundDatagram::GetData() const
     outDatagramData[1] = lengthByte;
     outDatagramData[2] = statusCode;
     outDatagramData[3] = statusCode >> 8;
-    memcpy_s(&(outDatagramData[4]), frameLength, frameData, frameLength);
+    memcpy(&(outDatagramData[4]), frameData, frameLength);
 
     // control byte, length byte, fcp frame
     return outDatagramData;
