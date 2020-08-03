@@ -159,7 +159,7 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
             else if (Settings::GetSatVersion() == VERSION_2)
             {
                 uint8_t mpptOutputVoltage = optionalData[0];
-                int16_t mpptOutputCurrent = optionalData[1] | (optionalData[2] << 8);
+                int16_t mpptOutputCurrent = optionalData[2] | (optionalData[1] << 8);
 
                 uint32_t unixTimestamp = optionalData[3];
                 unixTimestamp = unixTimestamp | (optionalData[4] << 8);

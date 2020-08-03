@@ -137,7 +137,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Retransmit(uint32_t senderId, char *m
     optData[2] = senderId >> 16;
     optData[4] = senderId >> 24;
 
-    strcpy_s(&(optData[5]), messageLen, message);
+    strcpy(&(optData[5]), message);
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_RETRANSMIT, optDataLen, optData);
 
@@ -167,7 +167,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Retransmit_Custom(uint8_t bandwidth, 
     optData[8] = outputPower >> 16;
     optData[9] = outputPower >> 24;
 
-    strcpy_s(&(optData[10]), messageLen, message);
+    strcpy(&(optData[10]), message);
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_RETRANSMIT_CUSTOM, optDataLen, optData);
 
@@ -277,7 +277,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Set_Callsign(char *callsign)
 
     char* optData = new char[callsignLen];
 
-    strcpy_s(&(optData[10]), callsignLen, callsign);
+    strcpy(&(optData[10]), callsign);
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_SET_CALLSIGN, 0, nullptr);
 
@@ -505,7 +505,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Route(char *fcpFrame)
     int messageLen = strlen(fcpFrame) + 1;
 
     char* optData = new char[messageLen];
-    strcpy_s(optData, messageLen, fcpFrame);
+    strcpy(optData, fcpFrame);
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_ROUTE, messageLen, optData);
 
@@ -524,7 +524,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Set_Flash_Contents(uint32_t flashAddr
     optData[1] = flashAddress >> 8;
     optData[2] = flashAddress >> 16;
 
-    memcpy_s(&(optData[3]), dataLen, data, dataLen); // copy to opt data without the null terminator.
+    memcpy(&(optData[3]), data, dataLen); // copy to opt data without the null terminator.
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_SET_FLASH_CONTENTS, messageLen, optData);
 
@@ -538,7 +538,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Set_TLE(char *tle)
     int optDataLen = strlen(tle);
     char* optData = new char[optDataLen];
 
-    memcpy_s(optData, optDataLen, tle, optDataLen); // no line endings.
+    memcpy(optData, tle, optDataLen); // no line endings.
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_SET_TLE, optDataLen, optData);
 
@@ -551,7 +551,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Run_GPS_Command(char *skyTraqBinaryPr
     int optDataLen = strlen(skyTraqBinaryProtocolMessage); // without terminator.
 
     char* optData = new char[optDataLen];
-    memcpy_s(optData, optDataLen, skyTraqBinaryProtocolMessage, optDataLen);
+    memcpy(optData, skyTraqBinaryProtocolMessage, optDataLen);
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_RUN_GPS_COMMAND, optDataLen, optData);
 
@@ -574,7 +574,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Set_Sleep_Intervals(std::vector<sleep
     {
         sleep_interval_t interval = sleepIntervals[i];
 
-        memcpy_s(&(optData[optDataIndex]), sizeof(sleep_interval_t), &interval, sizeof(sleep_interval_t));
+        memcpy(&(optData[optDataIndex]), &interval, sizeof(sleep_interval_t));
 
         optDataIndex += sizeof(sleep_interval_t);
     }
@@ -961,7 +961,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Store_And_Forward_Add(uint32_t messag
     optData[2] = messageId >> 16;
     optData[3] = messageId >> 24;
 
-    strcpy_s(&(optData[4]), messageLen, message);
+    strcpy(&(optData[4]), message);
 
     IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_STORE_AND_FORWARD_ADD, optDataLen, optData);
 

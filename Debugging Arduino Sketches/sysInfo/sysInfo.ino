@@ -2,7 +2,10 @@ void setup() {
   Serial.begin(9600);
 }
 
-
+// 33791
+// 337910 uA
+// 65411
+// 654110 uA
 void loop() {
   uint8_t sysInfo[] = {
     0x81, 0x25,  									  // 2 bytes
