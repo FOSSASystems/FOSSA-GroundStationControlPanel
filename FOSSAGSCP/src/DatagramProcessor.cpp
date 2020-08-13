@@ -157,9 +157,9 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 m_systemInfoUI->SystemInformation_RecordSolarCells_SolarCellBVoltage_SpinBox->setValue(solarCellBVoltage * 20);
                 m_systemInfoUI->SystemInformation_RecordSolarCells_SolarCellCVoltage_SpinBox->setValue(solarCellCVoltage * 20);
 
-                m_systemInfoUI->SystemInformation_TemperatureInformation_BatteryTemperature_SpinBox->setValue(batteryTemperature * 0.01);
-                m_systemInfoUI->SystemInformation_TemperatureInformation_OBCBoardTemperature_SpinBox->setValue(obcBoardTemperature * 0.01);
-                m_systemInfoUI->SystemInformation_TemperatureInformation_MCUTemperature_SpinBox->setValue(mcuTemperature);
+                m_systemInfoUI->SystemInformation_TemperatureInformation_BatteryTemperature_DoubleSpinBox->setValue(batteryTemperature * 0.01);
+                m_systemInfoUI->SystemInformation_TemperatureInformation_OBCBoardTemperature_DoubleSpinBox->setValue(obcBoardTemperature * 0.01);
+                m_systemInfoUI->SystemInformation_TemperatureInformation_MCUTemperature_DoubleSpinBox->setValue(mcuTemperature);
             }
             else if (Settings::GetSatVersion() == VERSION_2)
             {
@@ -231,8 +231,8 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelZBVoltage_SpinBox->setValue(solarPanel_ZB_Voltage);
                 m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelYVoltage_SpinBox->setValue(solarPanel_Y_Voltage);
 
-                m_systemInfoUI->SystemInformation_TemperatureInformation_BatteryTemperature_SpinBox->setValue(batteryTemperature * 0.01f);
-                m_systemInfoUI->SystemInformation_TemperatureInformation_OBCBoardTemperature_SpinBox->setValue(obcBoardTemperature * 0.01f);
+                m_systemInfoUI->SystemInformation_TemperatureInformation_BatteryTemperature_DoubleSpinBox->setValue(batteryTemperature * 0.01f);
+                m_systemInfoUI->SystemInformation_TemperatureInformation_OBCBoardTemperature_DoubleSpinBox->setValue(obcBoardTemperature * 0.01f);
 
                 m_systemInfoUI->SystemInformation_FlashInformation_CRCError_SpinBox->setValue(flashSystemInfoPageCRCErrorCounter);
             }

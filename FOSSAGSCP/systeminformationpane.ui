@@ -39,7 +39,7 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>-1974</y>
+            <y>-1575</y>
             <width>439</width>
             <height>2852</height>
            </rect>
@@ -1091,13 +1091,34 @@ Reset (1B):</string>
                </widget>
               </item>
               <item row="11" column="1">
-               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_MCUTemperature_DoubleSpinBox"/>
+               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_MCUTemperature_DoubleSpinBox">
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
               </item>
               <item row="7" column="1">
-               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_BatteryTemperature_DoubleSpinBox"/>
+               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_BatteryTemperature_DoubleSpinBox">
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_YPanelTemperature_DoubleSpinBox"/>
+               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_YPanelTemperature_DoubleSpinBox">
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
               </item>
               <item row="0" column="0">
                <widget class="QLabel" name="label_21">
@@ -1128,7 +1149,14 @@ Reset (1B):</string>
                </widget>
               </item>
               <item row="3" column="1">
-               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_OBCBoardTemperature_DoubleSpinBox"/>
+               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_OBCBoardTemperature_DoubleSpinBox">
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
               </item>
               <item row="5" column="0">
                <widget class="QLabel" name="label_23">
@@ -1138,10 +1166,24 @@ Reset (1B):</string>
                </widget>
               </item>
               <item row="5" column="1">
-               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_BottomBoardTemperature_DoubleSpinBox"/>
+               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_BottomBoardTemperature_DoubleSpinBox">
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
               </item>
               <item row="9" column="1">
-               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_SecondBatteryTemperature_DoubleSpinBox"/>
+               <widget class="QDoubleSpinBox" name="SystemInformation_TemperatureInformation_SecondBatteryTemperature_DoubleSpinBox">
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
