@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>983</width>
-    <height>1004</height>
+    <width>582</width>
+    <height>965</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -72,7 +72,7 @@
           <widget class="QWidget" name="scrollAreaWidgetContents_4">
            <property name="geometry">
             <rect>
-             <x>231</x>
+             <x>0</x>
              <y>0</y>
              <width>449</width>
              <height>5304</height>
@@ -1778,7 +1778,7 @@ tolerance check:</string>
            </property>
            <property name="geometry">
             <rect>
-             <x>218</x>
+             <x>0</x>
              <y>0</y>
              <width>475</width>
              <height>3857</height>
@@ -3141,7 +3141,7 @@ Sleep Interval (mV):</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_2">
            <property name="geometry">
             <rect>
-             <x>265</x>
+             <x>0</x>
              <y>0</y>
              <width>380</width>
              <height>903</height>
@@ -3561,8 +3561,8 @@ Sleep Interval (mV):</string>
           <widget class="QWidget" name="scrollAreaWidgetContents_5">
            <property name="geometry">
             <rect>
-             <x>312</x>
-             <y>138</y>
+             <x>112</x>
+             <y>118</y>
              <width>306</width>
              <height>609</height>
             </rect>
@@ -3826,7 +3826,7 @@ Sleep Interval (mV):</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>983</width>
+     <width>582</width>
      <height>26</height>
     </rect>
    </property>
@@ -3848,28 +3848,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
   <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_7"/>
   <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="buttonGroup_6"/>
   <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
   <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_14"/>
   <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_8"/>
-  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_10"/>
   <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="buttonGroup_12"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
  </buttongroups>
 </ui>

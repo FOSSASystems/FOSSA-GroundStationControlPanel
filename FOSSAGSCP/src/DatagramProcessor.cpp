@@ -116,13 +116,17 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 int16_t batteryChargingCurrent = optionalData[1] | (optionalData[2] << 8);
                 uint8_t batteryChargingVoltage = optionalData[3];
 
-                uint32_t timeSinceLastReset = optionalData[4] |  optionalData[5] | optionalData[6] | optionalData[7];
+                uint32_t timeSinceLastReset = optionalData[4];
+                timeSinceLastReset |= (optionalData[5] << 8);
+                timeSinceLastReset |= (optionalData[6] << 16);
+                timeSinceLastReset |= (optionalData[7] << 24);
 
                 uint8_t powerConfiguration = optionalData[8];
                 bool lowPowerModeActive = powerConfiguration & 0b00000001;
-                bool lowPowerModeEnabled = powerConfiguration & 0b00000010;
-                bool mpptTemperatureSwitchEnabled = powerConfiguration & 0b00000100;
-                bool mpptKeepAliveEnabled = powerConfiguration & 0b00010000;
+                bool lowPowerModeEnabled = (powerConfiguration & 0b00000010) >> 1;
+                bool mpptTemperatureSwitchEnabled = (powerConfiguration & 0b00000100) >> 2;
+                bool mpptKeepAliveEnabled = (powerConfiguration & 0b00001000) >> 3;
+                bool transmissionsEnabled = (powerConfiguration & 0b00010000) >> 4;
 
                 uint16_t resetCounter = optionalData[9] | (optionalData[10] << 8);
 
@@ -145,6 +149,7 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton->setChecked(lowPowerModeEnabled);
                 m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTTemperatureSwitchEnabled_Enabled_RadioButton->setChecked(mpptTemperatureSwitchEnabled);
                 m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Enabled_RadioButton->setChecked(mpptKeepAliveEnabled);
+                m_systemInfoUI->SystemInformation_PowerConfiguration_TransmissionsEnabled_Enabled_RadioButton->setChecked(transmissionsEnabled);
 
                 m_systemInfoUI->SystemInformation_ResetCounter_SpinBox->setValue(resetCounter);
 
@@ -159,7 +164,7 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
             else if (Settings::GetSatVersion() == VERSION_2)
             {
                 uint8_t mpptOutputVoltage = optionalData[0];
-                int16_t mpptOutputCurrent = optionalData[2] | (optionalData[1] << 8);
+                int16_t mpptOutputCurrent = optionalData[1] | (optionalData[2] << 8);
 
                 uint32_t unixTimestamp = optionalData[3];
                 unixTimestamp = unixTimestamp | (optionalData[4] << 8);
@@ -167,11 +172,19 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 unixTimestamp = unixTimestamp | (optionalData[6] << 24);
 
                 uint8_t powerConfiguration = optionalData[7];
-                uint8_t transmissionsEnabled = powerConfiguration & 1;
-                uint8_t lowPowerModeEnabled = (powerConfiguration >> 1) & 1;
-                uint8_t currentlyActivePowerMode = (powerConfiguration >> 2) & 0b00000011;
-                uint8_t mpptTemperatureSwitchEnabled = (powerConfiguration >> 5) & 1;
-                uint8_t mpptKeepAliveEnabled = (powerConfiguration >> 6) & 1;
+                uint8_t transmissionsEnabled = powerConfiguration & 0b00000001; // bit 0
+                uint8_t lowPowerModeEnabled = (powerConfiguration & 0b00000010) >> 1; // bit 1
+
+                uint8_t currentlyActivePowerModeLSB = (powerConfiguration & 0b00000100) >> 2; // bit 2
+                uint8_t currentlyActivePowerModeA = (powerConfiguration & 0b00001000) >> 3; // bit 3
+                uint8_t currentlyActivePowerModeMSB = (powerConfiguration & 0b00001000) >> 4; // bit 3
+                uint32_t currentlyActivePowerMode = currentlyActivePowerModeLSB;
+                currentlyActivePowerMode |= (currentlyActivePowerModeA << 1);
+                currentlyActivePowerMode |= (currentlyActivePowerModeMSB << 2);
+
+
+                uint8_t mpptTemperatureSwitchEnabled = (powerConfiguration >> 5) & 0b00000001;
+                uint8_t mpptKeepAliveEnabled = (powerConfiguration >> 6) & 0b00000001;
 
                 uint16_t resetCounter = optionalData[8] | (optionalData[9] << 8);
 
@@ -190,10 +203,10 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 flashSystemInfoPageCRCErrorCounter |= (optionalData[22] << 24);
 
 
-                m_systemInfoUI->SystemInformation_MPPT_OutputVoltage_SpinBox->setValue(mpptOutputVoltage);
-                m_systemInfoUI->SystemInformation_MPPT_OutputCurrent_SpinBox->setValue(mpptOutputCurrent);
+                m_systemInfoUI->SystemInformation_MPPT_OutputVoltage_SpinBox->setValue(mpptOutputVoltage * 20);
+                m_systemInfoUI->SystemInformation_MPPT_OutputCurrent_SpinBox->setValue(mpptOutputCurrent * 10);
 
-                m_systemInfoUI->SystemInformation_UnixTimestamp_SpinBox->setValue(unixTimestamp);
+                m_systemInfoUI->SystemInformation_UnixTimestamp_LineEdit->setText(QString::number(unixTimestamp));
 
                 m_systemInfoUI->SystemInformation_PowerConfiguration_TransmissionsEnabled_Enabled_RadioButton->setChecked(transmissionsEnabled);
                 m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton->setChecked(lowPowerModeEnabled);

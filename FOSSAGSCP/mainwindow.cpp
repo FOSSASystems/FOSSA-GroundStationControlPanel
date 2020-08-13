@@ -252,7 +252,7 @@ void MainWindow::SendDopplerShiftedFrequency()
     if (!dopplerShiftOk)
     {
         QMessageBox msgBox;
-        msgBox.setText("TLE, LLA or Observer Position are invalid. No frequency correction datagram sent.");
+        msgBox.setText("TLE, LLA or Observer Position are invalid.");
         msgBox.exec();
         return;
     }
