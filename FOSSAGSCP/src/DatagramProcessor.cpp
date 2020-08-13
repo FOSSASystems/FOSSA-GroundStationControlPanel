@@ -231,8 +231,8 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelZBVoltage_SpinBox->setValue(solarPanel_ZB_Voltage);
                 m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelYVoltage_SpinBox->setValue(solarPanel_Y_Voltage);
 
-                m_systemInfoUI->SystemInformation_TemperatureInformation_BatteryTemperature_SpinBox->setValue(batteryTemperature);
-                m_systemInfoUI->SystemInformation_TemperatureInformation_OBCBoardTemperature_SpinBox->setValue(obcBoardTemperature);
+                m_systemInfoUI->SystemInformation_TemperatureInformation_BatteryTemperature_SpinBox->setValue(batteryTemperature * 0.01f);
+                m_systemInfoUI->SystemInformation_TemperatureInformation_OBCBoardTemperature_SpinBox->setValue(obcBoardTemperature * 0.01f);
 
                 m_systemInfoUI->SystemInformation_FlashInformation_CRCError_SpinBox->setValue(flashSystemInfoPageCRCErrorCounter);
             }
