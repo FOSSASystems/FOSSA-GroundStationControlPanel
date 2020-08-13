@@ -20,7 +20,7 @@
       <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -39,7 +39,7 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>-285</y>
+            <y>-446</y>
             <width>439</width>
             <height>2852</height>
            </rect>
@@ -1216,7 +1216,7 @@ Reset (1B):</string>
                  <string>A&amp;ctivated</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1232,7 +1232,7 @@ Reset (1B):</string>
                  <string>Disabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1248,7 +1248,7 @@ Reset (1B):</string>
                  <string>Disabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1264,7 +1264,7 @@ Reset (1B):</string>
                  <string>Disabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1287,7 +1287,7 @@ Reset (1B):</string>
                  <string>Deactivated</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1310,7 +1310,7 @@ Reset (1B):</string>
                  <string>Enabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1326,7 +1326,7 @@ Reset (1B):</string>
                  <string>Enabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1356,7 +1356,7 @@ Reset (1B):</string>
                  <string>Enabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1372,7 +1372,7 @@ Reset (1B):</string>
                  <string>Enabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1388,7 +1388,7 @@ Reset (1B):</string>
                  <string>Disabled</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1418,7 +1418,7 @@ Reset (1B):</string>
                  <string>Activated</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1434,7 +1434,7 @@ Reset (1B):</string>
                  <string>Deactivated</string>
                 </property>
                 <property name="checkable">
-                 <bool>false</bool>
+                 <bool>true</bool>
                 </property>
                 <property name="autoExclusive">
                  <bool>false</bool>
@@ -1773,7 +1773,7 @@ Reset (1B):</string>
           <property name="geometry">
            <rect>
             <x>44</x>
-            <y>0</y>
+            <y>-59</y>
             <width>417</width>
             <height>1583</height>
            </rect>
