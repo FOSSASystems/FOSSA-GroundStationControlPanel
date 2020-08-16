@@ -99,11 +99,11 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_REPEATED_MESSAGE)
         {
-
+            // do nothing, already alogged.
         }
         else if (functionId == RESP_REPEATED_MESSAGE_CUSTOM)
         {
-
+            // do nothing
         }
         else if (functionId == RESP_SYSTEM_INFO)
         {
@@ -240,11 +240,129 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_PACKET_INFO)
         {
+            int8_t snr = optionalData[0];
+            uint8_t rssi = optionalData[1];
+            uint16_t numReceivedValidLoraFrames = optionalData[2];
+            numReceivedValidLoraFrames |= optionalData[3] << 8;
+            uint16_t numReceivedInvalidLoraFrames = optionalData[4];
+            numReceivedInvalidLoraFrames |= optionalData[5] << 8;
+            uint16_t numReceivedValidFSKFrames = optionalData[6];
+            numReceivedValidFSKFrames |= optionalData[7] << 8;
+            uint16_t numReceivedInvalidFSKFrames = optionalData[8];
+            numReceivedInvalidFSKFrames |= optionalData[9] << 8;
 
+            m_systemInfoUI->PacketInformation_SNR_SpinBox->setValue(snr);
+            m_systemInfoUI->PacketInformation_RSSI_SpinBox->setValue(rssi);
+
+            m_systemInfoUI->PacketInformation_LoraFrameInformation_NumValidFrames_SpinBox->setValue(numReceivedValidLoraFrames);
+            m_systemInfoUI->PacketInformation_LoraFrameInformation_NumInvalidFrames_SpinBox->setValue(numReceivedInvalidLoraFrames);
+            m_systemInfoUI->PacketInformation_FSKFrameInformation_NumValidFrames_SpinBox->setValue(numReceivedValidFSKFrames);
+            m_systemInfoUI->PacketInformation_FSKFrameInformation_NumInvalidFrames_SpinBox->setValue(numReceivedInvalidFSKFrames);
         }
         else if (functionId == RESP_STATISTICS)
         {
+            uint8_t flagByte = optionalData[0];
+            bool temperaturesIncluded = flagByte & 0x01;
+            bool currentsIncluded = (flagByte >> 1) & 0x01;
+            bool voltagesIncluded = (flagByte >> 2) & 0x01;
+            bool lightSensorsIncluded = (flagByte >> 3) & 0x01;
+            bool imuIncluded = (flagByte >> 4) & 0x01;
 
+            m_systemInfoUI->StatisticsControls_Flags_2_Temperatures_Enabled->setChecked(temperaturesIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_Temperatures_Disabled->setChecked(!temperaturesIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_Currents_Enabled->setChecked(currentsIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_Currents_Disabled->setChecked(!currentsIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_Voltages_Enabled->setChecked(voltagesIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_Voltages_Disabled->setChecked(!voltagesIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_LightSensors_Enabled->setChecked(lightSensorsIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_LightSensors_Disabled->setChecked(!lightSensorsIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_IMU_Enabled->setChecked(imuIncluded);
+            m_systemInfoUI->StatisticsControls_Flags_2_IMU_Disabled->setChecked(!imuIncluded);
+
+            m_systemInfoUI->LiveStatistics_Temperatures_PlainTextEdit->clear();
+            m_systemInfoUI->LiveStatistics_Currents_PlainTextEdit->clear();
+            m_systemInfoUI->LiveStatistics_Voltages_PlainTextEdit->clear();
+            m_systemInfoUI->LiveStatistics_LightSensors_PlainTextEdit->clear();
+            m_systemInfoUI->LiveStatistics_IMU_PlainTextEdit->clear();
+
+            if (temperaturesIncluded)
+            {
+                for (int i = 0; i < 15; i++)
+                {
+                    int startIndex = 1 + (i*2);
+                    uint8_t lsb = optionalData[startIndex];
+                    uint8_t msb = optionalData[startIndex + 1];
+                    int16_t temperature = lsb | (msb << 8);
+                    float temperaturesRealValue = temperature * 0.01f;
+                    m_systemInfoUI->LiveStatistics_Temperatures_PlainTextEdit->appendPlainText(QString::number(temperaturesRealValue) + QString(" ºC\n"));
+                }
+            }
+
+            if (currentsIncluded)
+            {
+                for (int i = 0; i < 18; i++)
+                {
+                    int startIndex = 31 + (i*2);
+                    uint8_t lsb = optionalData[startIndex];
+                    uint8_t msb = optionalData[startIndex + 1];
+                    int16_t current = lsb | (msb << 8);
+                    float currentsValue = current * 10;
+                    m_systemInfoUI->LiveStatistics_Currents_PlainTextEdit->appendPlainText(QString::number(currentsValue) + QString(" µA\n"));
+                }
+            }
+
+            if (voltagesIncluded)
+            {
+                for (int i = 0; i < 18; i++)
+                {
+                    int startIndex = 67 + i;
+                    uint8_t voltage = optionalData[startIndex];
+                    m_systemInfoUI->LiveStatistics_Voltages_PlainTextEdit->appendPlainText(QString::number(voltage) + QString(" mV\n"));
+                }
+            }
+
+            if (lightSensorsIncluded)
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    int startIndex = 85 + (i * 4);
+                    uint8_t lsb = optionalData[startIndex];
+                    uint8_t a = optionalData[startIndex + 1];
+                    uint8_t b = optionalData[startIndex + 2];
+                    uint8_t msb = optionalData[startIndex + 3];
+
+                    uint32_t bytesVal = lsb;
+                    bytesVal |= a << 8;
+                    bytesVal |= b << 16;
+                    bytesVal |= msb << 24;
+
+                    float lightSensorValue = 0.0f;
+                    memcpy(&lightSensorValue, &bytesVal, 4);
+                    m_systemInfoUI->LiveStatistics_LightSensors_PlainTextEdit->appendPlainText(QString::number(lightSensorValue) + QString(" UNKNOWN\n"));
+                }
+            }
+
+            if (imuIncluded)
+            {
+                for (int i = 0; i < 16; i++)
+                {
+                    int startIndex = 109 + (i * 4);
+
+                    uint8_t lsb = optionalData[startIndex];
+                    uint8_t a = optionalData[startIndex + 1];
+                    uint8_t b = optionalData[startIndex + 2];
+                    uint8_t msb = optionalData[startIndex + 3];
+
+                    uint32_t bytesVal = lsb;
+                    bytesVal |= a << 8;
+                    bytesVal |= b << 16;
+                    bytesVal |= msb << 24;
+
+                    float imuValue = 0.0f;
+                    memcpy(&imuValue, &bytesVal, 4);
+                    m_systemInfoUI->LiveStatistics_IMU_PlainTextEdit->appendPlainText(QString::number(imuValue) + QString(" UNKNOWN\n"));
+                }
+            }
         }
         else if (functionId == RESP_FULL_SYSTEM_INFO)
         {
