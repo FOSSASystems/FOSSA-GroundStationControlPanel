@@ -366,6 +366,96 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_FULL_SYSTEM_INFO)
         {
+            uint8_t mpptOutputVoltage = optionalData[0];
+            int16_t mpptOutputCurrent = optionalData[1] | (optionalData[2] << 8);
+
+            uint32_t unixTimestamp = optionalData[3];
+            unixTimestamp = unixTimestamp | (optionalData[4] << 8);
+            unixTimestamp = unixTimestamp | (optionalData[5] << 16);
+            unixTimestamp = unixTimestamp | (optionalData[6] << 24);
+
+            uint8_t powerConfiguration = optionalData[7];
+            uint8_t transmissionsEnabled = powerConfiguration & 0b00000001; // bit 0
+            uint8_t lowPowerModeEnabled = (powerConfiguration & 0b00000010) >> 1; // bit 1
+
+            uint8_t currentlyActivePowerModeLSB = (powerConfiguration & 0b00000100) >> 2; // bit 2
+            uint8_t currentlyActivePowerModeA = (powerConfiguration & 0b00001000) >> 3; // bit 3
+            uint8_t currentlyActivePowerModeMSB = (powerConfiguration & 0b00010000) >> 4; // bit 4
+            uint32_t currentlyActivePowerMode = currentlyActivePowerModeLSB;
+            currentlyActivePowerMode |= (currentlyActivePowerModeA << 1);
+            currentlyActivePowerMode |= (currentlyActivePowerModeMSB << 2);
+
+
+            uint8_t mpptTemperatureSwitchEnabled = (powerConfiguration & 0b00100000) >> 5; // bit 5
+            uint8_t mpptKeepAliveEnabled = (powerConfiguration  & 0b01000000) >> 6; // bit 6
+            uint8_t scienceModeActive = (powerConfiguration & 0b10000000) >> 7; // bit 7
+
+            uint16_t resetCounter = optionalData[8] | (optionalData[9] << 8);
+
+            uint8_t solarPanel_XA_Voltage = optionalData[10];
+            int16_t solarPanel_XA_Current = optionalData[11] | (optionalData[12] << 8);
+
+            uint8_t solarPanel_XB_Voltage = optionalData[13];
+            int16_t solarPanel_XB_Current = optionalData[14] | (optionalData[15] << 8);
+
+            uint8_t solarPanel_ZA_Voltage = optionalData[16];
+            int16_t solarPanel_ZA_Current = optionalData[17] | (optionalData[18] << 8);
+
+            uint8_t solarPanel_ZB_Voltage = optionalData[19];
+            int16_t solarPanel_ZB_Current = optionalData[20] | (optionalData[21] << 8);
+
+            uint8_t solarPanel_Y_Voltage = optionalData[22];
+            int16_t solarPanel_Y_Current = optionalData[23] | (optionalData[24] << 8);
+
+            int16_t solarPanelYTemperature = optionalData[25] | (optionalData[26] << 8);
+            int16_t obcBoardTemperature = optionalData[27] | (optionalData[28] << 8);
+            int16_t bottomBoardTemperature = optionalData[29] | (optionalData[30] << 8);
+            int16_t batteryTemperature = optionalData[31] | (optionalData[32] << 8);
+            int16_t secondBatteryTemperature = optionalData[33] | (optionalData[34] << 8);
+            int16_t mcuTemperature = optionalData[35] | (optionalData[36] << 8);
+
+            uint32_t temp_yPanelLightSensor = optionalData[37];
+            temp_yPanelLightSensor = optionalData[38] << 8;
+            temp_yPanelLightSensor = optionalData[39] << 16;
+            temp_yPanelLightSensor = optionalData[40] << 24;
+            float yPanelLightSensor = 0.0f;
+            memcpy(&yPanelLightSensor, &temp_yPanelLightSensor, 4);
+
+            uint32_t temp_topBoardLightSensor = optionalData[41];
+            temp_yPanelLightSensor = optionalData[42] << 8;
+            temp_yPanelLightSensor = optionalData[43] << 16;
+            temp_yPanelLightSensor = optionalData[44] << 24;
+            float topBoardLightSensor = 0.0f;
+            memcpy(&topBoardLightSensor, &temp_topBoardLightSensor, 4);
+
+            uint8_t lastXAxisHBridgeFault = optionalData[45];
+            uint8_t lastYAxisHBridgeFault = optionalData[46];
+            uint8_t lastZAxisHBridgeFault = optionalData[47];
+
+
+            int32_t flashSystemInfoPageCRCErrorCounter = optionalData[48];
+            flashSystemInfoPageCRCErrorCounter |= (optionalData[49] << 8);
+            flashSystemInfoPageCRCErrorCounter |= (optionalData[50] << 16);
+            flashSystemInfoPageCRCErrorCounter |= (optionalData[51] << 24);
+
+            uint8_t fskWindowReceiveLength = optionalData[52];
+            uint8_t loraWindowReceiveLength = optionalData[53];
+
+            uint8_t sensorStates = optionalData[54];
+            uint8_t lightSensorTop = sensorStates & 0b00000001; // bit 0
+            uint8_t lightSensorY = sensorStates & (0b00000001 << 1); // bit 1
+            uint8_t currentSensorMPPT = sensorStates & (0b00000001 << 1); // bit 2
+            uint8_t currentSensorY = sensorStates &  (0b00000001 << 2); // bit 3
+            uint8_t currentSensorZB = sensorStates & (0b00000001 << 3); // bit 4
+            uint8_t currentSensorZA = sensorStates & (0b00000001 << 4); // bit 5
+            uint8_t currentSensorXB = sensorStates & (0b00000001 << 5); // bit 6
+            uint8_t currentSensorXA = sensorStates & (0b00000001 << 6); // bit 7
+
+            uint8_t lastADCSResult = optionalData[55];
+
+            m_systemInfoUI->SystemInformation_MPPT_OutputVoltage_SpinBox->setValue(mpptOutputVoltage * 20);
+            m_systemInfoUI->SystemInformation_MPPT_OutputCurrent_SpinBox->setValue(mpptOutputCurrent * 10);
+
 
         }
         else if (functionId == RESP_STORE_AND_FORWARD_ASSIGNED_SLOT)
