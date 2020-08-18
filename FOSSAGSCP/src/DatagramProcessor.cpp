@@ -530,7 +530,8 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_DEPLOYMENT_STATE)
         {
-
+            uint8_t counter = optionalData[0];
+            m_systemInfoUI->SystemInformation_Deployment_Counter_SpinBox->setValue(counter);
         }
         else if (functionId == RESP_CAMERA_STATE)
         {
@@ -547,41 +548,76 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
             gyroSampleX |= optionalData[2] << 8;
             gyroSampleX |= optionalData[3] << 16;
             gyroSampleX |= optionalData[4] << 24;
+            float gyroX = 0.0f;
+            memcpy(&gyroX, &gyroSampleX, 4);
+
             uint32_t gyroSampleY = optionalData[5];
             gyroSampleY |= optionalData[6] << 8;
             gyroSampleY |= optionalData[7] << 16;
             gyroSampleY |= optionalData[8] << 24;
+            float gyroY = 0.0f;
+            memcpy(&gyroY, &gyroSampleY, 4);
+
             uint32_t gyroSampleZ = optionalData[9];
             gyroSampleZ |= optionalData[10] << 8;
             gyroSampleZ |= optionalData[11] << 16;
             gyroSampleZ |= optionalData[12] << 24;
+            float gyroZ = 0.0f;
+            memcpy(&gyroZ, &gyroSampleZ, 4);
 
             uint32_t acceleSampleX = optionalData[13];
             acceleSampleX |= optionalData[14] << 8;
             acceleSampleX |= optionalData[15] << 16;
             acceleSampleX |= optionalData[16] << 24;
+            float acceleX = 0.0f;
+            memcpy(&acceleX, &acceleSampleX, 4);
+
             uint32_t acceleSampleY = optionalData[17];
             acceleSampleY |= optionalData[18] << 8;
             acceleSampleY |= optionalData[19] << 16;
             acceleSampleY |= optionalData[20] << 24;
+            float acceleY = 0.0f;
+            memcpy(&acceleY, &acceleSampleY, 4);
+
             uint32_t acceleSampleZ = optionalData[21];
             acceleSampleZ |= optionalData[22] << 8;
             acceleSampleZ |= optionalData[23] << 16;
             acceleSampleZ |= optionalData[24] << 24;
+            float acceleZ = 0.0f;
+            memcpy(&acceleZ, &acceleSampleZ, 4);
 
             uint32_t magnSampleX = optionalData[25];
             magnSampleX |= optionalData[26] << 8;
             magnSampleX |= optionalData[27] << 16;
             magnSampleX |= optionalData[28] << 24;
+            float magnX = 0.0f;
+            memcpy(&magnX, &magnSampleX, 4);
+
             uint32_t magnSampleY = optionalData[29];
             magnSampleY |= optionalData[30] << 8;
             magnSampleY |= optionalData[31] << 16;
             magnSampleY |= optionalData[32] << 24;
+            float magnY = 0.0f;
+            memcpy(&magnY, &magnSampleY, 4);
+
             uint32_t magnSampleZ = optionalData[33];
             magnSampleZ |= optionalData[34] << 8;
             magnSampleZ |= optionalData[35] << 16;
             magnSampleZ |= optionalData[36] << 24;
+            float magnZ = 0.0f;
+            memcpy(&magnZ, &magnSampleZ, 4);
 
+            m_systemInfoUI->SystemInformation_IMUInformation_GryroX_DoubleSpinBox->setValue(gyroX);
+            m_systemInfoUI->SystemInformation_IMUInformation_GryroY_DoubleSpinBox->setValue(gyroY);
+            m_systemInfoUI->SystemInformation_IMUInformation_GryroZ_DoubleSpinBox->setValue(gyroZ);
+
+            m_systemInfoUI->SystemInformation_IMUInformation_AcceleX_DoubleSpinBox->setValue(acceleX);
+            m_systemInfoUI->SystemInformation_IMUInformation_AcceleX_DoubleSpinBox->setValue(acceleY);
+            m_systemInfoUI->SystemInformation_IMUInformation_AcceleX_DoubleSpinBox->setValue(acceleZ);
+
+            m_systemInfoUI->SystemInformation_IMUInformation_MagX_DoubleSpinBox->setValue(magnX);
+            m_systemInfoUI->SystemInformation_IMUInformation_MagY_DoubleSpinBox->setValue(magnY);
+            m_systemInfoUI->SystemInformation_IMUInformation_MagZ_DoubleSpinBox->setValue(magnZ);
 
         }
         else if (functionId == RESP_CAMERA_PICTURE_LENGTH)
@@ -598,7 +634,6 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_GPS_LOG)
         {
-
         }
         else if (functionId == RESP_GPS_LOG_STATE)
         {

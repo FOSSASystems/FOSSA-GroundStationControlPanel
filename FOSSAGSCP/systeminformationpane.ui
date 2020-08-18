@@ -39,9 +39,9 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>-2331</y>
+            <y>0</y>
             <width>439</width>
-            <height>3203</height>
+            <height>3272</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -51,7 +51,7 @@
            </sizepolicy>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="24" column="0">
+           <item row="25" column="0">
             <spacer name="horizontalSpacer_13">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -64,7 +64,7 @@
              </property>
             </spacer>
            </item>
-           <item row="22" column="0">
+           <item row="23" column="0">
             <spacer name="horizontalSpacer_12">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -77,7 +77,7 @@
              </property>
             </spacer>
            </item>
-           <item row="13" column="0">
+           <item row="14" column="0">
             <spacer name="horizontalSpacer_9">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -90,7 +90,7 @@
              </property>
             </spacer>
            </item>
-           <item row="12" column="0">
+           <item row="13" column="0">
             <widget class="QGroupBox" name="groupBox_10">
              <property name="title">
               <string>Window Receive Length</string>
@@ -136,7 +136,7 @@
              </layout>
             </widget>
            </item>
-           <item row="6" column="0">
+           <item row="7" column="0">
             <widget class="QGroupBox" name="groupBox_2">
              <property name="title">
               <string>Time</string>
@@ -179,7 +179,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="26" column="0">
+           <item row="27" column="0">
             <spacer name="horizontalSpacer_14">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -218,7 +218,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="15" column="0">
+           <item row="16" column="0">
             <spacer name="horizontalSpacer_10">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -231,7 +231,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="17" column="0">
+           <item row="18" column="0">
             <spacer name="horizontalSpacer_18">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -244,7 +244,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="1" column="0">
+           <item row="2" column="0">
             <spacer name="horizontalSpacer_16">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -257,7 +257,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="10" column="0">
+           <item row="11" column="0">
             <widget class="QGroupBox" name="groupBox_4">
              <property name="title">
               <string>Counter</string>
@@ -289,7 +289,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="3" column="0">
+           <item row="4" column="0">
             <spacer name="horizontalSpacer_17">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -302,7 +302,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="4" column="0">
+           <item row="5" column="0">
             <widget class="QGroupBox" name="groupBox">
              <property name="title">
               <string>MPPT</string>
@@ -354,7 +354,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="7" column="0">
+           <item row="8" column="0">
             <spacer name="horizontalSpacer_6">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -367,7 +367,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="11" column="0">
+           <item row="12" column="0">
             <spacer name="horizontalSpacer_8">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -380,7 +380,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="19" column="0">
+           <item row="20" column="0">
             <widget class="QGroupBox" name="groupBox_5">
              <property name="title">
               <string>Solar Panels Power Information</string>
@@ -683,7 +683,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="14" column="0">
+           <item row="15" column="0">
             <widget class="QGroupBox" name="groupBox_12">
              <property name="title">
               <string>ADCS Result</string>
@@ -705,7 +705,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="23" column="0">
+           <item row="24" column="0">
             <widget class="QGroupBox" name="groupBox_7">
              <property name="title">
               <string>Sensors</string>
@@ -885,7 +885,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="27" column="0">
+           <item row="28" column="0">
             <widget class="QGroupBox" name="groupBox_9">
              <property name="title">
               <string>Flash Information</string>
@@ -914,7 +914,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="5" column="0">
+           <item row="6" column="0">
             <spacer name="horizontalSpacer_5">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -927,7 +927,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="2" column="0">
+           <item row="3" column="0">
             <widget class="QGroupBox" name="groupBox_22">
              <property name="title">
               <string>Record Solar Cells (FOSSASAT-1B only):</string>
@@ -1040,7 +1040,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="28" column="0">
+           <item row="29" column="0">
             <spacer name="horizontalSpacer_19">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -1053,7 +1053,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="29" column="0">
+           <item row="30" column="0">
             <widget class="QGroupBox" name="groupBox_26">
              <property name="title">
               <string>IMU Information</string>
@@ -1113,7 +1113,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="20" column="0">
+           <item row="21" column="0">
             <spacer name="horizontalSpacer_11">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -1126,7 +1126,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="9" column="0">
+           <item row="10" column="0">
             <spacer name="horizontalSpacer_7">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -1139,7 +1139,7 @@ Reset (1B):</string>
              </property>
             </spacer>
            </item>
-           <item row="16" column="0">
+           <item row="17" column="0">
             <widget class="QGroupBox" name="groupBox_25">
              <property name="title">
               <string>Battery Information (FOSSASAT-1 only):</string>
@@ -1202,7 +1202,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="21" column="0">
+           <item row="22" column="0">
             <widget class="QGroupBox" name="groupBox_6">
              <property name="title">
               <string>Temperature Information</string>
@@ -1316,7 +1316,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="25" column="0">
+           <item row="26" column="0">
             <widget class="QGroupBox" name="groupBox_8">
              <property name="title">
               <string>Last H-bridge Faults</string>
@@ -1379,7 +1379,7 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="8" column="0">
+           <item row="9" column="0">
             <widget class="QGroupBox" name="groupBox_3">
              <property name="title">
               <string>Power Configuration</string>
@@ -1628,6 +1628,28 @@ Reset (1B):</string>
                  <string>Active</string>
                 </property>
                </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QGroupBox" name="groupBox_27">
+             <property name="title">
+              <string>Deployment</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_33">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_84">
+                <property name="text">
+                 <string>Counter:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="SystemInformation_Deployment_Counter_SpinBox"/>
               </item>
              </layout>
             </widget>
