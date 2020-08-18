@@ -145,11 +145,17 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
 
                 m_systemInfoUI->SystemInformation_1B_TimeSinceLastReset_SpinBox->setValue(timeSinceLastReset);
 
-                m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerModeActive_Activated_RadioButton->setChecked(lowPowerModeActive);
                 m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton->setChecked(lowPowerModeEnabled);
+                m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Disabled_RadioButton->setChecked(!lowPowerModeEnabled);
+
                 m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTTemperatureSwitchEnabled_Enabled_RadioButton->setChecked(mpptTemperatureSwitchEnabled);
+                m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTTemperatureSwitchEnabled_Disabled_RadioButton->setChecked(!mpptTemperatureSwitchEnabled);
+
                 m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Enabled_RadioButton->setChecked(mpptKeepAliveEnabled);
+                m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Disabled_RadioButton->setChecked(!mpptKeepAliveEnabled);
+
                 m_systemInfoUI->SystemInformation_PowerConfiguration_TransmissionsEnabled_Enabled_RadioButton->setChecked(transmissionsEnabled);
+                m_systemInfoUI->SystemInformation_PowerConfiguration_TransmissionsEnabled_Disabled_RadioButton->setChecked(!transmissionsEnabled);
 
                 m_systemInfoUI->SystemInformation_ResetCounter_SpinBox->setValue(resetCounter);
 
@@ -181,6 +187,8 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 uint32_t currentlyActivePowerMode = currentlyActivePowerModeLSB;
                 currentlyActivePowerMode |= (currentlyActivePowerModeA << 1);
                 currentlyActivePowerMode |= (currentlyActivePowerModeMSB << 2);
+                bool noLowPowerMode = currentlyActivePowerMode == 0;
+                bool sleepMode = currentlyActivePowerMode == 2;
 
 
                 uint8_t mpptTemperatureSwitchEnabled = (powerConfiguration & 0b00100000) >> 5; // bit 5
@@ -214,8 +222,8 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
                 m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton->setChecked(lowPowerModeEnabled);
                 m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Disabled_RadioButton->setChecked(!lowPowerModeEnabled);
 
-                m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerModeActive_Activated_RadioButton->setChecked(currentlyActivePowerMode);
-                m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerModeActive_Deactivated_RadioButton->setChecked(!currentlyActivePowerMode);
+                m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerActiveMode_LP_RadioButton->setChecked(!noLowPowerMode);
+                m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerActiveMode_Sleep_RadioButton->setChecked(sleepMode);
 
                 m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTTemperatureSwitchEnabled_Enabled_RadioButton->setChecked(mpptTemperatureSwitchEnabled);
                 m_systemInfoUI->SystemInformation_PowerConfiguration_MPPTTemperatureSwitchEnabled_Disabled_RadioButton->setChecked(!mpptTemperatureSwitchEnabled);
@@ -384,6 +392,8 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
             uint32_t currentlyActivePowerMode = currentlyActivePowerModeLSB;
             currentlyActivePowerMode |= (currentlyActivePowerModeA << 1);
             currentlyActivePowerMode |= (currentlyActivePowerModeMSB << 2);
+            bool noLowPowerMode = currentlyActivePowerMode == 0;
+            bool sleepMode = currentlyActivePowerMode == 2;
 
 
             uint8_t mpptTemperatureSwitchEnabled = (powerConfiguration & 0b00100000) >> 5; // bit 5
@@ -455,8 +465,56 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
 
             m_systemInfoUI->SystemInformation_MPPT_OutputVoltage_SpinBox->setValue(mpptOutputVoltage * 20);
             m_systemInfoUI->SystemInformation_MPPT_OutputCurrent_SpinBox->setValue(mpptOutputCurrent * 10);
+            m_systemInfoUI->SystemInformation_UnixTimestamp_LineEdit->setText(QString::number(unixTimestamp));
 
+            m_systemInfoUI->SystemInformation_PowerConfiguration_TransmissionsEnabled_Enabled_RadioButton->setChecked(transmissionsEnabled);
+            m_systemInfoUI->SystemInformation_PowerConfiguration_TransmissionsEnabled_Disabled_RadioButton->setChecked(!transmissionsEnabled);
 
+            m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton->setChecked(lowPowerModeEnabled);
+            m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerMode_Disabled_RadioButton->setChecked(!lowPowerModeEnabled);
+
+            m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerActiveMode_LP_RadioButton->setChecked(!noLowPowerMode);
+            m_systemInfoUI->SystemInformation_PowerConfiguration_LowPowerActiveMode_Sleep_RadioButton->setChecked(sleepMode);
+
+            m_systemInfoUI->SystemInformation_ResetCounter_SpinBox->setValue(resetCounter);
+
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelXAVoltage_SpinBox->setValue(solarPanel_XA_Voltage * 20);
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelXACurrent_SpinBox->setValue(solarPanel_XA_Current * 10);
+
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelXBVoltage_SpinBox->setValue(solarPanel_XB_Voltage * 20);
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelXBCurrent_SpinBox->setValue(solarPanel_XB_Current * 10);
+
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelZAVoltage_SpinBox->setValue(solarPanel_ZA_Voltage * 20);
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelZACurrent_SpinBox->setValue(solarPanel_ZA_Current * 10);
+
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelZBVoltage_SpinBox->setValue(solarPanel_ZB_Voltage * 20);
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelZBCurrent_SpinBox->setValue(solarPanel_ZB_Current * 10);
+
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelYVoltage_SpinBox->setValue(solarPanel_Y_Voltage * 20);
+            m_systemInfoUI->SystemInformation_SolarPanelsPowerInformation_SolarPanelYCurrent_SpinBox->setValue(solarPanel_Y_Current * 10);
+
+            m_systemInfoUI->SystemInformation_TemperatureInformation_YPanelTemperature_DoubleSpinBox->setValue(solarPanelYTemperature * 0.01f);
+            m_systemInfoUI->SystemInformation_TemperatureInformation_OBCBoardTemperature_DoubleSpinBox->setValue(obcBoardTemperature * 0.01f);
+            m_systemInfoUI->SystemInformation_TemperatureInformation_BottomBoardTemperature_DoubleSpinBox->setValue(bottomBoardTemperature * 0.01f);
+            m_systemInfoUI->SystemInformation_TemperatureInformation_BatteryTemperature_DoubleSpinBox->setValue(batteryTemperature * 0.01f);
+            m_systemInfoUI->SystemInformation_TemperatureInformation_SecondBatteryTemperature_DoubleSpinBox->setValue(secondBatteryTemperature * 0.01f);
+            m_systemInfoUI->SystemInformation_TemperatureInformation_MCUTemperature_DoubleSpinBox->setValue(mcuTemperature * 0.01f);
+
+            m_systemInfoUI->SystemInformation_Sensors_YPanelLightSensor_LineEdit->setText(QString::number(yPanelLightSensor));
+            m_systemInfoUI->SystemInformation_Sensors_TopBoardLightSensor_LineEdit->setText(QString::number(topBoardLightSensor));
+
+            m_systemInfoUI->SystemInformation_LastHBridgeFaults_XAxisHBridgeFault_SpinBox->setValue(lastXAxisHBridgeFault);
+            m_systemInfoUI->SystemInformation_LastHBridgeFaults_YAxisHBridgeFault_SpinBox->setValue(lastYAxisHBridgeFault);
+            m_systemInfoUI->SystemInformation_LastHBridgeFaults_ZAxisHBridgeFault_SpinBox->setValue(lastZAxisHBridgeFault);
+
+            m_systemInfoUI->SystemInformation_FlashInformation_CRCError_SpinBox->setValue(flashSystemInfoPageCRCErrorCounter);
+
+            m_systemInfoUI->SystemInformation_WindowReceiveLength_LoraWindowReceiveLength_SpinBox->setValue(fskWindowReceiveLength);
+            m_systemInfoUI->SystemInformation_WindowReceiveLength_LoraWindowReceiveLength_SpinBox->setValue(loraWindowReceiveLength);
+
+            ///\todo sensor states.
+
+            m_systemInfoUI->SystemInformation_ADCResult_LastADCSResult_LineEdit->setText(QString::number(lastADCSResult));
         }
         else if (functionId == RESP_STORE_AND_FORWARD_ASSIGNED_SLOT)
         {

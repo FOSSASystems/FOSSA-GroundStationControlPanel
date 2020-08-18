@@ -20,7 +20,7 @@
       <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -39,9 +39,9 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>0</y>
+            <y>-1979</y>
             <width>439</width>
-            <height>2852</height>
+            <height>2875</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -269,17 +269,13 @@
                  <set>Qt::AlignCenter</set>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_13">
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_36">
-                   <property name="text">
-                    <string>Light Sensor Y:</string>
+                 <item row="6" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
                    </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_37">
-                   <property name="text">
-                    <string>Current Sensor MPPT:</string>
+                   <property name="maximum">
+                    <number>99999</number>
                    </property>
                   </widget>
                  </item>
@@ -290,83 +286,8 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_38">
-                   <property name="text">
-                    <string>Current Sensor Y:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="label_40">
-                   <property name="text">
-                    <string>Current Sensor ZA:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="0">
-                  <widget class="QLabel" name="label_41">
-                   <property name="text">
-                    <string>Current Sensor XB:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="0">
-                  <widget class="QLabel" name="label_42">
-                   <property name="text">
-                    <string>Current Sensor XA:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_35">
-                   <property name="text">
-                    <string>Light Sensor Top:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="0" column="1">
                   <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorTop_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox">
                    <property name="minimum">
                     <number>-99999</number>
                    </property>
@@ -385,13 +306,61 @@
                    </property>
                   </widget>
                  </item>
-                 <item row="6" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox">
+                 <item row="3" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox">
                    <property name="minimum">
                     <number>-99999</number>
                    </property>
                    <property name="maximum">
                     <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_35">
+                   <property name="text">
+                    <string>Light Sensor Top:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="label_41">
+                   <property name="text">
+                    <string>Current Sensor XB:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0">
+                  <widget class="QLabel" name="label_42">
+                   <property name="text">
+                    <string>Current Sensor XA:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_38">
+                   <property name="text">
+                    <string>Current Sensor Y:</string>
                    </property>
                   </widget>
                  </item>
@@ -402,6 +371,37 @@
                    </property>
                    <property name="maximum">
                     <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabel" name="label_40">
+                   <property name="text">
+                    <string>Current Sensor ZA:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_37">
+                   <property name="text">
+                    <string>Current Sensor MPPT:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_36">
+                   <property name="text">
+                    <string>Light Sensor Y:</string>
                    </property>
                   </widget>
                  </item>
@@ -1210,10 +1210,10 @@ Reset (1B):</string>
               <set>Qt::AlignCenter</set>
              </property>
              <layout class="QGridLayout" name="gridLayout_5">
-              <item row="2" column="1">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerModeActive_Activated_RadioButton">
+              <item row="1" column="1">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton">
                 <property name="text">
-                 <string>A&amp;ctivated</string>
+                 <string>Enabled</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1222,7 +1222,46 @@ Reset (1B):</string>
                  <bool>false</bool>
                 </property>
                 <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_3</string>
+                 <string notr="true">buttonGroup_2</string>
+                </attribute>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_6">
+                <property name="text">
+                 <string>Active Low Power Mode:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="2">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerMode_Disabled_RadioButton">
+                <property name="text">
+                 <string>Disabled</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="autoExclusive">
+                 <bool>false</bool>
+                </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_2</string>
+                </attribute>
+               </widget>
+              </item>
+              <item row="4" column="1">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Enabled_RadioButton">
+                <property name="text">
+                 <string>Enabled</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="autoExclusive">
+                 <bool>false</bool>
+                </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_5</string>
                 </attribute>
                </widget>
               </item>
@@ -1242,10 +1281,10 @@ Reset (1B):</string>
                 </attribute>
                </widget>
               </item>
-              <item row="1" column="2">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerMode_Disabled_RadioButton">
+              <item row="5" column="1">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_ScienceModeActive_Activated_RadioButton">
                 <property name="text">
-                 <string>Disabled</string>
+                 <string>Activated</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1254,7 +1293,7 @@ Reset (1B):</string>
                  <bool>false</bool>
                 </property>
                 <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_2</string>
+                 <string notr="true">buttonGroup_6</string>
                 </attribute>
                </widget>
               </item>
@@ -1274,17 +1313,17 @@ Reset (1B):</string>
                 </attribute>
                </widget>
               </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_7">
+              <item row="5" column="0">
+               <widget class="QLabel" name="label_9">
                 <property name="text">
-                 <string>MPPT Temperature Switch Enabled:</string>
+                 <string>Science Mode Active:</string>
                 </property>
                </widget>
               </item>
-              <item row="2" column="2">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerModeActive_Deactivated_RadioButton">
+              <item row="2" column="1">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerActiveMode_LP_RadioButton">
                 <property name="text">
-                 <string>Deactivated</string>
+                 <string>LP</string>
                 </property>
                 <property name="checkable">
                  <bool>true</bool>
@@ -1294,75 +1333,6 @@ Reset (1B):</string>
                 </property>
                 <attribute name="buttonGroup">
                  <string notr="true">buttonGroup_3</string>
-                </attribute>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_6">
-                <property name="text">
-                 <string>Low Power Mode Active:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_TransmissionsEnabled_Enabled_RadioButton">
-                <property name="text">
-                 <string>Enabled</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="autoExclusive">
-                 <bool>false</bool>
-                </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup</string>
-                </attribute>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerMode_Enabled_RadioButton">
-                <property name="text">
-                 <string>Enabled</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="autoExclusive">
-                 <bool>false</bool>
-                </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_2</string>
-                </attribute>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_4">
-                <property name="text">
-                 <string>Transmissions Enabled:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="0">
-               <widget class="QLabel" name="label_8">
-                <property name="text">
-                 <string>MPPT Keep Alive Enabled:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="4" column="1">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Enabled_RadioButton">
-                <property name="text">
-                 <string>Enabled</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="autoExclusive">
-                 <bool>false</bool>
-                </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_5</string>
                 </attribute>
                </widget>
               </item>
@@ -1382,6 +1352,82 @@ Reset (1B):</string>
                 </attribute>
                </widget>
               </item>
+              <item row="5" column="2">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_ScienceModeActive_Deactivated_RadioButton">
+                <property name="text">
+                 <string>Deactivated</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="autoExclusive">
+                 <bool>false</bool>
+                </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_6</string>
+                </attribute>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_7">
+                <property name="text">
+                 <string>MPPT Temperature Switch Enabled:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="2">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_LowPowerActiveMode_Sleep_RadioButton">
+                <property name="text">
+                 <string>None</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="autoExclusive">
+                 <bool>false</bool>
+                </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup_3</string>
+                </attribute>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_TransmissionsEnabled_Enabled_RadioButton">
+                <property name="text">
+                 <string>Enabled</string>
+                </property>
+                <property name="checkable">
+                 <bool>true</bool>
+                </property>
+                <property name="autoExclusive">
+                 <bool>false</bool>
+                </property>
+                <attribute name="buttonGroup">
+                 <string notr="true">buttonGroup</string>
+                </attribute>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_5">
+                <property name="text">
+                 <string>Low Power Mode:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="4" column="0">
+               <widget class="QLabel" name="label_8">
+                <property name="text">
+                 <string>MPPT Keep Alive Enabled:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_4">
+                <property name="text">
+                 <string>Transmissions Enabled:</string>
+                </property>
+               </widget>
+              </item>
               <item row="4" column="2">
                <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_MPPTKeepAliveEnabled_Disabled_RadioButton">
                 <property name="text">
@@ -1398,50 +1444,11 @@ Reset (1B):</string>
                 </attribute>
                </widget>
               </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_5">
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_80">
                 <property name="text">
-                 <string>Low Power Mode:</string>
+                 <string>Active</string>
                 </property>
-               </widget>
-              </item>
-              <item row="5" column="0">
-               <widget class="QLabel" name="label_9">
-                <property name="text">
-                 <string>Science Mode Active:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="5" column="1">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_ScienceModeActive_Activated_RadioButton">
-                <property name="text">
-                 <string>Activated</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="autoExclusive">
-                 <bool>false</bool>
-                </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_6</string>
-                </attribute>
-               </widget>
-              </item>
-              <item row="5" column="2">
-               <widget class="QRadioButton" name="SystemInformation_PowerConfiguration_ScienceModeActive_Deactivated_RadioButton">
-                <property name="text">
-                 <string>Deactivated</string>
-                </property>
-                <property name="checkable">
-                 <bool>true</bool>
-                </property>
-                <property name="autoExclusive">
-                 <bool>false</bool>
-                </property>
-                <attribute name="buttonGroup">
-                 <string notr="true">buttonGroup_6</string>
-                </attribute>
                </widget>
               </item>
              </layout>
@@ -2177,11 +2184,11 @@ Reset (1B):</string>
  <resources/>
  <connections/>
  <buttongroups>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_6"/>
   <buttongroup name="buttonGroup_5"/>
   <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
  </buttongroups>
 </ui>
