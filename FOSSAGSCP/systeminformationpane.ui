@@ -39,9 +39,9 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>-1979</y>
+            <y>-2331</y>
             <width>439</width>
-            <height>2875</height>
+            <height>3203</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -51,8 +51,21 @@
            </sizepolicy>
           </property>
           <layout class="QGridLayout" name="gridLayout_2">
-           <item row="20" column="0">
-            <spacer name="horizontalSpacer_11">
+           <item row="24" column="0">
+            <spacer name="horizontalSpacer_13">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="22" column="0">
+            <spacer name="horizontalSpacer_12">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -77,6 +90,160 @@
              </property>
             </spacer>
            </item>
+           <item row="12" column="0">
+            <widget class="QGroupBox" name="groupBox_10">
+             <property name="title">
+              <string>Window Receive Length</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_12">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_34">
+                <property name="text">
+                 <string>LoRa Window Receive Length (s):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_33">
+                <property name="text">
+                 <string>FSK Window Receive Length (s):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="SystemInformation_WindowReceiveLength_FSKWindowReceiveLength_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_WindowReceiveLength_LoraWindowReceiveLength_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QGroupBox" name="groupBox_2">
+             <property name="title">
+              <string>Time</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_4">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_3">
+                <property name="text">
+                 <string>Unix Timestamp:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_79">
+                <property name="text">
+                 <string>Time Since Last
+Reset (1B):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="3" column="1">
+               <widget class="QSpinBox" name="SystemInformation_1B_TimeSinceLastReset_SpinBox">
+                <property name="readOnly">
+                 <bool>true</bool>
+                </property>
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="SystemInformation_UnixTimestamp_LineEdit"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="26" column="0">
+            <spacer name="horizontalSpacer_14">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="0">
+            <widget class="QGroupBox" name="groupBox_13">
+             <property name="title">
+              <string>Controls</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_15">
+              <item row="1" column="0">
+               <widget class="QPushButton" name="SystemInformation_RequestFullSystemInformation_PushButton">
+                <property name="text">
+                 <string>Request Full System Information</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QPushButton" name="SystemInformation_RequestSystemInformation_PushButton">
+                <property name="text">
+                 <string>Request System Information</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="15" column="0">
+            <spacer name="horizontalSpacer_10">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="17" column="0">
+            <spacer name="horizontalSpacer_18">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
            <item row="1" column="0">
             <spacer name="horizontalSpacer_16">
              <property name="orientation">
@@ -90,58 +257,27 @@
              </property>
             </spacer>
            </item>
-           <item row="25" column="0">
-            <widget class="QGroupBox" name="groupBox_8">
+           <item row="10" column="0">
+            <widget class="QGroupBox" name="groupBox_4">
              <property name="title">
-              <string>Last H-bridge Faults</string>
+              <string>Counter</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
-             <layout class="QGridLayout" name="gridLayout_10">
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_31">
-                <property name="text">
-                 <string>Last Z Axis H-bridge Fault:</string>
-                </property>
-               </widget>
-              </item>
+             <layout class="QGridLayout" name="gridLayout_6">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_29">
+               <widget class="QLabel" name="label_10">
                 <property name="text">
-                 <string>Last X Axis H-bridge Fault:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_30">
-                <property name="text">
-                 <string>Last Y Axis H-bridge Fault:</string>
+                 <string>Reset Counter:</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_XAxisHBridgeFault_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
+               <widget class="QSpinBox" name="SystemInformation_ResetCounter_SpinBox">
+                <property name="readOnly">
+                 <bool>true</bool>
                 </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_YAxisHBridgeFault_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_ZAxisHBridgeFault_SpinBox">
                 <property name="minimum">
                  <number>-99999</number>
                 </property>
@@ -153,8 +289,8 @@
              </layout>
             </widget>
            </item>
-           <item row="11" column="0">
-            <spacer name="horizontalSpacer_8">
+           <item row="3" column="0">
+            <spacer name="horizontalSpacer_17">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -218,297 +354,6 @@
              </layout>
             </widget>
            </item>
-           <item row="3" column="0">
-            <spacer name="horizontalSpacer_17">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="23" column="0">
-            <widget class="QGroupBox" name="groupBox_7">
-             <property name="title">
-              <string>Sensors</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_9">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_28">
-                <property name="text">
-                 <string>Top Board Light Sensor (lux):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_27">
-                <property name="text">
-                 <string>Y Panel Light Sensor (lux):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="SystemInformation_Sensors_YPanelLightSensor_LineEdit"/>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="SystemInformation_Sensors_TopBoardLightSensor_LineEdit"/>
-              </item>
-              <item row="2" column="0" colspan="2">
-               <widget class="QGroupBox" name="groupBox_11">
-                <property name="title">
-                 <string>Sensor States</string>
-                </property>
-                <property name="alignment">
-                 <set>Qt::AlignCenter</set>
-                </property>
-                <layout class="QGridLayout" name="gridLayout_13">
-                 <item row="6" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="label_39">
-                   <property name="text">
-                    <string>Current Sensor ZB:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorTop_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZA_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_35">
-                   <property name="text">
-                    <string>Light Sensor Top:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="6" column="0">
-                  <widget class="QLabel" name="label_41">
-                   <property name="text">
-                    <string>Current Sensor XB:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="0">
-                  <widget class="QLabel" name="label_42">
-                   <property name="text">
-                    <string>Current Sensor XA:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_38">
-                   <property name="text">
-                    <string>Current Sensor Y:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXA_SpinBox_2">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="0">
-                  <widget class="QLabel" name="label_40">
-                   <property name="text">
-                    <string>Current Sensor ZA:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_37">
-                   <property name="text">
-                    <string>Current Sensor MPPT:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="0">
-                  <widget class="QLabel" name="label_36">
-                   <property name="text">
-                    <string>Light Sensor Y:</string>
-                   </property>
-                  </widget>
-                 </item>
-                </layout>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="17" column="0">
-            <spacer name="horizontalSpacer_18">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="12" column="0">
-            <widget class="QGroupBox" name="groupBox_10">
-             <property name="title">
-              <string>Window Receive Length</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_12">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_34">
-                <property name="text">
-                 <string>LoRa Window Receive Length (s):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_33">
-                <property name="text">
-                 <string>FSK Window Receive Length (s):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_WindowReceiveLength_FSKWindowReceiveLength_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="SystemInformation_WindowReceiveLength_LoraWindowReceiveLength_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <spacer name="horizontalSpacer_5">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="0" column="0">
-            <widget class="QGroupBox" name="groupBox_13">
-             <property name="title">
-              <string>Controls</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_15">
-              <item row="1" column="0">
-               <widget class="QPushButton" name="SystemInformation_RequestFullSystemInformation_PushButton">
-                <property name="text">
-                 <string>Request Full System Information</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="0">
-               <widget class="QPushButton" name="SystemInformation_RequestSystemInformation_PushButton">
-                <property name="text">
-                 <string>Request System Information</string>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
            <item row="7" column="0">
             <spacer name="horizontalSpacer_6">
              <property name="orientation">
@@ -522,73 +367,8 @@
              </property>
             </spacer>
            </item>
-           <item row="6" column="0">
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="title">
-              <string>Time</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_4">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_3">
-                <property name="text">
-                 <string>Unix Timestamp:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="0">
-               <widget class="QLabel" name="label_79">
-                <property name="text">
-                 <string>Time Since Last
-Reset (1B):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="3" column="1">
-               <widget class="QSpinBox" name="SystemInformation_1B_TimeSinceLastReset_SpinBox">
-                <property name="readOnly">
-                 <bool>true</bool>
-                </property>
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QLineEdit" name="SystemInformation_UnixTimestamp_LineEdit"/>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="14" column="0">
-            <widget class="QGroupBox" name="groupBox_12">
-             <property name="title">
-              <string>ADCS Result</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_14">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_43">
-                <property name="text">
-                 <string>Last ADCS Result:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QLineEdit" name="SystemInformation_ADCResult_LastADCSResult_LineEdit"/>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="15" column="0">
-            <spacer name="horizontalSpacer_10">
+           <item row="11" column="0">
+            <spacer name="horizontalSpacer_8">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -903,27 +683,226 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="10" column="0">
-            <widget class="QGroupBox" name="groupBox_4">
+           <item row="14" column="0">
+            <widget class="QGroupBox" name="groupBox_12">
              <property name="title">
-              <string>Counter</string>
+              <string>ADCS Result</string>
              </property>
              <property name="alignment">
               <set>Qt::AlignCenter</set>
              </property>
-             <layout class="QGridLayout" name="gridLayout_6">
+             <layout class="QGridLayout" name="gridLayout_14">
               <item row="0" column="0">
-               <widget class="QLabel" name="label_10">
+               <widget class="QLabel" name="label_43">
                 <property name="text">
-                 <string>Reset Counter:</string>
+                 <string>Last ADCS Result:</string>
                 </property>
                </widget>
               </item>
               <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_ResetCounter_SpinBox">
-                <property name="readOnly">
-                 <bool>true</bool>
+               <widget class="QLineEdit" name="SystemInformation_ADCResult_LastADCSResult_LineEdit"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="23" column="0">
+            <widget class="QGroupBox" name="groupBox_7">
+             <property name="title">
+              <string>Sensors</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_9">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_28">
+                <property name="text">
+                 <string>Top Board Light Sensor (lux):</string>
                 </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_27">
+                <property name="text">
+                 <string>Y Panel Light Sensor (lux):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QLineEdit" name="SystemInformation_Sensors_YPanelLightSensor_LineEdit"/>
+              </item>
+              <item row="1" column="1">
+               <widget class="QLineEdit" name="SystemInformation_Sensors_TopBoardLightSensor_LineEdit"/>
+              </item>
+              <item row="2" column="0" colspan="2">
+               <widget class="QGroupBox" name="groupBox_11">
+                <property name="title">
+                 <string>Sensor States</string>
+                </property>
+                <property name="alignment">
+                 <set>Qt::AlignCenter</set>
+                </property>
+                <layout class="QGridLayout" name="gridLayout_13">
+                 <item row="6" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_39">
+                   <property name="text">
+                    <string>Current Sensor ZB:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorTop_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZA_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_35">
+                   <property name="text">
+                    <string>Light Sensor Top:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="0">
+                  <widget class="QLabel" name="label_41">
+                   <property name="text">
+                    <string>Current Sensor XB:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="0">
+                  <widget class="QLabel" name="label_42">
+                   <property name="text">
+                    <string>Current Sensor XA:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_38">
+                   <property name="text">
+                    <string>Current Sensor Y:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXA_SpinBox_2">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="0">
+                  <widget class="QLabel" name="label_40">
+                   <property name="text">
+                    <string>Current Sensor ZA:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox">
+                   <property name="minimum">
+                    <number>-99999</number>
+                   </property>
+                   <property name="maximum">
+                    <number>99999</number>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_37">
+                   <property name="text">
+                    <string>Current Sensor MPPT:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="0">
+                  <widget class="QLabel" name="label_36">
+                   <property name="text">
+                    <string>Light Sensor Y:</string>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="27" column="0">
+            <widget class="QGroupBox" name="groupBox_9">
+             <property name="title">
+              <string>Flash Information</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_11">
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_32">
+                <property name="text">
+                 <string>Info Page CRC Error Counter:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_FlashInformation_CRCError_SpinBox">
                 <property name="minimum">
                  <number>-99999</number>
                 </property>
@@ -934,6 +913,19 @@ Reset (1B):</string>
               </item>
              </layout>
             </widget>
+           </item>
+           <item row="5" column="0">
+            <spacer name="horizontalSpacer_5">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
            <item row="2" column="0">
             <widget class="QGroupBox" name="groupBox_22">
@@ -1048,8 +1040,81 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="24" column="0">
-            <spacer name="horizontalSpacer_13">
+           <item row="28" column="0">
+            <spacer name="horizontalSpacer_19">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="29" column="0">
+            <widget class="QGroupBox" name="groupBox_26">
+             <property name="title">
+              <string>IMU Information</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_32">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_81">
+                <property name="text">
+                 <string>Gyroscope:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_MagX_DoubleSpinBox"/>
+              </item>
+              <item row="3" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_AcceleX_DoubleSpinBox"/>
+              </item>
+              <item row="3" column="0">
+               <widget class="QLabel" name="label_82">
+                <property name="text">
+                 <string>Accelerometer:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="6" column="0">
+               <widget class="QLabel" name="label_83">
+                <property name="text">
+                 <string>Magnetometer:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_GryroY_DoubleSpinBox"/>
+              </item>
+              <item row="8" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_MagZ_DoubleSpinBox"/>
+              </item>
+              <item row="4" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_AcceleY_DoubleSpinBox"/>
+              </item>
+              <item row="0" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_GryroX_DoubleSpinBox"/>
+              </item>
+              <item row="2" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_GryroZ_DoubleSpinBox"/>
+              </item>
+              <item row="5" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_AcceleZ_DoubleSpinBox"/>
+              </item>
+              <item row="7" column="1">
+               <widget class="QDoubleSpinBox" name="SystemInformation_IMUInformation_MagY_DoubleSpinBox"/>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item row="20" column="0">
+            <spacer name="horizontalSpacer_11">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -1073,6 +1138,69 @@ Reset (1B):</string>
               </size>
              </property>
             </spacer>
+           </item>
+           <item row="16" column="0">
+            <widget class="QGroupBox" name="groupBox_25">
+             <property name="title">
+              <string>Battery Information (FOSSASAT-1 only):</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
+             </property>
+             <layout class="QGridLayout" name="gridLayout_31">
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_76">
+                <property name="text">
+                 <string>Battery Voltage (mV):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_78">
+                <property name="text">
+                 <string>Battery Charging Voltage (mV):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_77">
+                <property name="text">
+                 <string>Battery Charging Current (uA):</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="SystemInformation_1B_BatteryVoltage_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_1B_BatteryChargingCurrent_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="SystemInformation_1B_BatteryChargingVoltage_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
            <item row="21" column="0">
             <widget class="QGroupBox" name="groupBox_6">
@@ -1188,18 +1316,68 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="22" column="0">
-            <spacer name="horizontalSpacer_12">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+           <item row="25" column="0">
+            <widget class="QGroupBox" name="groupBox_8">
+             <property name="title">
+              <string>Last H-bridge Faults</string>
              </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
+             <property name="alignment">
+              <set>Qt::AlignCenter</set>
              </property>
-            </spacer>
+             <layout class="QGridLayout" name="gridLayout_10">
+              <item row="2" column="0">
+               <widget class="QLabel" name="label_31">
+                <property name="text">
+                 <string>Last Z Axis H-bridge Fault:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="0">
+               <widget class="QLabel" name="label_29">
+                <property name="text">
+                 <string>Last X Axis H-bridge Fault:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0">
+               <widget class="QLabel" name="label_30">
+                <property name="text">
+                 <string>Last Y Axis H-bridge Fault:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="0" column="1">
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_XAxisHBridgeFault_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="1">
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_YAxisHBridgeFault_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1">
+               <widget class="QSpinBox" name="SystemInformation_LastHBridgeFaults_ZAxisHBridgeFault_SpinBox">
+                <property name="minimum">
+                 <number>-99999</number>
+                </property>
+                <property name="maximum">
+                 <number>99999</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </item>
            <item row="8" column="0">
             <widget class="QGroupBox" name="groupBox_3">
@@ -1454,111 +1632,6 @@ Reset (1B):</string>
              </layout>
             </widget>
            </item>
-           <item row="27" column="0">
-            <widget class="QGroupBox" name="groupBox_9">
-             <property name="title">
-              <string>Flash Information</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_11">
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_32">
-                <property name="text">
-                 <string>Info Page CRC Error Counter:</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="SystemInformation_FlashInformation_CRCError_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
-           <item row="26" column="0">
-            <spacer name="horizontalSpacer_14">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="16" column="0">
-            <widget class="QGroupBox" name="groupBox_25">
-             <property name="title">
-              <string>Battery Information (FOSSASAT-1 only):</string>
-             </property>
-             <property name="alignment">
-              <set>Qt::AlignCenter</set>
-             </property>
-             <layout class="QGridLayout" name="gridLayout_31">
-              <item row="0" column="0">
-               <widget class="QLabel" name="label_76">
-                <property name="text">
-                 <string>Battery Voltage (mV):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="0">
-               <widget class="QLabel" name="label_78">
-                <property name="text">
-                 <string>Battery Charging Voltage (mV):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="0">
-               <widget class="QLabel" name="label_77">
-                <property name="text">
-                 <string>Battery Charging Current (uA):</string>
-                </property>
-               </widget>
-              </item>
-              <item row="0" column="1">
-               <widget class="QSpinBox" name="SystemInformation_1B_BatteryVoltage_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="1" column="1">
-               <widget class="QSpinBox" name="SystemInformation_1B_BatteryChargingCurrent_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-              <item row="2" column="1">
-               <widget class="QSpinBox" name="SystemInformation_1B_BatteryChargingVoltage_SpinBox">
-                <property name="minimum">
-                 <number>-99999</number>
-                </property>
-                <property name="maximum">
-                 <number>99999</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
           </layout>
          </widget>
         </widget>
@@ -1780,7 +1853,7 @@ Reset (1B):</string>
           <property name="geometry">
            <rect>
             <x>44</x>
-            <y>0</y>
+            <y>-654</y>
             <width>417</width>
             <height>1583</height>
            </rect>

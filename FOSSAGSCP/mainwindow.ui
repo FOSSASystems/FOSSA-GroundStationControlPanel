@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>0</y>
+             <y>-1550</y>
              <width>449</width>
              <height>5304</height>
             </rect>
@@ -1779,7 +1779,7 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>17</x>
-             <y>-2911</y>
+             <y>0</y>
              <width>475</width>
              <height>3927</height>
             </rect>
@@ -3863,27 +3863,27 @@ Sleep Interval (mV):</string>
  <connections/>
  <buttongroups>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="buttonGroup_8"/>
-  <buttongroup name="buttonGroup_9"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="buttonGroup_5"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="buttonGroup_12"/>
   <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_10"/>
   <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
  </buttongroups>
 </ui>

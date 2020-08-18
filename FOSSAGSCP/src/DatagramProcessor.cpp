@@ -518,7 +518,7 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_STORE_AND_FORWARD_ASSIGNED_SLOT)
         {
-
+            ///\todo add ui component to signal slot assigned.
         }
         else if (functionId == RESP_FORWARDED_MESSAGE)
         {
@@ -532,15 +532,63 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         {
 
         }
-        else if (functionId == RESP_RECORDED_SOLAR_CELLS)
-        {
-
-        }
         else if (functionId == RESP_CAMERA_STATE)
         {
 
         }
         else if (functionId == RESP_RECORDED_IMU)
+        {
+            uint8_t deviceFlags = optionalData[0];
+            uint8_t gyro = deviceFlags & 0b00000001;
+            uint8_t accele = (deviceFlags>>1) & 0b00000001;
+            uint8_t magn = (deviceFlags>>2) & 0b00000001;
+
+            uint32_t gyroSampleX = optionalData[1];
+            gyroSampleX |= optionalData[2] << 8;
+            gyroSampleX |= optionalData[3] << 16;
+            gyroSampleX |= optionalData[4] << 24;
+            uint32_t gyroSampleY = optionalData[5];
+            gyroSampleY |= optionalData[6] << 8;
+            gyroSampleY |= optionalData[7] << 16;
+            gyroSampleY |= optionalData[8] << 24;
+            uint32_t gyroSampleZ = optionalData[9];
+            gyroSampleZ |= optionalData[10] << 8;
+            gyroSampleZ |= optionalData[11] << 16;
+            gyroSampleZ |= optionalData[12] << 24;
+
+            uint32_t acceleSampleX = optionalData[13];
+            acceleSampleX |= optionalData[14] << 8;
+            acceleSampleX |= optionalData[15] << 16;
+            acceleSampleX |= optionalData[16] << 24;
+            uint32_t acceleSampleY = optionalData[17];
+            acceleSampleY |= optionalData[18] << 8;
+            acceleSampleY |= optionalData[19] << 16;
+            acceleSampleY |= optionalData[20] << 24;
+            uint32_t acceleSampleZ = optionalData[21];
+            acceleSampleZ |= optionalData[22] << 8;
+            acceleSampleZ |= optionalData[23] << 16;
+            acceleSampleZ |= optionalData[24] << 24;
+
+            uint32_t magnSampleX = optionalData[25];
+            magnSampleX |= optionalData[26] << 8;
+            magnSampleX |= optionalData[27] << 16;
+            magnSampleX |= optionalData[28] << 24;
+            uint32_t magnSampleY = optionalData[29];
+            magnSampleY |= optionalData[30] << 8;
+            magnSampleY |= optionalData[31] << 16;
+            magnSampleY |= optionalData[32] << 24;
+            uint32_t magnSampleZ = optionalData[33];
+            magnSampleZ |= optionalData[34] << 8;
+            magnSampleZ |= optionalData[35] << 16;
+            magnSampleZ |= optionalData[36] << 24;
+
+
+        }
+        else if (functionId == RESP_CAMERA_PICTURE_LENGTH)
+        {
+
+        }
+        else if (functionId == RESP_RECORDED_SOLAR_CELLS)
         {
 
         }
@@ -561,10 +609,6 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
 
         }
         else if (functionId == RESP_CAMERA_PICTURE)
-        {
-
-        }
-        else if (functionId == RESP_CAMERA_PICTURE_LENGTH)
         {
 
         }
