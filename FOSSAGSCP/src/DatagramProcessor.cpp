@@ -637,6 +637,24 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
         }
         else if (functionId == RESP_GPS_LOG_STATE)
         {
+            uint32_t gpsLogLength = optionalData[0];
+            gpsLogLength |= (optionalData[1] << 8);
+            gpsLogLength |= (optionalData[2] << 16);
+            gpsLogLength |= (optionalData[3] << 24);
+
+            uint32_t lastNMEAEntryAddr = optionalData[4];
+            lastNMEAEntryAddr |= (optionalData[5] << 8);
+            lastNMEAEntryAddr |= (optionalData[6] << 16);
+            lastNMEAEntryAddr |= (optionalData[7] << 24);
+
+            uint32_t lastNMEAFixAddr = optionalData[8];
+            lastNMEAFixAddr |= (optionalData[9] << 8);
+            lastNMEAFixAddr |= (optionalData[10] << 16);
+            lastNMEAFixAddr |= (optionalData[11] << 24);
+
+            m_mainWindowUI->GPSControl_GetGPSState_Length_LineEdit->setText(QString::number(gpsLogLength));
+            m_mainWindowUI->GPSControl_GetGPSState_LastEntryAddress_LineEdit->setText(QString::number(lastNMEAEntryAddr));
+            m_mainWindowUI->GPSControl_GetGPSState_LastFixAddress_LineEdit->setText(QString::number(lastNMEAFixAddr));
 
         }
         else if (functionId == RESP_FLASH_CONTENTS)

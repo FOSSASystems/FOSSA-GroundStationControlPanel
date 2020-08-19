@@ -308,206 +308,6 @@ void MainWindow::SendDopplerShiftedFrequency()
 
 
 
-/////////////////////////////
-// Satellite controls tab. //
-/////////////////////////////
-#define SatelliteControlsTab_Start {
-void MainWindow::LoadSatelliteControlsUI()
-{
-
-}
-
-
-void MainWindow::on_CameraControl_Capture_Button_clicked()
-{
-    char pictureSlot = (char)this->ui->CameraControl_PictureSlot_SpinBox->value();
-    char lightMode = (char)this->ui->CameraControl_LightMode_SpinBox->value();
-    char pictureSize = (char)this->ui->CameraControl_PictureSisze_SpinBox->value();
-    char brightness = (char)this->ui->CameraControl_Brightness_SpinBox->value();
-    char saturation = (char)this->ui->CameraControl_Saturation_SpinBox->value();
-    char specialFilter = (char)this->ui->CameraControl_SpecialFilter_SpinBox->value();
-    char contrast = (char)this->ui->CameraControl_Contrast_SpinBox->value();
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Camera_Capture(pictureSlot,
-                                                                            lightMode,
-                                                                            pictureSize,
-                                                                            brightness,
-                                                                            saturation,
-                                                                            specialFilter,
-                                                                            contrast);
-    this->SendDatagram(datagram);
-}
-
-
-
-void MainWindow::on_CameraControl_GetPictureLength_GetPictureLength_Button_clicked()
-{
-}
-
-void MainWindow::on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked()
-{
-    char pictureSlot = (char)this->ui->CameraControl_PictureBurst_PictureSlot_SpinBox->value();
-
-    QString id = this->ui->CameraControl_PictureBurst_PicturePacketID_LineEdit->text();
-    uint16_t packetId = id.toUInt();
-
-    // 1 is full picture, 0 is scan data.
-    char fullPictureOrScandata = (char)this->ui->CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton->isChecked();
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_Picture_Burst(pictureSlot, packetId, fullPictureOrScandata);
-
-    this->SendDatagram(datagram);
-}
-
-
-void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
-{
-    char controllerId =(char)this->ui->SatelliteConfig_ADCs_Controller_ControllerID_LineEdit->text().toStdString()[0];
-
-    QString firstLine = this->ui->SatelliteConfig_ADCs_Controller_M50_LineEdit->text();
-    QString secondLine = this->ui->SatelliteConfig_ADCs_Controller_M51_LineEdit->text();
-    QString thirdLine = this->ui->SatelliteConfig_ADCs_Controller_M52_LineEdit->text();
-
-    QStringList firstLineElements;
-    firstLineElements = firstLine.split(',');
-
-    if (firstLineElements.length() != 6)
-    {
-        throw "Number of elements != 3";
-    }
-
-    QStringList secondLineElements;
-    secondLineElements = secondLine.split(',');
-
-    if (secondLineElements.length() != 6)
-    {
-        throw "Number of elements != 6";
-    }
-
-    QStringList thirdLineElements;
-    thirdLineElements = thirdLine.split(',');
-
-    if (thirdLineElements.length() != 6)
-    {
-        throw "Number of elements != 6";
-    }
-
-
-    float controllerMatrix[3][6];
-    for (int i = 0; i < 6; i++)
-    {
-        QString ele = firstLineElements[i];
-        float val = ele.toDouble();
-        controllerMatrix[0][i] = val;
-    }
-    for (int i = 0; i < 6; i++)
-    {
-        QString ele = secondLineElements[i];
-        float val = ele.toDouble();
-        controllerMatrix[1][i] = val;
-    }
-    for (int i = 0; i < 6; i++)
-    {
-        QString ele = thirdLineElements[i];
-        float val = ele.toDouble();
-        controllerMatrix[2][i] = val;
-    }
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
-
-    this->SendDatagram(datagram);
-}
-
-
-
-
-
-static std::vector<ephemerides_t> g_ephemeridesControllerStack;
-
-void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
-{
-    QString solar = ui->SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit->text();
-    QStringList solarElements = solar.split(',');
-
-    QString magnetic = ui->SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_LineEdit->text();
-    QStringList magneticElements = magnetic.split(',');
-
-    uint8_t controllerId = ui->SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox->text().toUInt();
-
-    ephemerides_t ephemeridesStruct;
-    ephemeridesStruct.solar_x = solarElements[0].toFloat();
-    ephemeridesStruct.solar_y = solarElements[1].toFloat();
-    ephemeridesStruct.solar_z = solarElements[2].toFloat();
-    ephemeridesStruct.magnetic_x = magneticElements[0].toFloat();
-    ephemeridesStruct.magnetic_y = magneticElements[1].toFloat();
-    ephemeridesStruct.magnetic_z = magneticElements[2].toFloat();
-    ephemeridesStruct.controllerId = controllerId;
-
-    g_ephemeridesControllerStack.push_back(ephemeridesStruct);
-
-    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
-}
-
-
-void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button_clicked()
-{
-    g_ephemeridesControllerStack.clear();
-    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
-}
-
-void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked()
-{
-    uint16_t chunkId = ui->SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox->value();
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
-    this->SendDatagram(datagram);
-
-    g_ephemeridesControllerStack.clear();
-
-    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
-}
-
-void MainWindow::on_EEPROM_Control_Wipe_Button_clicked()
-{
-    // fossasat-2.
-    char wipeSystemInfo = ui->EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox->isChecked();
-    char wipeStatistics = ui->EEPROM_Control_Wipe_Statistics_CheckBox->isChecked();
-    char wipeStoreAndForward = ui->EEPROM_Control_Wipe_StoreAndForwardFrames_CheckBox->isChecked();
-    char wipeNMEALog = ui->EEPROM_Control_Wipe_NMEALOG_CheckBox->isChecked();
-    char wipeImageStorage = ui->EEPROM_Control_Wipe_ImageStorage_CheckBox->isChecked();
-    char wipeADCSparameters = ui->EEPROM_Control_Wipe_ADCS_CheckBox->isChecked();
-    char wipeADCSEphemerides = ui->EEPROM_Control_Wipe_Ephemerides_CheckBox->isChecked();
-
-    char flags = wipeSystemInfo | wipeStatistics | wipeStoreAndForward | wipeNMEALog | wipeImageStorage | wipeADCSparameters | wipeADCSEphemerides;
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Wipe_EEPROM(flags);
-    this->SendDatagram(datagram);
-}
-
-void MainWindow::on_SatelliteConfig_Transmission_Send_Button_clicked()
-{
-    // fossasat-2.
-    char transmitEnabled = ui->SatelliteConfig_Transmission_Enabled_RadioButton->isChecked();
-    char automatedStatsTransmissionEnabled = ui->SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton->isChecked();
-    char FSKMandatedForLargePacketsEnabled = ui->SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton->isChecked();
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Transmit_Enable(transmitEnabled, automatedStatsTransmissionEnabled, FSKMandatedForLargePacketsEnabled);
-    this->SendDatagram(datagram);
-}
-
-
-#define SatelliteControlsTab_End }
-
-
-
-
-
-
-
-
-
-
-
 
 //////////////////////////////////
 // Satellite configuration tab. //
@@ -1021,3 +821,300 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
+
+
+
+
+
+
+
+/////////////////////////////
+// Satellite controls tab. //
+/////////////////////////////
+#define SatelliteControlsTab_Start {
+void MainWindow::LoadSatelliteControlsUI()
+{
+
+}
+
+
+
+void MainWindow::on_SatelliteControls_BaseOps_Ping_Button_clicked()
+{
+    IDatagram* datagram = m_interpreter->Create_CMD_Ping();
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteControls_BaseOps_Restart_Button_clicked()
+{
+    IDatagram* datagram = m_interpreter->Create_CMD_Restart();
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteControls_BaseOps_Deploy_Button_clicked()
+{
+    IDatagram* datagram = m_interpreter->Create_CMD_Deploy();
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteControls_BaseOps_Abort_Button_clicked()
+{
+    IDatagram* datagram = m_interpreter->Create_CMD_Abort();
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_CameraControl_Capture_Button_clicked()
+{
+    char pictureSlot = (char)this->ui->CameraControl_PictureSlot_SpinBox->value();
+    char lightMode = (char)this->ui->CameraControl_LightMode_SpinBox->value();
+    char pictureSize = (char)this->ui->CameraControl_PictureSisze_SpinBox->value();
+    char brightness = (char)this->ui->CameraControl_Brightness_SpinBox->value();
+    char saturation = (char)this->ui->CameraControl_Saturation_SpinBox->value();
+    char specialFilter = (char)this->ui->CameraControl_SpecialFilter_SpinBox->value();
+    char contrast = (char)this->ui->CameraControl_Contrast_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Camera_Capture(pictureSlot,
+                                                                            lightMode,
+                                                                            pictureSize,
+                                                                            brightness,
+                                                                            saturation,
+                                                                            specialFilter,
+                                                                            contrast);
+    this->SendDatagram(datagram);
+}
+
+
+
+void MainWindow::on_CameraControl_GetPictureLength_GetPictureLength_Button_clicked()
+{
+    uint8_t pictureSlot = ui->CameraControl_GetPictureLength_PictureSlot_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Get_Picture_Length(pictureSlot);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked()
+{
+    char pictureSlot = (char)this->ui->CameraControl_PictureBurst_PictureSlot_SpinBox->value();
+
+    QString id = this->ui->CameraControl_PictureBurst_PicturePacketID_LineEdit->text();
+    uint16_t packetId = id.toUInt();
+
+    // 1 is full picture, 0 is scan data.
+    char fullPictureOrScandata = (char)this->ui->CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton->isChecked();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Get_Picture_Burst(pictureSlot, packetId, fullPictureOrScandata);
+
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
+{
+    char controllerId =(char)this->ui->SatelliteConfig_ADCs_Controller_ControllerID_LineEdit->text().toStdString()[0];
+
+    QString firstLine = this->ui->SatelliteConfig_ADCs_Controller_M50_LineEdit->text();
+    QString secondLine = this->ui->SatelliteConfig_ADCs_Controller_M51_LineEdit->text();
+    QString thirdLine = this->ui->SatelliteConfig_ADCs_Controller_M52_LineEdit->text();
+
+    QStringList firstLineElements;
+    firstLineElements = firstLine.split(',');
+
+    if (firstLineElements.length() != 6)
+    {
+        throw "Number of elements != 3";
+    }
+
+    QStringList secondLineElements;
+    secondLineElements = secondLine.split(',');
+
+    if (secondLineElements.length() != 6)
+    {
+        throw "Number of elements != 6";
+    }
+
+    QStringList thirdLineElements;
+    thirdLineElements = thirdLine.split(',');
+
+    if (thirdLineElements.length() != 6)
+    {
+        throw "Number of elements != 6";
+    }
+
+
+    float controllerMatrix[3][6];
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = firstLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[0][i] = val;
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = secondLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[1][i] = val;
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = thirdLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[2][i] = val;
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
+
+    this->SendDatagram(datagram);
+}
+
+
+
+
+
+static std::vector<ephemerides_t> g_ephemeridesControllerStack;
+
+void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
+{
+    QString solar = ui->SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit->text();
+    QStringList solarElements = solar.split(',');
+
+    QString magnetic = ui->SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_LineEdit->text();
+    QStringList magneticElements = magnetic.split(',');
+
+    uint8_t controllerId = ui->SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox->text().toUInt();
+
+    ephemerides_t ephemeridesStruct;
+    ephemeridesStruct.solar_x = solarElements[0].toFloat();
+    ephemeridesStruct.solar_y = solarElements[1].toFloat();
+    ephemeridesStruct.solar_z = solarElements[2].toFloat();
+    ephemeridesStruct.magnetic_x = magneticElements[0].toFloat();
+    ephemeridesStruct.magnetic_y = magneticElements[1].toFloat();
+    ephemeridesStruct.magnetic_z = magneticElements[2].toFloat();
+    ephemeridesStruct.controllerId = controllerId;
+
+    g_ephemeridesControllerStack.push_back(ephemeridesStruct);
+
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
+
+
+void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button_clicked()
+{
+    g_ephemeridesControllerStack.clear();
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
+
+void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked()
+{
+    uint16_t chunkId = ui->SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
+    this->SendDatagram(datagram);
+
+    g_ephemeridesControllerStack.clear();
+
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
+
+void MainWindow::on_EEPROM_Control_Wipe_Button_clicked()
+{
+    // fossasat-2.
+    char wipeSystemInfo = ui->EEPROM_Control_Wipe_SystemInfoAndConfig_CheckBox->isChecked();
+    char wipeStatistics = ui->EEPROM_Control_Wipe_Statistics_CheckBox->isChecked();
+    char wipeStoreAndForward = ui->EEPROM_Control_Wipe_StoreAndForwardFrames_CheckBox->isChecked();
+    char wipeNMEALog = ui->EEPROM_Control_Wipe_NMEALOG_CheckBox->isChecked();
+    char wipeImageStorage = ui->EEPROM_Control_Wipe_ImageStorage_CheckBox->isChecked();
+    char wipeADCSparameters = ui->EEPROM_Control_Wipe_ADCS_CheckBox->isChecked();
+    char wipeADCSEphemerides = ui->EEPROM_Control_Wipe_Ephemerides_CheckBox->isChecked();
+
+    char flags = wipeSystemInfo | wipeStatistics | wipeStoreAndForward | wipeNMEALog | wipeImageStorage | wipeADCSparameters | wipeADCSEphemerides;
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Wipe_EEPROM(flags);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteConfig_Transmission_Send_Button_clicked()
+{
+    // fossasat-2.
+    char transmitEnabled = ui->SatelliteConfig_Transmission_Enabled_RadioButton->isChecked();
+    char automatedStatsTransmissionEnabled = ui->SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton->isChecked();
+    char FSKMandatedForLargePacketsEnabled = ui->SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton->isChecked();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Transmit_Enable(transmitEnabled, automatedStatsTransmissionEnabled, FSKMandatedForLargePacketsEnabled);
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_GPSControl_GetGPSState_GetLogState_Button_clicked()
+{
+    IDatagram* datagram = m_interpreter->Create_CMD_Get_GPS_Log_State();
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_GPSControl_LogGPS_StartLogging_Button_clicked()
+{
+    uint32_t loggingDuration = ui->GPSControl_LogGPS_LoggingDuration_LineEdit->text().toInt();
+    uint32_t loggingStartOffset = ui->GPSControl_LogGPS_StartOffset_LineEdit->text().toInt();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Log_GPS(loggingDuration, loggingStartOffset);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_GPSControl_GetGPSLog_GetLog_Button_clicked()
+{
+    uint8_t newestEntriesFirst;
+    if ((ui->GPSControl_GetGPSLog_NewestFirst_RadioButton->isChecked()) && (!ui->GPSControl_GetGPSLog_OldestFirst_RadioButton->isChecked()))
+    {
+        newestEntriesFirst = 1;
+    }
+    else if (!ui->GPSControl_GetGPSLog_NewestFirst_RadioButton->isChecked() && (ui->GPSControl_GetGPSLog_OldestFirst_RadioButton->isChecked()))
+    {
+        newestEntriesFirst = 0;
+    }
+
+    int16_t gpsLogStartOffset = ui->GPSControl_GetGPSLog_Offset_SpinBox->value();
+
+    uint16_t numNMEASentencesDownlink = ui->GPSControl_GetGPSLog_NMEASeqCount_SpinBox->value(); // 0 = all
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Get_GPS_Log(newestEntriesFirst, gpsLogStartOffset, numNMEASentencesDownlink);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_GPSControl_RunGPSCmd_RunCommand_Button_clicked()
+{
+    QString binMessage = ui->GPSControl_RunGPSCmd_SkytraqBinary_LineEdit->text();
+    std::string binMessageStr = binMessage.toStdString();
+    const char * binMessageCStr = binMessageStr.c_str();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Run_GPS_Command((char*)binMessageCStr);
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_StoreAndForward_Message_AddMessage_Button_clicked()
+{
+    uint32_t messageId = ui->StoreAndForward_Message_MessageID_SpinBox->value();
+    QString messageStr = ui->StoreAndForward_Message_MessageContent_PlainTextEdit->toPlainText();
+    std::string messageStdStr = messageStr.toStdString();
+    const char * messageCStr = messageStdStr.c_str();
+
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Store_And_Forward_Add(messageId, (char*)messageCStr);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_storeAndForwardStoreAndForward_RequestMessage_RequestMessage_Button_clicked()
+{
+    uint32_t messageId = ui->StoreAndForward_RequestMessage_MessageID_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Store_And_Forward_Request(messageId);
+    this->SendDatagram(datagram);
+
+}
+
+#define SatelliteControlsTab_End }
+
+
+
+
+

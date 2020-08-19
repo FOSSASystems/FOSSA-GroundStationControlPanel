@@ -96,6 +96,26 @@ private slots:
 
     void on_ControlPanelSettings_Doppler_Shift_Disable_RadioButton_clicked();
 
+    void on_SatelliteControls_BaseOps_Ping_Button_clicked();
+
+    void on_SatelliteControls_BaseOps_Restart_Button_clicked();
+
+    void on_SatelliteControls_BaseOps_Deploy_Button_clicked();
+
+    void on_SatelliteControls_BaseOps_Abort_Button_clicked();
+
+    void on_GPSControl_GetGPSState_GetLogState_Button_clicked();
+
+    void on_GPSControl_LogGPS_StartLogging_Button_clicked();
+
+    void on_GPSControl_GetGPSLog_GetLog_Button_clicked();
+
+    void on_GPSControl_RunGPSCmd_RunCommand_Button_clicked();
+
+    void on_StoreAndForward_Message_AddMessage_Button_clicked();
+
+    void on_storeAndForwardStoreAndForward_RequestMessage_RequestMessage_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui;
