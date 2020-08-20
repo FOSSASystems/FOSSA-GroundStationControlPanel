@@ -1112,6 +1112,17 @@ void MainWindow::on_storeAndForwardStoreAndForward_RequestMessage_RequestMessage
 
 }
 
+void MainWindow::on_TransmissionRouter_Retransmission_Retransmit_Button_clicked()
+{
+    uint32_t senderId = ui->TransmissionRouter_Retransmission_SendID_SpinBox->value();
+    QString msg = ui->TransmissionRouter_Retransmission_MessageContent_PlainTextEdit->toPlainText();
+    std::string msgStdStr = msg.toStdString();
+    char * msgCStr = (char*)msgStdStr.c_str();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Retransmit(senderId, msgCStr);
+}
+
+
 #define SatelliteControlsTab_End }
 
 

@@ -116,6 +116,8 @@ private slots:
 
     void on_storeAndForwardStoreAndForward_RequestMessage_RequestMessage_Button_clicked();
 
+    void on_TransmissionRouter_Retransmission_Retransmit_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui;
