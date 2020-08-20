@@ -73,9 +73,9 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>-1992</y>
+             <y>-4162</y>
              <width>449</width>
-             <height>5304</height>
+             <height>5333</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1098,7 +1098,14 @@
                    </widget>
                   </item>
                   <item row="9" column="1">
-                   <widget class="QSpinBox" name="TransmissionRouter_RetransmissionCustom_OutputPower_SpinBox"/>
+                   <widget class="QSpinBox" name="TransmissionRouter_RetransmissionCustom_OutputPower_SpinBox">
+                    <property name="minimum">
+                     <number>-17</number>
+                    </property>
+                    <property name="maximum">
+                     <number>22</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="7" column="0">
                    <widget class="QLabel" name="label_62">
@@ -1221,24 +1228,33 @@
                   <bool>true</bool>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_36">
-                  <item row="11" column="1">
-                   <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_ZAxis_CheckBox">
-                    <property name="text">
-                     <string>Z axis</string>
+                  <item row="0" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_X_High_SpinBox">
+                    <property name="minimum">
+                     <number>-63</number>
+                    </property>
+                    <property name="maximum">
+                     <number>63</number>
                     </property>
                    </widget>
                   </item>
-                  <item row="10" column="1">
+                  <item row="6" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_X_PulseLength_SpinBox"/>
+                  </item>
+                  <item row="2" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Y_High_SpinBox">
+                    <property name="minimum">
+                     <number>-63</number>
+                    </property>
+                    <property name="maximum">
+                     <number>63</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="11" column="1">
                    <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_YAxis_CheckBox">
                     <property name="text">
                      <string>Y axis</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="9" column="1">
-                   <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_XAxis_CheckBox">
-                    <property name="text">
-                     <string>X axis</string>
                     </property>
                    </widget>
                   </item>
@@ -1249,56 +1265,6 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="9" column="0">
-                   <widget class="QLabel" name="label_74">
-                    <property name="text">
-                     <string>Ignore Faults From:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="12" column="0" colspan="2">
-                   <widget class="QPushButton" name="ADCSManeuvering_RunADCManeuver_Button">
-                    <property name="text">
-                     <string>Run Manual ADC Maneuver</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="1" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_X_Low_SpinBox"/>
-                  </item>
-                  <item row="3" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Y_Low_SpinBox"/>
-                  </item>
-                  <item row="5" column="0">
-                   <widget class="QLabel" name="label_95">
-                    <property name="text">
-                     <string>Z axis H-bridge low:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_Y_PulseLength_SpinBox"/>
-                  </item>
-                  <item row="4" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Z_High_SpinBox"/>
-                  </item>
-                  <item row="2" column="0">
-                   <widget class="QLabel" name="label_92">
-                    <property name="text">
-                     <string>Y axis H-bridge high:</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="5" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Z_Low_SpinBox"/>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_94">
-                    <property name="text">
-                     <string>Z axis H-bridge high:</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="6" column="0">
                    <widget class="QLabel" name="label_4">
                     <property name="text">
@@ -1306,10 +1272,10 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="7" column="0">
-                   <widget class="QLabel" name="label_72">
+                  <item row="5" column="0">
+                   <widget class="QLabel" name="label_95">
                     <property name="text">
-                     <string>Y axis pulse length (ms):</string>
+                     <string>Z axis H-bridge low:</string>
                     </property>
                    </widget>
                   </item>
@@ -1320,8 +1286,32 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_X_PulseLength_SpinBox"/>
+                  <item row="3" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Y_Low_SpinBox">
+                    <property name="minimum">
+                     <number>-63</number>
+                    </property>
+                    <property name="maximum">
+                     <number>63</number>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="0">
+                   <widget class="QLabel" name="label_72">
+                    <property name="text">
+                     <string>Y axis pulse length (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="1" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_X_Low_SpinBox">
+                    <property name="minimum">
+                     <number>-63</number>
+                    </property>
+                    <property name="maximum">
+                     <number>63</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="1" column="0">
                    <widget class="QLabel" name="label_91">
@@ -1330,11 +1320,73 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="2" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Y_High_SpinBox"/>
+                  <item row="10" column="0">
+                   <widget class="QLabel" name="label_74">
+                    <property name="text">
+                     <string>Ignore Faults From:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="7" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_Y_PulseLength_SpinBox"/>
+                  </item>
+                  <item row="2" column="0">
+                   <widget class="QLabel" name="label_92">
+                    <property name="text">
+                     <string>Y axis H-bridge high:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="14" column="0" colspan="2">
+                   <widget class="QPushButton" name="ADCSManeuvering_RunADCManeuver_Button">
+                    <property name="text">
+                     <string>Run Manual ADC Maneuver</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="12" column="1">
+                   <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_ZAxis_CheckBox">
+                    <property name="text">
+                     <string>Z axis</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_94">
+                    <property name="text">
+                     <string>Z axis H-bridge high:</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="5" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Z_Low_SpinBox">
+                    <property name="minimum">
+                     <number>-63</number>
+                    </property>
+                    <property name="maximum">
+                     <number>63</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="8" column="1">
                    <widget class="QSpinBox" name="ADCSManeuvering_Z_PulseLength_SpinBox"/>
+                  </item>
+                  <item row="10" column="1">
+                   <widget class="QCheckBox" name="ADCSManeuvering_IgnoreFaults_XAxis_CheckBox">
+                    <property name="text">
+                     <string>X axis</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_Z_High_SpinBox">
+                    <property name="minimum">
+                     <number>-63</number>
+                    </property>
+                    <property name="maximum">
+                     <number>63</number>
+                    </property>
+                   </widget>
                   </item>
                   <item row="3" column="0">
                    <widget class="QLabel" name="label_93">
@@ -1343,8 +1395,15 @@
                     </property>
                    </widget>
                   </item>
-                  <item row="0" column="1">
-                   <widget class="QSpinBox" name="ADCSManeuvering_HBridge_X_High_SpinBox"/>
+                  <item row="13" column="0">
+                   <widget class="QLabel" name="label_149">
+                    <property name="text">
+                     <string>Maneuver Duration (ms):</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="13" column="1">
+                   <widget class="QSpinBox" name="ADCSManeuvering_ManeuverDuration_SpinBox"/>
                   </item>
                  </layout>
                 </widget>
@@ -3862,28 +3921,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_9"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="buttonGroup_8"/>
-  <buttongroup name="buttonGroup_15"/>
-  <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="buttonGroup_12"/>
   <buttongroup name="buttonGroup_11"/>
   <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_10"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_6"/>
  </buttongroups>
 </ui>

@@ -1120,10 +1120,153 @@ void MainWindow::on_TransmissionRouter_Retransmission_Retransmit_Button_clicked(
     char * msgCStr = (char*)msgStdStr.c_str();
 
     IDatagram* datagram = m_interpreter->Create_CMD_Retransmit(senderId, msgCStr);
+    this->SendDatagram(datagram);
 }
 
 
+
+    uint8_t crcEnabled = 0;
+    if (ui->TransmissionRouter_RetransmissionCustom_CRCEnabled_Enabled_RadioButton->isChecked())
+    {
+        codingRate = 0x01;
+    }
+    else if (ui->TransmissionRouter_RetransmissionCustom_CRCEnabled_Disabled_RadioButton->isChecked())
+    {
+        spreadingFactor = 0x00;
+    }
+
+    int8_t outputPower = ui->TransmissionRouter_RetransmissionCustom_OutputPower_SpinBox->value();
+
+    uint32_t senderId = ui->TransmissionRouter_RetransmissionCustom_SenderID_SpinBox->value();
+
+    QString msg = ui->TransmissionRouter_RetransmissionCustom_MessageContent_PlainTextEdit->toPlainText();
+    std::string msgStdStr = msg.toStdString();
+    const char * msgCStr = msgStdStr.c_str();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Retransmit_Custom(bandwidth, spreadingFactor, codingRate, preambleLength, crcEnabled, outputPower, senderId, (char*)msgCStr);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_RouteCommand_RouteCommand_Button_clicked()
+{
+    QString frame = ui->RouteCommand_FCPFrameContent_PlainTextEdit->toPlainText();
+    std::string frameStr = frame.toStdString();
+    const char* frameCStr = frameStr.c_str();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Route((char*)frameCStr);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_RecordIMU_RecordIMU_Button_clicked()
+{
+    uint16_t numSamples = ui->RecordIMU_NumberOfSamples_SpinBox->value();
+    uint16_t samplingPeriod = ui->RecordIMU_SamplingPeriod_SpinBox->value();
+
+    uint8_t flags = 0;
+
+    if (ui->RecordIMU_DeviceSelection_Gyroscope_Checkbox->isChecked()) {
+        flags |= 0x01;
+    }
+
+    if (ui->RecordIMU_DeviceSelection_Accelerometer_Checkbox->isChecked()) {
+        flags |= 0x02;
+    }
+
+    if (ui->RecordIMU_DeviceSelection_Magnetometer_Checkbox->isChecked()) {
+        flags |= 0x04;
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Record_IMU(numSamples, samplingPeriod, flags);
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_FlashControl_SetFlashContent_Button_clicked()
+{
+    bool ok;
+    uint32_t flashAddress = ui->FlashControl_FlashAddress_LineEdit->text().toInt(&ok, 16);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Flash address must be a hex string e.g. 0xFF");
+        msgBox.exec();
+    }
+
+    QString flashData = ui->FlashControl_FlashData_PlainTextBox->toPlainText();
+    std::string flashDataStdStr = flashData.toStdString();
+    const char * flashDataCStr = flashDataStdStr.c_str();
+
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Flash_Contents(flashAddress, (char*)flashDataCStr);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_FlashControl_GetFlashContent_Get_Button_clicked()
+{
+    bool ok;
+    uint32_t flashAddress = ui->FlashControl_GetFlashContent_Address_LineEdit->text().toInt(&ok, 16);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Flash address must be a hex string e.g. 0xFF");
+        msgBox.exec();
+    }
+
+    uint8_t numBytesToRead = ui->FlashControl_GetFlashContent_NumberOfBytes_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Get_Flash_Contents(flashAddress, numBytesToRead);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_FlashControl_EraseFlash_Erase_Button_clicked()
+{
+    bool ok;
+    uint32_t addressToErase = ui->FlashControl_EraseFlash_Address_LineEdit->text().toInt(&ok, 16);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Flash sector address must be a hex string e.g. 0xFF");
+        msgBox.exec();
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Erase_Flash(addressToErase);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_ADCSManeuvering_RunADCManeuver_Button_clicked()
+{
+    int8_t xAxisHBridgeHighMag = ui->ADCSManeuvering_HBridge_X_High_SpinBox->value();
+    int8_t xAxisHBridgeLowMag = ui->ADCSManeuvering_HBridge_X_Low_SpinBox->value();
+    int8_t yAxisHBridgeHighMag = ui->ADCSManeuvering_HBridge_Y_High_SpinBox->value();
+    int8_t yAxisHBridgeLowMag = ui->ADCSManeuvering_HBridge_Y_Low_SpinBox->value();
+    int8_t zAxisHBridgeHighMag = ui->ADCSManeuvering_HBridge_Z_High_SpinBox->value();
+    int8_t zAxisHBridgeLowhMag = ui->ADCSManeuvering_HBridge_Z_Low_SpinBox->value();
+
+    uint32_t xAxisPulseLength = ui->ADCSManeuvering_X_PulseLength_SpinBox->value();
+    uint32_t yAxisPulseLength = ui->ADCSManeuvering_Y_PulseLength_SpinBox->value();
+    uint32_t zAxisPulseLength = ui->ADCSManeuvering_Z_PulseLength_SpinBox->value();
+
+    uint32_t maneuverDuration = ui->ADCSManeuvering_ManeuverDuration_SpinBox->value();
+
+    uint8_t flags = 0;
+    if (ui->ADCSManeuvering_IgnoreFaults_XAxis_CheckBox->isChecked())
+    {
+        flags |= 0x01;
+    }
+    if (ui->ADCSManeuvering_IgnoreFaults_YAxis_CheckBox->isChecked())
+    {
+        flags |= 0x02;
+    }
+    if (ui->ADCSManeuvering_IgnoreFaults_ZAxis_CheckBox->isChecked())
+    {
+        flags |= 0x04;
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Run_Manual_ACS(xAxisHBridgeHighMag, xAxisHBridgeLowMag, yAxisHBridgeHighMag, yAxisHBridgeLowMag, zAxisHBridgeHighMag, zAxisHBridgeLowhMag, xAxisPulseLength, yAxisPulseLength, zAxisPulseLength, maneuverDuration, flags);
+    this->SendDatagram(datagram);
+}
 #define SatelliteControlsTab_End }
+
 
 
 

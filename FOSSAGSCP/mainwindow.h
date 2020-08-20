@@ -111,12 +111,22 @@ private slots:
     void on_GPSControl_GetGPSLog_GetLog_Button_clicked();
 
     void on_GPSControl_RunGPSCmd_RunCommand_Button_clicked();
-
     void on_StoreAndForward_Message_AddMessage_Button_clicked();
-
     void on_storeAndForwardStoreAndForward_RequestMessage_RequestMessage_Button_clicked();
-
     void on_TransmissionRouter_Retransmission_Retransmit_Button_clicked();
+    void on_TransmissionRouter_RetransmissionCustom_RetransmitCustom_Button_clicked();
+
+    void on_RouteCommand_RouteCommand_Button_clicked();
+
+    void on_RecordIMU_RecordIMU_Button_clicked();
+
+    void on_FlashControl_SetFlashContent_Button_clicked();
+
+    void on_FlashControl_GetFlashContent_Get_Button_clicked();
+
+    void on_FlashControl_EraseFlash_Erase_Button_clicked();
+
+    void on_ADCSManeuvering_RunADCManeuver_Button_clicked();
 
 private:
 
