@@ -512,7 +512,30 @@ void DatagramProcessor::ProcessFrame(IDatagram *datagram)
             m_systemInfoUI->SystemInformation_WindowReceiveLength_LoraWindowReceiveLength_SpinBox->setValue(fskWindowReceiveLength);
             m_systemInfoUI->SystemInformation_WindowReceiveLength_LoraWindowReceiveLength_SpinBox->setValue(loraWindowReceiveLength);
 
-            ///\todo sensor states.
+            m_systemInfoUI->Systeminformation_Sensors_States_LightSensorTop_OK_RadioButton->setChecked(lightSensorTop);
+            m_systemInfoUI->Systeminformation_Sensors_States_LightSensorTop_FAIL_RadioButton->setChecked(!lightSensorTop);
+
+            m_systemInfoUI->Systeminformation_Sensors_States_LightSensorY_OK_RadioButton->setChecked(lightSensorY);
+            m_systemInfoUI->Systeminformation_Sensors_States_LightSensorY_FAIL_RadioButton->setChecked(!lightSensorY);
+
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorMPPT_OK_RadioButton->setChecked(currentSensorMPPT);
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorMPPT_FAIL_RadioButton->setChecked(!currentSensorMPPT);
+
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorY_OK_RadioButton->setChecked(currentSensorY);
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorY_FAIL_RadioButton->setChecked(!currentSensorY);
+
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorZB_OK_RadioButton->setChecked(currentSensorZB);
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorZB_FAIL_RadioButton->setChecked(!currentSensorZB);
+
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorZA_OK_RadioButton->setChecked(currentSensorZA);
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorZA_FAIL_RadioButton->setChecked(!currentSensorZA);
+
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorXB_OK_RadioButton->setChecked(currentSensorXB);
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorXB_FAIL_RadioButton->setChecked(!currentSensorXB);
+
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorXA_OK_RadioButton->setChecked(currentSensorXA);
+            m_systemInfoUI->Systeminformation_Sensors_States_CurrentSensorXA_FAIL_RadioButton->setChecked(!currentSensorXA);
+
 
             m_systemInfoUI->SystemInformation_ADCResult_LastADCSResult_LineEdit->setText(QString::number(lastADCSResult));
         }

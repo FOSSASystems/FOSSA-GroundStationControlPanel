@@ -546,6 +546,14 @@ IDatagram *DatagramInterpreter::Create_CMD_Set_TLE(char *tle)
     return msg;
 }
 
+IDatagram *DatagramInterpreter::Create_CMD_Get_GPS_Log_State()
+{
+    int optDataLen = 0;
+
+    IDatagram* msg = this->Create_Datagram(FCPI_FRAME_OP, CMD_GET_GPS_LOG_STATE, optDataLen, nullptr);
+    return msg;
+}
+
 IDatagram *DatagramInterpreter::Create_CMD_Run_GPS_Command(char *skyTraqBinaryProtocolMessage)
 {
     int optDataLen = strlen(skyTraqBinaryProtocolMessage); // without terminator.

@@ -39,9 +39,9 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>0</y>
+            <y>-1987</y>
             <width>439</width>
-            <height>3272</height>
+            <height>3256</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -743,57 +743,10 @@ Reset (1B):</string>
                  <set>Qt::AlignCenter</set>
                 </property>
                 <layout class="QGridLayout" name="gridLayout_13">
-                 <item row="6" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXB_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="0">
-                  <widget class="QLabel" name="label_39">
+                 <item row="2" column="0">
+                  <widget class="QLabel" name="label_37">
                    <property name="text">
-                    <string>Current Sensor ZB:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorTop_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="5" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZA_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorY_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="0" column="0">
-                  <widget class="QLabel" name="label_35">
-                   <property name="text">
-                    <string>Light Sensor Top:</string>
+                    <string>Current Sensor MPPT:</string>
                    </property>
                   </widget>
                  </item>
@@ -804,47 +757,34 @@ Reset (1B):</string>
                    </property>
                   </widget>
                  </item>
+                 <item row="4" column="0">
+                  <widget class="QLabel" name="label_39">
+                   <property name="text">
+                    <string>Current Sensor ZB:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_LightSensorTop_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="0">
+                  <widget class="QLabel" name="label_35">
+                   <property name="text">
+                    <string>Light Sensor Top:</string>
+                   </property>
+                  </widget>
+                 </item>
                  <item row="7" column="0">
                   <widget class="QLabel" name="label_42">
                    <property name="text">
                     <string>Current Sensor XA:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="1" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_LightSensorY_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="4" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorZB_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="3" column="0">
-                  <widget class="QLabel" name="label_38">
-                   <property name="text">
-                    <string>Current Sensor Y:</string>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="7" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorXA_SpinBox_2">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
                    </property>
                   </widget>
                  </item>
@@ -855,27 +795,167 @@ Reset (1B):</string>
                    </property>
                   </widget>
                  </item>
-                 <item row="2" column="1">
-                  <widget class="QSpinBox" name="SystemInformation_Sensors_CurrentSensorMPPT_SpinBox">
-                   <property name="minimum">
-                    <number>-99999</number>
-                   </property>
-                   <property name="maximum">
-                    <number>99999</number>
-                   </property>
-                  </widget>
-                 </item>
-                 <item row="2" column="0">
-                  <widget class="QLabel" name="label_37">
-                   <property name="text">
-                    <string>Current Sensor MPPT:</string>
-                   </property>
-                  </widget>
-                 </item>
                  <item row="1" column="0">
                   <widget class="QLabel" name="label_36">
                    <property name="text">
                     <string>Light Sensor Y:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="0">
+                  <widget class="QLabel" name="label_38">
+                   <property name="text">
+                    <string>Current Sensor Y:</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="0" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_LightSensorTop_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_LightSensorY_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="1" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_LightSensorY_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorMPPT_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="2" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorMPPT_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorY_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="3" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorY_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorZB_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="4" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorZB_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorZA_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="5" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorZA_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorXB_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="6" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorXB_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="1">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorXA_OK_RadioButton">
+                   <property name="text">
+                    <string>OK</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
+                   </property>
+                  </widget>
+                 </item>
+                 <item row="7" column="2">
+                  <widget class="QRadioButton" name="Systeminformation_Sensors_States_CurrentSensorXA_FAIL_RadioButton">
+                   <property name="text">
+                    <string>FAIL</string>
+                   </property>
+                   <property name="checkable">
+                    <bool>false</bool>
                    </property>
                   </widget>
                  </item>
@@ -1875,7 +1955,7 @@ Reset (1B):</string>
           <property name="geometry">
            <rect>
             <x>44</x>
-            <y>-654</y>
+            <y>0</y>
             <width>417</width>
             <height>1583</height>
            </rect>
@@ -2279,11 +2359,11 @@ Reset (1B):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_6"/>
   <buttongroup name="buttonGroup_5"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_4"/>
  </buttongroups>
 </ui>
