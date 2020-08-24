@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>-4162</y>
+             <y>-4468</y>
              <width>449</width>
              <height>5333</height>
             </rect>
@@ -1452,7 +1452,7 @@
                    </widget>
                   </item>
                   <item row="3" column="2">
-                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_EulerAngleToleranceCheck_RadioButton_2">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_EulerAngleToleranceCheck_RadioButton">
                     <property name="text">
                      <string>Disable</string>
                     </property>
@@ -1502,7 +1502,7 @@
                    </widget>
                   </item>
                   <item row="4" column="2">
-                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_AngularVelocityToleranceCheck_RadioButton_2">
+                   <widget class="QRadioButton" name="SatelliteControls_RunManeuver_DisableOverride_AngularVelocityToleranceCheck_RadioButton">
                     <property name="text">
                      <string>Disable</string>
                     </property>
@@ -1787,7 +1787,7 @@ tolerance check:</string>
                    </widget>
                   </item>
                   <item row="10" column="0" colspan="3">
-                   <widget class="QPushButton" name="pushButton">
+                   <widget class="QPushButton" name="Detumble_Execute_Button_2">
                     <property name="text">
                      <string>Execute Detumbling</string>
                     </property>
@@ -3921,28 +3921,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="buttonGroup_5"/>
-  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_7"/>
   <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
   <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_11"/>
   <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_15"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="buttonGroup_12"/>
   <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup_9"/>
  </buttongroups>
 </ui>

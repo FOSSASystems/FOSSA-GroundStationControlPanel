@@ -128,6 +128,8 @@ private slots:
 
     void on_ADCSManeuvering_RunADCManeuver_Button_clicked();
 
+    void on_SatelliteControls_Maneuver_Run_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui;

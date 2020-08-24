@@ -1123,6 +1123,38 @@ void MainWindow::on_TransmissionRouter_Retransmission_Retransmit_Button_clicked(
     this->SendDatagram(datagram);
 }
 
+void MainWindow::on_TransmissionRouter_RetransmissionCustom_RetransmitCustom_Button_clicked()
+{
+    uint8_t bandwidth = 0;
+    if (ui->TransmissionRouter_RetransmissionCustom_Bandwidth_78_RadioButton->isChecked())
+    {
+        bandwidth = 0x00;
+    }
+    else if (ui->TransmissionRouter_RetransmissionCustom_Bandwidth_125_RadioButton->isChecked())
+    {
+        bandwidth = 0x07;
+    }
+
+    uint8_t spreadingFactor = 0;
+    if (ui->TransmissionRouter_RetransmissionCustom_SpreadingFactor_SF5_RadioButton->isChecked())
+    {
+        spreadingFactor = 0x00;
+    }
+    else if (ui->TransmissionRouter_RetransmissionCustom_SpreadingFactor_SF12_RadioButton->isChecked())
+    {
+        spreadingFactor = 0x07;
+    }
+    uint8_t codingRate = 0;
+    if (ui->TransmissionRouter_RetransmissionCustom_CodingRate_45_RadioButton->isChecked())
+    {
+        codingRate = 0x00;
+    }
+    else if (ui->TransmissionRouter_RetransmissionCustom_CodingRate_48_RadioButton->isChecked())
+    {
+        spreadingFactor = 0x08;
+    }
+
+    uint16_t preambleLength = ui->TransmissionRouter_RetransmissionCustom_PreambleLength_SpinBox->value();
 
 
     uint8_t crcEnabled = 0;
@@ -1265,6 +1297,195 @@ void MainWindow::on_ADCSManeuvering_RunADCManeuver_Button_clicked()
     IDatagram* datagram = m_interpreter->Create_CMD_Run_Manual_ACS(xAxisHBridgeHighMag, xAxisHBridgeLowMag, yAxisHBridgeHighMag, yAxisHBridgeLowMag, zAxisHBridgeHighMag, zAxisHBridgeLowhMag, xAxisPulseLength, yAxisPulseLength, zAxisPulseLength, maneuverDuration, flags);
     this->SendDatagram(datagram);
 }
+
+void MainWindow::on_SatelliteControls_Maneuver_Run_Button_clicked()
+{
+    uint8_t overrideXAxisFaultCheck = 0;
+    if (ui->SatelliteControls_RunManeuver_EnableOverride_XAxisHbridgeFaultCheck_RadioButton->isChecked())
+    {
+        overrideXAxisFaultCheck = 1;
+    }
+    else if (ui->SatelliteControls_RunManeuver_DisableOverride_XAxisHbridgeFaultCheck_RadioButton->isChecked())
+    {
+        overrideXAxisFaultCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("X H-Bridge fault check override radio buttons must be set.");
+        msgBox.exec();
+    }
+
+    uint8_t overrideYAxisFaultCheck = 0;
+    if (ui->SatelliteControls_RunManeuver_EnableOverride_YAxisHbridgeFaultCheck_RadioButton->isChecked())
+    {
+        overrideYAxisFaultCheck = 1;
+    }
+    else if (ui->SatelliteControls_RunManeuver_DisableOverride_YAxisHbridgeFaultCheck_RadioButton->isChecked())
+    {
+        overrideYAxisFaultCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Y H-Bridge fault check override radio buttons must be set.");
+        msgBox.exec();
+    }
+
+    uint8_t overrideZAxisFaultCheck = 0;
+    if (ui->SatelliteControls_RunManeuver_EnableOverride_ZAxisHbridgeFaultCheck_RadioButton->isChecked())
+    {
+        overrideZAxisFaultCheck = 1;
+    }
+    else if (ui->SatelliteControls_RunManeuver_DisableOverride_ZAxisHbridgeFaultCheck_RadioButton->isChecked())
+    {
+        overrideZAxisFaultCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Z H-Bridge fault check override radio buttons must be set.");
+        msgBox.exec();
+    }
+
+    uint8_t overrideEulerAngleToleranceCheck = 0;
+    if (ui->SatelliteControls_RunManeuver_EnableOverride_EulerAngleToleranceCheck_RadioButton->isChecked())
+    {
+        overrideEulerAngleToleranceCheck = 1;
+    }
+    else if (ui->SatelliteControls_RunManeuver_DisableOverride_EulerAngleToleranceCheck_RadioButton->isChecked())
+    {
+        overrideEulerAngleToleranceCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Euler angle tolerance check radio buttons must be set.");
+        msgBox.exec();
+    }
+
+
+    uint8_t overrideAngularVelocityToleranceCheck = 0;
+    if (ui->SatelliteControls_RunManeuver_EnableOverride_AngularVelocityToleranceCheck_RadioButton_2->isChecked())
+    {
+        overrideAngularVelocityToleranceCheck = 1;
+    }
+    else if (ui->SatelliteControls_RunManeuver_DisableOverride_AngularVelocityToleranceCheck_RadioButton->isChecked())
+    {
+        overrideAngularVelocityToleranceCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Angular velocity tolerance check radio buttons must be set.");
+        msgBox.exec();
+    }
+
+    bool ok;
+    uint32_t maneuverLength = ui->SatelliteControls_ManeuverLength_LineEdit->text().toInt(&ok, 10);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Maneuver length entered is an invalid number.");
+        msgBox.exec();
+    }
+
+    uint8_t flags = overrideXAxisFaultCheck;
+    flags |= (overrideYAxisFaultCheck << 1);
+    flags |= (overrideZAxisFaultCheck << 2);
+    flags |= (overrideEulerAngleToleranceCheck << 4);
+    flags |= (overrideAngularVelocityToleranceCheck << 5);
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Maneuver(flags, maneuverLength);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_Detumble_Execute_Button_2_clicked()
+{
+
+    uint8_t overrideXAxisFaultCheck = 0;
+    if (ui->Detumble_OverrideXHBridge_FaultCheck_Enable_RadioButton->isChecked())
+    {
+        overrideXAxisFaultCheck = 1;
+    }
+    else if (ui->Detumble_OverrideXHBridge_FaultCheck_Disable_RadioButton->isChecked())
+    {
+        overrideXAxisFaultCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("X H-Bridge fault check override radio buttons must be set.");
+        msgBox.exec();
+    }
+
+    uint8_t overrideYAxisFaultCheck = 0;
+    if (ui->Detumble_OverrideYHBridge_FaultCheck_Enable_RadioButton->isChecked())
+    {
+        overrideYAxisFaultCheck = 1;
+    }
+    else if (ui->Detumble_OverrideYHBridge_FaultCheck_Disable_RadioButton->isChecked())
+    {
+        overrideYAxisFaultCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Y H-Bridge fault check override radio buttons must be set.");
+        msgBox.exec();
+    }
+
+    uint8_t overrideZAxisFaultCheck = 0;
+    if (ui->Detumble_OverrideZHBridge_FaultCheck_Enable_RadioButton->isChecked())
+    {
+        overrideZAxisFaultCheck = 1;
+    }
+    else if (ui->Detumble_OverrideZHBridge_FaultCheck_Disable_RadioButton->isChecked())
+    {
+        overrideZAxisFaultCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Z H-Bridge fault check override radio buttons must be set.");
+        msgBox.exec();
+    }
+
+
+    uint8_t overrideDetumblingAngularVelocityToleranceCheck = 0;
+    if (ui->Detumble_OverrideAngleVelocity_FaultCheck_Enable_RadioButton->isChecked())
+    {
+        overrideDetumblingAngularVelocityToleranceCheck = 1;
+    }
+    else if (ui->Detumble_OverrideAngleVelocity_FaultCheck_Disable_RadioButton->isChecked())
+    {
+        overrideDetumblingAngularVelocityToleranceCheck = 0;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Detumbling angular velocity fault check override radio buttons must be set.");
+        msgBox.exec();
+    }
+
+    bool ok;
+    uint32_t detumblingLength = ui->Detumble_Length_LineEdit->text().toInt(&ok, 10);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Detumbling length entered is an invalid number.");
+        msgBox.exec();
+    }
+
+    uint8_t flags = overrideXAxisFaultCheck;
+    flags |= (overrideYAxisFaultCheck << 1);
+    flags |= (overrideZAxisFaultCheck << 2);
+    flags |= (overrideDetumblingAngularVelocityToleranceCheck << 3);
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Detumble(flags, detumblingLength);
+    this->SendDatagram(datagram);
+}
+
 #define SatelliteControlsTab_End }
 
 
