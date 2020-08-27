@@ -304,54 +304,6 @@ void MainWindow::SendDopplerShiftedFrequency()
 
 
 
-
-
-
-
-
-//////////////////////////////////
-// Satellite configuration tab. //
-//////////////////////////////////
-#define SatelliteConfigurationTab_Start {
-void MainWindow::LoadSatelliteConfigurationUI()
-{
-
-}
-
-
-void MainWindow::on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_clicked()
-{
-    QString text = ui->SatelliteConfig_SatelliteVersion_ComboBox->currentText();
-
-    if ( (text != "FOSSASAT-1B") && (text != "FOSSASAT-2") )
-    {
-        throw "invalid satellite version.";
-    }
-
-    Settings::SetSatVersion(text);
-}
-#define SatelliteConfigurationTab_End }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ///////////////////////////////////
 /// Ground station settings tab //
 ///////////////////////////////////
@@ -380,39 +332,12 @@ void MainWindow::on_handshakeSendButton_clicked()
     this->m_serialPortThread.Write(msg);
 }
 
+
+
 ///////////////////////////////////////
 /// CGround station settings tab END //
 ///////////////////////////////////////
 #define GroundPanelSettingsTab_End }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -743,48 +668,11 @@ void MainWindow::on_ControlPanelSettings_Doppler_Shift_Disable_RadioButton_click
 }
 
 
+
 /////////////////////////////////////
 /// Control panel settings tab END //
 /////////////////////////////////////
 #define ControlPanelSettingsTab_End }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -821,9 +709,6 @@ void MainWindow::on_actionView_Serial_Ports_triggered()
 
     msgBox.exec();
 }
-
-
-
 
 
 
@@ -1144,6 +1029,7 @@ void MainWindow::on_TransmissionRouter_RetransmissionCustom_RetransmitCustom_But
     {
         spreadingFactor = 0x07;
     }
+
     uint8_t codingRate = 0;
     if (ui->TransmissionRouter_RetransmissionCustom_CodingRate_45_RadioButton->isChecked())
     {
@@ -1489,6 +1375,193 @@ void MainWindow::on_Detumble_Execute_Button_2_clicked()
 #define SatelliteControlsTab_End }
 
 
+
+
+
+
+
+
+//////////////////////////////////
+// Satellite configuration tab. //
+//////////////////////////////////
+#define SatelliteConfigurationTab_Start {
+void MainWindow::LoadSatelliteConfigurationUI()
+{
+
+}
+
+
+void MainWindow::on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_clicked()
+{
+    QString text = ui->SatelliteConfig_SatelliteVersion_ComboBox->currentText();
+
+    if ( (text != "FOSSASAT-1B") && (text != "FOSSASAT-2") )
+    {
+        throw "invalid satellite version.";
+    }
+
+    Settings::SetSatVersion(text);
+}
+
+
+void MainWindow::on_SatelliteConfig_callsignSetButton_clicked()
+{
+    QString callsign = ui->SatelliteConfig_callsignLineEdit->text();
+    std::string callsignStdStr = callsign.toStdString();
+    const char * callsignCStr = callsignStdStr.c_str();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Callsign((char*)(callsignCStr));
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteConfig_TLESetButton_clicked()
+{
+    QString tle = ui->SatelliteConfig_callsignLineEdit->text();
+    std::string tleStdStr = tle.toStdString();
+    const char * tleCStr = tleStdStr.c_str();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_TLE((char*)(tleCStr));
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_SatelliteConfig_ReceiveWindow_SetButton_clicked()
+{
+    uint8_t fskrxLen = ui->SatelliteConfig_ReceiveWindow_FSKRXLength_SpinBox->value();
+    uint8_t lorarxLen = ui->SatelliteConfig_ReceiveWindow_LoraRXLength_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Receive_Windows(fskrxLen, lorarxLen);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteConfig_PowerLimits_Set_Button_clicked()
+{
+    int16_t deploymentVoltageLimit = ui->SatelliteConfig_PowerLimits_DeploymentVoltage_SpinBox->value();
+    int16_t heaterVoltageLimit = ui->SatelliteConfig_PowerLimits_HeaterVoltage_SpinBox->value();
+    int16_t cwBeepVoltageLimit = ui->SatelliteConfig_PowerLimits_CWBeepVoltage_SpinBox->value();
+    int16_t lowPowerVoltageLimit = ui->SatelliteConfig_PowerLimits_LowPowerVoltage_SpinBox->value();
+
+    bool ok = false;
+    float heaterTemperature = ui->SatelliteConfig_PowerLimits_HeaterTemperature_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Heater temperature limit input invalid.");
+        msgBox.exec();
+    }
+
+
+    float mpptSwichTemperature = ui->SatelliteConfig_PowerLimits_MPPTSwitchTemperature_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("MPPT temperature switch limit input invalid.");
+        msgBox.exec();
+    }
+
+
+    uint8_t heaterDutyCycle = ui->SatelliteConfig_PowerLimits_HeaterDutyCycle_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Power_Limits(deploymentVoltageLimit, heaterVoltageLimit, cwBeepVoltageLimit, lowPowerVoltageLimit, heaterTemperature, mpptSwichTemperature, heaterDutyCycle);
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_SatelliteConfig_SpreadingFactor_Set_Button_clicked()
+{
+    bool standardChecked = ui->SatelliteConfig_SpreadingFactor_StandardSetting_RadioButton->isChecked();
+    bool alternChecked = ui->SatelliteConfig_SpreadingFactor_AlternativeSetting_RadioButton->isChecked();
+
+    uint8_t sfMode = 0;
+    if (standardChecked)
+    {
+        sfMode = 0;
+    }
+    else if (alternChecked)
+    {
+        sfMode= 1;
+    }
+    else
+    {
+        sfMode = 0;
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_SF_Mode(sfMode);
+    this->SendDatagram(datagram);
+}
+
+
+
+static std::vector<sleep_interval_t> g_sleepIntervalStack;
+
+void MainWindow::on_SatelliteConfig_SleepInterval_PushToStack_Button_clicked()
+{
+    int16_t firstVoltageLevel = ui->SatelliteConfig_SleepInterval_VoltageLevelFirst_SpinBox->value();
+    uint16_t firstSleepInterval = ui->SatelliteConfig_SleepInterval_FirstSleepIntervalLength_SpinBox->value();
+    uint16_t secondSleepInvtervals = ui->SatelliteConfig_SleepInterval_SecondSleepIntervalVoltages_SpinBox->value();
+    uint16_t thirdSleepInterval = ui->SatelliteConfig_SleepInterval_ThirdSleepInterval_SpinBox->value();
+
+
+    sleep_interval_t sleepInterval;
+    sleepInterval.firstSleepIntervalVoltageLevel = firstVoltageLevel;
+    sleepInterval.firstSleepIntervalLength = firstSleepInterval;
+    sleepInterval.secondSleepIntervalLength = secondSleepInvtervals;
+    sleepInterval.thirdSleepIntervalLength = thirdSleepInterval;
+
+    g_sleepIntervalStack.push_back(sleepInterval);
+    ui->SatelliteConfig_SleepInterval_Stack_StackCount_SpinBox->setValue(g_sleepIntervalStack.size());
+}
+
+void MainWindow::on_SatelliteConfig_SleepInterval_ClearInterval_Button_clicked()
+{
+    g_sleepIntervalStack.clear();
+    ui->SatelliteConfig_SleepInterval_Stack_StackCount_SpinBox->setValue(0);
+}
+
+
+
+void MainWindow::on_SatelliteConfig_SleepInterval_SendoStack_Button_clicked()
+{
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Sleep_Intervals(g_sleepIntervalStack);
+    this->SendDatagram(datagram);
+    g_sleepIntervalStack.clear();
+    ui->SatelliteConfig_SleepInterval_Stack_StackCount_SpinBox->setValue(0);
+}
+
+
+void MainWindow::on_SatelliteConfig_MPPT_Set_Button_clicked()
+{
+    bool temperatureSwitchEnabled = ui->SatelliteConfig_MPPT_TemperatureSwitchEnabled_RadioButton->isChecked();
+    bool temperatureSwitchDisabled = ui->SatelliteConfig_MPPT_TemperatureSwitchDisabled_RadioButton->isChecked();
+    bool keepAliveSwitchEnabled = ui->SatelliteConfig_MPPT_KeepAliveEnabled_RadioButton->isChecked();
+    bool keepAliveSwitchDisabled = ui->SatelliteConfig_MPPT_KeepAliveDisabled_RadioButton->isChecked();
+
+    uint8_t tempSwitchState = 1;
+    if (temperatureSwitchEnabled)
+    {
+        tempSwitchState = 1;
+    }
+    else if (temperatureSwitchDisabled)
+    {
+        tempSwitchState = 0;
+    }
+
+    uint8_t keepAliveState = 0;
+    if (keepAliveSwitchEnabled)
+    {
+        keepAliveState = 1;
+    }
+    else if (keepAliveSwitchDisabled)
+    {
+        keepAliveState = 0;
+    }
+
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_MPPT_Mode(tempSwitchState, keepAliveState);
+    this->SendDatagram(datagram);
+}
+
+#define SatelliteConfigurationTab_End }
 
 
 

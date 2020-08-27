@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>-4468</y>
+             <y>-4488</y>
              <width>449</width>
              <height>5333</height>
             </rect>
@@ -1838,9 +1838,9 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>17</x>
-             <y>0</y>
+             <y>-1373</y>
              <width>475</width>
-             <height>3927</height>
+             <height>3956</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -1853,12 +1853,9 @@ tolerance check:</string>
             <item row="6" column="0" colspan="4">
              <widget class="QGroupBox" name="groupBox_12">
               <property name="title">
-               <string>Receive Window Time</string>
+               <string>Receive Windows Time</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_11">
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_ReceiveWindow_FSKRXLength_LineEdit"/>
-               </item>
                <item row="1" column="0">
                 <widget class="QLabel" name="label_16">
                  <property name="text">
@@ -1873,20 +1870,24 @@ tolerance check:</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
-                <widget class="QLineEdit" name="SatelliteConfig_ReceiveWindow_LoraRXLength_LineEdit"/>
-               </item>
-               <item row="3" column="0">
+               <item row="3" column="0" colspan="2">
                 <widget class="QPushButton" name="SatelliteConfig_ReceiveWindow_SetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_ReceiveWindow_RefreshButton">
-                 <property name="text">
-                  <string>Refresh</string>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="SatelliteConfig_ReceiveWindow_FSKRXLength_SpinBox">
+                 <property name="maximum">
+                  <number>2048</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="SatelliteConfig_ReceiveWindow_LoraRXLength_SpinBox">
+                 <property name="maximum">
+                  <number>2048</number>
                  </property>
                 </widget>
                </item>
@@ -2069,22 +2070,15 @@ tolerance check:</string>
                <string>TLE</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_31">
-               <item row="1" column="0">
+               <item row="0" column="0" colspan="2">
+                <widget class="QLineEdit" name="SatelliteConfig_TLELineEdit"/>
+               </item>
+               <item row="1" column="0" colspan="2">
                 <widget class="QPushButton" name="SatelliteConfig_TLESetButton">
                  <property name="text">
                   <string>Set</string>
                  </property>
                 </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_TLERefreshButton">
-                 <property name="text">
-                  <string>Refresh</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="0" colspan="2">
-                <widget class="QLineEdit" name="SatelliteConfig_TLELineEdit"/>
                </item>
               </layout>
              </widget>
@@ -2114,69 +2108,6 @@ tolerance check:</string>
                </size>
               </property>
              </spacer>
-            </item>
-            <item row="16" column="0" colspan="3">
-             <widget class="QGroupBox" name="MPPTGroupBox">
-              <property name="title">
-               <string>MPPT</string>
-              </property>
-              <layout class="QGridLayout" name="gridLayout_18">
-               <item row="1" column="1">
-                <widget class="QRadioButton" name="SatelliteConfig_MPPT_TemperatureSwitchDisabled_RadioButton">
-                 <property name="text">
-                  <string>Temperature Switch Disabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">buttonGroup_14</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveDisabled_RadioButton">
-                 <property name="text">
-                  <string>&amp;Keep Alive Disabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">buttonGroup_15</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="2" column="0">
-                <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveEnabled_RadioButton">
-                 <property name="text">
-                  <string>Keep Ali&amp;ve Enabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">buttonGroup_15</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QRadioButton" name="SatelliteConfig_MPPT_TemperatureSwitchEnabled_RadioButton">
-                 <property name="text">
-                  <string>Temperature Switch Enabled</string>
-                 </property>
-                 <attribute name="buttonGroup">
-                  <string notr="true">buttonGroup_14</string>
-                 </attribute>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QPushButton" name="SatelliteConfig_MPPT_Set_Button">
-                 <property name="text">
-                  <string>Set</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_MPPT_Refresh_Button">
-                 <property name="text">
-                  <string>Refresh</string>
-                 </property>
-                </widget>
-               </item>
-              </layout>
-             </widget>
             </item>
             <item row="21" column="0" colspan="3">
              <widget class="QGroupBox" name="SatelliteConfig_LowPowerMode_Refresh_Button">
@@ -2240,20 +2171,6 @@ tolerance check:</string>
                <string>Callsign</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
-               <item row="1" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_callsignSetButton">
-                 <property name="text">
-                  <string>Set</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QPushButton" name="SatelliteConfig_callsignRefreshButton">
-                 <property name="text">
-                  <string>Refresh</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="1" colspan="2">
                 <widget class="QLineEdit" name="SatelliteConfig_callsignLineEdit">
                  <property name="text">
@@ -2264,6 +2181,13 @@ tolerance check:</string>
                  </property>
                  <property name="placeholderText">
                   <string>FOSSASAT-2</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1" colspan="2">
+                <widget class="QPushButton" name="SatelliteConfig_callsignSetButton">
+                 <property name="text">
+                  <string>Set</string>
                  </property>
                 </widget>
                </item>
@@ -2746,13 +2670,6 @@ Data stack</string>
                  </attribute>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_Transmission_Send_Button">
-                 <property name="text">
-                  <string>Set</string>
-                 </property>
-                </widget>
-               </item>
                <item row="0" column="2">
                 <widget class="QRadioButton" name="SatelliteConfig_Transmission_Disabled_RadioButton">
                  <property name="text">
@@ -2771,13 +2688,6 @@ Data stack</string>
                  <attribute name="buttonGroup">
                   <string notr="true">buttonGroup_11</string>
                  </attribute>
-                </widget>
-               </item>
-               <item row="3" column="2">
-                <widget class="QPushButton" name="SatelliteConfig_Transmission_Refresh_Button">
-                 <property name="text">
-                  <string>Refresh</string>
-                 </property>
                 </widget>
                </item>
                <item row="0" column="0">
@@ -2799,6 +2709,13 @@ Data stack</string>
                  <property name="text">
                   <string>FSK Mandated for
 large packets:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="3">
+                <widget class="QPushButton" name="SatelliteConfig_Transmission_Send_Button">
+                 <property name="text">
+                  <string>Set</string>
                  </property>
                 </widget>
                </item>
@@ -2857,17 +2774,10 @@ large packets:</string>
                  </attribute>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="1" column="0" colspan="2">
                 <widget class="QPushButton" name="SatelliteConfig_SpreadingFactor_Set_Button">
                  <property name="text">
                   <string>Set</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_SpreadingFactor_Refresh_Button">
-                 <property name="text">
-                  <string>Refresh</string>
                  </property>
                 </widget>
                </item>
@@ -2880,46 +2790,13 @@ large packets:</string>
                <string>Power Limits</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_16">
-               <item row="2" column="1">
-                <widget class="QLabel" name="label_18">
-                 <property name="text">
-                  <string>CW Beep Voltage (mV):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="2">
-                <widget class="QLineEdit" name="SatelliteConfig_PowerLimits_MPPTSwitchTemperature_LineEdit"/>
-               </item>
-               <item row="1" column="1">
-                <widget class="QLabel" name="label_17">
-                 <property name="text">
-                  <string>Heater Voltage (mV):</string>
-                 </property>
-                </widget>
-               </item>
                <item row="4" column="2">
                 <widget class="QLineEdit" name="SatelliteConfig_PowerLimits_HeaterTemperature_LineEdit"/>
                </item>
-               <item row="0" column="2">
-                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_DeploymentVoltage_SpinBox"/>
-               </item>
                <item row="3" column="2">
-                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_LowPowerVoltage_SpinBox"/>
-               </item>
-               <item row="1" column="2">
-                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_HeaterVoltage_SpinBox"/>
-               </item>
-               <item row="5" column="1">
-                <widget class="QLabel" name="label_21">
-                 <property name="text">
-                  <string>MPPT Switch Temperature (deg. C):</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="label_19">
-                 <property name="text">
-                  <string>Low Power Voltage (mV):</string>
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_LowPowerVoltage_SpinBox">
+                 <property name="maximum">
+                  <number>99999999</number>
                  </property>
                 </widget>
                </item>
@@ -2930,8 +2807,26 @@ large packets:</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="2">
-                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_CWBeepVoltage_SpinBox"/>
+               <item row="3" column="1">
+                <widget class="QLabel" name="label_19">
+                 <property name="text">
+                  <string>Low Power Voltage (mV):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1" colspan="2">
+                <widget class="QPushButton" name="SatelliteConfig_PowerLimits_Set_Button">
+                 <property name="text">
+                  <string>Set</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLabel" name="label_18">
+                 <property name="text">
+                  <string>CW Beep Voltage (mV):</string>
+                 </property>
+                </widget>
                </item>
                <item row="0" column="1">
                 <widget class="QLabel" name="label_75">
@@ -2940,17 +2835,55 @@ large packets:</string>
                  </property>
                 </widget>
                </item>
-               <item row="6" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_PowerLimits_Set_Button">
+               <item row="1" column="2">
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_HeaterVoltage_SpinBox">
+                 <property name="maximum">
+                  <number>99999999</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_DeploymentVoltage_SpinBox">
+                 <property name="maximum">
+                  <number>99999999</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="label_17">
                  <property name="text">
-                  <string>Set</string>
+                  <string>Heater Voltage (mV):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="label_21">
+                 <property name="text">
+                  <string>MPPT Switch Temperature (deg. C):</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="2">
+                <widget class="QLineEdit" name="SatelliteConfig_PowerLimits_MPPTSwitchTemperature_LineEdit"/>
+               </item>
+               <item row="2" column="2">
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_CWBeepVoltage_SpinBox">
+                 <property name="maximum">
+                  <number>99999999</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLabel" name="label_150">
+                 <property name="text">
+                  <string>Heater Duty Cycle:</string>
                  </property>
                 </widget>
                </item>
                <item row="6" column="2">
-                <widget class="QPushButton" name="SatelliteConfig_PowerLimits_Refresh_Button">
-                 <property name="text">
-                  <string>Refresh</string>
+                <widget class="QSpinBox" name="SatelliteConfig_PowerLimits_HeaterDutyCycle_SpinBox">
+                 <property name="maximum">
+                  <number>99999999</number>
                  </property>
                 </widget>
                </item>
@@ -3085,16 +3018,32 @@ Sleep Interval (mV):</string>
                 </widget>
                </item>
                <item row="0" column="1">
-                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_VoltageLevelFirst_SpinBox"/>
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_VoltageLevelFirst_SpinBox">
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                </widget>
                </item>
                <item row="1" column="1">
-                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_FirstSleepIntervalLength_SpinBox"/>
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_FirstSleepIntervalLength_SpinBox">
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_SecondSleepIntervalVoltages_SpinBox"/>
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_SecondSleepIntervalVoltages_SpinBox">
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                </widget>
                </item>
                <item row="3" column="1">
-                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_ThirdSleepInterval_SpinBox"/>
+                <widget class="QSpinBox" name="SatelliteConfig_SleepInterval_ThirdSleepInterval_SpinBox">
+                 <property name="maximum">
+                  <number>999999999</number>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -3186,6 +3135,62 @@ Sleep Interval (mV):</string>
                 <widget class="QPushButton" name="SatelliteConfig_RTC_Refresh_Button">
                  <property name="text">
                   <string>Refresh</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="16" column="0" colspan="2">
+             <widget class="QGroupBox" name="MPPTGroupBox">
+              <property name="title">
+               <string>MPPT</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_18">
+               <item row="1" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_TemperatureSwitchDisabled_RadioButton">
+                 <property name="text">
+                  <string>Temperature Switch Disabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">buttonGroup_14</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveDisabled_RadioButton">
+                 <property name="text">
+                  <string>&amp;Keep Alive Disabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">buttonGroup_15</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_KeepAliveEnabled_RadioButton">
+                 <property name="text">
+                  <string>Keep Ali&amp;ve Enabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">buttonGroup_15</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QRadioButton" name="SatelliteConfig_MPPT_TemperatureSwitchEnabled_RadioButton">
+                 <property name="text">
+                  <string>Temperature Switch Enabled</string>
+                 </property>
+                 <attribute name="buttonGroup">
+                  <string notr="true">buttonGroup_14</string>
+                 </attribute>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QPushButton" name="SatelliteConfig_MPPT_Set_Button">
+                 <property name="text">
+                  <string>Set</string>
                  </property>
                 </widget>
                </item>
@@ -3921,28 +3926,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
-  <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="buttonGroup_5"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="buttonGroup_12"/>
-  <buttongroup name="buttonGroup_8"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
   <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
   <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
  </buttongroups>
 </ui>

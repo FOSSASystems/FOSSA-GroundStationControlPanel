@@ -130,6 +130,16 @@ private slots:
 
     void on_SatelliteControls_Maneuver_Run_Button_clicked();
 
+    void on_Detumble_Execute_Button_2_clicked();
+
+    void on_SatelliteConfig_callsignSetButton_clicked();
+
+    void on_SatelliteConfig_TLESetButton_clicked();
+
+    void on_SatelliteConfig_ReceiveWindow_SetButton_clicked();
+
+    void on_SatelliteConfig_PowerLimits_Set_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui;
