@@ -140,6 +140,16 @@ private slots:
 
     void on_SatelliteConfig_PowerLimits_Set_Button_clicked();
 
+    void on_SatelliteConfig_SpreadingFactor_Set_Button_clicked();
+
+    void on_SatelliteConfig_SleepInterval_PushToStack_Button_clicked();
+
+    void on_SatelliteConfig_SleepInterval_ClearInterval_Button_clicked();
+
+    void on_SatelliteConfig_SleepInterval_SendoStack_Button_clicked();
+
+    void on_SatelliteConfig_MPPT_Set_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui;
