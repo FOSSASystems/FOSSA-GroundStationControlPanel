@@ -150,6 +150,14 @@ private slots:
 
     void on_SatelliteConfig_MPPT_Set_Button_clicked();
 
+    void on_SatelliteConfig_RTC_Set_Button_clicked();
+
+    void on_SatelliteConfig_LowPowerMode_Set_Button_clicked();
+
+    void on_SatelliteConfig_IMU_Set_Button_clicked();
+
+    void on_pushButton_2_clicked();
+
 private:
 
     Ui::MainWindow *ui;

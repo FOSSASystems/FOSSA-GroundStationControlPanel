@@ -1545,6 +1545,12 @@ void MainWindow::on_SatelliteConfig_MPPT_Set_Button_clicked()
     {
         tempSwitchState = 0;
     }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Temperature switch radio buttons not set");
+        msgBox.exec();
+    }
 
     uint8_t keepAliveState = 0;
     if (keepAliveSwitchEnabled)
@@ -1555,14 +1561,265 @@ void MainWindow::on_SatelliteConfig_MPPT_Set_Button_clicked()
     {
         keepAliveState = 0;
     }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Keep alive radio buttons not set");
+        msgBox.exec();
+    }
 
 
     IDatagram* datagram = m_interpreter->Create_CMD_Set_MPPT_Mode(tempSwitchState, keepAliveState);
     this->SendDatagram(datagram);
 }
 
+void MainWindow::on_SatelliteConfig_RTC_Set_Button_clicked()
+{
+    uint8_t yearOffset = ui->SatelliteConfig_RTC_Year_SpinBox->value();
+    uint8_t month = ui->SatelliteConfig_RTC_Month_SpinBox->value();
+    uint8_t day = ui->SatelliteConfig_RTC_Day_SpinBox->value();
+    uint8_t dow = ui->SatelliteConfig_RTC_DoW_SpinBox->value();
+    uint8_t hours = ui->SatelliteConfig_RTC_Hours_SpinBox->value();
+    uint8_t mins = ui->SatelliteConfig_RTC_Minutes_SpinBox->value();
+    uint8_t secs = ui->SatelliteConfig_RTC_Seconds_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_RTC(yearOffset, month, day, dow, hours, mins, secs);
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_SatelliteConfig_LowPowerMode_Set_Button_clicked()
+{
+    bool lowPowerEnabled = ui->SatelliteConfig_LowPowerMode_Enabled_RadioButton->isChecked();
+    bool lowPowerModeDisabled =  ui->SatelliteConfig_LowPowerMode_Disabled_RadioButton->isChecked();
+
+    uint8_t enabledFlag = 0x01;
+    if (lowPowerEnabled)
+    {
+        enabledFlag = 0x01;
+    }
+    else if (lowPowerModeDisabled)
+    {
+        enabledFlag= 0x00;
+    }
+    else
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Low Power Mode radio buttons not set");
+        msgBox.exec();
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_Low_Power_Mode_Enable(enabledFlag);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteConfig_IMU_Set_Button_clicked()
+{
+    bool ok = false;
+    float xAxisGyroscopeOffset = ui->SatelliteConfig_IMU_XAxisGyroOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("X Axis gyroscope offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float yAxisGyroscopeOffset = ui->SatelliteConfig_IMU_YAxisGyroOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Y Axis gyroscope offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float zAxisGyroscopeOffset = ui->SatelliteConfig_IMU_ZAxisGyroOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Z Axis gyroscope offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float xAxisAccele = ui->SatelliteConfig_IMU_XAxisAcceleOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("X Axis accele offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float yAxisAccele = ui->SatelliteConfig_IMU_YAxisAcceleOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Y Axis accele offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float zAxisAccele = ui->SatelliteConfig_IMU_ZAxisAcceleOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Z Axis accele offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float xAxisMagnet = ui->SatelliteConfig_IMU_XAxisMagnetometerOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("X Axis magnetometer offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float yAxisMagnet = ui->SatelliteConfig_IMU_YAxisMagnetometerOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Y Axis magnetometer offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    float zAxisMagnet = ui->SatelliteConfig_IMU_ZAxisMagnetometerOffset_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Z Axis magnetometer offset is an invalid number, must be a float.");
+        msgBox.exec();
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_IMU_Offset(xAxisGyroscopeOffset, yAxisGyroscopeOffset, zAxisGyroscopeOffset,
+                                                                   xAxisAccele, yAxisAccele, zAxisAccele,
+                                                                   xAxisMagnet, yAxisMagnet, zAxisMagnet);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteConfig_IMU_Callibration_Set_PushButton_clicked()
+{
+    QString maQStr = ui->SatelliteConfig_IMU_Callibration_MA_LineEdit->text();
+    QString mbQStr = ui->SatelliteConfig_IMU_Callibration_MB_LineEdit->text();
+    QString mcQStr = ui->SatelliteConfig_IMU_Callibration_MC_LineEdit->text();
+
+    QStringList maQStrParts = maQStr.split(",");
+    QStringList mbQStrParts = mbQStr.split(",");
+    QStringList mcQStrParts = mcQStr.split(",");
+
+    bool ok = false;
+    float maa = maQStrParts[0].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 1, column 1 is an invalid float.");
+        msgBox.exec();
+    }
+
+    float mab = maQStrParts[1].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 1, column 2  is an invalid float.");
+        msgBox.exec();
+    }
+
+    float mac = maQStrParts[2].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 1, column 3 is an invalid float.");
+        msgBox.exec();
+    }
+
+
+
+    float mba = mbQStrParts[0].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 2, column 1 is an invalid float.");
+        msgBox.exec();
+    }
+    float mbb = mbQStrParts[1].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 2, column 2 is an invalid float.");
+        msgBox.exec();
+    }
+    float mbc = mbQStrParts[2].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 2, column 3 is an invalid float.");
+        msgBox.exec();
+    }
+
+
+    float mca = mcQStrParts[0].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 3, column 1 is an invalid float.");
+        msgBox.exec();
+    }
+    float mcb = mcQStrParts[1].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 3, column 2 is an invalid float.");
+        msgBox.exec();
+    }
+    float mcc = mcQStrParts[2].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Matrix row 3, column 3 is an invalid float.");
+        msgBox.exec();
+    }
+
+
+
+    QString biasQStr = ui->SatelliteConfig_IMU_Callibration_BiasVector_LineEdit->text();
+    QStringList biasStrParts = biasQStr.split(",");
+
+    float bvx = biasStrParts[0].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Bias vector x is an invalid float.");
+        msgBox.exec();
+    }
+    float bvy = biasStrParts[1].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Bias vector y is an invalid float.");
+        msgBox.exec();
+    }
+    float bvz = biasStrParts[2].toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Bias vector z is an invalid float.");
+        msgBox.exec();
+    }
+
+
+
+
+    float matrix[9] = {
+        maa, mab, mac,
+        mba, mbb, mbc,
+        mca, mcb, mcc
+    };
+
+    float bvec[3] = {
+        bvx, bvy, bvz
+    };
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_IMU_Calibration(matrix, bvec);
+    this->SendDatagram(datagram);
+}
+
 #define SatelliteConfigurationTab_End }
-
-
 
 

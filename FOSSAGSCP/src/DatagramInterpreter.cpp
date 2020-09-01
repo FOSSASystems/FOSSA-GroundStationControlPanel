@@ -801,7 +801,7 @@ IDatagram *DatagramInterpreter::Create_CMD_Detumble(uint8_t flags, uint32_t leng
     return msg;
 }
 
-IDatagram *DatagramInterpreter::Create_CMD_Set_IMU_Offset(uint8_t xAxisGyroOffset, uint8_t yAxisGyroOffset, uint8_t zAxisGyroOffset, uint8_t xAxisAcceleOffset, uint8_t yAxisAcceleOffset, uint8_t zAxisAcceleOffset, uint8_t xAxisMagneticOffset, uint8_t yAxisMagneticOffset, uint8_t zAxisMagneticOffset)
+IDatagram *DatagramInterpreter::Create_CMD_Set_IMU_Offset(float xAxisGyroOffset, float yAxisGyroOffset, float zAxisGyroOffset, float xAxisAcceleOffset, float yAxisAcceleOffset, float zAxisAcceleOffset, float xAxisMagneticOffset, float yAxisMagneticOffset, float zAxisMagneticOffset)
 {
     char* xAxisGyroOffsetArray = (char*)(&xAxisGyroOffset);
     char* yAxisGyroOffsetArray = (char*)(&yAxisGyroOffset);

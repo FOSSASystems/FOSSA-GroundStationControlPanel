@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>-4488</y>
+             <y>0</y>
              <width>449</width>
              <height>5333</height>
             </rect>
@@ -1838,9 +1838,9 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>17</x>
-             <y>-1048</y>
+             <y>-2136</y>
              <width>475</width>
-             <height>3956</height>
+             <height>3933</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -2013,7 +2013,11 @@ tolerance check:</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_54">
                   <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A23_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_MB_LineEdit">
+                    <property name="placeholderText">
+                     <string>a21,a22,a23</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="0" column="0">
                    <widget class="QLabel" name="label_114">
@@ -2023,7 +2027,11 @@ tolerance check:</string>
                    </widget>
                   </item>
                   <item row="3" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A33_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_MC_LineEdit">
+                    <property name="placeholderText">
+                     <string>a31,a32,a33</string>
+                    </property>
+                   </widget>
                   </item>
                   <item row="4" column="0">
                    <widget class="QLabel" name="label_115">
@@ -2032,18 +2040,29 @@ tolerance check:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="5" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVectorZ_LineEdit"/>
-                  </item>
                   <item row="6" column="0" colspan="2">
-                   <widget class="QPushButton" name="pushButton_2">
+                   <widget class="QPushButton" name="SatelliteConfig_IMU_Callibration_Set_PushButton">
                     <property name="text">
                      <string>Set</string>
                     </property>
                    </widget>
                   </item>
                   <item row="0" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_A13_LineEdit"/>
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_MA_LineEdit">
+                    <property name="placeholderText">
+                     <string>a11,a12,a13</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_IMU_Callibration_BiasVector_LineEdit">
+                    <property name="text">
+                     <string/>
+                    </property>
+                    <property name="placeholderText">
+                     <string>x,y,z</string>
+                    </property>
+                   </widget>
                   </item>
                  </layout>
                 </widget>
@@ -2135,17 +2154,10 @@ tolerance check:</string>
                  </attribute>
                 </widget>
                </item>
-               <item row="1" column="0">
+               <item row="1" column="0" colspan="2">
                 <widget class="QPushButton" name="SatelliteConfig_LowPowerMode_Set_Button">
                  <property name="text">
                   <string>Set</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1">
-                <widget class="QPushButton" name="pushButton_23">
-                 <property name="text">
-                  <string>Refresh</string>
                  </property>
                 </widget>
                </item>
@@ -3124,17 +3136,10 @@ Sleep Interval (mV):</string>
                <item row="5" column="1">
                 <widget class="QSpinBox" name="SatelliteConfig_RTC_Minutes_SpinBox"/>
                </item>
-               <item row="7" column="0">
+               <item row="7" column="0" colspan="2">
                 <widget class="QPushButton" name="SatelliteConfig_RTC_Set_Button">
                  <property name="text">
                   <string>Set</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="7" column="1">
-                <widget class="QPushButton" name="SatelliteConfig_RTC_Refresh_Button">
-                 <property name="text">
-                  <string>Refresh</string>
                  </property>
                 </widget>
                </item>
@@ -3926,28 +3931,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup_5"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_11"/>
   <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup_14"/>
   <buttongroup name="buttonGroup_12"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_15"/>
-  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_6"/>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
   <buttongroup name="buttonGroup_9"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_10"/>
   <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_7"/>
   <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="buttonGroup_4"/>
  </buttongroups>
 </ui>

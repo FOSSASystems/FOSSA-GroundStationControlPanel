@@ -124,7 +124,7 @@ public:
     IDatagram *Create_CMD_Set_ADCS_Controller(char controllerId, float controllerMatrix[3][6]);
     IDatagram* Create_CMD_Set_ADCS_Ephemerides(uint16_t chunkId, std::vector<ephemerides_t> ephemeridesDataQueue);
     IDatagram* Create_CMD_Detumble(uint8_t flags, uint32_t length);
-    IDatagram* Create_CMD_Set_IMU_Offset(uint8_t xAxisGyroOffset, uint8_t yAxisGyroOffset, uint8_t zAxisGyroOffset, uint8_t xAxisAcceleOffset, uint8_t yAxisAcceleOffset, uint8_t zAxisAcceleOffset, uint8_t xAxisMagneticOffset, uint8_t yAxisMagneticOffset, uint8_t zAxisMagneticOffset);
+    IDatagram* Create_CMD_Set_IMU_Offset(float xAxisGyroOffset, float yAxisGyroOffset, float zAxisGyroOffset, float xAxisAcceleOffset, float yAxisAcceleOffset, float zAxisAcceleOffset, float xAxisMagneticOffset, float yAxisMagneticOffset, float zAxisMagneticOffset);
     IDatagram* Create_CMD_Set_IMU_Calibration(float transformationMatrix[9], float biasVector[3]);
 signals:
     void ReceivedHandshake();
