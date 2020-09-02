@@ -162,6 +162,10 @@ private slots:
 
     void on_SatelliteConfig_ADCs_Parameters_Set_Button_clicked();
 
+    void on_SatelliteConfig_ADCs_Parameters_SetFromFiles_Button_clicked();
+
+    void on_SatelliteConfig_ADCs_Controller_FromFiles_Button_clicked();
+
 private:
 
     Ui::MainWindow *ui;

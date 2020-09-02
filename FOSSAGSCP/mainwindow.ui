@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>0</y>
+             <y>-4461</y>
              <width>449</width>
              <height>5333</height>
             </rect>
@@ -1838,7 +1838,7 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>17</x>
-             <y>-3053</y>
+             <y>-2975</y>
              <width>475</width>
              <height>3933</height>
             </rect>
