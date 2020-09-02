@@ -794,112 +794,6 @@ void MainWindow::on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked()
 }
 
 
-void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
-{
-    char controllerId =(char)this->ui->SatelliteConfig_ADCs_Controller_ControllerID_LineEdit->text().toStdString()[0];
-
-    QString firstLine = this->ui->SatelliteConfig_ADCs_Controller_M50_LineEdit->text();
-    QString secondLine = this->ui->SatelliteConfig_ADCs_Controller_M51_LineEdit->text();
-    QString thirdLine = this->ui->SatelliteConfig_ADCs_Controller_M52_LineEdit->text();
-
-    QStringList firstLineElements;
-    firstLineElements = firstLine.split(',');
-
-    if (firstLineElements.length() != 6)
-    {
-        throw "Number of elements != 3";
-    }
-
-    QStringList secondLineElements;
-    secondLineElements = secondLine.split(',');
-
-    if (secondLineElements.length() != 6)
-    {
-        throw "Number of elements != 6";
-    }
-
-    QStringList thirdLineElements;
-    thirdLineElements = thirdLine.split(',');
-
-    if (thirdLineElements.length() != 6)
-    {
-        throw "Number of elements != 6";
-    }
-
-
-    float controllerMatrix[3][6];
-    for (int i = 0; i < 6; i++)
-    {
-        QString ele = firstLineElements[i];
-        float val = ele.toDouble();
-        controllerMatrix[0][i] = val;
-    }
-    for (int i = 0; i < 6; i++)
-    {
-        QString ele = secondLineElements[i];
-        float val = ele.toDouble();
-        controllerMatrix[1][i] = val;
-    }
-    for (int i = 0; i < 6; i++)
-    {
-        QString ele = thirdLineElements[i];
-        float val = ele.toDouble();
-        controllerMatrix[2][i] = val;
-    }
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
-
-    this->SendDatagram(datagram);
-}
-
-
-
-
-
-static std::vector<ephemerides_t> g_ephemeridesControllerStack;
-
-void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
-{
-    QString solar = ui->SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit->text();
-    QStringList solarElements = solar.split(',');
-
-    QString magnetic = ui->SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_LineEdit->text();
-    QStringList magneticElements = magnetic.split(',');
-
-    uint8_t controllerId = ui->SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox->text().toUInt();
-
-    ephemerides_t ephemeridesStruct;
-    ephemeridesStruct.solar_x = solarElements[0].toFloat();
-    ephemeridesStruct.solar_y = solarElements[1].toFloat();
-    ephemeridesStruct.solar_z = solarElements[2].toFloat();
-    ephemeridesStruct.magnetic_x = magneticElements[0].toFloat();
-    ephemeridesStruct.magnetic_y = magneticElements[1].toFloat();
-    ephemeridesStruct.magnetic_z = magneticElements[2].toFloat();
-    ephemeridesStruct.controllerId = controllerId;
-
-    g_ephemeridesControllerStack.push_back(ephemeridesStruct);
-
-    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
-}
-
-
-void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button_clicked()
-{
-    g_ephemeridesControllerStack.clear();
-    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
-}
-
-void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked()
-{
-    uint16_t chunkId = ui->SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox->value();
-
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
-    this->SendDatagram(datagram);
-
-    g_ephemeridesControllerStack.clear();
-
-    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
-}
 
 void MainWindow::on_EEPROM_Control_Wipe_Button_clicked()
 {
@@ -1804,8 +1698,6 @@ void MainWindow::on_SatelliteConfig_IMU_Callibration_Set_PushButton_clicked()
     }
 
 
-
-
     float matrix[9] = {
         maa, mab, mac,
         mba, mbb, mbc,
@@ -1820,6 +1712,367 @@ void MainWindow::on_SatelliteConfig_IMU_Callibration_Set_PushButton_clicked()
     this->SendDatagram(datagram);
 }
 
+void MainWindow::on_SatelliteConfig_ADCs_Parameters_Set_Button_clicked()
+{
+    bool ok = false;
+    float maximumPulseIntensity = ui->SatelliteConfig_ADCs_Parameters_MaxPulseIntensity_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Maximum pulse intensity is an invalid float.");
+        msgBox.exec();
+    }
+
+    float maximumPulseLength = ui->SatelliteConfig_ADCs_Parameters_MaxPulseLength_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Maximum pulse length is an invalid float.");
+        msgBox.exec();
+    }
+
+
+    float detumblingAngularVelocityChangeTolerance = ui->SatelliteConfig_ADCs_Parameters_DetumblingAngVelChangeTol_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Detumbling angular velocity change tolerance is an invalid float.");
+        msgBox.exec();
+    }
+
+    float minimumIntertialMoment = ui->SatelliteConfig_ADCs_Parameters_MinInertialMoment_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Min intertial moment is an invalid float.");
+        msgBox.exec();
+    }
+
+    float pulseAmp = ui->SatelliteConfig_ADCs_Parameters_PulseAmplitude_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Pulse amplitude is an invalid float.");
+        msgBox.exec();
+    }
+
+    float calcTolerance = ui->SatelliteConfig_ADCs_Parameters_CalculationTolerance_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Caclulation tolerance is an invalid float.");
+        msgBox.exec();
+    }
+
+    float activeControlEulerAngleChangeTolerance = ui->SatelliteConfig_ADCs_Parameters_ActiveControlEulerAngleChangeTol_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Active control Euler angle change tolerance is an invalid float.");
+        msgBox.exec();
+    }
+
+    float activeControlAngularVelocityChangeTolerance = ui->SatelliteConfig_ADCs_Parameters_ActiveControlAngularVelChangeTol_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Active control angluar velocity change tolerance is an invalid float.");
+        msgBox.exec();
+    }
+
+    float eclipseThreshold = ui->SatelliteConfig_ADCs_Parameters_EclipseThreshold_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Eclipse threshold is an invalid float.");
+        msgBox.exec();
+    }
+
+    float rotationMatrixWeightRatio = ui->SatelliteConfig_ADCs_Parameters_RotationMatrixWeightRatio_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Rotation matrix weigh ratio is an invalid float.");
+        msgBox.exec();
+    }
+
+    float rotationVerificationTriggerLevel = ui->SatelliteConfig_ADCs_Parameters_RotationVerificationTriggerLevel_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Rotation verification trigger level is an invalid float.");
+        msgBox.exec();
+    }
+
+    float KalmanFilterDisturbanceCovariance = ui->SatelliteConfig_ADCs_Parameters_KalmanFilterDistrubanceCovariance_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Kalman filter disturbance covariance is an invalid float.");
+        msgBox.exec();
+    }
+
+    float KalmanFilterNoiseCovariance = ui->SatelliteConfig_ADCs_Parameters_KalmanFilterNoiseCovariance_LineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Kalman filter noise covariance is an invalid float.");
+        msgBox.exec();
+    }
+
+    uint32_t timeStepADCSUpdatems = ui->SatelliteConfig_ADCs_Parameters_ADCUpdateTimeStep_SpinBox->value();
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("ADCS update time step is an invalid uint32_t.");
+        msgBox.exec();
+    }
+
+    uint32_t hBridgeTimerUpdatePeriod = ui->SatelliteConfig_ADCs_Parameters_HBridgeUpdateTimePeriod_SpinBox->value();
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("H bridge timer update period is an invalid uint32_t.");
+        msgBox.exec();
+    }
+
+    int8_t hBridgeHighOutputValue = ui->SatelliteConfig_ADCs_Parameters_HBridgeValueForHighOutput_SpinBox->value();
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("H Bridge high output value is an invalid int8_t (requires -63 to 63)");
+        msgBox.exec();
+    }
+
+    int8_t hBridgeLowOutputValue = ui->SatelliteConfig_ADCs_Parameters_HBridgeValueForLowOutput_SpinBox->value();
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("H Bridge low output value is an invalid int8_t (requires -63 to 63)");
+        msgBox.exec();
+    }
+
+    uint8_t numControllers = ui->SatelliteConfig_ADCs_Parameters_ControllerNumber_SpinBox->value();
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("H Bridge low output value is an invalid uint8_t");
+        msgBox.exec();
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Parameters(
+                maximumPulseIntensity,
+                maximumPulseLength,
+                detumblingAngularVelocityChangeTolerance,
+                minimumIntertialMoment,
+                pulseAmp,
+                calcTolerance,
+                activeControlEulerAngleChangeTolerance,
+                activeControlAngularVelocityChangeTolerance,
+                eclipseThreshold,
+                rotationMatrixWeightRatio,
+                rotationVerificationTriggerLevel,
+                KalmanFilterDisturbanceCovariance,
+                KalmanFilterNoiseCovariance,
+                timeStepADCSUpdatems,
+                hBridgeTimerUpdatePeriod,
+                hBridgeHighOutputValue,
+                hBridgeLowOutputValue,
+                numControllers);
+    this->SendDatagram(datagram);
+}
+
+void MainWindow::on_SatelliteConfig_ADCs_Parameters_SetFromFiles_Button_clicked()
+{
+
+}
+
+void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
+{
+    char controllerId =(char)this->ui->SatelliteConfig_ADCs_Controller_ControllerID_LineEdit->text().toStdString()[0];
+
+    QString firstLine = this->ui->SatelliteConfig_ADCs_Controller_M50_LineEdit->text();
+    QString secondLine = this->ui->SatelliteConfig_ADCs_Controller_M51_LineEdit->text();
+    QString thirdLine = this->ui->SatelliteConfig_ADCs_Controller_M52_LineEdit->text();
+
+    QStringList firstLineElements;
+    firstLineElements = firstLine.split(',');
+
+    if (firstLineElements.length() != 6)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Number of elements != 6");
+        msgBox.exec();
+    }
+
+    QStringList secondLineElements;
+    secondLineElements = secondLine.split(',');
+
+    if (secondLineElements.length() != 6)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Number of elements != 6");
+        msgBox.exec();
+    }
+
+    QStringList thirdLineElements;
+    thirdLineElements = thirdLine.split(',');
+
+    if (thirdLineElements.length() != 6)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Number of elements != 6");
+        msgBox.exec();
+    }
+
+
+    float controllerMatrix[3][6];
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = firstLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[0][i] = val;
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = secondLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[1][i] = val;
+    }
+    for (int i = 0; i < 6; i++)
+    {
+        QString ele = thirdLineElements[i];
+        float val = ele.toDouble();
+        controllerMatrix[2][i] = val;
+    }
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
+    this->SendDatagram(datagram);
+}
+
+
+void MainWindow::on_SatelliteConfig_ADCs_Controller_FromFiles_Button_clicked()
+{
+    QFileDialog::getOpenFileContent("*.*", [this](const QString& fileName, const QByteArray &fileContent) {
+        if (fileName.isEmpty())
+        {
+            QMessageBox msgBox;
+            msgBox.setText("No file selected");
+            msgBox.exec();
+        }
+        else
+        {
+
+            /*
+             Jan (08/16/2020) - controllers are basically 3x6 float matrix, ephemerides are 7 numbers per line - first 3 are solar, next 3 are mangetic, the last number is controller type
+            */
+
+            QString fileContents = QString(fileContent);
+
+            QStringList lines = fileContents.split("[\r\n]", QString::SkipEmptyParts);
+
+            int numLines = lines.length();
+            int numControllerEntries = numLines/3;
+
+            // for each controller matrix entry
+            for (int controllerNumber = 0; controllerNumber < numControllerEntries; controllerNumber++)
+            {
+                // construct this controller matrix.
+                float controllerMatrix[3][6];
+
+                // for each row in this entry (3 rows)
+                for (int row = 0; row < 3; row++)
+                {
+                    // split this row into columns (6 columns)
+                    QStringList columnsList = lines[row].split(' ');
+
+                    if (columnsList.length() != 6)
+                    {
+                        QMessageBox msgBox;
+                        msgBox.setText(QString("Invalid number of columns at entry: " + QString(controllerNumber) + " at row: " + QString(row));
+                        msgBox.exec();
+                    }
+
+                    // for each column in the row.
+                    for (int column = 0; column < 6; column++)
+                    {
+                        bool ok = false;
+
+                        // get this column-row-cell as a string
+                        QString cellEntry = columnsList.at(column);
+
+                        // convert it to a float
+                        float cellEntryFloat = cellEntry.toFloat(&ok);
+
+                        if (!ok)
+                        {
+                            QMessageBox msgBox;
+                            msgBox.setText(QString("Column entry is an invalid float! ") + row + QString(", ") + column + QString(" = ") + columnsList.at(column));
+                            msgBox.exec();
+                        }
+
+                        // set it in our matrix
+                        controllerMatrix[row][column] = cellEntryFloat;
+                    }
+                }
+
+                // finished building this controllerMatrix, create datagram and send it.
+                IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerNumber, controllerMatrix);
+                this->SendDatagram(datagram);
+            }
+        }
+    });
+}
+
+
+
+
+static std::vector<ephemerides_t> g_ephemeridesControllerStack;
+
+void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
+{
+    QString solar = ui->SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit->text();
+    QStringList solarElements = solar.split(',');
+
+    QString magnetic = ui->SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_LineEdit->text();
+    QStringList magneticElements = magnetic.split(',');
+
+    uint8_t controllerId = ui->SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox->text().toUInt();
+
+    ephemerides_t ephemeridesStruct;
+    ephemeridesStruct.solar_x = solarElements[0].toFloat();
+    ephemeridesStruct.solar_y = solarElements[1].toFloat();
+    ephemeridesStruct.solar_z = solarElements[2].toFloat();
+    ephemeridesStruct.magnetic_x = magneticElements[0].toFloat();
+    ephemeridesStruct.magnetic_y = magneticElements[1].toFloat();
+    ephemeridesStruct.magnetic_z = magneticElements[2].toFloat();
+    ephemeridesStruct.controllerId = controllerId;
+
+    g_ephemeridesControllerStack.push_back(ephemeridesStruct);
+
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
+
+
+void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button_clicked()
+{
+    g_ephemeridesControllerStack.clear();
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
+
+void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clicked()
+{
+    uint16_t chunkId = ui->SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox->value();
+
+    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
+    this->SendDatagram(datagram);
+
+    g_ephemeridesControllerStack.clear();
+
+    ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+}
 #define SatelliteConfigurationTab_End }
+
+
 
 
