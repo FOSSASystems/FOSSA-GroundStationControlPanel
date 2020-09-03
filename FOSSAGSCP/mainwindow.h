@@ -155,9 +155,6 @@ private slots:
     void on_SatelliteConfig_LowPowerMode_Set_Button_clicked();
 
     void on_SatelliteConfig_IMU_Set_Button_clicked();
-
-    void on_pushButton_2_clicked();
-
     void on_SatelliteConfig_IMU_Callibration_Set_PushButton_clicked();
 
     void on_SatelliteConfig_ADCs_Parameters_Set_Button_clicked();

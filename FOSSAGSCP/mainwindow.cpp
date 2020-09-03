@@ -1882,10 +1882,6 @@ void MainWindow::on_SatelliteConfig_ADCs_Parameters_Set_Button_clicked()
     this->SendDatagram(datagram);
 }
 
-void MainWindow::on_SatelliteConfig_ADCs_Parameters_SetFromFiles_Button_clicked()
-{
-
-}
 
 void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
 {
@@ -1989,7 +1985,7 @@ void MainWindow::on_SatelliteConfig_ADCs_Controller_FromFiles_Button_clicked()
                     if (columnsList.length() != 6)
                     {
                         QMessageBox msgBox;
-                        msgBox.setText(QString("Invalid number of columns at entry: " + QString(controllerNumber) + " at row: " + QString(row));
+                        msgBox.setText(QString("Invalid number of columns at entry: " + QString(controllerNumber) + " at row: " + QString(row)));
                         msgBox.exec();
                     }
 
@@ -2024,10 +2020,109 @@ void MainWindow::on_SatelliteConfig_ADCs_Controller_FromFiles_Button_clicked()
     });
 }
 
-
-
-
 static std::vector<ephemerides_t> g_ephemeridesControllerStack;
+
+void MainWindow::on_SatelliteConfig_ADCs_Ephemerides_SetFromFiles_Button_clicked()
+{
+    QFileDialog::getOpenFileContent("*.*", [this](const QString& fileName, const QByteArray &fileContent) {
+        QString fileContents = QString(fileContent);
+        QStringList lines = fileContents.split("[\r\n]", QString::SkipEmptyParts);
+
+        // for each line in the file.
+        for (QString line : lines)
+        {
+            // split each line into columns
+            QStringList columnsList = line.split(' ');
+
+            if (columnsList.length() != 7) {
+                QMessageBox msgBox;
+                msgBox.setText("Invalid ephemerides column count, must be 7 columns.");
+                msgBox.exec();
+            }
+
+            bool ok = false;
+            float solarX = columnsList.at(0).toFloat(&ok);
+            if (!ok)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Solar X is an invalid float");
+                msgBox.exec();
+            }
+
+            float solarY = columnsList.at(1).toFloat(&ok);
+            if (!ok)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Solar Y is an invalid float");
+                msgBox.exec();
+            }
+
+            float solarZ = columnsList.at(2).toFloat(&ok);
+            if (!ok)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Solar Z is an invalid float");
+                msgBox.exec();
+            }
+
+            float magnetX = columnsList.at(3).toFloat(&ok);
+            if (!ok)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Magnet X is an invalid float");
+                msgBox.exec();
+            }
+
+            float magnetY = columnsList.at(4).toFloat(&ok);
+            if (!ok)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Magnet Y is an invalid float");
+                msgBox.exec();
+            }
+
+            float magnetZ = columnsList.at(5).toFloat(&ok);
+            if (!ok)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Magnet Z is an invalid float");
+                msgBox.exec();
+            }
+
+            uint8_t controllerId = columnsList.at(6).toUInt(&ok);
+            if (!ok)
+            {
+                QMessageBox msgBox;
+                msgBox.setText("Magnet Z is an invalid uint8_t");
+                msgBox.exec();
+            }
+
+            float ephemeridesMat[6];
+            ephemeridesMat[0] = solarX;
+            ephemeridesMat[1] = solarY;
+            ephemeridesMat[2] = solarZ;
+            ephemeridesMat[3] = magnetX;
+            ephemeridesMat[4] = magnetY;
+            ephemeridesMat[5] = magnetZ;
+
+
+            ephemerides_t eph;
+            eph.solar_x = solarX;
+            eph.solar_y = solarY;
+            eph.solar_z = solarZ;
+            eph.magnetic_x = magnetX;
+            eph.magnetic_y = magnetY;
+            eph.magnetic_z = magnetZ;
+            eph.controllerId = controllerId;
+
+            g_ephemeridesControllerStack.push_back(eph);
+            ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+        }
+    });
+}
+
+
+
 
 void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_clicked()
 {

@@ -73,7 +73,7 @@
            <property name="geometry">
             <rect>
              <x>30</x>
-             <y>-4461</y>
+             <y>0</y>
              <width>449</width>
              <height>5333</height>
             </rect>
@@ -1838,7 +1838,7 @@ tolerance check:</string>
            <property name="geometry">
             <rect>
              <x>17</x>
-             <y>-2975</y>
+             <y>-3088</y>
              <width>475</width>
              <height>3933</height>
             </rect>
@@ -2231,10 +2231,63 @@ tolerance check:</string>
                   <string>Ephemerides</string>
                  </property>
                  <layout class="QGridLayout" name="gridLayout_60">
+                  <item row="7" column="0">
+                   <widget class="QGroupBox" name="groupBox_36">
+                    <property name="title">
+                     <string>Ephermerides Data Stack Controls</string>
+                    </property>
+                    <layout class="QGridLayout" name="gridLayout_61">
+                     <item row="2" column="0">
+                      <widget class="QPushButton" name="Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button">
+                       <property name="text">
+                        <string>Clear Ephemerides
+Data stack</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="3" column="0">
+                      <widget class="QPushButton" name="aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button">
+                       <property name="text">
+                        <string>Send Data Stack</string>
+                       </property>
+                      </widget>
+                     </item>
+                     <item row="1" column="0">
+                      <widget class="QPushButton" name="Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button">
+                       <property name="text">
+                        <string>Push Ephemerides Data
+ to Stack</string>
+                       </property>
+                      </widget>
+                     </item>
+                    </layout>
+                   </widget>
+                  </item>
                   <item row="4" column="1">
                    <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_MagneticEphemeris_LineEdit">
                     <property name="text">
                      <string>x,y,z</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="4" column="0">
+                   <widget class="QLabel" name="label_138">
+                    <property name="text">
+                     <string>Magnetic Ephemeris</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="0" column="0">
+                   <widget class="QLabel" name="label_118">
+                    <property name="text">
+                     <string>Chunk ID</string>
+                    </property>
+                   </widget>
+                  </item>
+                  <item row="6" column="0">
+                   <widget class="QLabel" name="label_139">
+                    <property name="text">
+                     <string>Controller ID</string>
                     </property>
                    </widget>
                   </item>
@@ -2265,13 +2318,6 @@ Stack Entries:</string>
                     </layout>
                    </widget>
                   </item>
-                  <item row="0" column="0">
-                   <widget class="QLabel" name="label_118">
-                    <property name="text">
-                     <string>Chunk ID</string>
-                    </property>
-                   </widget>
-                  </item>
                   <item row="2" column="0">
                    <widget class="QLabel" name="label_137">
                     <property name="text">
@@ -2279,66 +2325,20 @@ Stack Entries:</string>
                     </property>
                    </widget>
                   </item>
-                  <item row="6" column="0">
-                   <widget class="QLabel" name="label_139">
+                  <item row="2" column="1">
+                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit">
                     <property name="text">
-                     <string>Controller ID</string>
+                     <string>x,y,z</string>
                     </property>
-                   </widget>
-                  </item>
-                  <item row="4" column="0">
-                   <widget class="QLabel" name="label_138">
-                    <property name="text">
-                     <string>Magnetic Ephemeris</string>
-                    </property>
-                   </widget>
-                  </item>
-                  <item row="7" column="0">
-                   <widget class="QGroupBox" name="groupBox_36">
-                    <property name="title">
-                     <string>Ephermerides Data Stack Controls</string>
-                    </property>
-                    <layout class="QGridLayout" name="gridLayout_61">
-                     <item row="2" column="0">
-                      <widget class="QPushButton" name="Satelliteconfig_ADCs_Ephemerides_DataStack_Clear_Button">
-                       <property name="text">
-                        <string>Clear Ephemerides
-Data stack</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="3" column="0">
-                      <widget class="QPushButton" name="aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button">
-                       <property name="text">
-                        <string>Send Data Stack</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="1" column="0">
-                      <widget class="QPushButton" name="Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button">
-                       <property name="text">
-                        <string>Push Ephemerides Data
- to Stack</string>
-                       </property>
-                      </widget>
-                     </item>
-                     <item row="0" column="0">
-                      <widget class="QPushButton" name="SatelliteConfig_ADCs_Parameters_SetFromFiles_Button">
-                       <property name="text">
-                        <string>Import file</string>
-                       </property>
-                      </widget>
-                     </item>
-                    </layout>
                    </widget>
                   </item>
                   <item row="6" column="1">
                    <widget class="QSpinBox" name="SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox"/>
                   </item>
-                  <item row="2" column="1">
-                   <widget class="QLineEdit" name="SatelliteConfig_ADCs_Ephemerides_SolarEphemeris_LineEdit">
+                  <item row="8" column="0" colspan="2">
+                   <widget class="QPushButton" name="SatelliteConfig_ADCs_Ephemerides_SetFromFiles_Button">
                     <property name="text">
-                     <string>x,y,z</string>
+                     <string>Import file</string>
                     </property>
                    </widget>
                   </item>
@@ -3953,28 +3953,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="buttonGroup_10"/>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
-  <buttongroup name="buttonGroup_9"/>
-  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="buttonGroup_15"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
-  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_9"/>
   <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup_10"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
+  <buttongroup name="buttonGroup_11"/>
   <buttongroup name="sendFullPictureButtonGroup"/>
   <buttongroup name="buttonGroup_8"/>
+  <buttongroup name="buttonGroup_5"/>
   <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_2"/>
  </buttongroups>
 </ui>
