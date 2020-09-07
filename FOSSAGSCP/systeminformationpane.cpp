@@ -51,6 +51,13 @@ void systeminformationpane::on_SystemInformation_RecordSolarCells_PushButton_cli
 // Packet information tab //
 ///////////////////////////
 #define SatellitePacketTab_Start {
+
+void systeminformationpane::on_PacketInformation_Controls_RequestPacketInfo_PushButton_clicked()
+{
+    IDatagram* datagram = m_interpreter->Create_CMD_Get_Packet_Info();
+    emit this->SendDataFromSystemInformationPane(datagram);
+}
+
 #define SatellitePacketTab_Start }
 
 
@@ -104,4 +111,6 @@ void systeminformationpane::on_LiveStatistics_Request_PushButton_clicked()
 }
 
 
+
 #define SatelliteStatsTab_Start }
+
