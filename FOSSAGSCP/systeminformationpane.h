@@ -27,6 +27,7 @@ private slots:
     void on_SystemInformation_RecordSolarCells_PushButton_clicked();
     void on_SystemInformation_RequestSystemInformation_PushButton_clicked();
     void on_SystemInformation_RequestFullSystemInformation_PushButton_clicked();
+    void on_PacketInformation_Controls_RequestPacketInfo_PushButton_clicked();
 };
 
 #endif // SYSTEMINFORMATIONPANE_H
