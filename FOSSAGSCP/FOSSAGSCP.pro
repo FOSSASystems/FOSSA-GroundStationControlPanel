@@ -33,20 +33,28 @@ SOURCES += \
     3rdparty/fossasattracker/src/SatelliteSimulation.cpp \
     3rdparty/fossasattracker/src/SimulationResult.cpp \
     3rdparty/fossasattracker/src/TLE.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT1B/SystemInfo_B.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/DeploymentState.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/FullSystemInfo.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/GPSLogState.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/PacketInfo.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/RecordedIMU.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/Statistics.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/SystemInfo.cpp \
+    3rdparty/interpreter/src/Commands/Inbound/InboundCommand.cpp \
+    3rdparty/interpreter/src/Decoder.cpp \
+    3rdparty/interpreter/src/DecoderResult.cpp \
+    3rdparty/interpreter/src/Encoder.cpp \
+    3rdparty/interpreter/src/FCPFrame.cpp \
+    3rdparty/interpreter/src/InboundDatagram.cpp \
+    3rdparty/interpreter/src/OutboundDatagram.cpp \
     3rdparty/tiny-aes/aes.cpp \
     messagelogframe.cpp \
     SerialPortThread.cpp \
     main.cpp \
     mainwindow.cpp \
-    src/DatagramProcessor.cpp \
-    src/FCPFrame.cpp \
-    src/IDatagram.cpp \
-    src/IFrame.cpp \
-    src/InboundDatagram.cpp \
-    src/OutboundDatagram.cpp \
-    src/Settings.cpp \
+    Settings.cpp \
     systeminformationpane.cpp \
-    src/DatagramInterpreter.cpp \
 
 HEADERS += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.h \
@@ -71,27 +79,41 @@ HEADERS += \
     3rdparty/fossasattracker/src/SatelliteSimulation.hpp \
     3rdparty/fossasattracker/src/SimulationResult.hpp \
     3rdparty/fossasattracker/src/TLE.hpp \
+    3rdparty/interpreter/src/Commands/Inbound/AllInboundCommands.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT1B/SystemInfo_B.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/DeploymentState.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/FullSystemInfo.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/GPSLogState.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/PacketInfo.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/RecordedIMU.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/Statistics.h \
+    3rdparty/interpreter/src/Commands/Inbound/FOSSASAT2/SystemInfo.h \
+    3rdparty/interpreter/src/Commands/Inbound/InboundCommand.h \
+    3rdparty/interpreter/src/Decoder.h \
+    3rdparty/interpreter/src/DecoderResult.h \
+    3rdparty/interpreter/src/DirectionBits.h \
+    3rdparty/interpreter/src/Encoder.h \
+    3rdparty/interpreter/src/Ephemerides.h \
+    3rdparty/interpreter/src/FCPFrame.h \
+    3rdparty/interpreter/src/InboundDatagram.h \
+    3rdparty/interpreter/src/OperationIDs.h \
+    3rdparty/interpreter/src/OutboundDatagram.h \
+    3rdparty/interpreter/src/SatVersions.h \
+    3rdparty/interpreter/src/SleepInterval.h \
     3rdparty/tiny-aes/aes.h \
     SerialPortThread.h \
     mainwindow.h \
     messagelogframe.h \
-    src/DatagramProcessor.h \
-    src/FCPFrame.h \
-    src/IFrame.h \
-    src/InboundDatagram.h \
-    src/OutboundDatagram.h \
-    src/VersionStrings.h \
     systeminformationpane.h \
-    src/CStructs.h \
-    src/DopplerShiftCorrector.h \
-    src/Settings.h \
-    src/IDatagram.h \
-    src/DatagramInterpreter.h
+    DopplerShiftCorrector.h \
+    Settings.h \
+    IDatagram.h
 
 INCLUDEPATH += src/
 INCLUDEPATH += 3rdparty/FOSSA-Comms
 INCLUDEPATH += 3rdparty/quicktle-master/include
 INCLUDEPATH += 3rdparty/tiny-aes
+INCLUDEPATH += 3rdparty/interpreter/src
 
 FORMS += \
     mainwindow.ui \

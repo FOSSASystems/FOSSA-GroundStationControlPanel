@@ -13,17 +13,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     // initialize the interpereter.
     assert(ui != nullptr);
 
-    // create the interpreter
-    m_interpreter = new DatagramInterpreter(ui, m_messageLogFrame);
-
     // load the system information pane
-    m_sytemInfoPane = new systeminformationpane(m_interpreter);
+    m_sytemInfoPane = new systeminformationpane();
     m_sytemInfoPane->show();
-
-    m_interpreter->SetSystemInformationPane(m_sytemInfoPane->ui);
-
-    // create the processor
-    m_processor = new DatagramProcessor(ui, m_sytemInfoPane->ui, m_messageLogFrame);
 
     // create the doppler correction timer.
     // must be initialized before the UI
@@ -46,9 +38,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleError, this, &MainWindow::ErrorReceived, Qt::AutoConnection);
     connect(&(this->m_serialPortThread), &SerialPortThread::HandleTimeout, this, &MainWindow::TimeoutReceived, Qt::AutoConnection);
 
-    // signal piping from the interpeter to this.
-    connect(m_processor, &DatagramProcessor::StartDopplerCorrector, this, &MainWindow::StartDopplerCorrector);
-
     // data piping from message log frame to serial port thread.
     connect(m_messageLogFrame, &MessageLogFrame::SendDataFromMessageLogFrame, this, &MainWindow::ReceivedMessagefromMessageLog);
 
@@ -66,7 +55,6 @@ MainWindow::~MainWindow()
         delete m_dopplerCorrectionTimer;
     }
 
-    delete m_interpreter;
     delete m_sytemInfoPane;
     delete ui;
 }
@@ -105,15 +93,18 @@ void MainWindow::ReceivedByte(uint8_t data)
 
         if (m_frameData.size() >= m_messageLength)
         {
-            IDatagram* datagram = m_interpreter->SerialData_To_Datagram(m_frameData);
+            std::vector<uint8_t> frameDataBytes;
+            for (int i = 0; i < m_frameData.length(); i++) {
+                frameDataBytes.push_back(m_frameData[i]);
+            }
+            InboundDatagram datagram = Encoder::EncodeInbound(frameDataBytes);
 
             // push the datagram to the log panel.
             m_messageLogFrame->WriteDatagram(datagram);
 
-            // process the received datagram into function calls.
-            m_processor->ProcessDatagram(datagram);
 
-            delete datagram;
+            DecoderResult result = Decoder::Decode(datagram);
+            /// @todo process result
 
             // reset data and flags
             m_frameData.clear();
@@ -157,14 +148,14 @@ void MainWindow::HandleRead(QByteArray data)
     }
 }
 
-void MainWindow::SendDatagram(const IDatagram* datagram)
+void MainWindow::SendDatagram(const OutboundDatagram datagram)
 {
     // log the datagram.
     m_messageLogFrame->WriteDatagram(datagram);
 
     // convert the datagram to a byte array.
-    uint32_t datagramDataLength = datagram->GetLength();
-    const uint8_t* datagramData = datagram->GetData();
+    uint32_t datagramDataLength = datagram.GetLength();
+    const uint8_t* datagramData = datagram.GetData();
 
     QByteArray datagramDataArr;
     for (int i = 0; i < datagramDataLength; i++)
@@ -223,7 +214,7 @@ void MainWindow::ReceivedMessagefromMessageLog(QString msg)
     m_serialPortThread.Write(bytes);
 }
 
-void MainWindow::ReceivedDatagramfromSystemInformationPane(IDatagram* datagram)
+void MainWindow::ReceivedDatagramfromSystemInformationPane(OutboundDatagram datagram)
 {
     this->SendDatagram(datagram);
 }
@@ -681,25 +672,25 @@ void MainWindow::LoadSatelliteControlsUI()
 
 void MainWindow::on_SatelliteControls_BaseOps_Ping_Button_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Ping();
+    OutboundDatagram datagram = Encoder::Create_CMD_Ping();
     this->SendDatagram(datagram);
 }
 
 void MainWindow::on_SatelliteControls_BaseOps_Restart_Button_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Restart();
+    OutboundDatagram datagram = Encoder::Create_CMD_Restart();
     this->SendDatagram(datagram);
 }
 
 void MainWindow::on_SatelliteControls_BaseOps_Deploy_Button_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Deploy();
+    OutboundDatagram datagram = Encoder::Create_CMD_Deploy();
     this->SendDatagram(datagram);
 }
 
 void MainWindow::on_SatelliteControls_BaseOps_Abort_Button_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Abort();
+    OutboundDatagram datagram = Encoder::Create_CMD_Abort();
     this->SendDatagram(datagram);
 }
 
@@ -713,7 +704,7 @@ void MainWindow::on_CameraControl_Capture_Button_clicked()
     char specialFilter = (char)this->ui->CameraControl_SpecialFilter_SpinBox->value();
     char contrast = (char)this->ui->CameraControl_Contrast_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Camera_Capture(pictureSlot,
+    OutboundDatagram datagram = Encoder::Create_CMD_Camera_Capture(pictureSlot,
                                                                             lightMode,
                                                                             pictureSize,
                                                                             brightness,
@@ -729,7 +720,7 @@ void MainWindow::on_CameraControl_GetPictureLength_GetPictureLength_Button_click
 {
     uint8_t pictureSlot = ui->CameraControl_GetPictureLength_PictureSlot_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_Picture_Length(pictureSlot);
+    OutboundDatagram datagram = Encoder::Create_CMD_Get_Picture_Length(pictureSlot);
     this->SendDatagram(datagram);
 }
 
@@ -743,7 +734,7 @@ void MainWindow::on_CameraControl_PictureBurst_GetPictureBurst_Button_clicked()
     // 1 is full picture, 0 is scan data.
     char fullPictureOrScandata = (char)this->ui->CameraControl_PictureBurst_FullPictureModeFullPicture_RadioButton->isChecked();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_Picture_Burst(pictureSlot, packetId, fullPictureOrScandata);
+    OutboundDatagram datagram = Encoder::Create_CMD_Get_Picture_Burst(pictureSlot, packetId, fullPictureOrScandata);
 
     this->SendDatagram(datagram);
 }
@@ -763,7 +754,7 @@ void MainWindow::on_EEPROM_Control_Wipe_Button_clicked()
 
     char flags = wipeSystemInfo | wipeStatistics | wipeStoreAndForward | wipeNMEALog | wipeImageStorage | wipeADCSparameters | wipeADCSEphemerides;
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Wipe_EEPROM(flags);
+    OutboundDatagram datagram = Encoder::Create_CMD_Wipe_EEPROM(flags);
     this->SendDatagram(datagram);
 }
 
@@ -774,14 +765,14 @@ void MainWindow::on_SatelliteConfig_Transmission_Send_Button_clicked()
     char automatedStatsTransmissionEnabled = ui->SatelliteConfig_Transmission_AutoStatsEnabled_RadioButton->isChecked();
     char FSKMandatedForLargePacketsEnabled = ui->SatelliteConfig_Transmission_FSKMandated_Enabled_RadioButton->isChecked();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Transmit_Enable(transmitEnabled, automatedStatsTransmissionEnabled, FSKMandatedForLargePacketsEnabled);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_Transmit_Enable(transmitEnabled, automatedStatsTransmissionEnabled, FSKMandatedForLargePacketsEnabled);
     this->SendDatagram(datagram);
 }
 
 
 void MainWindow::on_GPSControl_GetGPSState_GetLogState_Button_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_GPS_Log_State();
+    OutboundDatagram datagram = Encoder::Create_CMD_Get_GPS_Log_State();
     this->SendDatagram(datagram);
 }
 
@@ -790,7 +781,7 @@ void MainWindow::on_GPSControl_LogGPS_StartLogging_Button_clicked()
     uint32_t loggingDuration = ui->GPSControl_LogGPS_LoggingDuration_LineEdit->text().toInt();
     uint32_t loggingStartOffset = ui->GPSControl_LogGPS_StartOffset_LineEdit->text().toInt();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Log_GPS(loggingDuration, loggingStartOffset);
+    OutboundDatagram datagram = Encoder::Create_CMD_Log_GPS(loggingDuration, loggingStartOffset);
     this->SendDatagram(datagram);
 }
 
@@ -810,7 +801,7 @@ void MainWindow::on_GPSControl_GetGPSLog_GetLog_Button_clicked()
 
     uint16_t numNMEASentencesDownlink = ui->GPSControl_GetGPSLog_NMEASeqCount_SpinBox->value(); // 0 = all
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_GPS_Log(newestEntriesFirst, gpsLogStartOffset, numNMEASentencesDownlink);
+    OutboundDatagram datagram = Encoder::Create_CMD_Get_GPS_Log(newestEntriesFirst, gpsLogStartOffset, numNMEASentencesDownlink);
     this->SendDatagram(datagram);
 }
 
@@ -820,7 +811,7 @@ void MainWindow::on_GPSControl_RunGPSCmd_RunCommand_Button_clicked()
     std::string binMessageStr = binMessage.toStdString();
     const char * binMessageCStr = binMessageStr.c_str();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Run_GPS_Command((char*)binMessageCStr);
+    OutboundDatagram datagram = Encoder::Create_CMD_Run_GPS_Command((char*)binMessageCStr);
     this->SendDatagram(datagram);
 }
 
@@ -833,7 +824,7 @@ void MainWindow::on_StoreAndForward_Message_AddMessage_Button_clicked()
     const char * messageCStr = messageStdStr.c_str();
 
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Store_And_Forward_Add(messageId, (char*)messageCStr);
+    OutboundDatagram datagram = Encoder::Create_CMD_Store_And_Forward_Add(messageId, (char*)messageCStr);
     this->SendDatagram(datagram);
 }
 
@@ -841,7 +832,7 @@ void MainWindow::on_storeAndForwardStoreAndForward_RequestMessage_RequestMessage
 {
     uint32_t messageId = ui->StoreAndForward_RequestMessage_MessageID_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Store_And_Forward_Request(messageId);
+    OutboundDatagram datagram = Encoder::Create_CMD_Store_And_Forward_Request(messageId);
     this->SendDatagram(datagram);
 
 }
@@ -853,7 +844,7 @@ void MainWindow::on_TransmissionRouter_Retransmission_Retransmit_Button_clicked(
     std::string msgStdStr = msg.toStdString();
     char * msgCStr = (char*)msgStdStr.c_str();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Retransmit(senderId, msgCStr);
+    OutboundDatagram datagram = Encoder::Create_CMD_Retransmit(senderId, msgCStr);
     this->SendDatagram(datagram);
 }
 
@@ -910,7 +901,7 @@ void MainWindow::on_TransmissionRouter_RetransmissionCustom_RetransmitCustom_But
     std::string msgStdStr = msg.toStdString();
     const char * msgCStr = msgStdStr.c_str();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Retransmit_Custom(bandwidth, spreadingFactor, codingRate, preambleLength, crcEnabled, outputPower, senderId, (char*)msgCStr);
+    OutboundDatagram datagram = Encoder::Create_CMD_Retransmit_Custom(bandwidth, spreadingFactor, codingRate, preambleLength, crcEnabled, outputPower, senderId, (char*)msgCStr);
     this->SendDatagram(datagram);
 }
 
@@ -920,7 +911,7 @@ void MainWindow::on_RouteCommand_RouteCommand_Button_clicked()
     std::string frameStr = frame.toStdString();
     const char* frameCStr = frameStr.c_str();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Route((char*)frameCStr);
+    OutboundDatagram datagram = Encoder::Create_CMD_Route((char*)frameCStr);
     this->SendDatagram(datagram);
 }
 
@@ -943,7 +934,7 @@ void MainWindow::on_RecordIMU_RecordIMU_Button_clicked()
         flags |= 0x04;
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Record_IMU(numSamples, samplingPeriod, flags);
+    OutboundDatagram datagram = Encoder::Create_CMD_Record_IMU(numSamples, samplingPeriod, flags);
     this->SendDatagram(datagram);
 }
 
@@ -964,7 +955,7 @@ void MainWindow::on_FlashControl_SetFlashContent_Button_clicked()
     const char * flashDataCStr = flashDataStdStr.c_str();
 
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Flash_Contents(flashAddress, (char*)flashDataCStr);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_Flash_Contents(flashAddress, (char*)flashDataCStr);
     this->SendDatagram(datagram);
 }
 
@@ -981,7 +972,7 @@ void MainWindow::on_FlashControl_GetFlashContent_Get_Button_clicked()
 
     uint8_t numBytesToRead = ui->FlashControl_GetFlashContent_NumberOfBytes_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_Flash_Contents(flashAddress, numBytesToRead);
+    OutboundDatagram datagram = Encoder::Create_CMD_Get_Flash_Contents(flashAddress, numBytesToRead);
     this->SendDatagram(datagram);
 }
 
@@ -996,7 +987,7 @@ void MainWindow::on_FlashControl_EraseFlash_Erase_Button_clicked()
         msgBox.exec();
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Erase_Flash(addressToErase);
+    OutboundDatagram datagram = Encoder::Create_CMD_Erase_Flash(addressToErase);
     this->SendDatagram(datagram);
 }
 
@@ -1029,7 +1020,7 @@ void MainWindow::on_ADCSManeuvering_RunADCManeuver_Button_clicked()
         flags |= 0x04;
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Run_Manual_ACS(xAxisHBridgeHighMag, xAxisHBridgeLowMag, yAxisHBridgeHighMag, yAxisHBridgeLowMag, zAxisHBridgeHighMag, zAxisHBridgeLowhMag, xAxisPulseLength, yAxisPulseLength, zAxisPulseLength, maneuverDuration, flags);
+    OutboundDatagram datagram = Encoder::Create_CMD_Run_Manual_ACS(xAxisHBridgeHighMag, xAxisHBridgeLowMag, yAxisHBridgeHighMag, yAxisHBridgeLowMag, zAxisHBridgeHighMag, zAxisHBridgeLowhMag, xAxisPulseLength, yAxisPulseLength, zAxisPulseLength, maneuverDuration, flags);
     this->SendDatagram(datagram);
 }
 
@@ -1131,7 +1122,7 @@ void MainWindow::on_SatelliteControls_Maneuver_Run_Button_clicked()
     flags |= (overrideEulerAngleToleranceCheck << 4);
     flags |= (overrideAngularVelocityToleranceCheck << 5);
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Maneuver(flags, maneuverLength);
+    OutboundDatagram datagram = Encoder::Create_CMD_Maneuver(flags, maneuverLength);
     this->SendDatagram(datagram);
 }
 
@@ -1217,7 +1208,7 @@ void MainWindow::on_Detumble_Execute_Button_2_clicked()
     flags |= (overrideZAxisFaultCheck << 2);
     flags |= (overrideDetumblingAngularVelocityToleranceCheck << 3);
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Detumble(flags, detumblingLength);
+    OutboundDatagram datagram = Encoder::Create_CMD_Detumble(flags, detumblingLength);
     this->SendDatagram(datagram);
 }
 
@@ -1259,7 +1250,7 @@ void MainWindow::on_SatelliteConfig_callsignSetButton_clicked()
     std::string callsignStdStr = callsign.toStdString();
     const char * callsignCStr = callsignStdStr.c_str();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Callsign((char*)(callsignCStr));
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_Callsign((char*)(callsignCStr));
     this->SendDatagram(datagram);
 }
 
@@ -1269,7 +1260,7 @@ void MainWindow::on_SatelliteConfig_TLESetButton_clicked()
     std::string tleStdStr = tle.toStdString();
     const char * tleCStr = tleStdStr.c_str();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_TLE((char*)(tleCStr));
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_TLE((char*)(tleCStr));
     this->SendDatagram(datagram);
 }
 
@@ -1279,7 +1270,7 @@ void MainWindow::on_SatelliteConfig_ReceiveWindow_SetButton_clicked()
     uint8_t fskrxLen = ui->SatelliteConfig_ReceiveWindow_FSKRXLength_SpinBox->value();
     uint8_t lorarxLen = ui->SatelliteConfig_ReceiveWindow_LoraRXLength_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Receive_Windows(fskrxLen, lorarxLen);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_Receive_Windows(fskrxLen, lorarxLen);
     this->SendDatagram(datagram);
 }
 
@@ -1311,7 +1302,7 @@ void MainWindow::on_SatelliteConfig_PowerLimits_Set_Button_clicked()
 
     uint8_t heaterDutyCycle = ui->SatelliteConfig_PowerLimits_HeaterDutyCycle_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Power_Limits(deploymentVoltageLimit, heaterVoltageLimit, cwBeepVoltageLimit, lowPowerVoltageLimit, heaterTemperature, mpptSwichTemperature, heaterDutyCycle);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_Power_Limits(deploymentVoltageLimit, heaterVoltageLimit, cwBeepVoltageLimit, lowPowerVoltageLimit, heaterTemperature, mpptSwichTemperature, heaterDutyCycle);
     this->SendDatagram(datagram);
 }
 
@@ -1335,13 +1326,13 @@ void MainWindow::on_SatelliteConfig_SpreadingFactor_Set_Button_clicked()
         sfMode = 0;
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_SF_Mode(sfMode);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_SF_Mode(sfMode);
     this->SendDatagram(datagram);
 }
 
 
 
-static std::vector<sleep_interval_t> g_sleepIntervalStack;
+static std::vector<SleepInterval> g_sleepIntervalStack;
 
 void MainWindow::on_SatelliteConfig_SleepInterval_PushToStack_Button_clicked()
 {
@@ -1351,7 +1342,7 @@ void MainWindow::on_SatelliteConfig_SleepInterval_PushToStack_Button_clicked()
     uint16_t thirdSleepInterval = ui->SatelliteConfig_SleepInterval_ThirdSleepInterval_SpinBox->value();
 
 
-    sleep_interval_t sleepInterval;
+    SleepInterval sleepInterval;
     sleepInterval.firstSleepIntervalVoltageLevel = firstVoltageLevel;
     sleepInterval.firstSleepIntervalLength = firstSleepInterval;
     sleepInterval.secondSleepIntervalLength = secondSleepInvtervals;
@@ -1371,7 +1362,7 @@ void MainWindow::on_SatelliteConfig_SleepInterval_ClearInterval_Button_clicked()
 
 void MainWindow::on_SatelliteConfig_SleepInterval_SendoStack_Button_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Sleep_Intervals(g_sleepIntervalStack);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_Sleep_Intervals(g_sleepIntervalStack);
     this->SendDatagram(datagram);
     g_sleepIntervalStack.clear();
     ui->SatelliteConfig_SleepInterval_Stack_StackCount_SpinBox->setValue(0);
@@ -1418,7 +1409,7 @@ void MainWindow::on_SatelliteConfig_MPPT_Set_Button_clicked()
     }
 
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_MPPT_Mode(tempSwitchState, keepAliveState);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_MPPT_Mode(tempSwitchState, keepAliveState);
     this->SendDatagram(datagram);
 }
 
@@ -1432,7 +1423,7 @@ void MainWindow::on_SatelliteConfig_RTC_Set_Button_clicked()
     uint8_t mins = ui->SatelliteConfig_RTC_Minutes_SpinBox->value();
     uint8_t secs = ui->SatelliteConfig_RTC_Seconds_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_RTC(yearOffset, month, day, dow, hours, mins, secs);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_RTC(yearOffset, month, day, dow, hours, mins, secs);
     this->SendDatagram(datagram);
 }
 
@@ -1458,7 +1449,7 @@ void MainWindow::on_SatelliteConfig_LowPowerMode_Set_Button_clicked()
         msgBox.exec();
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_Low_Power_Mode_Enable(enabledFlag);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_Low_Power_Mode_Enable(enabledFlag);
     this->SendDatagram(datagram);
 }
 
@@ -1537,7 +1528,7 @@ void MainWindow::on_SatelliteConfig_IMU_Set_Button_clicked()
         msgBox.exec();
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_IMU_Offset(xAxisGyroscopeOffset, yAxisGyroscopeOffset, zAxisGyroscopeOffset,
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_IMU_Offset(xAxisGyroscopeOffset, yAxisGyroscopeOffset, zAxisGyroscopeOffset,
                                                                    xAxisAccele, yAxisAccele, zAxisAccele,
                                                                    xAxisMagnet, yAxisMagnet, zAxisMagnet);
     this->SendDatagram(datagram);
@@ -1663,7 +1654,7 @@ void MainWindow::on_SatelliteConfig_IMU_Callibration_Set_PushButton_clicked()
         bvx, bvy, bvz
     };
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_IMU_Calibration(matrix, bvec);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_IMU_Calibration(matrix, bvec);
     this->SendDatagram(datagram);
 }
 
@@ -1815,7 +1806,7 @@ void MainWindow::on_SatelliteConfig_ADCs_Parameters_Set_Button_clicked()
         msgBox.exec();
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Parameters(
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_ADCS_Parameters(
                 maximumPulseIntensity,
                 maximumPulseLength,
                 detumblingAngularVelocityChangeTolerance,
@@ -1897,7 +1888,7 @@ void MainWindow::on_SatelliteConfig_ADCs_Controller_Set_Button_clicked()
         controllerMatrix[2][i] = val;
     }
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_ADCS_Controller(controllerId, controllerMatrix);
     this->SendDatagram(datagram);
 }
 
@@ -1968,14 +1959,14 @@ void MainWindow::on_SatelliteConfig_ADCs_Controller_FromFiles_Button_clicked()
                 }
 
                 // finished building this controllerMatrix, create datagram and send it.
-                IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Controller(controllerNumber, controllerMatrix);
+                OutboundDatagram datagram = Encoder::Create_CMD_Set_ADCS_Controller(controllerNumber, controllerMatrix);
                 this->SendDatagram(datagram);
             }
         }
     });
 }
 
-static std::vector<ephemerides_t> g_ephemeridesControllerStack;
+static std::vector<Ephemerides> g_ephemeridesControllerStack;
 
 void MainWindow::on_SatelliteConfig_ADCs_Ephemerides_SetFromFiles_Button_clicked()
 {
@@ -2061,7 +2052,7 @@ void MainWindow::on_SatelliteConfig_ADCs_Ephemerides_SetFromFiles_Button_clicked
             ephemeridesMat[5] = magnetZ;
 
 
-            ephemerides_t eph;
+            Ephemerides eph;
             eph.solar_x = solarX;
             eph.solar_y = solarY;
             eph.solar_z = solarZ;
@@ -2089,7 +2080,7 @@ void MainWindow::on_Satelliteconfig_ADCs_Ephemerides_DataStack_Push_Button_click
 
     uint8_t controllerId = ui->SatelliteConfig_ADCs_Ephemerides_ControllerID_SpinBox->text().toUInt();
 
-    ephemerides_t ephemeridesStruct;
+    Ephemerides ephemeridesStruct;
     ephemeridesStruct.solar_x = solarElements[0].toFloat();
     ephemeridesStruct.solar_y = solarElements[1].toFloat();
     ephemeridesStruct.solar_z = solarElements[2].toFloat();
@@ -2114,7 +2105,7 @@ void MainWindow::on_aSatelliteconfig_ADCs_Ephemerides_DataStack_Send_Button_clic
 {
     uint16_t chunkId = ui->SatelliteConfig_ADCs_Ephemerides_ChunkID_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
+    OutboundDatagram datagram = Encoder::Create_CMD_Set_ADCS_Ephemerides(chunkId, g_ephemeridesControllerStack);
     this->SendDatagram(datagram);
 
     g_ephemeridesControllerStack.clear();

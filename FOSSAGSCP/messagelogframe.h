@@ -8,7 +8,8 @@
 #include <chrono>
 #include <ctime>
 
-#include "src/IDatagram.h"
+#include <InboundDatagram.h>
+#include <OutboundDatagram.h>
 
 namespace Ui {
 class MessageLogFrame;
@@ -27,7 +28,8 @@ public:
 
     Ui::MessageLogFrame *ui;
 public slots:
-    void WriteDatagram(const IDatagram* datagram); // attached to MessageLog.h
+    void WriteDatagram(OutboundDatagram datagram); // attached to MessageLog.h
+    void WriteDatagram(InboundDatagram datagram); // attached to MessageLog.h
 signals:
     void SendDataFromMessageLogFrame(QString data);
 private slots:

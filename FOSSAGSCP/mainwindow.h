@@ -19,14 +19,12 @@
 
 #include <FOSSA-Comms.h>
 
-#include "CStructs.h"
-
 #include "systeminformationpane.h"
 #include "messagelogframe.h"
 #include "SerialPortThread.h"
 
-#include "DatagramInterpreter.h"
-#include "DatagramProcessor.h"
+#include <Encoder.h>
+#include <Decoder.h>
 
 #include "DopplerShiftCorrector.h"
 #include "Settings.h"
@@ -44,7 +42,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void SendDatagram(const IDatagram* datagram);
+    void SendDatagram(OutboundDatagram datagram);
     void SendHandshake();
 public slots:
     void StartDopplerCorrector();
@@ -69,7 +67,7 @@ private slots:
 
     // Receive message from message logger.
     void ReceivedMessagefromMessageLog(QString msg);
-    void ReceivedDatagramfromSystemInformationPane(IDatagram* datagram);
+    void ReceivedDatagramfromSystemInformationPane(OutboundDatagram datagram);
 
 
     void on_CameraControl_Capture_Button_clicked();
@@ -172,9 +170,6 @@ private:
     // GUI Frames
     systeminformationpane *m_sytemInfoPane;
     MessageLogFrame *m_messageLogFrame;
-
-    DatagramInterpreter* m_interpreter;
-    DatagramProcessor* m_processor;
 
     DopplerShiftCorrector m_dopplerShiftCorrector;
 

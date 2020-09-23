@@ -1,9 +1,9 @@
 #include "systeminformationpane.h"
 #include "ui_systeminformationpane.h"
+#include <Encoder.h>
 
-systeminformationpane::systeminformationpane(DatagramInterpreter* interpeter, QWidget *parent) :
+systeminformationpane::systeminformationpane(QWidget *parent) :
     QWidget(parent),
-    m_interpreter(interpeter),
     ui(new Ui::systeminformationpane)
 {
     ui->setupUi(this);
@@ -21,13 +21,13 @@ systeminformationpane::~systeminformationpane()
 
 void systeminformationpane::on_SystemInformation_RequestFullSystemInformation_PushButton_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_Full_System_Info();
+    OutboundDatagram datagram = Encoder::Create_CMD_Get_Full_System_Info();
     emit this->SendDataFromSystemInformationPane(datagram);
 }
 
 void systeminformationpane::on_SystemInformation_RequestSystemInformation_PushButton_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Transmit_System_Info();
+    OutboundDatagram datagram = Encoder::Create_CMD_Transmit_System_Info();
     emit this->SendDataFromSystemInformationPane(datagram);
 }
 
@@ -36,7 +36,7 @@ void systeminformationpane::on_SystemInformation_RecordSolarCells_PushButton_cli
     char numSamples = ui->SystemInformation_RecordSolarCells_NumSamples_SpinBox->value();
     uint16_t samplingPeriod = ui->SystemInformation_RecordSolarCells_NumSamples_SpinBox->value();
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Record_Solar_Cells(numSamples, samplingPeriod);
+    OutboundDatagram  datagram = Encoder::Create_CMD_Record_Solar_Cells(numSamples, samplingPeriod);
     emit this->SendDataFromSystemInformationPane(datagram);
 }
 
@@ -54,11 +54,11 @@ void systeminformationpane::on_SystemInformation_RecordSolarCells_PushButton_cli
 
 void systeminformationpane::on_PacketInformation_Controls_RequestPacketInfo_PushButton_clicked()
 {
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_Packet_Info();
+    OutboundDatagram  datagram = Encoder::Create_CMD_Get_Packet_Info();
     emit this->SendDataFromSystemInformationPane(datagram);
 }
 
-#define SatellitePacketTab_Start }
+#define SatellitePacketTab_End }
 
 
 
@@ -106,7 +106,8 @@ void systeminformationpane::on_LiveStatistics_Request_PushButton_clicked()
     flags = flags | (lightSensors << 3);
     flags = flags | (imu << 4);
 
-    IDatagram* datagram = m_interpreter->Create_CMD_Get_Statistics(flagsB, flags);
+    /// @todo add version switch
+    OutboundDatagram datagram = Encoder::Create_CMD_Get_Statistics(flags);
     emit this->SendDataFromSystemInformationPane(datagram);
 }
 

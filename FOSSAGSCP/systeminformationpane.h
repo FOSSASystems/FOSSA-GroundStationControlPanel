@@ -3,8 +3,7 @@
 
 #include <QWidget>
 
-#include "IDatagram.h"
-#include "DatagramInterpreter.h"
+#include <OutboundDatagram.h>
 
 namespace Ui {
 class systeminformationpane;
@@ -14,14 +13,12 @@ class systeminformationpane : public QWidget
 {
     Q_OBJECT
 public:
-    systeminformationpane( DatagramInterpreter* interpreter, QWidget *parent = nullptr);
+    systeminformationpane(QWidget *parent = nullptr);
     ~systeminformationpane();
 
     Ui::systeminformationpane *ui;
 signals:
-    void SendDataFromSystemInformationPane(IDatagram* datagram);
-private:
-    DatagramInterpreter* m_interpreter = nullptr;
+    void SendDataFromSystemInformationPane(OutboundDatagram datagram);
 private slots:
     void on_LiveStatistics_Request_PushButton_clicked();
     void on_SystemInformation_RecordSolarCells_PushButton_clicked();

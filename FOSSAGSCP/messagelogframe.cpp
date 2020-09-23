@@ -14,7 +14,7 @@ MessageLogFrame::MessageLogFrame(QWidget *parent) :
     ui->messageLogListView->setAutoScroll(true);
 }
 
-void MessageLogFrame::WriteDatagram(const IDatagram* datagram)
+void MessageLogFrame::WriteDatagram(OutboundDatagram datagram)
 {
     // insert a new empty row.
     m_messageLogListModel->insertRow(m_messageLogListModel->rowCount());
@@ -32,7 +32,44 @@ void MessageLogFrame::WriteDatagram(const IDatagram* datagram)
         loggedMessage += timestampString;
     }
 
-    QString rawData = datagram->ToString();
+    QString rawData = QString::fromStdString(datagram.ToString());
+
+    loggedMessage.append(rawData);
+
+    // put the data in the new empty row.
+    std::string logMessageStdString = loggedMessage.toStdString();
+
+    const char * msgTolog = logMessageStdString.c_str();
+    m_messageLogListModel->setData(row, msgTolog);
+
+    // make sure we are always at the most recent row.
+    ui->messageLogListView->scrollToBottom();
+
+    // default serial sniffing to enabled.
+    m_enableSerialSniffing = true;
+    m_logTimestamps = true;
+
+}
+
+void MessageLogFrame::WriteDatagram(InboundDatagram datagram)
+{
+    // insert a new empty row.
+    m_messageLogListModel->insertRow(m_messageLogListModel->rowCount());
+    QModelIndex row = m_messageLogListModel->index(m_messageLogListModel->rowCount() - 1, 0);
+
+    // fill a string with data.
+    auto timestamp = std::chrono::system_clock::now();
+    auto timenow = std::chrono::system_clock::to_time_t(timestamp);
+    char* timestampString = std::ctime(&timenow);
+
+    QString loggedMessage = QString("");
+
+    if (m_logTimestamps)
+    {
+        loggedMessage += timestampString;
+    }
+
+    QString rawData = QString::fromStdString(datagram.ToString());
 
     loggedMessage.append(rawData);
 
