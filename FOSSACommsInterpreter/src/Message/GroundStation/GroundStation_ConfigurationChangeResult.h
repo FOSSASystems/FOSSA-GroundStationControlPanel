@@ -22,40 +22,44 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef DATAGRAM_H
-#define DATAGRAM_H
+#ifndef GroundStation_CONFIG_CHANGE_H
+#define GroundStation_CONFIG_CHANGE_H
 
-#include "SatVersion.h"
-#include "OperationID.h"
-#include "Frame.h"
+#include "../../Frame.h"
 
-#include <vector>
-#include <stdexcept>
+namespace GroundStation
+{
 
-class Datagram {
+namespace Messages
+{
+
+class ConfigurationChangeResult {
 public:
-	Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound);
-    int16_t GetFrameFunctionID();
-    OperationID GetOperationID();
-    Frame GetFrame();
-    std::vector<uint8_t> Serialize();
-    std::string ToString();
+    explicit ConfigurationChangeResult(Frame& frame);
 private:
-	void ExtractRadiolibStatusCode(std::vector<uint8_t> data);
-	void ExtractFrame(std::string callsign, std::vector<uint8_t> data);
-private:
-	Frame frame;
-	bool frameExists = false;
+    uint8_t modemType;
 
-	uint8_t controlByte;
-	uint8_t lengthByte;
-	OperationID operationId;
+    float carrierFrequency;
 
-	int16_t radiolibStatusCode;
-	bool inbound;
+    int8_t outputPower;
+    float currentLimit;
 
-	std::string callsign;
-	SatVersion satVersion;
+    float loraBandwidth;
+    uint8_t loraSpreadingFactor;
+    uint8_t loraCodingRate;
+    uint16_t loraPreambleLength;
+    float gfskBitRate;
+    float gfskFrequencyDeviation;
+    float gfskRxBandwidth;
+    uint16_t gfskPreambleLength;
+    int8_t gfskDataShapingBTProduct;
 };
 
-#endif //DATAGRAM_H
+}
+
+}
+
+
+
+
+#endif //FOSSASAT2_SYSTEMINFO_H

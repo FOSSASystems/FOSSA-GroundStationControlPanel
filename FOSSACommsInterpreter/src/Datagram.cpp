@@ -24,6 +24,7 @@
 
 #include "Datagram.h"
 
+
 Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound) {
 	this->satVersion = satVersion;
 	this->inbound = inbound;
@@ -35,21 +36,42 @@ Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint
 
 	switch (this->operationId) {
 		case OperationID::HANDSHAKE:
-			break;
-		case OperationID::CARRIER:
-			this->ExtractRadiolibStatusCode(data);
-			break;
+            break;
+        case OperationID::FRAME:
+            this->ExtractRadiolibStatusCode(data);
+            this->ExtractFrame(callsign, data);
+            break;
 		case OperationID::CONFIG:
 			this->ExtractRadiolibStatusCode(data);
 			break;
-		case OperationID::FRAME:
-			this->ExtractRadiolibStatusCode(data);
-			this->ExtractFrame(callsign, data);
-			break;
+        case OperationID::CARRIER:
+            this->ExtractRadiolibStatusCode(data);
+            break;
 		default:
 			throw std::runtime_error("Datagram operation id invalid.");
 			break;
-	}
+    }
+}
+
+int16_t Datagram::GetFrameFunctionID()
+{
+    return this->frame.GetFunctionID();
+}
+
+OperationID Datagram::GetOperationID()
+{
+    return this->operationId;
+}
+
+Frame Datagram::GetFrame()
+{
+    return this->frame;
+}
+
+std::string Datagram::ToString()
+{
+    throw "DATAGRAM TOSTRING NOT IMPLEMENTED YET";
+    return "";
 }
 
 void Datagram::ExtractRadiolibStatusCode(std::vector<uint8_t> data) {

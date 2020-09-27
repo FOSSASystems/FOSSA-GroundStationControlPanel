@@ -39,6 +39,8 @@ public:
 	Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data);
 
 	uint8_t GetByteAt(uint32_t index);
+
+    int16_t GetFunctionID();
 private:
 	void ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength);
 private:

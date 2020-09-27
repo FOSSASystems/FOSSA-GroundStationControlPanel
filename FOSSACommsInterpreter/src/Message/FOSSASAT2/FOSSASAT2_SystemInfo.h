@@ -36,6 +36,7 @@ namespace Messages
 class SystemInfo {
 public:
 	explicit SystemInfo(Frame& frame);
+
 	uint32_t getMpptOutputVoltage() const;
 	int32_t getMpptOutputCurrent() const;
 	uint32_t getUnixTimestamp() const;

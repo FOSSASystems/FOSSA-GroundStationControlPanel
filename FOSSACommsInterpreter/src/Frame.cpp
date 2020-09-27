@@ -47,8 +47,14 @@ Frame::Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> d
 }
 
 uint8_t Frame::GetByteAt(uint32_t index) {
-	return this->optionalData[index];
+    return this->optionalData[index];
 }
+
+int16_t Frame::GetFunctionID()
+{
+    return this->functionId;
+}
+
 
 void Frame::ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength) {
 	uint8_t *tempBuffer = new uint8_t[optionalDataLength];

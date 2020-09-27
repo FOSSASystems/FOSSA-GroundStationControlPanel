@@ -4,6 +4,8 @@ cmake-*
 # Prerequisites
 *.d
 
+*.autosave
+
 # Compiled Object files
 *.slo
 *.lo

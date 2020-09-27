@@ -22,40 +22,26 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef DATAGRAM_H
-#define DATAGRAM_H
+#ifndef GROUNDSTATION_FRAMEDECODER_H
+#define GROUNDSTATION_FRAMEDECODER_H
 
-#include "SatVersion.h"
-#include "OperationID.h"
-#include "Frame.h"
+#include "../../Frame.h"
 
-#include <vector>
-#include <stdexcept>
+#include "../../Message/GroundStation/GroundStation_CarrierChangeResult.h"
+#include "../../Message/GroundStation/GroundStation_ConfigurationChangeResult.h"
+#include "../../Message/GroundStation/GroundStation_HandshakeResult.h"
 
-class Datagram {
+namespace GroundStation
+{
+
+class FrameDecoder {
 public:
-	Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound);
-    int16_t GetFrameFunctionID();
-    OperationID GetOperationID();
-    Frame GetFrame();
-    std::vector<uint8_t> Serialize();
-    std::string ToString();
-private:
-	void ExtractRadiolibStatusCode(std::vector<uint8_t> data);
-	void ExtractFrame(std::string callsign, std::vector<uint8_t> data);
-private:
-	Frame frame;
-	bool frameExists = false;
-
-	uint8_t controlByte;
-	uint8_t lengthByte;
-	OperationID operationId;
-
-	int16_t radiolibStatusCode;
-	bool inbound;
-
-	std::string callsign;
-	SatVersion satVersion;
+    static GroundStation::Messages::HandshakeResult DecodeHandshakeResult(Frame &frame);
+    static GroundStation::Messages::CarrierChangeResult DecodeCarrierChangeResult(Frame &frame);
+    static GroundStation::Messages::ConfigurationChangeResult DecodeConfigurationChangeResult(Frame &frame);
 };
 
-#endif //DATAGRAM_H
+}
+
+
+#endif //FOSSASAT2_FRAMEDECODER_H

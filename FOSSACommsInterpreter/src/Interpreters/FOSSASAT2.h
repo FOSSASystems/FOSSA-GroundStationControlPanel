@@ -22,40 +22,14 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef DATAGRAM_H
-#define DATAGRAM_H
+#ifndef FOSSASAT2_INTERPRETER_MODULE_H
+#define FOSSASAT2_INTERPRETER_MODULE_H
 
-#include "SatVersion.h"
-#include "OperationID.h"
-#include "Frame.h"
+#include "../DatagramEncoder/FOSSASAT2/FOSSASAT2_DatagramEncoder.h"
+#include "../FrameDecoder/FOSSASAT2/FOSSASAT2_FrameDecoder.h"
 
-#include <vector>
-#include <stdexcept>
+#include "../Message/FOSSASAT2/FOSSASAT2_SystemInfo.h"
 
-class Datagram {
-public:
-	Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound);
-    int16_t GetFrameFunctionID();
-    OperationID GetOperationID();
-    Frame GetFrame();
-    std::vector<uint8_t> Serialize();
-    std::string ToString();
-private:
-	void ExtractRadiolibStatusCode(std::vector<uint8_t> data);
-	void ExtractFrame(std::string callsign, std::vector<uint8_t> data);
-private:
-	Frame frame;
-	bool frameExists = false;
 
-	uint8_t controlByte;
-	uint8_t lengthByte;
-	OperationID operationId;
 
-	int16_t radiolibStatusCode;
-	bool inbound;
-
-	std::string callsign;
-	SatVersion satVersion;
-};
-
-#endif //DATAGRAM_H
+#endif //FOSSASAT2_INTERPRETER_MODULE_H

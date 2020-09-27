@@ -22,40 +22,27 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef DATAGRAM_H
-#define DATAGRAM_H
+#ifndef GroundStation_HANDSHAKE_RESULT_H
+#define GroundStation_HANDSHAKE_RESULT_H
 
-#include "SatVersion.h"
-#include "OperationID.h"
-#include "Frame.h"
+#include "../../Frame.h"
 
-#include <vector>
-#include <stdexcept>
+namespace GroundStation
+{
 
-class Datagram {
+namespace Messages
+{
+
+class HandshakeResult {
 public:
-	Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound);
-    int16_t GetFrameFunctionID();
-    OperationID GetOperationID();
-    Frame GetFrame();
-    std::vector<uint8_t> Serialize();
-    std::string ToString();
-private:
-	void ExtractRadiolibStatusCode(std::vector<uint8_t> data);
-	void ExtractFrame(std::string callsign, std::vector<uint8_t> data);
-private:
-	Frame frame;
-	bool frameExists = false;
-
-	uint8_t controlByte;
-	uint8_t lengthByte;
-	OperationID operationId;
-
-	int16_t radiolibStatusCode;
-	bool inbound;
-
-	std::string callsign;
-	SatVersion satVersion;
+    explicit HandshakeResult(Frame& frame);
 };
 
-#endif //DATAGRAM_H
+}
+
+}
+
+
+
+
+#endif //GroundStation_HANDSHAKE_RESULT_H
