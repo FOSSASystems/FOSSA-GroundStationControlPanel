@@ -10,9 +10,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_messageLogFrame = new MessageLogFrame();
     m_messageLogFrame->show();
 
-    // initialize the interpereter.
-    assert(ui != nullptr);
-
     // load the system information pane
     m_sytemInfoPane = new systeminformationpane();
     m_sytemInfoPane->show();
@@ -22,13 +19,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_dopplerCorrectionTimer = new QTimer(this);
     connect(m_dopplerCorrectionTimer, &QTimer::timeout, this, &MainWindow::SendDopplerShiftedFrequency);
 
-
     // initialize the 4 main tabs.
     this->LoadControlPanelSettingsUI();
     this->LoadGroundStationSettingsUI();
     this->LoadSatelliteConfigurationUI();
     this->LoadSatelliteControlsUI();
-
 
     // startup the serial port thread.
     m_serialPortThread.start();
@@ -97,6 +92,7 @@ void MainWindow::ReceivedByte(uint8_t data)
             for (int i = 0; i < m_frameData.length(); i++) {
                 frameDataBytes.push_back(m_frameData[i]);
             }
+
             InboundDatagram datagram = Encoder::EncodeInbound(frameDataBytes);
 
             // push the datagram to the log panel.

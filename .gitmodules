@@ -1,0 +1,3 @@
+[submodule "FOSSAGSCP/3rdparty/FOSSACommsInterpreter"]
+	path = FOSSAGSCP/3rdparty/FOSSACommsInterpreter
+	url = https://github.com/FOSSASystems/FOSSACommsInterpreter

@@ -1,6 +1,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "systeminformationpane.h"
+#include "messagelogframe.h"
+#include "SerialPortThread.h"
+
+#include "DopplerShiftCorrector.h"
+#include "Settings.h"
+
+#include <FOSSA-Comms.h>
+
 #include <QMainWindow>
 #include <QtCore>
 #include <QtWidgets>
@@ -16,18 +25,6 @@
 #include <string.h>
 #include <cstring>
 #include <stdexcept>
-
-#include <FOSSA-Comms.h>
-
-#include "systeminformationpane.h"
-#include "messagelogframe.h"
-#include "SerialPortThread.h"
-
-#include <Encoder.h>
-#include <Decoder.h>
-
-#include "DopplerShiftCorrector.h"
-#include "Settings.h"
 
 
 QT_BEGIN_NAMESPACE
