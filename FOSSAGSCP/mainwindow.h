@@ -40,7 +40,7 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void SendDatagram(OutboundDatagram datagram);
+    void SendDatagram(Datagram datagram)
     void SendHandshake();
 public slots:
     void StartDopplerCorrector();
@@ -65,7 +65,7 @@ private slots:
 
     // Receive message from message logger.
     void ReceivedMessagefromMessageLog(QString msg);
-    void ReceivedDatagramfromSystemInformationPane(OutboundDatagram datagram);
+    void ReceivedDatagramfromSystemInformationPane(Datagram datagram);
 
 
     void on_CameraControl_Capture_Button_clicked();
