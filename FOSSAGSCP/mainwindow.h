@@ -26,6 +26,7 @@
 #include <cstring>
 #include <stdexcept>
 
+#include <Datagram.h>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -184,12 +185,11 @@ private:
     void LoadSatelliteControlsUI();
 
 
-
     bool m_frameStreaming = false;
     bool m_lengthByte = false;
     uint8_t m_messageLength = 0;
     uint8_t m_fcpFrameLength = 0;
-    QByteArray m_frameData;
+    QByteArray m_datagramData;
 
     void ReceivedByte(uint8_t data);
 public:

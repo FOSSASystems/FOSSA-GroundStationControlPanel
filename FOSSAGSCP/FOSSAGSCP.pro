@@ -17,21 +17,14 @@ SOURCES += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.cpp \
     3rdparty/FOSSACommsInterpreter/libs/FOSSA-Comms/FOSSA-Comms.cpp \
     3rdparty/FOSSACommsInterpreter/libs/tiny-aes/aes.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT1B/SystemInfo_B.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/DeploymentState.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/FullSystemInfo.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/GPSLogState.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/PacketInfo.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/RecordedIMU.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/Statistics.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/SystemInfo.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/InboundCommand.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Encoder.cpp \
-    3rdparty/FOSSACommsInterpreter/src/FCPFrame.cpp \
-    3rdparty/FOSSACommsInterpreter/src/InboundDatagram.cpp \
-    3rdparty/FOSSACommsInterpreter/src/OutboundDatagram.cpp \
-    3rdparty/FOSSACommsInterpreter/src/Processor.cpp \
-    3rdparty/FOSSACommsInterpreter/src/ProcessorResult.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Datagram.cpp \
+    3rdparty/FOSSACommsInterpreter/src/DatagramEncoder/FOSSASAT1B/FOSSASAT1B_DatagramEncoder.cpp \
+    3rdparty/FOSSACommsInterpreter/src/DatagramEncoder/FOSSASAT2/FOSSASAT2_DatagramEncoder.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Frame.cpp \
+    3rdparty/FOSSACommsInterpreter/src/FrameDecoder/FOSSASAT1B/FOSSASAT1B_FrameDecoder.cpp \
+    3rdparty/FOSSACommsInterpreter/src/FrameDecoder/FOSSASAT2/FOSSASAT2_FrameDecoder.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT1B/FOSSASAT1B_SystemInfo.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_SystemInfo.cpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.cpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.cpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.cpp \
@@ -62,26 +55,21 @@ HEADERS += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.h \
     3rdparty/FOSSACommsInterpreter/libs/FOSSA-Comms/FOSSA-Comms.h \
     3rdparty/FOSSACommsInterpreter/libs/tiny-aes/aes.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/AllInboundCommands.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT1B/SystemInfo_B.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/DeploymentState.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/FullSystemInfo.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/GPSLogState.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/PacketInfo.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/RecordedIMU.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/Statistics.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/FOSSASAT2/SystemInfo.h \
-    3rdparty/FOSSACommsInterpreter/src/Commands/Inbound/InboundCommand.h \
+    3rdparty/FOSSACommsInterpreter/src/Datagram.h \
+    3rdparty/FOSSACommsInterpreter/src/DatagramEncoder/FOSSASAT1B/FOSSASAT1B_DatagramEncoder.h \
+    3rdparty/FOSSACommsInterpreter/src/DatagramEncoder/FOSSASAT2/FOSSASAT2_DatagramEncoder.h \
     3rdparty/FOSSACommsInterpreter/src/DirectionBits.h \
-    3rdparty/FOSSACommsInterpreter/src/Encoder.h \
     3rdparty/FOSSACommsInterpreter/src/Ephemerides.h \
-    3rdparty/FOSSACommsInterpreter/src/FCPFrame.h \
-    3rdparty/FOSSACommsInterpreter/src/InboundDatagram.h \
-    3rdparty/FOSSACommsInterpreter/src/OperationIDs.h \
-    3rdparty/FOSSACommsInterpreter/src/OutboundDatagram.h \
-    3rdparty/FOSSACommsInterpreter/src/Processor.h \
-    3rdparty/FOSSACommsInterpreter/src/ProcessorResult.h \
-    3rdparty/FOSSACommsInterpreter/src/SatVersions.h \
+    3rdparty/FOSSACommsInterpreter/src/Frame.h \
+    3rdparty/FOSSACommsInterpreter/src/FrameDecoder/FOSSASAT1B/FOSSASAT1B_FrameDecoder.h \
+    3rdparty/FOSSACommsInterpreter/src/FrameDecoder/FOSSASAT2/FOSSASAT2_FrameDecoder.h \
+    3rdparty/FOSSACommsInterpreter/src/Interpreter.h \
+    3rdparty/FOSSACommsInterpreter/src/Interpreters/FOSSASAT1B.h \
+    3rdparty/FOSSACommsInterpreter/src/Interpreters/FOSSASAT2.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT1B/FOSSASAT1B_SystemInfo.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_SystemInfo.h \
+    3rdparty/FOSSACommsInterpreter/src/OperationID.h \
+    3rdparty/FOSSACommsInterpreter/src/SatVersion.h \
     3rdparty/FOSSACommsInterpreter/src/SleepInterval.h \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gException.hpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.hpp \

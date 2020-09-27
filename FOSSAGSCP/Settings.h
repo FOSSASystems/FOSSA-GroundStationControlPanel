@@ -1,15 +1,18 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+#include <SatVersion.h>
+
 #include <QString>
-#include <string>
-#include <cstdint>
-#include <cstdio>
-#include <stdexcept>
 #include <QDir>
 #include <QCoreApplication>
 #include <QSettings>
 #include <QStandardPaths>
+
+#include <string>
+#include <cstdint>
+#include <cstdio>
+#include <stdexcept>
 
 ////////////////
 /// Settings ///
@@ -64,8 +67,12 @@ public:
     static bool GetHandshookValue();
     static void SetHandshookValue(bool handshook);
 
-    static void SetSatVersion(QString satVersion);
-    static QString GetSatVersion();
+    static void SetSatVersion(SatVersion satVersion);
+    static SatVersion GetSatVersion();
+
+    static std::string getCallsign();
+    static void setCallsign(const std::string &value);
+
 protected:
 private:
     static uint8_t m_key[16];
@@ -84,7 +91,9 @@ private:
     static std::string m_tleLine1;
     static std::string m_tleLine2;
 
-    static QString m_satVersion;
+    static SatVersion m_satVersion;
+
+    static std::string callsign;
 };
 
 #endif // SETTINGS_H

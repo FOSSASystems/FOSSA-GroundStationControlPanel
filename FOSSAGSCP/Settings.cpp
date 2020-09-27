@@ -271,6 +271,16 @@ void Settings::SetHandshookValue(bool handshook)
     m_handshook = handshook;
 }
 
+std::string Settings::getCallsign()
+{
+    return callsign;
+}
+
+void Settings::setCallsign(const std::string &value)
+{
+    callsign = value;
+}
+
 void Settings::SetSatVersion(QString satVersion)
 {
     m_satVersion = satVersion;

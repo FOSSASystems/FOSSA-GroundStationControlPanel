@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <Interpreter.h>
+
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow)
 {
@@ -76,7 +78,7 @@ void MainWindow::ReceivedByte(uint8_t data)
 {
     if (m_frameStreaming)
     {
-        m_frameData.push_back(data);
+        m_datagramData.push_back(data);
 
         if (m_lengthByte)
         {
@@ -86,24 +88,37 @@ void MainWindow::ReceivedByte(uint8_t data)
             m_lengthByte = false;
         }
 
-        if (m_frameData.size() >= m_messageLength)
+        if (m_datagramData.size() >= m_messageLength)
         {
-            std::vector<uint8_t> frameDataBytes;
-            for (int i = 0; i < m_frameData.length(); i++) {
-                frameDataBytes.push_back(m_frameData[i]);
+            std::vector<uint8_t> tempBuffer;
+            for (int i = 0; i < m_datagramData.size(); i++) {
+                tempBuffer.push_back(m_datagramData.at(i));
             }
 
-            InboundDatagram datagram = Encoder::EncodeInbound(frameDataBytes);
+            Datagram datagram = Datagram(Settings::GetSatVersion(), Settings::getCallsign(), tempBuffer, true);
+
+            if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT1B)
+            {
+                if (datagram.GetOperationID() == OperationID::FRAME)
+                {
+                    Frame frame = datagram.GetFrame();
+
+                    if (datagram.GetFrameFunctionID() == RESP_SYSTEM_INFO)
+                    {
+                        FOSSASAT1B::Messages::SystemInfo systemInfo = FOSSASAT1B::FrameDecoder::DecodeSystemInfo(frame);
+                    }
+                }
+            }
+            else if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT2)
+            {
+
+            }
 
             // push the datagram to the log panel.
             m_messageLogFrame->WriteDatagram(datagram);
 
-
-            DecoderResult result = Decoder::Decode(datagram);
-            /// @todo process result
-
             // reset data and flags
-            m_frameData.clear();
+            m_datagramData.clear();
 
             m_frameStreaming = false;
         }
@@ -114,7 +129,7 @@ void MainWindow::ReceivedByte(uint8_t data)
     {
         if (IsControlByte(data))
         {
-            m_frameData.push_back(data);
+            m_datagramData.push_back(data);
 
             m_frameStreaming = true;
 
@@ -1236,6 +1251,11 @@ void MainWindow::on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_click
         throw "invalid satellite version.";
     }
 
+    SatVersion satVersion;
+    if (text == "FOSSASAT-1B")
+    {
+        satVersion =
+    }
     Settings::SetSatVersion(text);
 }
 
