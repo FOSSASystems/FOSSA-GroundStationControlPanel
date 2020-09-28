@@ -9,70 +9,70 @@ CONFIG += c++11
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/FOSSA-Comms/FOSSA-Comms.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTime.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTimeSpan.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleFileAccessor.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleParser.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVector.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/mathUtils.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4ext.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4io.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4unit.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/solarProcedures.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/ObserverInformation.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteInformation.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteSimulation.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SimulationResult.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/TLE.cpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/tiny-aes/aes.cpp \
-    ../../../FOSSA-GroundStationControlPanel/SerialPortThread.cpp \
-    ../../../FOSSA-GroundStationControlPanel/Settings.cpp \
-    ../../../FOSSA-GroundStationControlPanel/main.cpp \
-    ../../../FOSSA-GroundStationControlPanel/mainwindow.cpp \
-    ../../../FOSSA-GroundStationControlPanel/messagelogframe.cpp \
-    ../../../FOSSA-GroundStationControlPanel/systeminformationpane.cpp
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/FOSSA-Comms/FOSSA-Comms.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTime.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTimeSpan.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleFileAccessor.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleParser.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVector.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/mathUtils.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4ext.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4io.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4unit.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/solarProcedures.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/ObserverInformation.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteInformation.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteSimulation.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SimulationResult.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/TLE.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/tiny-aes/aes.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/SerialPortThread.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/Settings.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/main.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/mainwindow.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/messagelogframe.cpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/systeminformationpane.cpp
 
 HEADERS += \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/FOSSA-Comms/FOSSA-Comms.h \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gException.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrixTempl.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTime.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleFileAccessor.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleParser.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVector.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVectorTempl.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/mathUtils.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4ext.h \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4io.h \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4unit.h \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/solarProcedures.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/stdsat.h \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/ObserverInformation.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteInformation.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteSimulation.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SimulationResult.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/TLE.hpp \
-    ../../../FOSSA-GroundStationControlPanel/3rdparty/tiny-aes/aes.h \
-    ../../../FOSSA-GroundStationControlPanel/DopplerShiftCorrector.h \
-    ../../../FOSSA-GroundStationControlPanel/SerialPortThread.h \
-    ../../../FOSSA-GroundStationControlPanel/Settings.h \
-    ../../../FOSSA-GroundStationControlPanel/mainwindow.h \
-    ../../../FOSSA-GroundStationControlPanel/messagelogframe.h \
-    ../../../FOSSA-GroundStationControlPanel/systeminformationpane.h
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/FOSSA-Comms/FOSSA-Comms.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gException.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrixTempl.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTime.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleFileAccessor.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gTleParser.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVector.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gVectorTempl.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/mathUtils.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4ext.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4io.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/sgp4unit.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/solarProcedures.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/libs/gsat-r11-fixed/src/stdsat.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/ObserverInformation.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteInformation.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SatelliteSimulation.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/SimulationResult.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/fossasattracker/src/TLE.hpp \
+    ../../Sources/FOSSA-GroundStationControlPanel/3rdparty/tiny-aes/aes.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/DopplerShiftCorrector.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/SerialPortThread.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/Settings.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/mainwindow.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/messagelogframe.h \
+    ../../Sources/FOSSA-GroundStationControlPanel/systeminformationpane.h
+
+FORMS += \
+    ../../Sources/FOSSA-GroundStationControlPanel/mainwindow.ui \
+    ../../Sources/FOSSA-GroundStationControlPanel/messagelogframe.ui \
+    ../../Sources/FOSSA-GroundStationControlPanel/systeminformationpane.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
-
-FORMS += \
-    ../../../FOSSA-GroundStationControlPanel/mainwindow.ui \
-    ../../../FOSSA-GroundStationControlPanel/messagelogframe.ui \
-    ../../../FOSSA-GroundStationControlPanel/systeminformationpane.ui

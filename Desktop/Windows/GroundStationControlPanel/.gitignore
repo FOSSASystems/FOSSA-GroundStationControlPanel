@@ -1,8 +1,6 @@
 # This file is used to ignore files which are generated
 # ----------------------------------------------------------------------------
-build-FOSSAGSCP-*
-build-GroundStationControlPanel*
-.DS_STORE
+
 *~
 *.autosave
 *.a
