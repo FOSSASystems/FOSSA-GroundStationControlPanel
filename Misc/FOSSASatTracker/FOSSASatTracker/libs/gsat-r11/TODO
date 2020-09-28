@@ -1,0 +1,8 @@
+Domentation:
+   Translate and publishing the Orbital Mechanics Estudy to english.
+
+TLE file parser:
+	  Redesing to suport files and internet conection to get satellite data.
+	  
+Satellite tracking functionality:
+		Design and codify classes to predict satellite positions in a time interval.
