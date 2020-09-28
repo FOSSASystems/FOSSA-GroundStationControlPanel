@@ -3,10 +3,8 @@
 
 #include <QWidget>
 
-#include "IDatagram.h"
-#include "DatagramInterpreter.h"
-
 #include <Interpreter.h>
+#include "src/Settings.h"
 
 namespace Ui {
 class systeminformationpane;

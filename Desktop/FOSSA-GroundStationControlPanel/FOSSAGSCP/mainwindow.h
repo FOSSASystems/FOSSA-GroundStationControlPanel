@@ -19,14 +19,9 @@
 
 #include <FOSSA-Comms.h>
 
-#include "CStructs.h"
-
 #include "systeminformationpane.h"
 #include "messagelogframe.h"
 #include "SerialPortThread.h"
-
-#include "DatagramInterpreter.h"
-#include "DatagramProcessor.h"
 
 #include "DopplerShiftCorrector.h"
 #include "Settings.h"
@@ -173,11 +168,6 @@ private:
     systeminformationpane *m_sytemInfoPane;
     MessageLogFrame *m_messageLogFrame;
 
-    DatagramInterpreter* m_interpreter;
-    DatagramProcessor* m_processor;
-
-    DopplerShiftCorrector m_dopplerShiftCorrector;
-
     // serial port thread.
     SerialPortThread m_serialPortThread;
 
@@ -185,6 +175,7 @@ private:
 
     // Timer for dopplerShiftCorrector;
     QTimer* m_dopplerCorrectionTimer = nullptr;
+    DopplerShiftCorrector m_dopplerShiftCorrector;
 
     void LoadControlPanelSettingsUI();
     void LoadGroundStationSettingsUI();

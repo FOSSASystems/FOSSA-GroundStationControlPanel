@@ -34,10 +34,10 @@ public:
         m_simulation = new FOSSASatTracker::SatelliteSimulation(satelliteName.c_str(), *m_tle);
         FOSSASatTracker::SimulationResult result = m_simulation->Simulate(m_observer, time);
 
-//        if (result.HasSatelliteInformation())
-//        {
-//            FOSSASatTracker::SatelliteInformation satelliteInformation = result.GetSatelliteInformation();
-//        }
+        //        if (result.HasSatelliteInformation())
+        //        {
+        //            FOSSASatTracker::SatelliteInformation satelliteInformation = result.GetSatelliteInformation();
+        //        }
         if (result.HasObserverInformation())
         {
             FOSSASatTracker::ObserverInformation observerInformation = result.GetObserverInformation();

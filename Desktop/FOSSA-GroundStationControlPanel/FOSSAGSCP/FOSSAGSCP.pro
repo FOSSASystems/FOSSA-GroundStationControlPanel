@@ -53,15 +53,8 @@ SOURCES += \
     SerialPortThread.cpp \
     main.cpp \
     mainwindow.cpp \
-    src/DatagramProcessor.cpp \
-    src/FCPFrame.cpp \
-    src/IDatagram.cpp \
-    src/IFrame.cpp \
-    src/InboundDatagram.cpp \
-    src/OutboundDatagram.cpp \
     src/Settings.cpp \
     systeminformationpane.cpp \
-    src/DatagramInterpreter.cpp \
 
 HEADERS += \
     3rdparty/FOSSA-Comms/FOSSA-Comms.h \
@@ -108,20 +101,12 @@ HEADERS += \
     3rdparty/fossasattracker/src/SimulationResult.hpp \
     3rdparty/fossasattracker/src/TLE.hpp \
     3rdparty/tiny-aes/aes.h \
+    DopplerShiftCorrector.h \
     SerialPortThread.h \
     mainwindow.h \
     messagelogframe.h \
-    src/DatagramProcessor.h \
-    src/FCPFrame.h \
-    src/IFrame.h \
-    src/InboundDatagram.h \
-    src/OutboundDatagram.h \
-    src/VersionStrings.h \
     systeminformationpane.h \
-    src/DopplerShiftCorrector.h \
-    src/Settings.h \
-    src/IDatagram.h \
-    src/DatagramInterpreter.h
+    src/Settings.h
 
 INCLUDEPATH += src/
 INCLUDEPATH += 3rdparty/FOSSA-Comms
