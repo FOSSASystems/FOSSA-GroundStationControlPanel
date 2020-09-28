@@ -1,0 +1,34 @@
+82 02 0x0 0x0
+
+10000010 00000010
+
+1 0000010 00000010 0x0 0x0
+
+Ground station -> Control panel
+
+Op id = 2 = Ground station configuration change
+
+Payload length = 2 = 0 successfully changed.
+
+---------------
+
+Response from handshake
+
+0x80 0x00
+10000000 00000000 (handshake response)
+
+'{' 	123    	0x7b
+
+
+-----------------
+
+Response from doppler shift correction.
+
+0x83 0x02 0x00 0x00
+
+10000011 00000010 00000000  00000000
+
+Drection = 1 = ground station to control panel
+Op id = 0000011 = 3 = ground station carrier frequency change result/request.
+Length = 0x02 = 2 = payload length
+payload = 0x00 0x00 = 0 = Status code ERR_NONE

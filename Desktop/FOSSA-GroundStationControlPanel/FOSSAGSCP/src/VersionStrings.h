@@ -1,0 +1,7 @@
+#ifndef VERSIONSTRINGS_H
+#define VERSIONSTRINGS_H
+
+#define VERSION_1B QString("FOSSASAT-1B")
+#define VERSION_2 QString("FOSSASAT-2")
+
+#endif // VERSIONSTRINGS_H
