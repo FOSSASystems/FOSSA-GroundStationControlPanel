@@ -26,6 +26,7 @@
 #define FOSSASAT2_PACKETINFO_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace FOSSASAT2
 {
@@ -33,10 +34,19 @@ namespace FOSSASAT2
 namespace Messages
 {
 
-class PacketInfo {
+class PacketInfo : public IMessage  {
 public:
     explicit PacketInfo(Frame& frame);
+    virtual ~PacketInfo() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 private:
+    int8_t snr;
+    uint8_t rssi;
+    uint16_t numReceivedValidLoraFrames;
+    uint16_t numReceivedInvalidLoraFrames;
+    uint16_t numReceivedValidFSKFrames;
+    uint16_t numReceivedInvalidFSKFrames;
 };
 
 }

@@ -22,53 +22,23 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef FOSSASAT1B_SYSTEMINFO_H
-#define FOSSASAT1B_SYSTEMINFO_H
 
-#include "../../Frame.h"
-#include "../IMessage.h"
+#ifndef IMESSAGE_H
+#define IMESSAGE_H
 
-namespace FOSSASAT1B
-{
+#include <string>
 
-namespace Messages
-{
+/**
+This interface ensures that all messages have the functions:
+ - .ToString()  required by the GUI to print it in a human readable format.
+ - .ToJSON()    required by the server to translate the class into data for the internet.
+*/
 
-class SystemInfo : public IMessage {
+class IMessage {
 public:
-	explicit SystemInfo(Frame& frame);
-    virtual ~SystemInfo() = default;
-    virtual std::string ToString() override;
-    virtual std::string ToJSON() override;
-private:
-	uint32_t batteryVoltage;
-	int32_t batteryChargingCurrent;
-	uint32_t batteryChargingVoltage;
-
-	uint32_t timeSinceLastReset;
-
-	uint8_t powerConfiguration;
-	bool lowPowerModeActive;
-	bool lowPowerModeEnabled;
-	bool mpptTemperatureSwitchEnabled;
-	bool mpptKeepAliveEnabled;
-	bool transmissionsEnabled;
-
-	uint16_t resetCounter;
-
-	uint32_t solarCellAVoltage;
-	uint32_t solarCellBVoltage;
-	uint32_t solarCellCVoltage;
-
-	float batteryTemperature;
-	float obcBoardTemperature;
-	int8_t mcuTemperature;
+    virtual ~IMessage() = default;
+    virtual std::string ToString() = 0;
+    virtual std::string ToJSON() = 0;
 };
 
-}
-
-}
-
-
-
-#endif //FOSSASAT1_SYSTEMINFO_H
+#endif // IMESSAGE_H

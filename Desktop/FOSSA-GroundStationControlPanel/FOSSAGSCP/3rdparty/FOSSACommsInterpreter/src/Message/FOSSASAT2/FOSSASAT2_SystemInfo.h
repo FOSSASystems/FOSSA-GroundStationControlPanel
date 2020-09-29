@@ -26,6 +26,7 @@
 #define FOSSASAT2_SYSTEMINFO_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace FOSSASAT2
 {
@@ -33,9 +34,12 @@ namespace FOSSASAT2
 namespace Messages
 {
 
-class SystemInfo {
+class SystemInfo : public IMessage  {
 public:
 	explicit SystemInfo(Frame& frame);
+    virtual ~SystemInfo() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 
 	uint32_t getMpptOutputVoltage() const;
 	int32_t getMpptOutputCurrent() const;

@@ -26,6 +26,7 @@
 #define GroundStation_CONFIG_CHANGE_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace GroundStation
 {
@@ -33,9 +34,12 @@ namespace GroundStation
 namespace Messages
 {
 
-class ConfigurationChangeResult {
+class ConfigurationChangeResult : public IMessage  {
 public:
     explicit ConfigurationChangeResult(Frame& frame);
+    virtual ~ConfigurationChangeResult() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 private:
     uint8_t modemType;
 

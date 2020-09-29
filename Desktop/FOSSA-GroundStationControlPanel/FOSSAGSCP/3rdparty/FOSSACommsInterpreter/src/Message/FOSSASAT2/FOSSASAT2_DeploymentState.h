@@ -26,6 +26,7 @@
 #define FOSSASAT2_DEPLOYMENTSTATE_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace FOSSASAT2
 {
@@ -33,10 +34,14 @@ namespace FOSSASAT2
 namespace Messages
 {
 
-class DeploymentState {
+class DeploymentState : public IMessage {
 public:
     explicit DeploymentState(Frame& frame);
+    virtual ~DeploymentState() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 private:
+    uint8_t deploymentCounter;
 };
 
 }

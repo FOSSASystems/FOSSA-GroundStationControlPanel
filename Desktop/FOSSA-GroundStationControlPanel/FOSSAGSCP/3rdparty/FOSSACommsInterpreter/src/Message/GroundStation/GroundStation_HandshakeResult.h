@@ -26,6 +26,7 @@
 #define GroundStation_HANDSHAKE_RESULT_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace GroundStation
 {
@@ -33,9 +34,12 @@ namespace GroundStation
 namespace Messages
 {
 
-class HandshakeResult {
+class HandshakeResult : public IMessage  {
 public:
     explicit HandshakeResult(Frame& frame);
+    virtual ~HandshakeResult() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 };
 
 }

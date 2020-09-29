@@ -88,6 +88,7 @@ HEADERS += \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_CarrierChangeResult.h \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_ConfigurationChangeResult.h \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_HandshakeResult.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/IMessage.h \
     3rdparty/FOSSACommsInterpreter/src/OperationID.h \
     3rdparty/FOSSACommsInterpreter/src/SatVersion.h \
     3rdparty/FOSSACommsInterpreter/src/SleepInterval.h \

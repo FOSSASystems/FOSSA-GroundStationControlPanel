@@ -26,6 +26,7 @@
 #define GroundStation_CARRIER_CHANGE_RESULT_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace GroundStation
 {
@@ -40,9 +41,12 @@ namespace Messages
  *          When sent with direction bit set to 0, the optional data is new carrier frequency as IEEE 754 float, LSB first.
  *          RadioLib status code is sent in response (16 bit integer).
  */
-class CarrierChangeResult {
+class CarrierChangeResult : public IMessage  {
 public:
     explicit CarrierChangeResult(Frame& frame);
+    virtual ~CarrierChangeResult() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 };
 
 }

@@ -26,6 +26,7 @@
 #define FOSSASAT2_RECORDEDIMU_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace FOSSASAT2
 {
@@ -33,10 +34,29 @@ namespace FOSSASAT2
 namespace Messages
 {
 
-class RecordedIMU {
+class RecordedIMU : public IMessage  {
 public:
     explicit RecordedIMU(Frame& frame);
+    virtual ~RecordedIMU() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 private:
+    uint8_t deviceFlags;
+    uint8_t gyro;
+    uint8_t accele;
+    uint8_t magn;
+
+    float gyroX;
+    float gyroY;
+    float gyroZ;
+
+    float acceleX;
+    float acceleY;
+    float acceleZ;
+
+    float magnX;
+    float magnY;
+    float magnZ;
 };
 
 }

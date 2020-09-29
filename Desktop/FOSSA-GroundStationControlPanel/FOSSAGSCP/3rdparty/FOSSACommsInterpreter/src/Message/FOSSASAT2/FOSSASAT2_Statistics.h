@@ -26,6 +26,7 @@
 #define FOSSASAT2_STATISTICS_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace FOSSASAT2
 {
@@ -33,10 +34,24 @@ namespace FOSSASAT2
 namespace Messages
 {
 
-class Statistics {
+class Statistics : public IMessage  {
 public:
     explicit Statistics(Frame& frame);
+    virtual ~Statistics() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 private:
+    bool temperaturesIncluded;
+    bool currentsIncluded;
+    bool voltagesIncluded;
+    bool lightSensorsIncluded;
+    bool imuIncluded;
+
+    std::vector<float> temperatures;
+    std::vector<float> currents;
+    std::vector<uint8_t> voltages;
+    std::vector<float> lightSensors;
+    std::vector<float> imus;
 };
 
 }

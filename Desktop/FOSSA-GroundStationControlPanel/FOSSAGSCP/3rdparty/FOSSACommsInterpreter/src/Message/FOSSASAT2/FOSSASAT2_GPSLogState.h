@@ -26,6 +26,7 @@
 #define FOSSASAT2_GPSLOGSTATE_H
 
 #include "../../Frame.h"
+#include "../IMessage.h"
 
 namespace FOSSASAT2
 {
@@ -33,10 +34,18 @@ namespace FOSSASAT2
 namespace Messages
 {
 
-class GPSLogState {
+class GPSLogState : public IMessage  {
 public:
     explicit GPSLogState(Frame& frame);
+    virtual ~GPSLogState() = default;
+    virtual std::string ToString() override;
+    virtual std::string ToJSON() override;
 private:
+    uint32_t gpsLogLength;
+
+    uint32_t lastNMEAEntryAddr;
+
+    uint32_t lastNMEAFixAddr;
 };
 
 }
