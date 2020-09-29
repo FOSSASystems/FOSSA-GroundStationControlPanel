@@ -77,6 +77,7 @@ HEADERS += \
     3rdparty/FOSSACommsInterpreter/src/Interpreter.h \
     3rdparty/FOSSACommsInterpreter/src/Interpreters/FOSSASAT1B.h \
     3rdparty/FOSSACommsInterpreter/src/Interpreters/FOSSASAT2.h \
+    3rdparty/FOSSACommsInterpreter/src/Interpreters/GroundStation.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT1B/FOSSASAT1B_SystemInfo.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_DeploymentState.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_FullSystemInfo.h \

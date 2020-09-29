@@ -28,8 +28,6 @@
 #include "../DatagramEncoder/FOSSASAT2/FOSSASAT2_DatagramEncoder.h"
 #include "../FrameDecoder/FOSSASAT2/FOSSASAT2_FrameDecoder.h"
 
-#include "../Message/FOSSASAT2/FOSSASAT2_SystemInfo.h"
-
 
 
 #endif //FOSSASAT2_INTERPRETER_MODULE_H

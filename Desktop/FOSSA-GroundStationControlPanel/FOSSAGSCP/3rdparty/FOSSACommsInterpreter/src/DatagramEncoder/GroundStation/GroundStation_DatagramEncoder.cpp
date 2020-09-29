@@ -25,3 +25,13 @@
 #include "GroundStation_DatagramEncoder.h"
 
 #include <DirectionBits.h>
+
+std::vector<uint8_t> GroundStation::DatagramEncoder::Handshake()
+{
+    char handshakeMessage = 0x00;
+
+    std::vector<uint8_t> msg;
+    msg.push_back(handshakeMessage);
+    msg.push_back(handshakeMessage);
+    return msg;
+}

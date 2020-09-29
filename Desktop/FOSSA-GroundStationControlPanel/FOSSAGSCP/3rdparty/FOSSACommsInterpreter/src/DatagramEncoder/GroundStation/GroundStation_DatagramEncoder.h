@@ -34,7 +34,7 @@ namespace GroundStation
 
 class DatagramEncoder {
 public:
-
+    static std::vector<uint8_t> Handshake();
 };
 
 }

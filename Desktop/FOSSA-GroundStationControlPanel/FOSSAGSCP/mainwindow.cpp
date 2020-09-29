@@ -3595,14 +3595,12 @@ void MainWindow::on_handshakeSendButton_clicked()
 {
     Settings::SetHandshookValue(false);
 
-    //
-    // Handshake the ground station.
-    //
-    char handshakeMessage = 0x00;
-    QByteArray msg;
-    msg.append(handshakeMessage);
-    msg.append(handshakeMessage);
-    this->m_serialPortThread.Write(msg);
+    std::vector<uint8_t> datagram = GroundStation::DatagramEncoder::Handshake();
+    QByteArray qtArray;
+    for (int i = 0; i < datagram.size(); i++) {
+        qtArray.append(datagram[i]);
+    }
+    this->m_serialPortThread.Write(qtArray);
 }
 
 

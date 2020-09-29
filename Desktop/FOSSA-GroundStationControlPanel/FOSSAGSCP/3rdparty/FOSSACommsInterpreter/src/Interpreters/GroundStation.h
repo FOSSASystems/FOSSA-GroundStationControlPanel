@@ -22,10 +22,11 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef FOSSASAT1B_INTERPRETER_MODULE_H
-#define FOSSASAT1B_INTERPRETER_MODULE_H
+#ifndef GROUND_STATION_INTERPRETER_MODULE_H
+#define GROUND_STATION_INTERPRETER_MODULE_H
 
-#include "../DatagramEncoder/FOSSASAT1B/FOSSASAT1B_DatagramEncoder.h"
-#include "../FrameDecoder/FOSSASAT1B/FOSSASAT1B_FrameDecoder.h"
+#include "../DatagramEncoder/GroundStation/GroundStation_DatagramEncoder.h"
+#include "../FrameDecoder/GroundStation/GroundStation_FrameDecoder.h"
 
-#endif //FOSSASAT1B_INTERPRETER_MODULE_H
+
+#endif //FOSSASAT2_INTERPRETER_MODULE_H
