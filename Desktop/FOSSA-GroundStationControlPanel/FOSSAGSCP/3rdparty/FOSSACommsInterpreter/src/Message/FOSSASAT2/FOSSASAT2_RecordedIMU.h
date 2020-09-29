@@ -22,35 +22,28 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#ifndef FOSSASAT2_FRAMEDECODER_H
-#define FOSSASAT2_FRAMEDECODER_H
+#ifndef FOSSASAT2_RECORDEDIMU_H
+#define FOSSASAT2_RECORDEDIMU_H
 
 #include "../../Frame.h"
-
-#include "../../Message/FOSSASAT2/FOSSASAT2_SystemInfo.h"
-#include "../../Message/FOSSASAT2/FOSSASAT2_PacketInfo.h"
-#include "../../Message/FOSSASAT2/FOSSASAT2_SystemInfo.h"
-#include "../../Message/FOSSASAT2/FOSSASAT2_Statistics.h"
-#include "../../Message/FOSSASAT2/FOSSASAT2_FullSystemInfo.h"
-#include "../../Message/FOSSASAT2/FOSSASAT2_DeploymentState.h"
-#include "../../Message/FOSSASAT2/FOSSASAT2_RecordedIMU.h"
-#include "../../Message/FOSSASAT2/FOSSASAT2_GPSLogState.h"
 
 namespace FOSSASAT2
 {
 
-class FrameDecoder {
+namespace Messages
+{
+
+class RecordedIMU {
 public:
-    static FOSSASAT2::Messages::SystemInfo DecodeSystemInfo(Frame &frame);
-    static FOSSASAT2::Messages::PacketInfo DecodePacketInfo(Frame &frame);
-    static FOSSASAT2::Messages::Statistics DecodeStatistics(Frame &frame);
-    static FOSSASAT2::Messages::FullSystemInfo DecodeFullSystemInfo(Frame &frame);
-    static FOSSASAT2::Messages::DeploymentState DecodeDeploymentState(Frame &frame);
-    static FOSSASAT2::Messages::RecordedIMU DecodeRecordedIMU(Frame &frame);
-    static FOSSASAT2::Messages::GPSLogState DecodeGPSLogState(Frame &frame);
+    explicit RecordedIMU(Frame& frame);
+private:
 };
 
 }
 
+}
 
-#endif //FOSSASAT2_FRAMEDECODER_H
+
+
+
+#endif //FOSSASAT2_SYSTEMINFO_H

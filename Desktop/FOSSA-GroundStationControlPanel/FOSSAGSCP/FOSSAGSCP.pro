@@ -26,6 +26,12 @@ SOURCES += \
     3rdparty/FOSSACommsInterpreter/src/FrameDecoder/FOSSASAT2/FOSSASAT2_FrameDecoder.cpp \
     3rdparty/FOSSACommsInterpreter/src/FrameDecoder/GroundStation/GroundStation_FrameDecoder.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT1B/FOSSASAT1B_SystemInfo.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_DeploymentState.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_FullSystemInfo.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_GPSLogState.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_PacketInfo.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_RecordedIMU.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_Statistics.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_SystemInfo.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_CarrierChangeResult.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_ConfigurationChangeResult.cpp \
@@ -72,6 +78,12 @@ HEADERS += \
     3rdparty/FOSSACommsInterpreter/src/Interpreters/FOSSASAT1B.h \
     3rdparty/FOSSACommsInterpreter/src/Interpreters/FOSSASAT2.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT1B/FOSSASAT1B_SystemInfo.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_DeploymentState.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_FullSystemInfo.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_GPSLogState.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_PacketInfo.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_RecordedIMU.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_Statistics.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_SystemInfo.h \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_CarrierChangeResult.h \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_ConfigurationChangeResult.h \

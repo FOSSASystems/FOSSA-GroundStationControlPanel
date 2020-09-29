@@ -23,3 +23,8 @@
 //
 
 #include "GroundStation_HandshakeResult.h"
+
+GroundStation::Messages::HandshakeResult::HandshakeResult(Frame &frame)
+{
+
+}

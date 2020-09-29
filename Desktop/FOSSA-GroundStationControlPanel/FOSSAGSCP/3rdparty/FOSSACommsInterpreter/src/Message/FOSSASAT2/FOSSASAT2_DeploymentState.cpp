@@ -22,38 +22,9 @@
 // SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#include "FOSSASAT2_FrameDecoder.h"
+#include "FOSSASAT2_DeploymentState.h"
 
-FOSSASAT2::Messages::SystemInfo FOSSASAT2::FrameDecoder::DecodeSystemInfo(Frame &frame) {
-    return FOSSASAT2::Messages::SystemInfo(frame);
-}
-
-FOSSASAT2::Messages::PacketInfo FOSSASAT2::FrameDecoder::DecodePacketInfo(Frame &frame)
+FOSSASAT2::Messages::DeploymentState::DeploymentState(Frame &frame)
 {
-    return FOSSASAT2::Messages::PacketInfo(frame);
-}
 
-FOSSASAT2::Messages::Statistics FOSSASAT2::FrameDecoder::DecodeStatistics(Frame &frame)
-{
-    return FOSSASAT2::Messages::Statistics(frame);
-}
-
-FOSSASAT2::Messages::FullSystemInfo FOSSASAT2::FrameDecoder::DecodeFullSystemInfo(Frame &frame)
-{
-    return FOSSASAT2::Messages::FullSystemInfo(frame);
-}
-
-FOSSASAT2::Messages::DeploymentState FOSSASAT2::FrameDecoder::DecodeDeploymentState(Frame &frame)
-{
-    return FOSSASAT2::Messages::DeploymentState(frame);
-}
-
-FOSSASAT2::Messages::RecordedIMU FOSSASAT2::FrameDecoder::DecodeRecordedIMU(Frame &frame)
-{
-    return FOSSASAT2::Messages::RecordedIMU(frame);
-}
-
-FOSSASAT2::Messages::GPSLogState FOSSASAT2::FrameDecoder::DecodeGPSLogState(Frame &frame)
-{
-    return FOSSASAT2::Messages::GPSLogState(frame);
 }
