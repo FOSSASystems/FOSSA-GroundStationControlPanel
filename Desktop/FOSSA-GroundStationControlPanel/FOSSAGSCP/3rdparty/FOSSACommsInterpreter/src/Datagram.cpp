@@ -34,23 +34,42 @@ Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint
 	this->lengthByte = data[1];
 	this->operationId = (OperationID)(this->controlByte & 0b01111111);
 
-	switch (this->operationId) {
-		case OperationID::HANDSHAKE:
+    if (inbound) {
+        switch (this->operationId) {
+        case OperationID::HANDSHAKE:
             break;
         case OperationID::FRAME:
             this->ExtractRadiolibStatusCode(data);
             this->ExtractFrame(callsign, data);
             break;
-		case OperationID::CONFIG:
-			this->ExtractRadiolibStatusCode(data);
-			break;
+        case OperationID::CONFIG:
+            this->ExtractRadiolibStatusCode(data);
+            break;
         case OperationID::CARRIER:
             this->ExtractRadiolibStatusCode(data);
             break;
-		default:
-			throw std::runtime_error("Datagram operation id invalid.");
-			break;
+        default:
+            throw std::runtime_error("Datagram operation id invalid.");
+            break;
+        }
+    } else {
+        switch (this->operationId) {
+        case OperationID::HANDSHAKE:
+            break;
+        case OperationID::FRAME:
+            this->ExtractFrame(callsign, data);
+            break;
+        case OperationID::CONFIG:
+            break;
+        case OperationID::CARRIER:
+            break;
+        default:
+            throw std::runtime_error("Datagram operation id invalid.");
+            break;
+        }
     }
+
+
 }
 
 int16_t Datagram::GetFrameFunctionID()

@@ -75,7 +75,19 @@ FOSSASAT2::Messages::SystemInfo::SystemInfo(Frame &frame) {
 	this->flashSystemInfoPageCRCErrorCounter = frame.GetByteAt(19);
 	this->flashSystemInfoPageCRCErrorCounter |= (frame.GetByteAt(20) << 8);
 	this->flashSystemInfoPageCRCErrorCounter |= (frame.GetByteAt(21) << 16);
-	this->flashSystemInfoPageCRCErrorCounter |= (frame.GetByteAt(22) << 24);
+    this->flashSystemInfoPageCRCErrorCounter |= (frame.GetByteAt(22) << 24);
+}
+
+std::string FOSSASAT2::Messages::SystemInfo::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string FOSSASAT2::Messages::SystemInfo::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
 }
 
 

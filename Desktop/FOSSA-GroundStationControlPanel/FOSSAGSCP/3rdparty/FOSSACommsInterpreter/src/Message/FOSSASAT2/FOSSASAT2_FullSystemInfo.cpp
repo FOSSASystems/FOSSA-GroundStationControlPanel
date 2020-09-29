@@ -28,3 +28,15 @@ FOSSASAT2::Messages::FullSystemInfo::FullSystemInfo(Frame &frame)
 {
 
 }
+
+std::string FOSSASAT2::Messages::FullSystemInfo::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string FOSSASAT2::Messages::FullSystemInfo::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

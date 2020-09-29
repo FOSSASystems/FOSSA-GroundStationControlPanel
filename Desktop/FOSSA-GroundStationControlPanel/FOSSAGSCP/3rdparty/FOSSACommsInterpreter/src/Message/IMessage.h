@@ -27,6 +27,7 @@
 #define IMESSAGE_H
 
 #include <string>
+#include <stdexcept>
 
 /**
 This interface ensures that all messages have the functions:

@@ -28,3 +28,15 @@ FOSSASAT2::Messages::RecordedIMU::RecordedIMU(Frame &frame)
 {
 
 }
+
+std::string FOSSASAT2::Messages::RecordedIMU::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string FOSSASAT2::Messages::RecordedIMU::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

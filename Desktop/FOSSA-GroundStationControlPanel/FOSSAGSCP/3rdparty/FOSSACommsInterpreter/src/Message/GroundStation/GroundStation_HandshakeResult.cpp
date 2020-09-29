@@ -28,3 +28,15 @@ GroundStation::Messages::HandshakeResult::HandshakeResult(Frame &frame)
 {
 
 }
+
+std::string GroundStation::Messages::HandshakeResult::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string GroundStation::Messages::HandshakeResult::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

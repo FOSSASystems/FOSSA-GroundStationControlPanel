@@ -28,3 +28,15 @@ GroundStation::Messages::CarrierChangeResult::CarrierChangeResult(Frame &frame)
 {
 
 }
+
+std::string GroundStation::Messages::CarrierChangeResult::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string GroundStation::Messages::CarrierChangeResult::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

@@ -26,90 +26,16 @@
 
 GroundStation::Messages::ConfigurationChangeResult::ConfigurationChangeResult(Frame &frame)
 {
-    this->modemType = frame.GetByteAt(0);
+}
 
-    {
-        uint32_t temp = frame.GetByteAt(1);
-        temp |= (frame.GetByteAt(2) << 8);
-        temp |= (frame.GetByteAt(3) << 16);
-        temp |= (frame.GetByteAt(4) << 24);
+std::string GroundStation::Messages::ConfigurationChangeResult::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
 
-        float tempFloat = 0.0f;
-        memcpy(&tempFloat, &temp, 4);
-
-        this->carrierFrequency = tempFloat;
-    }
-
-
-    int8_t outputPower = frame.GetByteAt(5);
-
-    {
-        uint32_t temp = frame.GetByteAt(6);
-        temp |= (frame.GetByteAt(7) << 8);
-        temp |= (frame.GetByteAt(8) << 16);
-        temp |= (frame.GetByteAt(9) << 24);
-
-        float tempFloat = 0.0f;
-        memcpy(&tempFloat, &temp, 4);
-
-        this->currentLimit = tempFloat;
-    }
-
-    {
-        uint32_t temp = frame.GetByteAt(10);
-        temp |= (frame.GetByteAt(11) << 8);
-        temp |= (frame.GetByteAt(12) << 16);
-        temp |= (frame.GetByteAt(13) << 24);
-
-        float tempFloat = 0.0f;
-        memcpy(&tempFloat, &temp, 4);
-
-        this->loraBandwidth = tempFloat;
-    }
-
-
-    this->loraSpreadingFactor = frame.GetByteAt(14);
-    this->loraCodingRate = frame.GetByteAt(15);
-    this->loraPreambleLength = frame.GetByteAt(16) | (frame.GetByteAt(17) << 8);
-
-    {
-        uint32_t temp = frame.GetByteAt(18);
-        temp |= (frame.GetByteAt(19) << 8);
-        temp |= (frame.GetByteAt(20) << 16);
-        temp |= (frame.GetByteAt(21) << 24);
-
-        float tempFloat = 0.0f;
-        memcpy(&tempFloat, &temp, 4);
-
-        this->gfskBitRate = tempFloat;
-    }
-
-
-    {
-        uint32_t temp = frame.GetByteAt(22);
-        temp |= (frame.GetByteAt(23) << 8);
-        temp |= (frame.GetByteAt(24) << 16);
-        temp |= (frame.GetByteAt(25) << 24);
-
-        float tempFloat = 0.0f;
-        memcpy(&tempFloat, &temp, 4);
-
-        this->gfskFrequencyDeviation = tempFloat;
-    }
-
-    {
-        uint32_t temp = frame.GetByteAt(26);
-        temp |= (frame.GetByteAt(27) << 8);
-        temp |= (frame.GetByteAt(28) << 16);
-        temp |= (frame.GetByteAt(29) << 24);
-
-        float tempFloat = 0.0f;
-        memcpy(&tempFloat, &temp, 4);
-
-        this->gfskRxBandwidth = tempFloat;
-    }
-
-    this->gfskPreambleLength = frame.GetByteAt(30) | (frame.GetByteAt(31) << 8);
-
-    this->gfskDataShapingBTProduct = frame.GetByteAt(32);
+std::string GroundStation::Messages::ConfigurationChangeResult::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
 }

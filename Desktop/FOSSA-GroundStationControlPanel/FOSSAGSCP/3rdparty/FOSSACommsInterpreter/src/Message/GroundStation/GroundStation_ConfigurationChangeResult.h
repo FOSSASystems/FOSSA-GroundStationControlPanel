@@ -40,23 +40,6 @@ public:
     virtual ~ConfigurationChangeResult() = default;
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
-private:
-    uint8_t modemType;
-
-    float carrierFrequency;
-
-    int8_t outputPower;
-    float currentLimit;
-
-    float loraBandwidth;
-    uint8_t loraSpreadingFactor;
-    uint8_t loraCodingRate;
-    uint16_t loraPreambleLength;
-    float gfskBitRate;
-    float gfskFrequencyDeviation;
-    float gfskRxBandwidth;
-    uint16_t gfskPreambleLength;
-    int8_t gfskDataShapingBTProduct;
 };
 
 }

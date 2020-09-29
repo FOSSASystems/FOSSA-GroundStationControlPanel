@@ -28,3 +28,15 @@ FOSSASAT2::Messages::DeploymentState::DeploymentState(Frame &frame)
 {
 
 }
+
+std::string FOSSASAT2::Messages::DeploymentState::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string FOSSASAT2::Messages::DeploymentState::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

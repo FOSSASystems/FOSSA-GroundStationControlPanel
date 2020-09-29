@@ -26,12 +26,127 @@
 
 #include <DirectionBits.h>
 
-std::vector<uint8_t> GroundStation::DatagramEncoder::Handshake()
+Datagram GroundStation::DatagramEncoder::Encode(OperationID operationId, std::vector<uint8_t> payloadData)
 {
-    char handshakeMessage = 0x00;
+    char directionBit = FCPI_DIR_TO_GROUND_STATION;
+    char controlByte = directionBit | operationId;
 
-    std::vector<uint8_t> msg;
-    msg.push_back(handshakeMessage);
-    msg.push_back(handshakeMessage);
-    return msg;
+
+    std::vector<uint8_t> datagramData;
+    datagramData.push_back(controlByte);
+    datagramData.push_back(payloadData.size());
+    datagramData.insert(datagramData.end(), payloadData.begin(), payloadData.end());
+
+    return Datagram(SatVersion::V_FOSSASAT1B, "NA", datagramData, false);
+}
+
+Datagram GroundStation::DatagramEncoder::Handshake()
+{
+    std::vector<uint8_t> msgData;
+    msgData.push_back(FCPI_DIR_FROM_GROUND_STATION);
+    msgData.push_back(OperationID::HANDSHAKE);
+
+    return Datagram(SatVersion::V_NA, "NA", msgData, false);
+}
+
+Datagram GroundStation::DatagramEncoder::ConfigurationChange(uint8_t modemTypeFlag,
+                                                             float carrierFrequency,
+                                                             uint8_t outputPowerDBM,
+                                                             float currentLimit,
+                                                             float loraBandwidth,
+                                                             uint8_t loraSpreadingFactor,
+                                                             uint8_t loraCodingRate,
+                                                             int16_t loraPreambleLength,
+                                                             float gfskBitRate,
+                                                             float gfskFrequencyDeviation,
+                                                             float gfskRxBandwidth,
+                                                             int16_t gfskPreambleLength,
+                                                             uint8_t gfskDataShapingBTProduct)
+{
+
+    std::vector<uint8_t> data;
+    data.push_back(modemTypeFlag);
+
+    {
+        char *tempArray = (char *) (&carrierFrequency);
+        data.push_back(tempArray[0]);
+        data.push_back(tempArray[1]);
+        data.push_back(tempArray[2]);
+        data.push_back(tempArray[3]);
+    }
+
+    data.push_back(outputPowerDBM);
+
+    {
+        char *tempArray = (char *) (&currentLimit);
+        data.push_back(tempArray[0]);
+        data.push_back(tempArray[1]);
+        data.push_back(tempArray[2]);
+        data.push_back(tempArray[3]);
+    }
+
+    {
+        char *tempArray = (char *) (&loraBandwidth);
+        data.push_back(tempArray[0]);
+        data.push_back(tempArray[1]);
+        data.push_back(tempArray[2]);
+        data.push_back(tempArray[3]);
+    }
+
+    data.push_back(loraSpreadingFactor);
+
+    data.push_back(loraCodingRate);
+
+    data.push_back(loraPreambleLength);
+    data.push_back(loraPreambleLength >> 8);
+
+
+    {
+        char *tempArray = (char *) (&gfskBitRate);
+        data.push_back(tempArray[0]);
+        data.push_back(tempArray[1]);
+        data.push_back(tempArray[2]);
+        data.push_back(tempArray[3]);
+    }
+
+
+    {
+        char *tempArray = (char *) (&gfskFrequencyDeviation);
+        data.push_back(tempArray[0]);
+        data.push_back(tempArray[1]);
+        data.push_back(tempArray[2]);
+        data.push_back(tempArray[3]);
+    }
+
+    {
+        char *tempArray = (char *) (&gfskRxBandwidth);
+        data.push_back(tempArray[0]);
+        data.push_back(tempArray[1]);
+        data.push_back(tempArray[2]);
+        data.push_back(tempArray[3]);
+    }
+
+    data.push_back(gfskPreambleLength);
+    data.push_back(gfskPreambleLength >> 8);
+
+
+    data.push_back(gfskDataShapingBTProduct);
+
+    return GroundStation::DatagramEncoder::Encode(OperationID::CONFIG, data);
+
+}
+
+Datagram GroundStation::DatagramEncoder::CarrierFrequencyChange(float newCarrierFrequency)
+{
+    std::vector<uint8_t> data;
+
+    {
+        char *tempArray = (char *) (&newCarrierFrequency);
+        data.push_back(tempArray[0]);
+        data.push_back(tempArray[1]);
+        data.push_back(tempArray[2]);
+        data.push_back(tempArray[3]);
+    }
+
+    return GroundStation::DatagramEncoder::Encode(OperationID::CARRIER, data);
 }

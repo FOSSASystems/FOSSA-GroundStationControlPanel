@@ -33,8 +33,24 @@ namespace GroundStation
 {
 
 class DatagramEncoder {
+private:
+    static Datagram GroundStation::DatagramEncoder::Encode(OperationID operationId, std::vector<uint8_t> payloadData);
 public:
-    static std::vector<uint8_t> Handshake();
+    static Datagram Handshake();
+    static Datagram ConfigurationChange(uint8_t modemTypeFlag,
+                                                    float carrierFrequency,
+                                                    uint8_t outputPowerDBM,
+                                                    float currentLimit,
+                                                    float loraBandwidth,
+                                                    uint8_t loraSpreadingFactor,
+                                                    uint8_t loraCodingRate,
+                                                    int16_t loraPreambleLength,
+                                                    float gfskBitRate,
+                                                    float gfskFrequencyDeviation,
+                                                    float gfskRxBandwidth,
+                                                    int16_t gfskPreambleLength,
+                                                    uint8_t gfskDataShapingBTProduct);
+    static Datagram CarrierFrequencyChange(float newCarrierFrequency);
 };
 
 }

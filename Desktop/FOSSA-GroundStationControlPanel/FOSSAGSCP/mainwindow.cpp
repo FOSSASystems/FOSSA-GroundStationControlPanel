@@ -257,30 +257,9 @@ void MainWindow::SendDopplerShiftedFrequency()
 
     ui->statusbar->showMessage(QString::number(newCarrierFrequency), 10000);
 
-    // Send to the ground station.
-    QByteArray msg;
 
-    uint8_t directionBit = 0x00;
-    uint8_t operationId = 0x03;
-    uint8_t controlByte = directionBit | operationId;
-    msg.append(controlByte);
-
-    uint8_t length = 4;
-    msg.append(length);
-
-
-    float freqAsFloat = (float)newCarrierFrequency;
-    QByteArray freqFloatByteArray;
-    QDataStream out(&freqFloatByteArray,QIODevice::OpenModeFlag::WriteOnly);
-    out.setFloatingPointPrecision(QDataStream::FloatingPointPrecision::SinglePrecision);
-    out << freqAsFloat;
-
-    // reverse to lsb first.
-    std::reverse(freqFloatByteArray.begin(), freqFloatByteArray.end());
-
-    msg.append(freqFloatByteArray);
-
-    this->m_serialPortThread.Write(msg);
+    Datagram datagram = GroundStation::DatagramEncoder::CarrierFrequencyChange(newCarrierFrequency);
+    this->SendDatagram(datagram);
 }
 
 
@@ -3595,229 +3574,136 @@ void MainWindow::on_handshakeSendButton_clicked()
 {
     Settings::SetHandshookValue(false);
 
-    std::vector<uint8_t> datagram = GroundStation::DatagramEncoder::Handshake();
-    QByteArray qtArray;
-    for (int i = 0; i < datagram.size(); i++) {
-        qtArray.append(datagram[i]);
-    }
-    this->m_serialPortThread.Write(qtArray);
+    Datagram datagram = GroundStation::DatagramEncoder::Handshake();
+    this->SendDatagram(datagram);
 }
 
 
 void MainWindow::on_GroundStationSettings_GFSKConfigSetButton_clicked()
 {
-    if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT1B)
+    QString modemTypeStr = ui->GroundStationSettings_ModemTypeComboBox->itemData(ui->GroundStationSettings_ModemTypeComboBox->currentIndex()).toString();
+    uint8_t modemTypeFlag = 0x0;
+    if (modemTypeStr == "LoRa")
     {
-        QString modemTypeStr = ui->GroundStationSettings_ModemTypeComboBox->itemData(ui->GroundStationSettings_ModemTypeComboBox->currentIndex()).toString();
-        uint8_t modemTypeFlag = 0x0;
-        if (modemTypeStr == "LoRa")
-        {
-            modemTypeFlag = 0x0;
-        }
-        else if (modemTypeStr == "GFSK")
-        {
-            modemTypeFlag = 0x1;
-        }
-
-        bool ok = false;
-
-        float carrierFrequency = ui->GroundStationSettings_ConfigCarrierFrequencyLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Carrier frequency is an invalid float");
-            msgBox.exec();
-        }
-
-        uint8_t outputPowerDBM = ui->GroundStationSettings_ConfigOutputPowerLineEdit->text().toUInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Output power is an invalid uint8_t");
-            msgBox.exec();
-        }
-
-        float currentLimit = ui->GroundStationSettings_ConfigCurrentLimitLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Current limit is an invalid float");
-            msgBox.exec();
-        }
-
-        float loraBandwidth = ui->GroundStationSettings_loraConfigurationBandwidthLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("LoRa bandwidth is an invalid float");
-            msgBox.exec();
-        }
-
-        uint8_t loraCodingRate = ui->GroundStationSettings_loraConfigurationSpreadingFactorSpinBox->text().toUInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("LoRa coding factor is an invalid uint8_t");
-            msgBox.exec();
-        }
-
-        int16_t loraPreambleLength = ui->GroundStationSettings_loraConfigurationPreambleLengthSpinBox->text().toInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("LoRa bandiwdth is an invalid int16_t");
-            msgBox.exec();
-        }
-
-        float gfskBitRate = ui->GroundStationSettings_GFSKConfigBitRateLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK Bit rate is an invalid float");
-            msgBox.exec();
-        }
-
-        float gfskFrequencyDeviation = ui->GroundStationSettings_GFSKConfigFreqDeviationLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK frequency devidation is an invalid float");
-            msgBox.exec();
-        }
-
-        float gfskRxBandwidth = ui->GroundStationSettings_GFSKConfigRxBandwidthLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK RX bandwidth is an invalid float");
-            msgBox.exec();
-        }
-
-        int16_t gfskPreambleLength = ui->GroundStationSettings_GFSKConfigPreambleLengthLineEdit->text().toInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK preamble length is an invalid int16_t");
-            msgBox.exec();
-        }
-
-        uint8_t gfskDataShapingBTProduct = ui->GroundStationSettings_GFSKConfigDataShapingBTProductLineEdit->text().toUInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK data shaping BT product is an invalid uint8_t");
-            msgBox.exec();
-        }
-
-        ui->Satelliteconfig_ADCs_Ephemerides_DataStack_StackCoun_SpinBox->setValue(g_ephemeridesControllerStack.size());
+        modemTypeFlag = 0x0;
     }
-    else if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT2)
+    else if (modemTypeStr == "GFSK")
     {
-
-        QString modemTypeStr = ui->GroundStationSettings_ModemTypeComboBox->itemData(ui->GroundStationSettings_ModemTypeComboBox->currentIndex()).toString();
-        uint8_t modemTypeFlag = 0x0;
-        if (modemTypeStr == "LoRa")
-        {
-            modemTypeFlag = 0x0;
-        }
-        else if (modemTypeStr == "GFSK")
-        {
-            modemTypeFlag = 0x1;
-        }
-
-        bool ok = false;
-
-        float carrierFrequency = ui->GroundStationSettings_ConfigCarrierFrequencyLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Carrier frequency is an invalid float");
-            msgBox.exec();
-        }
-
-        uint8_t outputPowerDBM = ui->GroundStationSettings_ConfigOutputPowerLineEdit->text().toUInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Output power is an invalid uint8_t");
-            msgBox.exec();
-        }
-
-        float currentLimit = ui->GroundStationSettings_ConfigCurrentLimitLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("Current limit is an invalid float");
-            msgBox.exec();
-        }
-
-        float loraBandwidth = ui->GroundStationSettings_loraConfigurationBandwidthLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("LoRa bandwidth is an invalid float");
-            msgBox.exec();
-        }
-
-        uint8_t loraCodingRate = ui->GroundStationSettings_loraConfigurationSpreadingFactorSpinBox->text().toUInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("LoRa coding factor is an invalid uint8_t");
-            msgBox.exec();
-        }
-
-        int16_t loraPreambleLength = ui->GroundStationSettings_loraConfigurationPreambleLengthSpinBox->text().toInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("LoRa bandiwdth is an invalid int16_t");
-            msgBox.exec();
-        }
-
-        float gfskBitRate = ui->GroundStationSettings_GFSKConfigBitRateLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK Bit rate is an invalid float");
-            msgBox.exec();
-        }
-
-        float gfskFrequencyDeviation = ui->GroundStationSettings_GFSKConfigFreqDeviationLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK frequency devidation is an invalid float");
-            msgBox.exec();
-        }
-
-        float gfskRxBandwidth = ui->GroundStationSettings_GFSKConfigRxBandwidthLineEdit->text().toFloat(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK RX bandwidth is an invalid float");
-            msgBox.exec();
-        }
-
-        int16_t gfskPreambleLength = ui->GroundStationSettings_GFSKConfigPreambleLengthLineEdit->text().toInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK preamble length is an invalid int16_t");
-            msgBox.exec();
-        }
-
-        uint8_t gfskDataShapingBTProduct = ui->GroundStationSettings_GFSKConfigDataShapingBTProductLineEdit->text().toUInt(&ok);
-        if (!ok)
-        {
-            QMessageBox msgBox;
-            msgBox.setText("GFSK data shaping BT product is an invalid uint8_t");
-            msgBox.exec();
-        }
+        modemTypeFlag = 0x1;
     }
 
+    bool ok = false;
 
+    float carrierFrequency = ui->GroundStationSettings_ConfigCarrierFrequencyLineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Carrier frequency is an invalid float");
+        msgBox.exec();
+    }
 
+    uint8_t outputPowerDBM = ui->GroundStationSettings_ConfigOutputPowerLineEdit->text().toUInt(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Output power is an invalid uint8_t");
+        msgBox.exec();
+    }
+
+    float currentLimit = ui->GroundStationSettings_ConfigCurrentLimitLineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("Current limit is an invalid float");
+        msgBox.exec();
+    }
+
+    float loraBandwidth = ui->GroundStationSettings_loraConfigurationBandwidthLineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("LoRa bandwidth is an invalid float");
+        msgBox.exec();
+    }
+
+    float loraSpreadingFactor = ui->GroundStationSettings_loraConfigurationSpreadingFactorSpinBox->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("LoRa spreading factor is an invalid float");
+        msgBox.exec();
+    }
+
+    uint8_t loraCodingRate = ui->GroundStationSettings_loraConfigurationSpreadingFactorSpinBox->text().toUInt(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("LoRa coding factor is an invalid uint8_t");
+        msgBox.exec();
+    }
+
+    int16_t loraPreambleLength = ui->GroundStationSettings_loraConfigurationPreambleLengthSpinBox->text().toInt(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("LoRa bandiwdth is an invalid int16_t");
+        msgBox.exec();
+    }
+
+    float gfskBitRate = ui->GroundStationSettings_GFSKConfigBitRateLineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("GFSK Bit rate is an invalid float");
+        msgBox.exec();
+    }
+
+    float gfskFrequencyDeviation = ui->GroundStationSettings_GFSKConfigFreqDeviationLineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("GFSK frequency devidation is an invalid float");
+        msgBox.exec();
+    }
+
+    float gfskRxBandwidth = ui->GroundStationSettings_GFSKConfigRxBandwidthLineEdit->text().toFloat(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("GFSK RX bandwidth is an invalid float");
+        msgBox.exec();
+    }
+
+    int16_t gfskPreambleLength = ui->GroundStationSettings_GFSKConfigPreambleLengthLineEdit->text().toInt(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("GFSK preamble length is an invalid int16_t");
+        msgBox.exec();
+    }
+
+    uint8_t gfskDataShapingBTProduct = ui->GroundStationSettings_GFSKConfigDataShapingBTProductLineEdit->text().toUInt(&ok);
+    if (!ok)
+    {
+        QMessageBox msgBox;
+        msgBox.setText("GFSK data shaping BT product is an invalid uint8_t");
+        msgBox.exec();
+    }
+
+    Datagram datagram = GroundStation::DatagramEncoder::ConfigurationChange(modemTypeFlag,
+                                                                            carrierFrequency,
+                                                                            outputPowerDBM,
+                                                                            currentLimit,
+                                                                            loraBandwidth,
+                                                                            loraSpreadingFactor,
+                                                                            loraCodingRate,
+                                                                            loraPreambleLength,
+                                                                            gfskBitRate,
+                                                                            gfskFrequencyDeviation,
+                                                                            gfskRxBandwidth,
+                                                                            gfskPreambleLength,
+                                                                            gfskDataShapingBTProduct);
+    this->SendDatagram(datagram);
 }
 
 ///////////////////////////////////////

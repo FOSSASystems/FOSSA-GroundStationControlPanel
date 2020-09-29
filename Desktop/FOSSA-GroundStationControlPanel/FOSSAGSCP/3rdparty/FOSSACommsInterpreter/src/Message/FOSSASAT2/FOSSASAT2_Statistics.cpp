@@ -28,3 +28,15 @@ FOSSASAT2::Messages::Statistics::Statistics(Frame &frame)
 {
 
 }
+
+std::string FOSSASAT2::Messages::Statistics::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string FOSSASAT2::Messages::Statistics::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

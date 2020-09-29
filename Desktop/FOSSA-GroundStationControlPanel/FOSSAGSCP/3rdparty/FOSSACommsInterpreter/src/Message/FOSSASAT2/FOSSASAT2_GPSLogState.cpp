@@ -28,3 +28,15 @@ FOSSASAT2::Messages::GPSLogState::GPSLogState(Frame &frame)
 {
 
 }
+
+std::string FOSSASAT2::Messages::GPSLogState::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string FOSSASAT2::Messages::GPSLogState::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

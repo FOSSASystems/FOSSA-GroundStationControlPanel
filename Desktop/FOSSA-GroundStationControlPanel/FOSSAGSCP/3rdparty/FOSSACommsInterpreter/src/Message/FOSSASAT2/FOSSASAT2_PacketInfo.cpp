@@ -28,3 +28,15 @@ FOSSASAT2::Messages::PacketInfo::PacketInfo(Frame &frame)
 {
 
 }
+
+std::string FOSSASAT2::Messages::PacketInfo::ToString()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}
+
+std::string FOSSASAT2::Messages::PacketInfo::ToJSON()
+{
+    throw std::runtime_error("Not implemented yet");
+    return "";
+}

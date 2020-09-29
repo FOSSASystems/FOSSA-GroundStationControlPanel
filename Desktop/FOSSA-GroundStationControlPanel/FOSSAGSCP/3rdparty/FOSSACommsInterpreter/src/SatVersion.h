@@ -28,6 +28,7 @@
 #include <string>
 
 enum SatVersion {
+    V_NA,
     V_FOSSASAT1B,
     V_FOSSASAT2
 };
