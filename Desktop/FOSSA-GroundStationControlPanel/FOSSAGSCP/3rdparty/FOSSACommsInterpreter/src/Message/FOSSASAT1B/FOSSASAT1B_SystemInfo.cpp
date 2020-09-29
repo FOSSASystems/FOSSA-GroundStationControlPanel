@@ -24,6 +24,8 @@
 
 #include "FOSSASAT1B_SystemInfo.h"
 
+#include <sstream>
+
 FOSSASAT1B::Messages::SystemInfo::SystemInfo(Frame &frame) {
 	this->batteryVoltage = frame.GetByteAt(0);
 	this->batteryVoltage *= 20;
@@ -67,5 +69,57 @@ FOSSASAT1B::Messages::SystemInfo::SystemInfo(Frame &frame) {
 		this->obcBoardTemperature = t * 0.01f;
 	}
 
-	this-> mcuTemperature = frame.GetByteAt(18);
+    this->mcuTemperature = frame.GetByteAt(18);
+}
+
+std::string FOSSASAT1B::Messages::SystemInfo::ToString()
+{
+    std::stringstream ss;
+    ss << "Battery voltage: " << this->batteryVoltage << " mV" << std::endl;
+    ss << "Battery charging current: " << this->batteryChargingCurrent << " uA" << std::endl;
+    ss << "Battery charging voltage: " << this->batteryChargingVoltage << std::endl;
+    ss << "Time since last reset:  " << this->timeSinceLastReset << " seconds" << std::endl;
+    ss << "LowPower mode active: " << this->lowPowerModeActive << std::endl;
+    ss << "LowPower mode enabled: " << this->lowPowerModeEnabled << std::endl;
+    ss << "MPPT temperature switch enabled: " << this->mpptTemperatureSwitchEnabled << std::endl;
+    ss << "MPPT keep alive enabled: " << this->mpptKeepAliveEnabled << std::endl;
+    ss << "Transmissions enabled: " << this->transmissionsEnabled << std::endl;
+    ss << "Reset counter: " << this->resetCounter << std::endl;
+    ss << "Solar panel A voltage: " << this->solarCellAVoltage << " mV" << std::endl;
+    ss << "Solar panel B voltage: " << this->solarCellBVoltage << " mV" << std::endl;
+    ss << "Solar panel C voltage: " << this->solarCellCVoltage << " mV" << std::endl;
+    ss << "Battery temperature: " << this->batteryTemperature << " deg. C." << std::endl;
+    ss << "OBC board temperature: " << this->obcBoardTemperature << " deg. C." << std::endl;
+    ss << "MCU temperature: " << this->mcuTemperature << " deg. C" << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;
+}
+
+std::string FOSSASAT1B::Messages::SystemInfo::ToJSON()
+{
+    std::stringstream ss;
+    ss << "{" << std::endl;
+    ss << "\"Battery voltage\": " << this->batteryVoltage << "," << std::endl;
+    ss << "\"Battery charging current\": " << this->batteryChargingCurrent << "," << std::endl;
+    ss << "\"Battery charging voltage\": " << this->batteryChargingVoltage << "," << std::endl;
+    ss << "\"Time since last reset\":  " << this->timeSinceLastReset << "," << std::endl;
+    ss << "\"LowPower mode active\": " << this->lowPowerModeActive << "," << std::endl;
+    ss << "\"LowPower mode enabled\": " << this->lowPowerModeEnabled << "," << std::endl;
+    ss << "\"MPPT temperature switch enabled\": " << this->mpptTemperatureSwitchEnabled << "," << std::endl;
+    ss << "\"MPPT keep alive enabled\": " << this->mpptKeepAliveEnabled << "," << std::endl;
+    ss << "\"Transmissions enabled\": " << this->transmissionsEnabled << "," << std::endl;
+    ss << "\"Reset counter\": " << this->resetCounter << "," << std::endl;
+    ss << "\"Solar panel A voltage\": " << this->solarCellAVoltage << "," << std::endl;
+    ss << "\"Solar panel B voltage\": " << this->solarCellBVoltage << "," << std::endl;
+    ss << "\"Solar panel C voltage\": " << this->solarCellCVoltage << "," << std::endl;
+    ss << "\"Battery temperature\": " << this->batteryTemperature << "," << std::endl;
+    ss << "\"OBC board temperature\": " << this->obcBoardTemperature << "," << std::endl;
+    ss << "\"MCU temperature\": " << this->mcuTemperature << std::endl;
+    ss << "}" << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;
 }
