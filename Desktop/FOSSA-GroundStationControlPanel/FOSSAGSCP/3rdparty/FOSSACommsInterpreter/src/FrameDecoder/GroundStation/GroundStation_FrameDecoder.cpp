@@ -23,3 +23,21 @@
 //
 
 #include "GroundStation_FrameDecoder.h"
+
+GroundStation::Messages::HandshakeResult GroundStation::FrameDecoder::DecodeHandshakeResult(Frame &frame)
+{
+    GroundStation::Messages::HandshakeResult handshakeResult(frame);
+    return handshakeResult;
+}
+
+GroundStation::Messages::CarrierChangeResult GroundStation::FrameDecoder::DecodeCarrierChangeResult(Frame &frame)
+{
+    GroundStation::Messages::CarrierChangeResult carrierChangeResult(frame);
+    return carrierChangeResult;
+}
+
+GroundStation::Messages::ConfigurationChangeResult GroundStation::FrameDecoder::DecodeConfigurationChangeResult(Frame &frame)
+{
+    GroundStation::Messages::ConfigurationChangeResult configurationChangeResult(frame);
+    return configurationChangeResult;
+}

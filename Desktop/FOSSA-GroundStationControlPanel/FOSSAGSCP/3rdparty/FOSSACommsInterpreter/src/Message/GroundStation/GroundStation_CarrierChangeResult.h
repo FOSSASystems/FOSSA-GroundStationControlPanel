@@ -33,6 +33,13 @@ namespace GroundStation
 namespace Messages
 {
 
+/**
+ * @brief   The CarrierChangeResult class
+ *          Ground station carrier frequency change request/result.
+ *          Kept as separate datagram to allow quick frequency changes for Doppler effect compensation.
+ *          When sent with direction bit set to 0, the optional data is new carrier frequency as IEEE 754 float, LSB first.
+ *          RadioLib status code is sent in response (16 bit integer).
+ */
 class CarrierChangeResult {
 public:
     explicit CarrierChangeResult(Frame& frame);
