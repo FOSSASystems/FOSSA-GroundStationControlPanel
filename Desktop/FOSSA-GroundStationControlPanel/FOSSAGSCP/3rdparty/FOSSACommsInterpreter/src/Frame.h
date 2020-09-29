@@ -39,6 +39,7 @@ public:
 	Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data);
 
 	uint8_t GetByteAt(uint32_t index);
+    std::vector<uint8_t> Serialize();
 
     int16_t GetFunctionID();
 private:

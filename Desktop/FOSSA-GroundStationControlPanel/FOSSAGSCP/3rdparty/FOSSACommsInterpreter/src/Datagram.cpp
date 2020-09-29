@@ -24,6 +24,8 @@
 
 #include "Datagram.h"
 
+#include <sstream>
+
 
 Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound) {
 	this->satVersion = satVersion;
@@ -89,13 +91,35 @@ Frame Datagram::GetFrame()
 
 std::vector<uint8_t> Datagram::Serialize()
 {
-    return std::vector<uint8_t>();
+    std::vector<uint8_t> data;
+
+    data.push_back(this->controlByte);
+    data.push_back(this->lengthByte);
+
+    if (this->frameExists)
+    {
+        std::vector<uint8_t> frameData = this->frame.Serialize();
+        data.insert(data.end(), frameData.begin(), frameData.end());
+    }
+
+    return data;
 }
 
 std::string Datagram::ToString()
 {
-    throw "DATAGRAM TOSTRING NOT IMPLEMENTED YET";
-    return "";
+    std::stringstream ss;
+
+    std::vector<uint8_t> data = this->Serialize();
+
+    for (uint8_t& v : data) {
+        ss << v << ",";
+    }
+    ss << std::endl;
+
+    std::string str;
+    ss >> str;
+
+    return str;
 }
 
 void Datagram::ExtractRadiolibStatusCode(std::vector<uint8_t> data) {

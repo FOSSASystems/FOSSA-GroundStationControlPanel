@@ -50,6 +50,12 @@ uint8_t Frame::GetByteAt(uint32_t index) {
     return this->optionalData[index];
 }
 
+std::vector<uint8_t> Frame::Serialize() {
+    std::vector<uint8_t> data;
+    data.insert(data.end(), this->optionalData.begin(), this->optionalData.end());
+    return data;
+}
+
 int16_t Frame::GetFunctionID()
 {
     return this->functionId;
@@ -60,8 +66,8 @@ void Frame::ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data
 	uint8_t *tempBuffer = new uint8_t[optionalDataLength];
 	FCP_Get_OptData((char *)callsign.c_str(), data.data(), data.size(), tempBuffer, NULL, NULL);
 
-	for (int16_t i = 0; i < optionalDataLength; i++) {
-		optionalData.push_back(tempBuffer[i]);
+    for (int16_t i = 0; i < optionalDataLength; i++) {
+        this->optionalData.push_back(tempBuffer[i]);
 	}
 
 	delete[] tempBuffer;
