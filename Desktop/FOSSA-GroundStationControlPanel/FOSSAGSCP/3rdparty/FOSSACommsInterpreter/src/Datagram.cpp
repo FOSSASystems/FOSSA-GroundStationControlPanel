@@ -103,15 +103,38 @@ void Datagram::ExtractRadiolibStatusCode(std::vector<uint8_t> data) {
 }
 
 void Datagram::ExtractFrame(std::string callsign, std::vector<uint8_t> data) {
-	uint8_t frameLength = this->lengthByte - 2;
-	if (frameLength > 0) {
-		this->frameExists = true;
-		std::vector<uint8_t> frameData;
-		frameData.insert(frameData.end(), data.begin() + 4, data.end());
+    // inbound frames have a radiolib status code prepended.
+    if (this->inbound)
+    {
+        uint8_t frameLength = this->lengthByte - 2;
+        if (frameLength > 0)
+        {
+            this->frameExists = true;
+            std::vector<uint8_t> frameData;
+            frameData.insert(frameData.end(), data.begin() + 4, data.end());
 
-		this->frame = Frame(this->satVersion, callsign, frameData);
-	}
-	else {
-		this->frameExists = false;
-	}
+            this->frame = Frame(this->satVersion, callsign, frameData);
+        }
+        else
+        {
+            this->frameExists = false;
+        }
+    }
+    else
+    {
+        uint8_t frameLength = this->lengthByte;
+        if (frameLength > 0)
+        {
+            this->frameExists = true;
+            std::vector<uint8_t> frameData;
+            frameData.insert(frameData.end(), data.begin() + 2, data.end());
+
+            this->frame = Frame(this->satVersion, callsign, frameData);
+        }
+        else
+        {
+            this->frameExists = false;
+        }
+    }
+
 }
