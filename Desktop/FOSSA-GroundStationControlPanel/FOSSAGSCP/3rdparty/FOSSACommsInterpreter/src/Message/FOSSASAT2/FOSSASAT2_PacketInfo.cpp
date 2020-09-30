@@ -26,7 +26,18 @@
 
 FOSSASAT2::Messages::PacketInfo::PacketInfo(Frame &frame)
 {
-
+    this->snr = frame.GetByteAt(0);
+    this->snr *= 4;
+    uint8_t rssiData = frame.GetByteAt(1);
+    this->rssi *= rssiData * -2;
+    this->numReceivedValidLoraFrames = frame.GetByteAt(2);
+    this->numReceivedValidLoraFrames |= frame.GetByteAt(3) << 8;
+    this->numReceivedInvalidLoraFrames = frame.GetByteAt(4);
+    this->numReceivedInvalidLoraFrames |= frame.GetByteAt(5)<< 8;
+    this->numReceivedValidFSKFrames = frame.GetByteAt(6);
+    this->numReceivedValidFSKFrames |= frame.GetByteAt(7)<< 8;
+    this->numReceivedInvalidFSKFrames = frame.GetByteAt(8);
+    this->numReceivedInvalidFSKFrames |= frame.GetByteAt(9)<< 8;
 }
 
 std::string FOSSASAT2::Messages::PacketInfo::ToString()
@@ -35,6 +46,12 @@ std::string FOSSASAT2::Messages::PacketInfo::ToString()
     std::stringstream ss;
     ss << "Satellite Version: FOSSASAT2" << std::endl;
     ss << "Message Name: PacketInfo" << std::endl;
+    ss << "SNR of the last received packet: " << this->snr << " dB" << std::endl;
+    ss << "RSSI of the last received packet: " << this->rssi << " dBm" << std::endl;
+    ss << "Number of received valid LoRa frames: " << this->numReceivedValidLoraFrames << std::endl;
+    ss << "Number of received invalid LoRa frames: " << this->numReceivedInvalidLoraFrames << std::endl;
+    ss << "Number of received valid FSK frames: " << this->numReceivedValidFSKFrames << std::endl;
+    ss << "Number of received invalid FSK frames: " << this->numReceivedInvalidFSKFrames << std::endl;
 
     std::string out;
     ss >> out;
@@ -47,6 +64,12 @@ std::string FOSSASAT2::Messages::PacketInfo::ToJSON()
     ss << "{" << std::endl;
     ss << "\"Satellite Version\": \"FOSSASAT2\"," << std::endl;
     ss << "\"Message Name\": \"PacketInfo\"," << std::endl;
+    ss << "\"SNR of the last received packet\": \"" << this->snr << "\"" << std::endl;
+    ss << "\"RSSI of the last received packet\": \"" << this->rssi << "\"" <<  std::endl;
+    ss << "\"Number of received valid LoRa frames\": \"" << this->numReceivedValidLoraFrames << "\"" <<  std::endl;
+    ss << "\"Number of received invalid LoRa frames\": \"" << this->numReceivedInvalidLoraFrames << "\"" <<  std::endl;
+    ss << "\"Number of received valid FSK frames\": \"" << this->numReceivedValidFSKFrames << "\"" <<  std::endl;
+    ss << "\"Number of received invalid FSK frames\": \"" << this->numReceivedInvalidFSKFrames << "\"" <<  std::endl;
     ss << "}" << std::endl;
 
 

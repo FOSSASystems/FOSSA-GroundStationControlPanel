@@ -41,8 +41,8 @@ public:
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
 private:
-    int8_t snr;
-    uint8_t rssi;
+    int32_t snr;
+    int32_t rssi;
     uint16_t numReceivedValidLoraFrames;
     uint16_t numReceivedInvalidLoraFrames;
     uint16_t numReceivedValidFSKFrames;
