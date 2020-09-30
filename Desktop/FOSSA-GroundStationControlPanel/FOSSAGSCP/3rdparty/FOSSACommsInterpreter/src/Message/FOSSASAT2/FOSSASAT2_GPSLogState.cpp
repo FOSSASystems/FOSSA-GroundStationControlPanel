@@ -26,7 +26,20 @@
 
 FOSSASAT2::Messages::GPSLogState::GPSLogState(Frame &frame)
 {
+    this->gpsLogLength = frame.GetByteAt(0);
+    this->gpsLogLength |= (frame.GetByteAt(1)<< 8);
+    this->gpsLogLength |= (frame.GetByteAt(2)<< 16);
+    this->gpsLogLength |= (frame.GetByteAt(3)<< 24);
 
+    this->lastNMEAEntryAddr = frame.GetByteAt(4);
+    this->lastNMEAEntryAddr |= (frame.GetByteAt(5)<< 8);
+    this->lastNMEAEntryAddr |= (frame.GetByteAt(6)<< 16);
+    this->lastNMEAEntryAddr |= (frame.GetByteAt(7)<< 24);
+
+    this->lastNMEAFixAddr = frame.GetByteAt(8);
+    this->lastNMEAFixAddr |= (frame.GetByteAt(9)<< 8);
+    this->lastNMEAFixAddr |= (frame.GetByteAt(10)<< 16);
+    this->lastNMEAFixAddr |= (frame.GetByteAt(11)<< 24);
 }
 
 std::string FOSSASAT2::Messages::GPSLogState::ToString()
@@ -35,6 +48,9 @@ std::string FOSSASAT2::Messages::GPSLogState::ToString()
     std::stringstream ss;
     ss << "Satellite Version: FOSSASAT2" << std::endl;
     ss << "Message Name: GPSLogState" << std::endl;
+    ss << "GPS Log Length: " << this->gpsLogLength << std::endl;
+    ss << "Last NMEA Entry Address: " << this->lastNMEAEntryAddr << std::endl;
+    ss << "Last NMEA Fix Address: " << this->lastNMEAFixAddr << std::endl;
 
     std::string out;
     ss >> out;
@@ -46,7 +62,10 @@ std::string FOSSASAT2::Messages::GPSLogState::ToJSON()
     std::stringstream ss;
     ss << "{" << std::endl;
     ss << "\"Satellite Version\": \"FOSSASAT2\"," << std::endl;
-    ss << "\"Message Name\": \"GPSLogState\"," << std::endl;
+    ss << "\"Message Name\": \"GPSLogState\"," << "\"" << std::endl;
+    ss << "\"GPS Log Length\": \"" << this->gpsLogLength << "\"" << std::endl;
+    ss << "\"Last NMEA Entry Address\": \"" << this->lastNMEAEntryAddr << "\"" << std::endl;
+    ss << "\"Last NMEA Fix Address\": \"" << this->lastNMEAFixAddr << "\"" << std::endl;
     ss << "}" << std::endl;
 
 
