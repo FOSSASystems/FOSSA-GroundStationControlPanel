@@ -26,17 +26,27 @@
 
 FOSSASAT2::Messages::DeploymentState::DeploymentState(Frame &frame)
 {
-
+    this->deploymentCounter = frame.GetByteAt(0);
 }
 
 std::string FOSSASAT2::Messages::DeploymentState::ToString()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+    std::stringstream ss;
+    ss << "Deployment counter: " << this->deploymentCounter << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;
 }
 
 std::string FOSSASAT2::Messages::DeploymentState::ToJSON()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+    std::stringstream ss;
+    ss << "{" << std::endl;
+    ss << "\"Deployment counter\": " << this->deploymentCounter << std::endl;
+    ss << "}" << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;
 }

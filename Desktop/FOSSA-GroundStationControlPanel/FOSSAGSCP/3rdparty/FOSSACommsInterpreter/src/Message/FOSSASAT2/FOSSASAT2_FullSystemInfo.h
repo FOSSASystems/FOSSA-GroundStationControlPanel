@@ -41,8 +41,8 @@ public:
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
 private:
-    uint8_t mpptOutputVoltage;
-    int16_t mpptOutputCurrent;
+    uint32_t mpptOutputVoltage;
+    int32_t mpptOutputCurrent;
 
     uint32_t unixTimestamp;
 
@@ -56,36 +56,35 @@ private:
     bool sleepMode;
 
 
-    uint8_t mpptTemperatureSwitchEnabled;
-    uint8_t mpptKeepAliveEnabled;
-    uint8_t scienceModeActive;
+    bool mpptTemperatureSwitchEnabled;
+    bool mpptKeepAliveEnabled;
+    bool scienceModeActive;
 
     uint16_t resetCounter;
 
-    uint8_t solarPanel_XA_Voltage;
-    int16_t solarPanel_XA_Current;
+    uint32_t solarPanel_XA_Voltage;
+    int32_t solarPanel_XA_Current;
 
-    uint8_t solarPanel_XB_Voltage;
-    int16_t solarPanel_XB_Current;
+    uint32_t solarPanel_XB_Voltage;
+    int32_t solarPanel_XB_Current;
 
-    uint8_t solarPanel_ZA_Voltage;
-    int16_t solarPanel_ZA_Current;
+    uint32_t solarPanel_ZA_Voltage;
+    int32_t solarPanel_ZA_Current;
 
-    uint8_t solarPanel_ZB_Voltage;
-    int16_t solarPanel_ZB_Current;
+    uint32_t solarPanel_ZB_Voltage;
+    int32_t solarPanel_ZB_Current;
 
-    uint8_t solarPanel_Y_Voltage;
-    int16_t solarPanel_Y_Current;
+    uint32_t solarPanel_Y_Voltage;
+    int32_t solarPanel_Y_Current;
 
-    int16_t solarPanelYTemperature;
-    int16_t obcBoardTemperature;
-    int16_t bottomBoardTemperature;
-    int16_t batteryTemperature;
-    int16_t secondBatteryTemperature;
-    int16_t mcuTemperature;
+    float solarPanelYTemperature;
+    float obcBoardTemperature;
+    float bottomBoardTemperature;
+    float batteryTemperature;
+    float secondBatteryTemperature;
+    float mcuTemperature;
 
     float yPanelLightSensor;
-
     float topBoardLightSensor;
 
     uint8_t lastXAxisHBridgeFault;
@@ -98,15 +97,15 @@ private:
     uint8_t fskWindowReceiveLength;
     uint8_t loraWindowReceiveLength;
 
-    uint8_t sensorStates;
-    uint8_t lightSensorTop;
-    uint8_t lightSensorY;
-    uint8_t currentSensorMPPT;
-    uint8_t currentSensorY;
-    uint8_t currentSensorZB;
-    uint8_t currentSensorZA;
-    uint8_t currentSensorXB;
-    uint8_t currentSensorXA;
+    bool sensorStates;
+    bool lightSensorTop;
+    bool lightSensorY;
+    bool currentSensorMPPT;
+    bool currentSensorY;
+    bool currentSensorZB;
+    bool currentSensorZA;
+    bool currentSensorXB;
+    bool currentSensorXA;
 
     uint8_t lastADCSResult;
 };

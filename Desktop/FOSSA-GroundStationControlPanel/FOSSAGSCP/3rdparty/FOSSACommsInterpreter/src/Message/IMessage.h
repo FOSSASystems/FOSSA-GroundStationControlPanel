@@ -28,6 +28,8 @@
 
 #include <string>
 #include <stdexcept>
+#include <vector>
+#include <sstream>
 
 /**
 This interface ensures that all messages have the functions:
