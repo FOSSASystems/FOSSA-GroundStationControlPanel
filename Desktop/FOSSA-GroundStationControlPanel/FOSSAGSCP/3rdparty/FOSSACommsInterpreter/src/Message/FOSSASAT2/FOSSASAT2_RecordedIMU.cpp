@@ -26,13 +26,74 @@
 
 FOSSASAT2::Messages::RecordedIMU::RecordedIMU(Frame &frame)
 {
+    uint8_t deviceFlags = frame.GetByteAt(0);
+    this->gyro = deviceFlags & 0b00000001;
+    this->accele = (deviceFlags>>1) & 0b00000001;
+    this->magn = (deviceFlags>>2) & 0b00000001;
 
+    uint32_t gyroSampleX = frame.GetByteAt(1);
+    gyroSampleX |= frame.GetByteAt(2) << 8;
+    gyroSampleX |= frame.GetByteAt(3) << 16;
+    gyroSampleX |= frame.GetByteAt(4) << 24;
+    memcpy(&this->gyroX, &gyroSampleX, 4);
+
+    uint32_t gyroSampleY = frame.GetByteAt(5);
+    gyroSampleY |= frame.GetByteAt(6) << 8;
+    gyroSampleY |= frame.GetByteAt(7) << 16;
+    gyroSampleY |= frame.GetByteAt(8) << 24;
+    memcpy(&this->gyroY, &gyroSampleY, 4);
+
+    uint32_t gyroSampleZ = frame.GetByteAt(9);
+    gyroSampleZ |= frame.GetByteAt(10) << 8;
+    gyroSampleZ |= frame.GetByteAt(11) << 16;
+    gyroSampleZ |= frame.GetByteAt(12) << 24;
+    memcpy(&this->gyroZ, &gyroSampleZ, 4);
+
+    uint32_t acceleSampleX = frame.GetByteAt(13);
+    acceleSampleX |= frame.GetByteAt(14) << 8;
+    acceleSampleX |= frame.GetByteAt(15) << 16;
+    acceleSampleX |= frame.GetByteAt(16) << 24;
+    memcpy(&this->acceleX, &acceleSampleX, 4);
+
+    uint32_t acceleSampleY = frame.GetByteAt(17);
+    acceleSampleY |= frame.GetByteAt(18) << 8;
+    acceleSampleY |= frame.GetByteAt(19) << 16;
+    acceleSampleY |= frame.GetByteAt(20) << 24;
+    memcpy(&this->acceleY, &acceleSampleY, 4);
+
+    uint32_t acceleSampleZ = frame.GetByteAt(21);
+    acceleSampleZ |= frame.GetByteAt(22) << 8;
+    acceleSampleZ |= frame.GetByteAt(23) << 16;
+    acceleSampleZ |= frame.GetByteAt(24) << 24;
+    memcpy(&this->acceleZ, &acceleSampleZ, 4);
+
+    uint32_t magnSampleX = frame.GetByteAt(25);
+    magnSampleX |= frame.GetByteAt(26) << 8;
+    magnSampleX |= frame.GetByteAt(27) << 16;
+    magnSampleX |= frame.GetByteAt(28) << 24;
+    memcpy(&this->magnX, &magnSampleX, 4);
+
+    uint32_t magnSampleY = frame.GetByteAt(29);
+    magnSampleY |= frame.GetByteAt(30) << 8;
+    magnSampleY |= frame.GetByteAt(31) << 16;
+    magnSampleY |= frame.GetByteAt(32) << 24;
+    memcpy(&this->magnY, &magnSampleY, 4);
+
+    uint32_t magnSampleZ = frame.GetByteAt(33);
+    magnSampleZ |= frame.GetByteAt(34) << 8;
+    magnSampleZ |= frame.GetByteAt(35) << 16;
+    magnSampleZ |= frame.GetByteAt(36) << 24;
+    memcpy(&this->magnZ, &magnSampleZ, 4);
 }
 
 std::string FOSSASAT2::Messages::RecordedIMU::ToString()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+    std::stringstream ss;
+    ss << "Deployment counter: " << this->deploymentCounter << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;
 }
 
 std::string FOSSASAT2::Messages::RecordedIMU::ToJSON()

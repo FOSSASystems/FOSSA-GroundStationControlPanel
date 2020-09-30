@@ -32,6 +32,8 @@ FOSSASAT2::Messages::DeploymentState::DeploymentState(Frame &frame)
 std::string FOSSASAT2::Messages::DeploymentState::ToString()
 {
     std::stringstream ss;
+    ss << "Satellite Version: FOSSASAT2" << std::endl;
+    ss << "Message Name: DeploymentState" << std::endl;
     ss << "Deployment counter: " << this->deploymentCounter << std::endl;
 
     std::string out;
@@ -43,6 +45,8 @@ std::string FOSSASAT2::Messages::DeploymentState::ToJSON()
 {
     std::stringstream ss;
     ss << "{" << std::endl;
+    ss << "\"Satellite Version\": \"FOSSASAT2\"," << std::endl;
+    ss << "\"Message Name\": \"DeploymentState\"," << std::endl;
     ss << "\"Deployment counter\": " << this->deploymentCounter << std::endl;
     ss << "}" << std::endl;
 

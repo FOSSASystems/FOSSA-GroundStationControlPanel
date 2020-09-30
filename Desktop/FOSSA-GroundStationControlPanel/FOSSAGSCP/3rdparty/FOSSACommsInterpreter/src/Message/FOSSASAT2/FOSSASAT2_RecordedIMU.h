@@ -41,10 +41,9 @@ public:
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
 private:
-    uint8_t deviceFlags;
-    uint8_t gyro;
-    uint8_t accele;
-    uint8_t magn;
+    bool gyro;
+    bool accele;
+    bool magn;
 
     float gyroX;
     float gyroY;

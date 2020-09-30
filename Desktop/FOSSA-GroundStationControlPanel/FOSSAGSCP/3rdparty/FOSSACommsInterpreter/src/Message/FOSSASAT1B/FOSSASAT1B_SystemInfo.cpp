@@ -75,6 +75,8 @@ FOSSASAT1B::Messages::SystemInfo::SystemInfo(Frame &frame) {
 std::string FOSSASAT1B::Messages::SystemInfo::ToString()
 {
     std::stringstream ss;
+    ss << "Satellite Version: FOSSASAT1B" << std::endl;
+    ss << "Message Name: SystemInfo" << std::endl;
     ss << "Battery voltage: " << this->batteryVoltage << " mV" << std::endl;
     ss << "Battery charging current: " << this->batteryChargingCurrent << " uA" << std::endl;
     ss << "Battery charging voltage: " << this->batteryChargingVoltage << std::endl;
@@ -101,6 +103,8 @@ std::string FOSSASAT1B::Messages::SystemInfo::ToJSON()
 {
     std::stringstream ss;
     ss << "{" << std::endl;
+    ss << "\"Satellite Version\": \"FOSSASAT1B\"," << std::endl;
+    ss << "\"Message Name\": \"SystemInfo\"," << std::endl;
     ss << "\"Battery voltage\": " << this->batteryVoltage << "," << std::endl;
     ss << "\"Battery charging current\": " << this->batteryChargingCurrent << "," << std::endl;
     ss << "\"Battery charging voltage\": " << this->batteryChargingVoltage << "," << std::endl;
