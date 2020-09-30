@@ -80,14 +80,28 @@ FOSSASAT2::Messages::SystemInfo::SystemInfo(Frame &frame) {
 
 std::string FOSSASAT2::Messages::SystemInfo::ToString()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+
+    std::stringstream ss;
+    ss << "Satellite Version: FOSSASAT2" << std::endl;
+    ss << "Message Name: SystemInfo" << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;;
 }
 
 std::string FOSSASAT2::Messages::SystemInfo::ToJSON()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+    std::stringstream ss;
+    ss << "{" << std::endl;
+    ss << "\"Satellite Version\": \"FOSSASAT2\"," << std::endl;
+    ss << "\"Message Name\": \"SystemInfo\"," << std::endl;
+    ss << "}" << std::endl;
+
+
+    std::string out;
+    ss >> out;
+    return out;
 }
 
 

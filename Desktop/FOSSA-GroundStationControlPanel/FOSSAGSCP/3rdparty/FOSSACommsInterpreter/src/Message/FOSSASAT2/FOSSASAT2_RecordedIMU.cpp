@@ -89,7 +89,8 @@ FOSSASAT2::Messages::RecordedIMU::RecordedIMU(Frame &frame)
 std::string FOSSASAT2::Messages::RecordedIMU::ToString()
 {
     std::stringstream ss;
-    ss << "Deployment counter: " << this->deploymentCounter << std::endl;
+    ss << "Satellite Version: FOSSASAT2" << std::endl;
+    ss << "Message Name: RecordedIMU" << std::endl;
 
     std::string out;
     ss >> out;
@@ -98,6 +99,11 @@ std::string FOSSASAT2::Messages::RecordedIMU::ToString()
 
 std::string FOSSASAT2::Messages::RecordedIMU::ToJSON()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+    std::stringstream ss;
+    ss << "Satellite Version: FOSSASAT2" << std::endl;
+    ss << "Message Name: RecordedIMU" << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;
 }

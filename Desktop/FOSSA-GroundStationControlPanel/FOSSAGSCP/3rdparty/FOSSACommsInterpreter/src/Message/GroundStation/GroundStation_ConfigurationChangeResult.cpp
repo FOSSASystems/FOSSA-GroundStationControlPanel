@@ -30,12 +30,26 @@ GroundStation::Messages::ConfigurationChangeResult::ConfigurationChangeResult(Fr
 
 std::string GroundStation::Messages::ConfigurationChangeResult::ToString()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+
+    std::stringstream ss;
+    ss << "Ground Station Version: GroundStation" << std::endl;
+    ss << "Message Name: ConfigurationChangeResult" << std::endl;
+
+    std::string out;
+    ss >> out;
+    return out;
 }
 
 std::string GroundStation::Messages::ConfigurationChangeResult::ToJSON()
 {
-    throw std::runtime_error("Not implemented yet");
-    return "";
+    std::stringstream ss;
+    ss << "{" << std::endl;
+    ss << "\"Ground Station Version\": \"GroundStation\"," << std::endl;
+    ss << "\"Message Name\": \"ConfigurationChangeResult\"," << std::endl;
+    ss << "}" << std::endl;
+
+
+    std::string out;
+    ss >> out;
+    return out;
 }
