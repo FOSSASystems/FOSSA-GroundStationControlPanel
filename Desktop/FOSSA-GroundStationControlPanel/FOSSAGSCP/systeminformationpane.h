@@ -17,6 +17,11 @@ public:
     systeminformationpane(QWidget *parent = nullptr);
     ~systeminformationpane();
 
+public:
+    Ui::systeminformationpane* GetUI() {
+        return ui;
+    }
+private:
     Ui::systeminformationpane *ui;
 signals:
     void SendDataFromSystemInformationPane(Datagram datagram);

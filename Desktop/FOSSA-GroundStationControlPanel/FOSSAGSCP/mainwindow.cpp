@@ -115,6 +115,7 @@ void MainWindow::ReceivedByte(uint8_t data)
                     if (frameFunctionID == RESP_SYSTEM_INFO)
                     {
                         FOSSASAT1B::Messages::SystemInfo systemInfo = FOSSASAT1B::FrameDecoder::DecodeSystemInfo(frame);
+                        FOSSASAT1B::MessageHandler::Handle(systemInfo, this->m_sytemInfoPane);
                     }
                 }
                 else if (operationID == OperationID::HANDSHAKE)
@@ -145,30 +146,37 @@ void MainWindow::ReceivedByte(uint8_t data)
                     if (frameFunctionID == RESP_SYSTEM_INFO)
                     {
                         FOSSASAT2::Messages::SystemInfo systemInfo = FOSSASAT2::FrameDecoder::DecodeSystemInfo(frame);
+                        FOSSASAT2::MessageHandler::Handle(systemInfo);
                     }
                     else if (frameFunctionID == RESP_PACKET_INFO)
                     {
                         FOSSASAT2::Messages::PacketInfo packetInfo = FOSSASAT2::FrameDecoder::DecodePacketInfo(frame);
+                        FOSSASAT2::MessageHandler::Handle(packetInfo);
                     }
                     else if (frameFunctionID == RESP_STATISTICS)
                     {
                         FOSSASAT2::Messages::Statistics statistics = FOSSASAT2::FrameDecoder::DecodeStatistics(frame);
+                        FOSSASAT2::MessageHandler::Handle(statistics);
                     }
                     else if (frameFunctionID == RESP_FULL_SYSTEM_INFO)
                     {
                         FOSSASAT2::Messages::FullSystemInfo fullSystemInfo = FOSSASAT2::FrameDecoder::DecodeFullSystemInfo(frame);
+                        FOSSASAT2::MessageHandler::Handle(fullSystemInfo);
                     }
                     else if (frameFunctionID == RESP_DEPLOYMENT_STATE)
                     {
                         FOSSASAT2::Messages::DeploymentState deploymentState = FOSSASAT2::FrameDecoder::DecodeDeploymentState(frame);
+                        FOSSASAT2::MessageHandler::Handle(deploymentState);
                     }
                     else if (frameFunctionID == RESP_RECORDED_IMU)
                     {
                         FOSSASAT2::Messages::RecordedIMU recordedIMU = FOSSASAT2::FrameDecoder::DecodeRecordedIMU(frame);
+                        FOSSASAT2::MessageHandler::Handle(recordedIMU);
                     }
                     else if (frameFunctionID == RESP_GPS_LOG_STATE)
                     {
                         FOSSASAT2::Messages::GPSLogState gpsLogState = FOSSASAT2::FrameDecoder::DecodeGPSLogState(frame);
+                        FOSSASAT2::MessageHandler::Handle(gpsLogState);
                     }
                 }
                 else if (operationID == OperationID::HANDSHAKE)

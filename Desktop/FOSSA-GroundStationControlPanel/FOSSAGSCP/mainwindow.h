@@ -23,6 +23,8 @@
 #include "messagelogframe.h"
 #include "SerialPortThread.h"
 
+#include "MessageHandlers/AllMessageHandlers.h"
+
 #include "DopplerShiftCorrector.h"
 #include "Settings.h"
 
@@ -41,6 +43,14 @@ public:
 
     void SendDatagram(Datagram datagram);
     void SendHandshake();
+private:
+    void ReceivedByte(uint8_t data);
+
+    void LoadControlPanelSettingsUI();
+    void LoadGroundStationSettingsUI();
+    void LoadSatelliteConfigurationUI();
+    void LoadSatelliteControlsUI();
+
 public slots:
     void StartDopplerCorrector();
 private slots:
@@ -177,20 +187,11 @@ private:
     QTimer* m_dopplerCorrectionTimer = nullptr;
     DopplerShiftCorrector m_dopplerShiftCorrector;
 
-    void LoadControlPanelSettingsUI();
-    void LoadGroundStationSettingsUI();
-    void LoadSatelliteConfigurationUI();
-    void LoadSatelliteControlsUI();
-
-
-
     bool m_frameStreaming = false;
     bool m_lengthByte = false;
     uint8_t m_messageLength = 0;
     uint8_t m_fcpFrameLength = 0;
     QByteArray m_datagramData;
-
-    void ReceivedByte(uint8_t data);
 public:
 
 

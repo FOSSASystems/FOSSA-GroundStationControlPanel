@@ -20,7 +20,7 @@
       <enum>QTabWidget::Triangular</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab">
       <attribute name="title">
@@ -39,7 +39,7 @@
           <property name="geometry">
            <rect>
             <x>33</x>
-            <y>-2384</y>
+            <y>0</y>
             <width>439</width>
             <height>3256</height>
            </rect>
@@ -1955,7 +1955,7 @@ Reset (1B):</string>
           <property name="geometry">
            <rect>
             <x>44</x>
-            <y>-585</y>
+            <y>0</y>
             <width>417</width>
             <height>1583</height>
            </rect>
@@ -2359,11 +2359,11 @@ Reset (1B):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_4"/>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="buttonGroup_2"/>
-  <buttongroup name="buttonGroup"/>
-  <buttongroup name="buttonGroup_3"/>
   <buttongroup name="buttonGroup_5"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="buttonGroup_3"/>
+  <buttongroup name="buttonGroup_6"/>
+  <buttongroup name="buttonGroup"/>
+  <buttongroup name="buttonGroup_4"/>
  </buttongroups>
 </ui>

@@ -55,6 +55,8 @@ SOURCES += \
     3rdparty/fossasattracker/src/SimulationResult.cpp \
     3rdparty/fossasattracker/src/TLE.cpp \
     3rdparty/tiny-aes/aes.cpp \
+    MessageHandlers/FOSSASAT1B_MessageHandler.cpp \
+    MessageHandlers/FOSSASAT2_MessageHandler.cpp \
     messagelogframe.cpp \
     SerialPortThread.cpp \
     main.cpp \
@@ -116,6 +118,9 @@ HEADERS += \
     3rdparty/fossasattracker/src/TLE.hpp \
     3rdparty/tiny-aes/aes.h \
     DopplerShiftCorrector.h \
+    MessageHandlers/AllMessageHandlers.h \
+    MessageHandlers/FOSSASAT1B_MessageHandler.h \
+    MessageHandlers/FOSSASAT2_MessageHandler.h \
     SerialPortThread.h \
     mainwindow.h \
     messagelogframe.h \
