@@ -42,17 +42,11 @@ public:
     virtual std::string ToJSON() override;
 
     uint32_t GetMpptOutputVoltage() const;
-
     int32_t GetMpptOutputCurrent() const;
-
     uint32_t GetUnixTimestamp() const;
-
     uint8_t GetPowerConfiguration() const;
-
     bool IsTransmissionsEnabled() const;
-
     bool IsLowPowerModeEnabled() const;
-
     uint8_t GetCurrentlyActivePowerModeLsb() const;
 
     uint8_t GetCurrentlyActivePowerModeA() const;

@@ -3,7 +3,6 @@
 
 #include <Interpreter.h>
 
-#include "../mainwindow.h"
 #include "../systeminformationpane.h"
 
 namespace FOSSASAT1B {

@@ -146,7 +146,7 @@ void MainWindow::ReceivedByte(uint8_t data)
                     if (frameFunctionID == RESP_SYSTEM_INFO)
                     {
                         FOSSASAT2::Messages::SystemInfo systemInfo = FOSSASAT2::FrameDecoder::DecodeSystemInfo(frame);
-                        FOSSASAT2::MessageHandler::Handle(systemInfo);
+                        FOSSASAT2::MessageHandler::Handle(systemInfo, this->m_sytemInfoPane);
                     }
                     else if (frameFunctionID == RESP_PACKET_INFO)
                     {
