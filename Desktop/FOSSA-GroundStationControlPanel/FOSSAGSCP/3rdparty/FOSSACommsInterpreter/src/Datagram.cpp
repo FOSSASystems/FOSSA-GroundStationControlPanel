@@ -28,13 +28,13 @@
 
 
 Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound) {
-	this->satVersion = satVersion;
-	this->inbound = inbound;
-	this->callsign = callsign;
+    this->satVersion = satVersion;
+    this->inbound = inbound;
+    this->callsign = callsign;
 
-	this->controlByte = data[0];
-	this->lengthByte = data[1];
-	this->operationId = (OperationID)(this->controlByte & 0b01111111);
+    this->controlByte = data[0];
+    this->lengthByte = data[1];
+    this->operationId = (OperationID)(this->controlByte & 0b01111111);
 
     if (inbound) {
         switch (this->operationId) {
@@ -122,8 +122,38 @@ std::string Datagram::ToString()
     return str;
 }
 
+std::string Datagram::ToHexString()
+{
+    std::string hexString;
+
+    char hexChar[5];
+    hexChar[4] = '\0';
+    sprintf(&(hexChar[0]), "%02x, ", this->controlByte);
+    hexString.append(hexChar);
+
+    sprintf(&(hexChar[0]), "%02x, ", this->lengthByte);
+    hexChar[4] = '\0';
+    hexString.append(hexChar);
+
+    if (this->inbound)
+    {
+        sprintf(&(hexChar[0]), "%02x, ", (uint8_t)this->radiolibStatusCode);
+        hexChar[4] = '\0';
+        hexString.append(hexChar);
+
+        sprintf(&(hexChar[0]), "%02x, ", (uint8_t)(this->radiolibStatusCode >> 8));
+        hexChar[4] = '\0';
+        hexString.append(hexChar);
+
+        std::string frameStr = this->frame.ToHexString();
+        hexString.append(frameStr);
+    }
+
+    return hexString;
+}
+
 void Datagram::ExtractRadiolibStatusCode(std::vector<uint8_t> data) {
-	this->radiolibStatusCode = data[2] | (data[3] << 8);
+    this->radiolibStatusCode = data[2] | (data[3] << 8);
 }
 
 void Datagram::ExtractFrame(std::string callsign, std::vector<uint8_t> data) {

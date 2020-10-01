@@ -33,17 +33,17 @@ Frame::~Frame() {
 }
 
 Frame::Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data) {
-	this->satVersion = satVersion;
-	this->functionId = FCP_Get_FunctionID((char *)callsign.c_str(), data.data(), data.size());
+    this->satVersion = satVersion;
+    this->functionId = FCP_Get_FunctionID((char *)callsign.c_str(), data.data(), data.size());
 
-	int16_t optionalDataLength = FCP_Get_OptData_Length((char *)callsign.c_str(), data.data(), data.size());
-	if (optionalDataLength > 0) {
-		this->hasOptionalData = true;
-		this->ExtractOptionalData(callsign, data, optionalDataLength);
-	}
-	else {
-		this->hasOptionalData = false;
-	}
+    int16_t optionalDataLength = FCP_Get_OptData_Length((char *)callsign.c_str(), data.data(), data.size());
+    if (optionalDataLength > 0) {
+        this->hasOptionalData = true;
+        this->ExtractOptionalData(callsign, data, optionalDataLength);
+    }
+    else {
+        this->hasOptionalData = false;
+    }
 }
 
 uint8_t Frame::GetByteAt(uint32_t index) {
@@ -56,6 +56,20 @@ std::vector<uint8_t> Frame::Serialize() {
     return data;
 }
 
+std::string Frame::ToHexString()
+{
+    std::string frameStr;
+
+    for (uint8_t value : this->optionalData) {
+        char hexChar[5];
+        hexChar[4] = '\0';
+        sprintf(&(hexChar[0]), "%02x, ", value);
+        frameStr.append(hexChar);
+    }
+
+    return frameStr;
+}
+
 int16_t Frame::GetFunctionID()
 {
     return this->functionId;
@@ -63,12 +77,12 @@ int16_t Frame::GetFunctionID()
 
 
 void Frame::ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength) {
-	uint8_t *tempBuffer = new uint8_t[optionalDataLength];
-	FCP_Get_OptData((char *)callsign.c_str(), data.data(), data.size(), tempBuffer, NULL, NULL);
+    uint8_t *tempBuffer = new uint8_t[optionalDataLength];
+    FCP_Get_OptData((char *)callsign.c_str(), data.data(), data.size(), tempBuffer, NULL, NULL);
 
     for (int16_t i = 0; i < optionalDataLength; i++) {
         this->optionalData.push_back(tempBuffer[i]);
-	}
+    }
 
-	delete[] tempBuffer;
+    delete[] tempBuffer;
 }

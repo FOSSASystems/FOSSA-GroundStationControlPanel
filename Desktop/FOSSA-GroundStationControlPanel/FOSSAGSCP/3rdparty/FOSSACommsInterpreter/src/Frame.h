@@ -34,21 +34,22 @@
 
 class Frame {
 public:
-	Frame();
-	~Frame();
-	Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data);
+    Frame();
+    ~Frame();
+    Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data);
 
-	uint8_t GetByteAt(uint32_t index);
+    uint8_t GetByteAt(uint32_t index);
     std::vector<uint8_t> Serialize();
+    std::string ToHexString();
 
     int16_t GetFunctionID();
 private:
-	void ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength);
+    void ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength);
 private:
-	SatVersion satVersion;
-	int16_t functionId;
-	std::vector<uint8_t> optionalData;
-	bool hasOptionalData;
+    SatVersion satVersion;
+    int16_t functionId;
+    std::vector<uint8_t> optionalData;
+    bool hasOptionalData;
 };
 
 

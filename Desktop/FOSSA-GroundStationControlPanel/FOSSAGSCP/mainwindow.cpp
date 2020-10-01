@@ -90,36 +90,107 @@ void MainWindow::ReceivedByte(uint8_t data)
 
         if (m_datagramData.size() >= m_messageLength)
         {
+            // copy the message data.
             std::vector<uint8_t> tempBuffer;
             for (int i = 0; i < m_datagramData.size(); i++) {
                 tempBuffer.push_back(m_datagramData.at(i));
             }
 
+            // create a datagram from the given message.
             Datagram datagram = Datagram(Settings::GetSatVersion(), Settings::getCallsign(), tempBuffer, true);
-
-            if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT1B)
-            {
-                if (datagram.GetOperationID() == OperationID::FRAME)
-                {
-                    Frame frame = datagram.GetFrame();
-
-                    if (datagram.GetFrameFunctionID() == RESP_SYSTEM_INFO)
-                    {
-                        FOSSASAT1B::Messages::SystemInfo systemInfo = FOSSASAT1B::FrameDecoder::DecodeSystemInfo(frame);
-                    }
-                }
-            }
-            else if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT2)
-            {
-
-            }
 
             // push the datagram to the log panel.
             m_messageLogFrame->WriteDatagram(datagram);
 
+            // parse the datagram into a message class.
+            if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT1B)
+            {
+                OperationID operationID = datagram.GetOperationID();
+
+                if (operationID == OperationID::FRAME)
+                {
+                    Frame frame = datagram.GetFrame();
+                    int16_t frameFunctionID = frame.GetFunctionID();
+
+                    if (frameFunctionID == RESP_SYSTEM_INFO)
+                    {
+                        FOSSASAT1B::Messages::SystemInfo systemInfo = FOSSASAT1B::FrameDecoder::DecodeSystemInfo(frame);
+                    }
+                }
+                else if (operationID == OperationID::HANDSHAKE)
+                {
+                    this->ui->handshookRadioButton->setChecked(true);
+                    Settings::SetHandshookValue(true);
+                    this->ui->statusbar->showMessage("Ground station handshook successfully!");
+                    this->m_messageLogFrame->RawWriteToLog("Ground station handshake response received.");
+                }
+                else if (operationID == OperationID::CARRIER)
+                {
+                    this->m_messageLogFrame->RawWriteToLog("Ground station carrier frequency change completed.");
+                }
+                else if (operationID == OperationID::CONFIG)
+                {
+                    this->m_messageLogFrame->RawWriteToLog("Ground station configuration change completed.");
+                }
+            }
+            else if (Settings::GetSatVersion() == SatVersion::V_FOSSASAT2)
+            {
+                OperationID operationID = datagram.GetOperationID();
+
+                if (operationID == OperationID::FRAME)
+                {
+                    Frame frame = datagram.GetFrame();
+                    int16_t frameFunctionID = frame.GetFunctionID();
+
+                    if (frameFunctionID == RESP_SYSTEM_INFO)
+                    {
+                        FOSSASAT2::Messages::SystemInfo systemInfo = FOSSASAT2::FrameDecoder::DecodeSystemInfo(frame);
+                    }
+                    else if (frameFunctionID == RESP_PACKET_INFO)
+                    {
+                        FOSSASAT2::Messages::PacketInfo packetInfo = FOSSASAT2::FrameDecoder::DecodePacketInfo(frame);
+                    }
+                    else if (frameFunctionID == RESP_STATISTICS)
+                    {
+                        FOSSASAT2::Messages::Statistics statistics = FOSSASAT2::FrameDecoder::DecodeStatistics(frame);
+                    }
+                    else if (frameFunctionID == RESP_FULL_SYSTEM_INFO)
+                    {
+                        FOSSASAT2::Messages::FullSystemInfo fullSystemInfo = FOSSASAT2::FrameDecoder::DecodeFullSystemInfo(frame);
+                    }
+                    else if (frameFunctionID == RESP_DEPLOYMENT_STATE)
+                    {
+                        FOSSASAT2::Messages::DeploymentState deploymentState = FOSSASAT2::FrameDecoder::DecodeDeploymentState(frame);
+                    }
+                    else if (frameFunctionID == RESP_RECORDED_IMU)
+                    {
+                        FOSSASAT2::Messages::RecordedIMU recordedIMU = FOSSASAT2::FrameDecoder::DecodeRecordedIMU(frame);
+                    }
+                    else if (frameFunctionID == RESP_GPS_LOG_STATE)
+                    {
+                        FOSSASAT2::Messages::GPSLogState gpsLogState = FOSSASAT2::FrameDecoder::DecodeGPSLogState(frame);
+                    }
+                }
+                else if (operationID == OperationID::HANDSHAKE)
+                {
+                    this->ui->handshookRadioButton->setChecked(true);
+                    Settings::SetHandshookValue(true);
+                    this->ui->statusbar->showMessage("Ground station handshook successfully!");
+                    this->m_messageLogFrame->RawWriteToLog("Ground station handshake response received.");
+                }
+                else if (operationID == OperationID::CARRIER)
+                {
+                    this->m_messageLogFrame->RawWriteToLog("Ground station carrier frequency change completed.");
+                }
+                else if (operationID == OperationID::CONFIG)
+                {
+                    this->m_messageLogFrame->RawWriteToLog("Ground station configuration change completed.");
+                }
+            }
+
+
             // reset data and flags
             m_datagramData.clear();
-
             m_frameStreaming = false;
         }
 
