@@ -49,7 +49,7 @@ private:
 
     std::vector<float> temperatures;
     std::vector<float> currents;
-    std::vector<uint8_t> voltages;
+    std::vector<float> voltages;
     std::vector<float> lightSensors;
     std::vector<float> imus;
 };
