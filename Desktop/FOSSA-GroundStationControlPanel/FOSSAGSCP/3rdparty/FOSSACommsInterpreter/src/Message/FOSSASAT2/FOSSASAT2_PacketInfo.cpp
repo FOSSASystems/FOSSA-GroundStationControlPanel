@@ -77,3 +77,27 @@ std::string FOSSASAT2::Messages::PacketInfo::ToJSON()
     ss >> out;
     return out;
 }
+
+int32_t FOSSASAT2::Messages::PacketInfo::GetSnr() const {
+    return snr;
+}
+
+int32_t FOSSASAT2::Messages::PacketInfo::GetRssi() const {
+    return rssi;
+}
+
+uint16_t FOSSASAT2::Messages::PacketInfo::GetNumReceivedValidLoraFrames() const {
+    return numReceivedValidLoraFrames;
+}
+
+uint16_t FOSSASAT2::Messages::PacketInfo::GetNumReceivedInvalidLoraFrames() const {
+    return numReceivedInvalidLoraFrames;
+}
+
+uint16_t FOSSASAT2::Messages::PacketInfo::GetNumReceivedValidFskFrames() const {
+    return numReceivedValidFSKFrames;
+}
+
+uint16_t FOSSASAT2::Messages::PacketInfo::GetNumReceivedInvalidFskFrames() const {
+    return numReceivedInvalidFSKFrames;
+}

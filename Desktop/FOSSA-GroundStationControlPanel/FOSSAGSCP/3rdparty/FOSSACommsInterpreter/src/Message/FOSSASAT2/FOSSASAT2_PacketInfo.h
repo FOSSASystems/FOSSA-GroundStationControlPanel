@@ -40,6 +40,19 @@ public:
     virtual ~PacketInfo() = default;
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
+
+    int32_t GetSnr() const;
+
+    int32_t GetRssi() const;
+
+    uint16_t GetNumReceivedValidLoraFrames() const;
+
+    uint16_t GetNumReceivedInvalidLoraFrames() const;
+
+    uint16_t GetNumReceivedValidFskFrames() const;
+
+    uint16_t GetNumReceivedInvalidFskFrames() const;
+
 private:
     int32_t snr;
     int32_t rssi;

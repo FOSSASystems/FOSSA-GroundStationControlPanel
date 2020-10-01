@@ -40,6 +40,13 @@ public:
     virtual ~GPSLogState() = default;
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
+
+    uint32_t GetGpsLogLength() const;
+
+    uint32_t GetLastNmeaEntryAddr() const;
+
+    uint32_t GetLastNmeaFixAddr() const;
+
 private:
     uint32_t gpsLogLength;
 

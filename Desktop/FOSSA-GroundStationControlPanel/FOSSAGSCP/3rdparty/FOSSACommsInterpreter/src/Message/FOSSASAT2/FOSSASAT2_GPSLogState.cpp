@@ -73,3 +73,15 @@ std::string FOSSASAT2::Messages::GPSLogState::ToJSON()
     ss >> out;
     return out;
 }
+
+uint32_t FOSSASAT2::Messages::GPSLogState::GetGpsLogLength() const {
+    return gpsLogLength;
+}
+
+uint32_t FOSSASAT2::Messages::GPSLogState::GetLastNmeaEntryAddr() const {
+    return lastNMEAEntryAddr;
+}
+
+uint32_t FOSSASAT2::Messages::GPSLogState::GetLastNmeaFixAddr() const {
+    return lastNMEAFixAddr;
+}

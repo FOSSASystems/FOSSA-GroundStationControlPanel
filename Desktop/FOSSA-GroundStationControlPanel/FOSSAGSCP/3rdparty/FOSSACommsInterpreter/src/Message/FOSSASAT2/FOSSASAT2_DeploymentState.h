@@ -40,6 +40,8 @@ public:
     virtual ~DeploymentState() = default;
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
+    uint8_t GetDeploymentCounter() const;
+
 private:
     uint8_t deploymentCounter;
 };

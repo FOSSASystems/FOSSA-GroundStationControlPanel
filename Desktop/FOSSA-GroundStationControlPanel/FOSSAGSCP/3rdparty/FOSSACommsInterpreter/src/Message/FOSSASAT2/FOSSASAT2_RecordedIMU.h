@@ -40,6 +40,31 @@ public:
     virtual ~RecordedIMU() = default;
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
+
+    bool IsGyro() const;
+
+    bool IsAccele() const;
+
+    bool IsMagn() const;
+
+    float GetGyroX() const;
+
+    float GetGyroY() const;
+
+    float GetGyroZ() const;
+
+    float GetAcceleX() const;
+
+    float GetAcceleY() const;
+
+    float GetAcceleZ() const;
+
+    float GetMagnX() const;
+
+    float GetMagnY() const;
+
+    float GetMagnZ() const;
+
 private:
     bool gyro;
     bool accele;

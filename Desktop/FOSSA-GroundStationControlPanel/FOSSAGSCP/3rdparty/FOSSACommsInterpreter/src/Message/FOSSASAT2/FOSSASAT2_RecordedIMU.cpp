@@ -144,3 +144,51 @@ std::string FOSSASAT2::Messages::RecordedIMU::ToJSON()
     ss >> out;
     return out;
 }
+
+bool FOSSASAT2::Messages::RecordedIMU::IsGyro() const {
+    return gyro;
+}
+
+bool FOSSASAT2::Messages::RecordedIMU::IsAccele() const {
+    return accele;
+}
+
+bool FOSSASAT2::Messages::RecordedIMU::IsMagn() const {
+    return magn;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetGyroX() const {
+    return gyroX;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetGyroY() const {
+    return gyroY;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetGyroZ() const {
+    return gyroZ;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetAcceleX() const {
+    return acceleX;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetAcceleY() const {
+    return acceleY;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetAcceleZ() const {
+    return acceleZ;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetMagnX() const {
+    return magnX;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetMagnY() const {
+    return magnY;
+}
+
+float FOSSASAT2::Messages::RecordedIMU::GetMagnZ() const {
+    return magnZ;
+}

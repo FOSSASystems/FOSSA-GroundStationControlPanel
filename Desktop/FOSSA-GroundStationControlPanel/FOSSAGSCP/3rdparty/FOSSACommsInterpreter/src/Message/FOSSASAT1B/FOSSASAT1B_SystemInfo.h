@@ -40,9 +40,28 @@ public:
     virtual ~SystemInfo() = default;
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
+
+    uint32_t GetBatteryVoltage() const;
+    int32_t GetBatteryChargingCurrent() const;
+    uint32_t GetBatteryChargingVoltage() const;
+    uint32_t GetTimeSinceLastReset() const;
+    uint8_t GetPowerConfiguration() const;
+    bool GetLowPowerModeActive() const;
+    bool GetLowPowerModeEnabled() const;
+    bool GetMpptTemperatureSwitchEnabled() const;
+    bool GetMpptKeepAliveEnabled() const;
+    bool GetTransmissionsEnabled() const;
+    uint16_t GetResetCounter() const;
+    uint32_t GetSolarCellAVoltage() const;
+    uint32_t GetSolarCellBVoltage() const;
+    uint32_t GetSolarCellCVoltage() const;
+    float GetBatteryTemperature() const;
+    float GetObcBoardTemperature() const;
+    int8_t GetMcuTemperature() const;
+
 private:
-	uint32_t batteryVoltage;
-	int32_t batteryChargingCurrent;
+    uint32_t batteryVoltage;
+    int32_t batteryChargingCurrent;
 	uint32_t batteryChargingVoltage;
 
 	uint32_t timeSinceLastReset;

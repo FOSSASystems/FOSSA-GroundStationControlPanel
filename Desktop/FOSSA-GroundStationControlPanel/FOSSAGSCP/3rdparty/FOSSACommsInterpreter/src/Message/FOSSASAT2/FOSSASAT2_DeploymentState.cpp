@@ -54,3 +54,8 @@ std::string FOSSASAT2::Messages::DeploymentState::ToJSON()
     ss >> out;
     return out;
 }
+
+uint8_t FOSSASAT2::Messages::DeploymentState::GetDeploymentCounter() const
+{
+    return deploymentCounter;
+}

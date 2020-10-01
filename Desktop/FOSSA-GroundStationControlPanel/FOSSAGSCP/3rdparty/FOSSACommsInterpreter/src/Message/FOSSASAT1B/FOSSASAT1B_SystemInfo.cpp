@@ -127,3 +127,88 @@ std::string FOSSASAT1B::Messages::SystemInfo::ToJSON()
     ss >> out;
     return out;
 }
+
+int8_t FOSSASAT1B::Messages::SystemInfo::GetMcuTemperature() const
+{
+    return mcuTemperature;
+}
+
+float FOSSASAT1B::Messages::SystemInfo::GetObcBoardTemperature() const
+{
+    return obcBoardTemperature;
+}
+
+float FOSSASAT1B::Messages::SystemInfo::GetBatteryTemperature() const
+{
+    return batteryTemperature;
+}
+
+uint32_t FOSSASAT1B::Messages::SystemInfo::GetSolarCellCVoltage() const
+{
+    return solarCellCVoltage;
+}
+
+uint32_t FOSSASAT1B::Messages::SystemInfo::GetSolarCellBVoltage() const
+{
+    return solarCellBVoltage;
+}
+
+uint32_t FOSSASAT1B::Messages::SystemInfo::GetSolarCellAVoltage() const
+{
+    return solarCellAVoltage;
+}
+
+uint16_t FOSSASAT1B::Messages::SystemInfo::GetResetCounter() const
+{
+    return resetCounter;
+}
+
+bool FOSSASAT1B::Messages::SystemInfo::GetTransmissionsEnabled() const
+{
+    return transmissionsEnabled;
+}
+
+bool FOSSASAT1B::Messages::SystemInfo::GetMpptKeepAliveEnabled() const
+{
+    return mpptKeepAliveEnabled;
+}
+
+bool FOSSASAT1B::Messages::SystemInfo::GetMpptTemperatureSwitchEnabled() const
+{
+    return mpptTemperatureSwitchEnabled;
+}
+
+bool FOSSASAT1B::Messages::SystemInfo::GetLowPowerModeEnabled() const
+{
+    return lowPowerModeEnabled;
+}
+
+bool FOSSASAT1B::Messages::SystemInfo::GetLowPowerModeActive() const
+{
+    return lowPowerModeActive;
+}
+
+uint8_t FOSSASAT1B::Messages::SystemInfo::GetPowerConfiguration() const
+{
+    return powerConfiguration;
+}
+
+uint32_t FOSSASAT1B::Messages::SystemInfo::GetTimeSinceLastReset() const
+{
+    return timeSinceLastReset;
+}
+
+uint32_t FOSSASAT1B::Messages::SystemInfo::GetBatteryChargingVoltage() const
+{
+    return batteryChargingVoltage;
+}
+
+int32_t FOSSASAT1B::Messages::SystemInfo::GetBatteryChargingCurrent() const
+{
+    return batteryChargingCurrent;
+}
+
+uint32_t FOSSASAT1B::Messages::SystemInfo::GetBatteryVoltage() const
+{
+    return batteryVoltage;
+}

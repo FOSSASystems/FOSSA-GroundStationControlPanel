@@ -40,6 +40,27 @@ public:
     virtual ~Statistics() = default;
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
+
+    bool IsTemperaturesIncluded() const;
+
+    bool IsCurrentsIncluded() const;
+
+    bool IsVoltagesIncluded() const;
+
+    bool IsLightSensorsIncluded() const;
+
+    bool IsImuIncluded() const;
+
+    const std::vector<float> &GetTemperatures() const;
+
+    const std::vector<float> &GetCurrents() const;
+
+    const std::vector<float> &GetVoltages() const;
+
+    const std::vector<float> &GetLightSensors() const;
+
+    const std::vector<float> &GetImus() const;
+
 private:
     bool temperaturesIncluded;
     bool currentsIncluded;

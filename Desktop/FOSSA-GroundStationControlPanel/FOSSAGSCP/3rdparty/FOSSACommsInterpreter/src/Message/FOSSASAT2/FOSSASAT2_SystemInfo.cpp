@@ -137,74 +137,94 @@ std::string FOSSASAT2::Messages::SystemInfo::ToJSON()
     return out;
 }
 
+uint32_t FOSSASAT2::Messages::SystemInfo::GetMpptOutputVoltage() const {
+    return mpptOutputVoltage;
+}
 
+int32_t FOSSASAT2::Messages::SystemInfo::GetMpptOutputCurrent() const {
+    return mpptOutputCurrent;
+}
 
-uint32_t FOSSASAT2::Messages::SystemInfo::getMpptOutputVoltage() const {
-	return mpptOutputVoltage;
+uint32_t FOSSASAT2::Messages::SystemInfo::GetUnixTimestamp() const {
+    return unixTimestamp;
 }
-int32_t FOSSASAT2::Messages::SystemInfo::getMpptOutputCurrent() const {
-	return mpptOutputCurrent;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetPowerConfiguration() const {
+    return powerConfiguration;
 }
-uint32_t FOSSASAT2::Messages::SystemInfo::getUnixTimestamp() const {
-	return unixTimestamp;
+
+bool FOSSASAT2::Messages::SystemInfo::IsTransmissionsEnabled() const {
+    return transmissionsEnabled;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getPowerConfiguration() const {
-	return powerConfiguration;
+
+bool FOSSASAT2::Messages::SystemInfo::IsLowPowerModeEnabled() const {
+    return lowPowerModeEnabled;
 }
-bool FOSSASAT2::Messages::SystemInfo::isTransmissionsEnabled() const {
-	return transmissionsEnabled;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetCurrentlyActivePowerModeLsb() const {
+    return currentlyActivePowerModeLSB;
 }
-bool FOSSASAT2::Messages::SystemInfo::isLowPowerModeEnabled() const {
-	return lowPowerModeEnabled;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetCurrentlyActivePowerModeA() const {
+    return currentlyActivePowerModeA;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getCurrentlyActivePowerModeLSB() const {
-	return currentlyActivePowerModeLSB;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetCurrentlyActivePowerModeMsb() const {
+    return currentlyActivePowerModeMSB;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getCurrentlyActivePowerModeA() const {
-	return currentlyActivePowerModeA;
+
+uint32_t FOSSASAT2::Messages::SystemInfo::GetCurrentlyActivePowerMode() const {
+    return currentlyActivePowerMode;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getCurrentlyActivePowerModeMSB() const {
-	return currentlyActivePowerModeMSB;
+
+bool FOSSASAT2::Messages::SystemInfo::IsLowPowerModeActive() const {
+    return lowPowerModeActive;
 }
-uint32_t FOSSASAT2::Messages::SystemInfo::getCurrentlyActivePowerMode() const {
-	return currentlyActivePowerMode;
+
+bool FOSSASAT2::Messages::SystemInfo::IsSleepMode() const {
+    return sleepMode;
 }
-bool FOSSASAT2::Messages::SystemInfo::isLowPowerModeActive() const {
-	return lowPowerModeActive;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetMpptTemperatureSwitchEnabled() const {
+    return mpptTemperatureSwitchEnabled;
 }
-bool FOSSASAT2::Messages::SystemInfo::isSleepMode() const {
-	return sleepMode;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetMpptKeepAliveEnabled() const {
+    return mpptKeepAliveEnabled;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getMpptTemperatureSwitchEnabled() const {
-	return mpptTemperatureSwitchEnabled;
+
+uint16_t FOSSASAT2::Messages::SystemInfo::GetResetCounter() const {
+    return resetCounter;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getMpptKeepAliveEnabled() const {
-	return mpptKeepAliveEnabled;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetSolarPanelXaVoltage() const {
+    return solarPanel_XA_Voltage;
 }
-uint16_t FOSSASAT2::Messages::SystemInfo::getResetCounter() const {
-	return resetCounter;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetSolarPanelXbVoltage() const {
+    return solarPanel_XB_Voltage;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getSolarPanel_XA_Voltage() const {
-	return solarPanel_XA_Voltage;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetSolarPanelZaVoltage() const {
+    return solarPanel_ZA_Voltage;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getSolarPanel_XB_Voltage() const {
-	return solarPanel_XB_Voltage;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetSolarPanelZbVoltage() const {
+    return solarPanel_ZB_Voltage;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getSolarPanel_ZA_Voltage() const {
-	return solarPanel_ZA_Voltage;
+
+uint8_t FOSSASAT2::Messages::SystemInfo::GetSolarPanelYVoltage() const {
+    return solarPanel_Y_Voltage;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getSolarPanel_ZB_Voltage() const {
-	return solarPanel_ZB_Voltage;
+
+float FOSSASAT2::Messages::SystemInfo::GetBatteryTemperature() const {
+    return batteryTemperature;
 }
-uint8_t FOSSASAT2::Messages::SystemInfo::getSolarPanel_Y_Voltage() const {
-	return solarPanel_Y_Voltage;
+
+float FOSSASAT2::Messages::SystemInfo::GetObcBoardTemperature() const {
+    return obcBoardTemperature;
 }
-float FOSSASAT2::Messages::SystemInfo::getBatteryTemperature() const {
-	return batteryTemperature;
-}
-float FOSSASAT2::Messages::SystemInfo::getObcBoardTemperature() const {
-	return obcBoardTemperature;
-}
-int32_t FOSSASAT2::Messages::SystemInfo::getFlashSystemInfoPageCRCErrorCounter() const {
-	return flashSystemInfoPageCRCErrorCounter;
+
+int32_t FOSSASAT2::Messages::SystemInfo::GetFlashSystemInfoPageCrcErrorCounter() const {
+    return flashSystemInfoPageCRCErrorCounter;
 }

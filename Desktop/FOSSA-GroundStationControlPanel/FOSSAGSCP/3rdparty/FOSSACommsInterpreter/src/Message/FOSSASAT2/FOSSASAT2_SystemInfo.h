@@ -41,29 +41,52 @@ public:
     virtual std::string ToString() override;
     virtual std::string ToJSON() override;
 
-	uint32_t getMpptOutputVoltage() const;
-	int32_t getMpptOutputCurrent() const;
-	uint32_t getUnixTimestamp() const;
-	uint8_t getPowerConfiguration() const;
-	bool isTransmissionsEnabled() const;
-	bool isLowPowerModeEnabled() const;
-	uint8_t getCurrentlyActivePowerModeLSB() const;
-	uint8_t getCurrentlyActivePowerModeA() const;
-	uint8_t getCurrentlyActivePowerModeMSB() const;
-	uint32_t getCurrentlyActivePowerMode() const;
-	bool isLowPowerModeActive() const;
-	bool isSleepMode() const;
-	uint8_t getMpptTemperatureSwitchEnabled() const;
-	uint8_t getMpptKeepAliveEnabled() const;
-	uint16_t getResetCounter() const;
-	uint8_t getSolarPanel_XA_Voltage() const;
-	uint8_t getSolarPanel_XB_Voltage() const;
-	uint8_t getSolarPanel_ZA_Voltage() const;
-	uint8_t getSolarPanel_ZB_Voltage() const;
-	uint8_t getSolarPanel_Y_Voltage() const;
-	float getBatteryTemperature() const;
-	float getObcBoardTemperature() const;
-	int32_t getFlashSystemInfoPageCRCErrorCounter() const;
+    uint32_t GetMpptOutputVoltage() const;
+
+    int32_t GetMpptOutputCurrent() const;
+
+    uint32_t GetUnixTimestamp() const;
+
+    uint8_t GetPowerConfiguration() const;
+
+    bool IsTransmissionsEnabled() const;
+
+    bool IsLowPowerModeEnabled() const;
+
+    uint8_t GetCurrentlyActivePowerModeLsb() const;
+
+    uint8_t GetCurrentlyActivePowerModeA() const;
+
+    uint8_t GetCurrentlyActivePowerModeMsb() const;
+
+    uint32_t GetCurrentlyActivePowerMode() const;
+
+    bool IsLowPowerModeActive() const;
+
+    bool IsSleepMode() const;
+
+    uint8_t GetMpptTemperatureSwitchEnabled() const;
+
+    uint8_t GetMpptKeepAliveEnabled() const;
+
+    uint16_t GetResetCounter() const;
+
+    uint8_t GetSolarPanelXaVoltage() const;
+
+    uint8_t GetSolarPanelXbVoltage() const;
+
+    uint8_t GetSolarPanelZaVoltage() const;
+
+    uint8_t GetSolarPanelZbVoltage() const;
+
+    uint8_t GetSolarPanelYVoltage() const;
+
+    float GetBatteryTemperature() const;
+
+    float GetObcBoardTemperature() const;
+
+    int32_t GetFlashSystemInfoPageCrcErrorCounter() const;
+
 private:
 	uint32_t mpptOutputVoltage;
 	int32_t mpptOutputCurrent;

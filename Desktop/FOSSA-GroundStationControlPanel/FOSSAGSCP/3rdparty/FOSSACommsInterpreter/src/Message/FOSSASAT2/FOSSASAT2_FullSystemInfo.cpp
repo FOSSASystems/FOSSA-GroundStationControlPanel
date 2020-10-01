@@ -244,3 +244,191 @@ std::string FOSSASAT2::Messages::FullSystemInfo::ToJSON()
     ss >> out;
     return out;
 }
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetMpptOutputVoltage() const {
+    return mpptOutputVoltage;
+}
+
+int32_t FOSSASAT2::Messages::FullSystemInfo::GetMpptOutputCurrent() const {
+    return mpptOutputCurrent;
+}
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetUnixTimestamp() const {
+    return unixTimestamp;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetPowerConfiguration() const {
+    return powerConfiguration;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetTransmissionsEnabled() const {
+    return transmissionsEnabled;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetLowPowerModeEnabled() const {
+    return lowPowerModeEnabled;
+}
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetCurrentlyActivePowerMode() const {
+    return currentlyActivePowerMode;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsNoLowPowerMode() const {
+    return noLowPowerMode;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsSleepMode() const {
+    return sleepMode;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsMpptTemperatureSwitchEnabled() const {
+    return mpptTemperatureSwitchEnabled;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsMpptKeepAliveEnabled() const {
+    return mpptKeepAliveEnabled;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsScienceModeActive() const {
+    return scienceModeActive;
+}
+
+uint16_t FOSSASAT2::Messages::FullSystemInfo::GetResetCounter() const {
+    return resetCounter;
+}
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelXaVoltage() const {
+    return solarPanel_XA_Voltage;
+}
+
+int32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelXaCurrent() const {
+    return solarPanel_XA_Current;
+}
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelXbVoltage() const {
+    return solarPanel_XB_Voltage;
+}
+
+int32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelXbCurrent() const {
+    return solarPanel_XB_Current;
+}
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelZaVoltage() const {
+    return solarPanel_ZA_Voltage;
+}
+
+int32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelZaCurrent() const {
+    return solarPanel_ZA_Current;
+}
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelZbVoltage() const {
+    return solarPanel_ZB_Voltage;
+}
+
+int32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelZbCurrent() const {
+    return solarPanel_ZB_Current;
+}
+
+uint32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelYVoltage() const {
+    return solarPanel_Y_Voltage;
+}
+
+int32_t FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelYCurrent() const {
+    return solarPanel_Y_Current;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetSolarPanelYTemperature() const {
+    return solarPanelYTemperature;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetObcBoardTemperature() const {
+    return obcBoardTemperature;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetBottomBoardTemperature() const {
+    return bottomBoardTemperature;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetBatteryTemperature() const {
+    return batteryTemperature;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetSecondBatteryTemperature() const {
+    return secondBatteryTemperature;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetMcuTemperature() const {
+    return mcuTemperature;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetYPanelLightSensor() const {
+    return yPanelLightSensor;
+}
+
+float FOSSASAT2::Messages::FullSystemInfo::GetTopBoardLightSensor() const {
+    return topBoardLightSensor;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetLastXAxisHBridgeFault() const {
+    return lastXAxisHBridgeFault;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetLastYAxisHBridgeFault() const {
+    return lastYAxisHBridgeFault;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetLastZAxisHBridgeFault() const {
+    return lastZAxisHBridgeFault;
+}
+
+int32_t FOSSASAT2::Messages::FullSystemInfo::GetFlashSystemInfoPageCrcErrorCounter() const {
+    return flashSystemInfoPageCRCErrorCounter;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetFskWindowReceiveLength() const {
+    return fskWindowReceiveLength;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetLoraWindowReceiveLength() const {
+    return loraWindowReceiveLength;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsSensorStates() const {
+    return sensorStates;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsLightSensorTop() const {
+    return lightSensorTop;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsLightSensorY() const {
+    return lightSensorY;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsCurrentSensorMppt() const {
+    return currentSensorMPPT;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsCurrentSensorY() const {
+    return currentSensorY;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsCurrentSensorZb() const {
+    return currentSensorZB;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsCurrentSensorZa() const {
+    return currentSensorZA;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsCurrentSensorXb() const {
+    return currentSensorXB;
+}
+
+bool FOSSASAT2::Messages::FullSystemInfo::IsCurrentSensorXa() const {
+    return currentSensorXA;
+}
+
+uint8_t FOSSASAT2::Messages::FullSystemInfo::GetLastAdcsResult() const {
+    return lastADCSResult;
+}

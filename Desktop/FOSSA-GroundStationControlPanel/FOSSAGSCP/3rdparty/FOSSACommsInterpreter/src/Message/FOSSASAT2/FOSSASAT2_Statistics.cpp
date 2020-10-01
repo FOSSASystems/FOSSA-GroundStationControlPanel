@@ -217,3 +217,43 @@ std::string FOSSASAT2::Messages::Statistics::ToJSON()
     ss >> out;
     return out;
 }
+
+bool FOSSASAT2::Messages::Statistics::IsTemperaturesIncluded() const {
+    return temperaturesIncluded;
+}
+
+bool FOSSASAT2::Messages::Statistics::IsCurrentsIncluded() const {
+    return currentsIncluded;
+}
+
+bool FOSSASAT2::Messages::Statistics::IsVoltagesIncluded() const {
+    return voltagesIncluded;
+}
+
+bool FOSSASAT2::Messages::Statistics::IsLightSensorsIncluded() const {
+    return lightSensorsIncluded;
+}
+
+bool FOSSASAT2::Messages::Statistics::IsImuIncluded() const {
+    return imuIncluded;
+}
+
+const std::vector<float> &FOSSASAT2::Messages::Statistics::GetTemperatures() const {
+    return temperatures;
+}
+
+const std::vector<float> &FOSSASAT2::Messages::Statistics::GetCurrents() const {
+    return currents;
+}
+
+const std::vector<float> &FOSSASAT2::Messages::Statistics::GetVoltages() const {
+    return voltages;
+}
+
+const std::vector<float> &FOSSASAT2::Messages::Statistics::GetLightSensors() const {
+    return lightSensors;
+}
+
+const std::vector<float> &FOSSASAT2::Messages::Statistics::GetImus() const {
+    return imus;
+}
