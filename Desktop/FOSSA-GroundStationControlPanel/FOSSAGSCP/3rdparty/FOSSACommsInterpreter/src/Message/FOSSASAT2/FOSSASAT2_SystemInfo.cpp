@@ -84,6 +84,24 @@ std::string FOSSASAT2::Messages::SystemInfo::ToString()
     std::stringstream ss;
     ss << "Satellite Version: FOSSASAT2" << std::endl;
     ss << "Message Name: SystemInfo" << std::endl;
+    ss << "MPPT output voltage: " << this->mpptOutputVoltage << "mV" << std::endl;
+    ss << "MPPT output current: " << this->mpptOutputCurrent  << "uA" << std::endl;
+    ss << "Timestamp: " << this->unixTimestamp  << std::endl;
+    ss << "Transmissions enabled: " << this->transmissionsEnabled << std::endl;
+    ss << "LowPower mode active: " << this->lowPowerModeActive << std::endl;
+    ss << "LowPower mode enabled: " << this->lowPowerModeEnabled << std::endl;
+    ss << "Currently active low power mode: " << this->currentlyActivePowerMode << std::endl;
+    ss << "MPPT temperature switch enabled: " << this->mpptTemperatureSwitchEnabled  << std::endl;
+    ss << "MPPT keep alive enabled: " << this->mpptKeepAliveEnabled  << std::endl;
+    ss << "Reset counter: " << this->resetCounter << std::endl;
+    ss << "Solar panel XA voltage: " << this->solarPanel_XA_Voltage  << "mV" << std::endl;
+    ss << "Solar panel XB voltage: " << this->solarPanel_XB_Voltage  << "mV" << std::endl;
+    ss << "Solar panel ZA voltage: " << this->solarPanel_ZA_Voltage    << "mV" << std::endl;
+    ss << "Solar panel ZB voltage: " << this->solarPanel_ZB_Voltage  << "mV" << std::endl;
+    ss << "Solar panel Y voltage: " << this->solarPanel_Y_Voltage  << "mV" << std::endl;
+    ss << "OBC board temperature: " << this->obcBoardTemperature    << "Deg. C." << std::endl;
+    ss << "Battery temperature: " << this->batteryTemperature  << "Deg. C." << std::endl;
+    ss << "External flash system info page CRC error counter: " << this->flashSystemInfoPageCRCErrorCounter << std::endl;
 
     std::string out;
     ss >> out;
@@ -94,10 +112,25 @@ std::string FOSSASAT2::Messages::SystemInfo::ToJSON()
 {
     std::stringstream ss;
     ss << "{" << std::endl;
-    ss << "\"Satellite Version\": \"FOSSASAT2\"," << std::endl;
-    ss << "\"Message Name\": \"SystemInfo\"," << std::endl;
+    ss << "\"MPPT output voltage\": \"" << this->mpptOutputVoltage << "\"" << std::endl;
+    ss << "\"MPPT output current\": \"" << this->mpptOutputCurrent  << "\"" << std::endl;
+    ss << "\"Timestamp\": \"" << this->unixTimestamp << "\""  << std::endl;
+    ss << "\"Transmissions enabled\": \"" << this->transmissionsEnabled << "\""  << std::endl;
+    ss << "\"LowPower mode active\": \"" << this->lowPowerModeActive << "\""  << std::endl;
+    ss << "\"LowPower mode enabled\": \"" << this->lowPowerModeEnabled << "\""  << std::endl;
+    ss << "\"Currently active low power mode\": \"" << this->currentlyActivePowerMode << "\""  << std::endl;
+    ss << "\"MPPT temperature switch enabled\": \"" << this->mpptTemperatureSwitchEnabled << "\""   << std::endl;
+    ss << "\"MPPT keep alive enabled\": \"" << this->mpptKeepAliveEnabled << "\""   << std::endl;
+    ss << "\"Reset counter\": \"" << this->resetCounter << "\""  << std::endl;
+    ss << "\"Solar panel XA voltage\": \"" << this->solarPanel_XA_Voltage  << "\"" << std::endl;
+    ss << "\"Solar panel XB voltage\": \"" << this->solarPanel_XB_Voltage  << "\"" << std::endl;
+    ss << "\"Solar panel ZA voltage\": \"" << this->solarPanel_ZA_Voltage    << "\"" << std::endl;
+    ss << "\"Solar panel ZB voltage\": \"" << this->solarPanel_ZB_Voltage  << "\"" << std::endl;
+    ss << "\"Solar panel Y voltage\": \"" << this->solarPanel_Y_Voltage  << "\"" << std::endl;
+    ss << "\"OBC board temperature\": \"" << this->obcBoardTemperature    << "\"" << std::endl;
+    ss << "\"Battery temperature\": \"" << this->batteryTemperature  << "\"" << std::endl;
+    ss << "\"External flash system info page CRC error counter\": \"" << this->flashSystemInfoPageCRCErrorCounter << "\""  << std::endl;
     ss << "}" << std::endl;
-
 
     std::string out;
     ss >> out;
