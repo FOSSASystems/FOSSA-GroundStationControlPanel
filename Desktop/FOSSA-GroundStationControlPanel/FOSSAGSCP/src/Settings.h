@@ -30,6 +30,7 @@ public:
     static void SetKey(uint8_t* key);
     static void SetKeySet();
     static uint8_t* GetKey();
+    static std::vector<uint8_t> GetKeyVector();
     static bool IsKeySet();
 
 

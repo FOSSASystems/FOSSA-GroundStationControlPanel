@@ -123,6 +123,15 @@ void Settings::SetKeySet()
 
 uint8_t *Settings::GetKey() { return m_key; }
 
+std::vector<uint8_t> Settings::GetKeyVector()
+{
+    std::vector<uint8_t> keyVector;
+    for (int i = 0; i < 16; i++) {
+        keyVector.push_back(m_key[i]);
+    }
+    return keyVector;
+}
+
 bool Settings::IsKeySet() { return m_keySet; }
 
 void Settings::SetPassword(std::string password)

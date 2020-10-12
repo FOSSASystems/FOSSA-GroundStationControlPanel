@@ -42,9 +42,15 @@ private:
 
     static Datagram Encode(OperationID operationId, int16_t functionId, uint8_t optionalDataLength, char* optionalData);
 public:
-    static void SetCallsign(std::string callsign);
-    static void SetPassword(std::string password);
-    static void SetKey(std::vector<uint8_t> key);
+    static void SetCallsign(std::string callsign) {
+        FOSSASAT2::DatagramEncoder::callsign = callsign;
+    }
+    static void SetPassword(std::string password) {
+        FOSSASAT2::DatagramEncoder::password = password;
+    }
+    static void SetKey(std::vector<uint8_t> key) {
+        FOSSASAT2::DatagramEncoder::key = key;
+    }
 
     /**--------------------------------------------------------
      *

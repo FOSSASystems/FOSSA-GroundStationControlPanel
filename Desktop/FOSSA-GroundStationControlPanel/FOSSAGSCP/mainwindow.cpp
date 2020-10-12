@@ -16,6 +16,15 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_sytemInfoPane = new systeminformationpane();
     m_sytemInfoPane->show();
 
+    // configure the encoder settings
+    FOSSASAT1B::DatagramEncoder::SetCallsign(Settings::getCallsign());
+    FOSSASAT1B::DatagramEncoder::SetKey(Settings::GetKeyVector());
+    FOSSASAT1B::DatagramEncoder::SetPassword(Settings::GetPassword());
+
+    FOSSASAT2::DatagramEncoder::SetCallsign(Settings::getCallsign());
+    FOSSASAT2::DatagramEncoder::SetKey(Settings::GetKeyVector());
+    FOSSASAT2::DatagramEncoder::SetPassword(Settings::GetPassword());
+
     // create the doppler correction timer.
     // must be initialized before the UI
     m_dopplerCorrectionTimer = new QTimer(this);

@@ -144,10 +144,10 @@ std::string Datagram::ToHexString()
         sprintf(&(hexChar[0]), "%02x, ", (uint8_t)(this->radiolibStatusCode >> 8));
         hexChar[4] = '\0';
         hexString.append(hexChar);
-
-        std::string frameStr = this->frame.ToHexString();
-        hexString.append(frameStr);
     }
+
+    std::string frameStr = this->frame.ToHexString();
+    hexString.append(frameStr);
 
     return hexString;
 }

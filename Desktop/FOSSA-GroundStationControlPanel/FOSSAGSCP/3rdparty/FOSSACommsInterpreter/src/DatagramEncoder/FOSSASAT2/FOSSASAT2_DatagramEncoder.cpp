@@ -91,9 +91,9 @@ Datagram FOSSASAT2::DatagramEncoder::Retransmit(uint32_t senderId, char *message
     optData[0] = senderId;
     optData[1] = senderId >> 8;
     optData[2] = senderId >> 16;
-    optData[4] = senderId >> 24;
+    optData[3] = senderId >> 24;
 
-    strcpy(&(optData[5]), message);
+    strcpy(&(optData[4]), message);
 
     Datagram msg = FOSSASAT2::DatagramEncoder::Encode(OperationID::FRAME, CMD_RETRANSMIT, optDataLen, optData);
 
