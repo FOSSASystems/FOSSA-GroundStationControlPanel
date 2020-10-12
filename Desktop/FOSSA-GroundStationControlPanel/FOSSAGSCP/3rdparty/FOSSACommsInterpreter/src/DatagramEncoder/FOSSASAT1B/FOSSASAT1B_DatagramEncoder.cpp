@@ -85,6 +85,7 @@ Datagram FOSSASAT1B::DatagramEncoder::Retransmit(uint32_t senderId, char *messag
     int optDataLen = messageLen + 4;
 
     if (optDataLen > 32) {
+        printf("[ERROR] transmit message too long (max 32)");
         throw "transmit message too long (max 32)";
     }
 
@@ -92,9 +93,9 @@ Datagram FOSSASAT1B::DatagramEncoder::Retransmit(uint32_t senderId, char *messag
     optData[0] = senderId;
     optData[1] = senderId >> 8;
     optData[2] = senderId >> 16;
-    optData[4] = senderId >> 24;
+    optData[3] = senderId >> 24;
 
-    strcpy(&(optData[5]), message);
+    strcpy_s(&(optData[4]), messageLen, message);
 
     Datagram msg = FOSSASAT1B::DatagramEncoder::Encode(OperationID::FRAME, CMD_RETRANSMIT, optDataLen, optData);
 

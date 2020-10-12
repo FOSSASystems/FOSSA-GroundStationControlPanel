@@ -31,6 +31,8 @@
 #include <Ephemerides.h>
 #include <SleepInterval.h>
 
+#include <cstdio>
+
 namespace FOSSASAT1B
 {
 
