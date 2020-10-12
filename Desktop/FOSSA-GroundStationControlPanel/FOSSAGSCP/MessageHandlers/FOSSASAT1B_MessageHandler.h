@@ -3,7 +3,7 @@
 
 #include <Interpreter.h>
 
-#include "../systeminformationpane.h"
+class systeminformationpane;
 
 namespace FOSSASAT1B {
 

@@ -151,32 +151,32 @@ void MainWindow::ReceivedByte(uint8_t data)
                     else if (frameFunctionID == RESP_PACKET_INFO)
                     {
                         FOSSASAT2::Messages::PacketInfo packetInfo = FOSSASAT2::FrameDecoder::DecodePacketInfo(frame);
-                        FOSSASAT2::MessageHandler::Handle(packetInfo);
+                        FOSSASAT2::MessageHandler::Handle(packetInfo, this->m_sytemInfoPane);
                     }
                     else if (frameFunctionID == RESP_STATISTICS)
                     {
                         FOSSASAT2::Messages::Statistics statistics = FOSSASAT2::FrameDecoder::DecodeStatistics(frame);
-                        FOSSASAT2::MessageHandler::Handle(statistics);
+                        FOSSASAT2::MessageHandler::Handle(statistics, this->m_sytemInfoPane);
                     }
                     else if (frameFunctionID == RESP_FULL_SYSTEM_INFO)
                     {
                         FOSSASAT2::Messages::FullSystemInfo fullSystemInfo = FOSSASAT2::FrameDecoder::DecodeFullSystemInfo(frame);
-                        FOSSASAT2::MessageHandler::Handle(fullSystemInfo);
+                        FOSSASAT2::MessageHandler::Handle(fullSystemInfo, this->m_sytemInfoPane);
                     }
                     else if (frameFunctionID == RESP_DEPLOYMENT_STATE)
                     {
                         FOSSASAT2::Messages::DeploymentState deploymentState = FOSSASAT2::FrameDecoder::DecodeDeploymentState(frame);
-                        FOSSASAT2::MessageHandler::Handle(deploymentState);
+                        FOSSASAT2::MessageHandler::Handle(deploymentState, this->m_sytemInfoPane);
                     }
                     else if (frameFunctionID == RESP_RECORDED_IMU)
                     {
                         FOSSASAT2::Messages::RecordedIMU recordedIMU = FOSSASAT2::FrameDecoder::DecodeRecordedIMU(frame);
-                        FOSSASAT2::MessageHandler::Handle(recordedIMU);
+                        FOSSASAT2::MessageHandler::Handle(recordedIMU, this->m_sytemInfoPane);
                     }
                     else if (frameFunctionID == RESP_GPS_LOG_STATE)
                     {
                         FOSSASAT2::Messages::GPSLogState gpsLogState = FOSSASAT2::FrameDecoder::DecodeGPSLogState(frame);
-                        FOSSASAT2::MessageHandler::Handle(gpsLogState);
+                        FOSSASAT2::MessageHandler::Handle(gpsLogState, this);
                     }
                 }
                 else if (operationID == OperationID::HANDSHAKE)
@@ -258,6 +258,11 @@ void MainWindow::SendDatagram(Datagram datagram)
         // the serial thread is currently locked, wait for 10ms and try again.
         QThread::msleep(20);
     }
+}
+
+Ui::MainWindow *MainWindow::GetUI()
+{
+    return this->ui;
 }
 
 

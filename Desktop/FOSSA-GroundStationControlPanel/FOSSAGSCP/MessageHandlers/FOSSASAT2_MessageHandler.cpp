@@ -1,6 +1,9 @@
 #include "FOSSASAT2_MessageHandler.h"
 
+#include "../systeminformationpane.h"
 #include "../ui_systeminformationpane.h"
+#include "../mainwindow.h"
+#include "../ui_mainwindow.h"
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::SystemInfo msg, systeminformationpane* systemInfoPane)
 {
@@ -38,32 +41,32 @@ void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::SystemInfo msg, syst
     systemInfoPane->GetUI()->SystemInformation_FlashInformation_CRCError_SpinBox->setValue(msg.GetFlashSystemInfoPageCrcErrorCounter());
 }
 
-void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::PacketInfo msg)
+void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::PacketInfo msg, systeminformationpane* systemInfoPane)
 {
 
 }
 
-void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::Statistics msg)
+void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::Statistics msg, systeminformationpane* systemInfoPane)
 {
 
 }
 
-void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::FullSystemInfo msg)
+void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::FullSystemInfo msg, systeminformationpane* systemInfoPane)
 {
 
 }
 
-void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::DeploymentState msg)
+void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::DeploymentState msg, systeminformationpane* systemInfoPane)
 {
 
 }
 
-void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::RecordedIMU msg)
+void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::RecordedIMU msg, systeminformationpane* systemInfoPane)
 {
 
 }
 
-void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::GPSLogState msg)
+void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::GPSLogState msg, MainWindow* mainWindow)
 {
 
 }

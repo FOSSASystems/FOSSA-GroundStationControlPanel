@@ -43,6 +43,7 @@ public:
 
     void SendDatagram(Datagram datagram);
     void SendHandshake();
+    Ui::MainWindow* GetUI();
 private:
     void ReceivedByte(uint8_t data);
 
@@ -171,7 +172,6 @@ private slots:
     void on_GroundStationSettings_GFSKConfigSetButton_clicked();
 
 private:
-
     Ui::MainWindow *ui;
 
     // GUI Frames

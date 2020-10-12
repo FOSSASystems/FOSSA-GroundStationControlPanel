@@ -1,5 +1,6 @@
 #include "FOSSASAT1B_MessageHandler.h"
 
+#include "../systeminformationpane.h"
 #include "../ui_systeminformationpane.h"
 
 void FOSSASAT1B::MessageHandler::Handle(FOSSASAT1B::Messages::SystemInfo systemInfo, systeminformationpane* systemInfoPane)
