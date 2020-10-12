@@ -36,6 +36,7 @@ SOURCES += \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_CarrierChangeResult.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_ConfigurationChangeResult.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/GroundStation/GroundStation_HandshakeResult.cpp \
+    3rdparty/FOSSACommsInterpreter/src/SatVersion.cpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gMatrix.cpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gObserver.cpp \
     3rdparty/fossasattracker/libs/gsat-r11-fixed/src/gSatTEME.cpp \

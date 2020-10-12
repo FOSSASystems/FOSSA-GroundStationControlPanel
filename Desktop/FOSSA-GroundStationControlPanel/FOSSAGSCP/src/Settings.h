@@ -8,6 +8,7 @@
 #include <QCoreApplication>
 #include <QSettings>
 #include <QStandardPaths>
+#include <QMessageBox>
 
 #include <string>
 #include <cstdint>
@@ -20,18 +21,15 @@
 class Settings
 {
 public:
-    static bool LoadKeyFromSettings();
-    static void SaveKeyToSettings();
-
     static bool LoadPasswordFromSettings();
     static void SavePasswordToSettings();
 
-
-    static void SetKey(uint8_t* key);
-    static void SetKeySet();
-    static uint8_t* GetKey();
-    static std::vector<uint8_t> GetKeyVector();
-    static bool IsKeySet();
+    static void SetKeyString(std::string keyString);
+    static std::string GetKeyString();
+    static void LoadKeyStringFromFile();
+    static void SaveKeyStringToFile();
+    static uint8_t* KeyStringAsByteArray();
+    static std::vector<uint8_t> KeyStringAsByteVector();
 
 
     static void SetPassword(std::string password);
@@ -70,14 +68,18 @@ public:
 
     static void SetSatVersion(SatVersion satVersion);
     static SatVersion GetSatVersion();
+    static void SaveSatVersion();
+    static void LoadSatVersion();
 
     static std::string getCallsign();
     static void setCallsign(const std::string &value);
+    static bool LoadCallsign();
+    static void SaveCallsign();
 
 protected:
 private:
-    static uint8_t m_key[16];
-    static bool m_keySet;
+    static std::string keyString;
+    static uint8_t m_keyBytes[16];
 
     static std::string m_password;
     static bool m_passwordSet;

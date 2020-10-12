@@ -33,5 +33,8 @@ enum SatVersion {
     V_FOSSASAT2
 };
 
+SatVersion SatVersionFromString(std::string str);
+std::string SatVersionToString(SatVersion version);
+
 
 #endif //SATVERSION_H

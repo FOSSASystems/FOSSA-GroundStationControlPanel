@@ -33,7 +33,7 @@
        <enum>QTabWidget::Triangular</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <property name="elideMode">
        <enum>Qt::ElideRight</enum>
@@ -2183,6 +2183,13 @@ tolerance check:</string>
                <string>Callsign</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_13">
+               <item row="1" column="1" colspan="2">
+                <widget class="QPushButton" name="SatelliteConfig_callsignSetButton">
+                 <property name="text">
+                  <string>Set</string>
+                 </property>
+                </widget>
+               </item>
                <item row="0" column="1" colspan="2">
                 <widget class="QLineEdit" name="SatelliteConfig_callsignLineEdit">
                  <property name="text">
@@ -2193,13 +2200,6 @@ tolerance check:</string>
                  </property>
                  <property name="placeholderText">
                   <string>FOSSASAT-2</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="1" colspan="2">
-                <widget class="QPushButton" name="SatelliteConfig_callsignSetButton">
-                 <property name="text">
-                  <string>Set</string>
                  </property>
                 </widget>
                </item>
@@ -3542,9 +3542,9 @@ Sleep Interval (mV):</string>
            <property name="geometry">
             <rect>
              <x>112</x>
-             <y>118</y>
+             <y>103</y>
              <width>306</width>
-             <height>609</height>
+             <height>638</height>
             </rect>
            </property>
            <property name="sizePolicy">
@@ -3613,45 +3613,55 @@ Sleep Interval (mV):</string>
                <string>Security</string>
               </property>
               <layout class="QGridLayout" name="gridLayout_38">
-               <item row="1" column="1">
+               <item row="2" column="1">
                 <widget class="QLineEdit" name="ControlPanelSettings_securityKeyLineEdit">
                  <property name="echoMode">
                   <enum>QLineEdit::Password</enum>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="0">
+               <item row="3" column="1">
+                <widget class="QPushButton" name="ControlPanelSettings_securitySetButton">
+                 <property name="text">
+                  <string>Set</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
                 <widget class="QLabel" name="label_79">
                  <property name="text">
                   <string>Password:</string>
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
+               <item row="1" column="1">
                 <widget class="QLineEdit" name="ControlPanelSettings_securityPasswordLineEdit">
                  <property name="echoMode">
                   <enum>QLineEdit::Password</enum>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="label_80">
-                 <property name="text">
-                  <string>Key:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="0">
+               <item row="3" column="0">
                 <widget class="QPushButton" name="ControlPanelSettings_Security_Reveal_Button">
                  <property name="text">
                   <string>Reveal</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
-                <widget class="QPushButton" name="ControlPanelSettings_securitySetButton">
+               <item row="2" column="0">
+                <widget class="QLabel" name="label_80">
                  <property name="text">
-                  <string>Set</string>
+                  <string>Key:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="ControlPanelSettings_securityCallsignLineEdit"/>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="label_2">
+                 <property name="text">
+                  <string>Callsign:</string>
                  </property>
                 </widget>
                </item>
@@ -3828,28 +3838,28 @@ Sleep Interval (mV):</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup_3"/>
-  <buttongroup name="buttonGroup_14"/>
-  <buttongroup name="buttonGroup_11"/>
-  <buttongroup name="buttonGroup_4"/>
   <buttongroup name="buttonGroup_5"/>
-  <buttongroup name="lowPowerModeButtonGroup"/>
-  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
-  <buttongroup name="buttonGroup_9"/>
-  <buttongroup name="buttonGroup_15"/>
   <buttongroup name="buttonGroup"/>
-  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
   <buttongroup name="dopplerShiftEnableDisableRadioButtonGroup"/>
-  <buttongroup name="buttonGroup_13"/>
-  <buttongroup name="buttonGroup_7"/>
-  <buttongroup name="buttonGroup_6"/>
-  <buttongroup name="buttonGroup_12"/>
-  <buttongroup name="retransmitBandwidthButtonGroup"/>
-  <buttongroup name="retransmissionCodingRateButtonGroup"/>
-  <buttongroup name="buttonGroup_2"/>
   <buttongroup name="buttonGroup_10"/>
   <buttongroup name="buttonGroup_8"/>
-  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="lowPowerModeButtonGroup"/>
+  <buttongroup name="buttonGroup_6"/>
   <buttongroup name="retransmitSpreadingFactorButtonGroup"/>
+  <buttongroup name="buttonGroup_15"/>
+  <buttongroup name="retransmissionCodingRateButtonGroup"/>
+  <buttongroup name="buttonGroup_4"/>
+  <buttongroup name="gpsLogOldestOrNewestFirstButtonGroup"/>
+  <buttongroup name="retransmitCRCEnabledButtonGroup"/>
+  <buttongroup name="buttonGroup_14"/>
+  <buttongroup name="buttonGroup_7"/>
+  <buttongroup name="retransmitBandwidthButtonGroup"/>
+  <buttongroup name="buttonGroup_13"/>
+  <buttongroup name="buttonGroup_2"/>
+  <buttongroup name="sendFullPictureButtonGroup"/>
+  <buttongroup name="buttonGroup_11"/>
+  <buttongroup name="buttonGroup_9"/>
+  <buttongroup name="buttonGroup_12"/>
+  <buttongroup name="buttonGroup_3"/>
  </buttongroups>
 </ui>

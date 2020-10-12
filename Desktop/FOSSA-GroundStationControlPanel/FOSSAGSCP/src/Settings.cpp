@@ -1,8 +1,8 @@
 #include "Settings.h"
 
 // AES KEY
-uint8_t Settings::m_key[16];
-bool Settings::m_keySet = false;
+std::string Settings::keyString;
+uint8_t Settings::m_keyBytes[16];
 
 // Password.
 std::string Settings::m_password = "";
@@ -21,59 +21,6 @@ std::string Settings::m_tleLine2;
 SatVersion Settings::m_satVersion = SatVersion::V_FOSSASAT2;
 std::string  Settings::callsign;
 
-bool Settings::LoadKeyFromSettings()
-{
-    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
-    QString filename = "settings.ini" ;
-    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
-
-    QString keyText = settings.value("key", "").toString(); // this is a string of hex ASCII characters e.g. FFAAFFAA
-    std::string keyTextStr = keyText.toStdString();
-
-    if (keyText.length() != 32) // key must have 32 characters for 16 bytes.
-    {
-        return false;
-    }
-
-    uint8_t tempKey[16];
-    for (uint8_t i = 0; i < 32; i+=2)
-    {
-        // convert 2 characters in the key tex to a string
-        // e.g. FA
-        char byteAsHexDigits[2];
-        byteAsHexDigits[1] = keyTextStr[i]; // str[1] = F
-        byteAsHexDigits[0] = keyTextStr[i+1]; // str[0] = A --> str = 'FA'
-
-        // convert 2 hex digits to byte.
-        tempKey[i/2] = (uint8_t)strtol(byteAsHexDigits, NULL, 16);
-    }
-
-    Settings::SetKey(tempKey);
-
-    return true;
-}
-
-void Settings::SaveKeyToSettings()
-{
-    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
-    QString filename = "settings.ini" ;
-    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
-
-    uint8_t* key = Settings::GetKey(); // 16 byte key needs to turn into a 32 hex string.
-
-    QString str;
-    for (uint8_t i = 0; i < 16; i++)
-    {
-        uint8_t keyValue = key[i];
-
-        // convert byte into 2 character hex (1 hex = 4 bits)
-        char hexStr[2];
-        sprintf(&(hexStr[0]), "%02x", (uint8_t)keyValue);
-        str.append(hexStr);
-    }
-    settings.setValue("key", str);
-    settings.sync();
-}
 
 bool Settings::LoadPasswordFromSettings()
 {
@@ -107,32 +54,94 @@ void Settings::SavePasswordToSettings()
     settings.setValue("password", str);
 }
 
-void Settings::SetKey(uint8_t *key)
+void Settings::SetKeyString(std::string keyString)
 {
-    for (int i = 0; i < 16; i++)
-    {
-        uint8_t v = key[i];
-        m_key[i] = v;
-    }
+    Settings::keyString = keyString;
 }
 
-void Settings::SetKeySet()
+std::string Settings::GetKeyString()
 {
-    m_keySet = true;
+    return Settings::keyString;
 }
 
-uint8_t *Settings::GetKey() { return m_key; }
-
-std::vector<uint8_t> Settings::GetKeyVector()
+void Settings::LoadKeyStringFromFile()
 {
-    std::vector<uint8_t> keyVector;
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    QString filename = "settings.ini" ;
+    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+    QString keyText = settings.value("key", "").toString(); // this is a string of hex ASCII characters e.g. FFAAFFAA
+    Settings::SetKeyString(keyText.toStdString());
+}
+
+void Settings::SaveKeyStringToFile()
+{
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    QString filename = "settings.ini" ;
+    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+    std::string key = Settings::GetKeyString(); // 16 byte key needs to turn into a 32 hex string.
+    settings.setValue("key", QString::fromStdString(key));
+    settings.sync();
+}
+
+std::vector<uint8_t> Settings::KeyStringAsByteVector()
+{
+    uint8_t* key = Settings::KeyStringAsByteArray();
+    std::vector<uint8_t> keyAsBytes;
     for (int i = 0; i < 16; i++) {
-        keyVector.push_back(m_key[i]);
+        keyAsBytes.push_back(i);
     }
-    return keyVector;
+    return keyAsBytes;
 }
 
-bool Settings::IsKeySet() { return m_keySet; }
+uint8_t *Settings::KeyStringAsByteArray()
+{
+    std::string keyString = Settings::GetKeyString();
+
+    static uint8_t tempKey[16] = { 0 };
+
+    bool keySet = keyString.length() != 0;
+    if (keySet)
+    {
+        bool keyHasValidLength = keyString.length() == (16*2) + 15;
+        if (keyHasValidLength)
+        {
+            QString keyQString = QString::fromStdString(keyString);
+            QStringList keyParts = keyQString.split(",");
+
+            int index = 0;
+            for (QString hexNumber : keyParts) {
+
+                // convert 2 characters in the key tex to a string
+                // e.g. FA
+                char byteAsHexDigits[2];
+                byteAsHexDigits[1] = hexNumber[0].toLatin1(); // str[1] = F
+                byteAsHexDigits[0] = hexNumber[1].toLatin1(); // str[0] = A --> str = 'FA'
+
+                // convert 2 hex digits to byte.
+                tempKey[index] = (uint8_t)strtol(byteAsHexDigits, NULL, 16);
+
+                index++;
+            }
+        }
+        else
+        {
+            Settings::SetKeyString("00,00,00,00,00,00,00,00,00,00,00,00,00,00,00,00");
+            Settings::SaveKeyStringToFile();
+
+            QMessageBox msgBox;
+            QString message = QString("Key string is invalid, must be 16 (1 byte, 2 hex characters) delimninated with commas.");
+            msgBox.setText(message);
+            msgBox.exec();
+
+            return tempKey;
+        }
+    }
+
+    return tempKey;
+
+}
 
 void Settings::SetPassword(std::string password)
 {
@@ -291,6 +300,34 @@ void Settings::setCallsign(const std::string &value)
     callsign = value;
 }
 
+bool Settings::LoadCallsign()
+{
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    QString filename = "settings.ini" ;
+    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+    QString callsignText = settings.value("callsign", "").toString();
+    if (callsignText == "") {
+        Settings::setCallsign("FOSSASAT-2");
+    } else {
+        std::string callsign = callsignText.toStdString();
+        Settings::setCallsign(callsign);
+    }
+
+    return true;
+}
+
+void Settings::SaveCallsign()
+{
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    QString filename = "settings.ini" ;
+    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+    std::string callsign = Settings::getCallsign();
+    QString str = QString::fromStdString(callsign);
+    settings.setValue("callsign", str);
+}
+
 void Settings::SetSatVersion(SatVersion satVersion)
 {
     m_satVersion = satVersion;
@@ -299,4 +336,33 @@ void Settings::SetSatVersion(SatVersion satVersion)
 SatVersion Settings::GetSatVersion()
 {
     return m_satVersion;
+}
+
+void Settings::SaveSatVersion()
+{
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    QString filename = "settings.ini" ;
+    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+    SatVersion version = Settings::GetSatVersion();
+    std::string versionStr = SatVersionToString(version);
+
+    QString str = QString::fromStdString(versionStr);
+    settings.setValue("satversion", str);
+}
+
+void Settings::LoadSatVersion()
+{
+    QString path = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation);
+    QString filename = "settings.ini" ;
+    QSettings settings(path + "/"+ filename, QSettings::IniFormat);
+
+    QString versionText = settings.value("satversion", "").toString();
+    if (versionText == "") {
+        Settings::SetSatVersion(SatVersion::V_FOSSASAT2);
+    } else {
+        std::string versionStr = versionText.toStdString();
+        SatVersion version = SatVersionFromString(versionStr);
+        Settings::SetSatVersion(version);
+    }
 }

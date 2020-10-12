@@ -16,15 +16,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     m_sytemInfoPane = new systeminformationpane();
     m_sytemInfoPane->show();
 
-    // configure the encoder settings
-    FOSSASAT1B::DatagramEncoder::SetCallsign(Settings::getCallsign());
-    FOSSASAT1B::DatagramEncoder::SetKey(Settings::GetKeyVector());
-    FOSSASAT1B::DatagramEncoder::SetPassword(Settings::GetPassword());
-
-    FOSSASAT2::DatagramEncoder::SetCallsign(Settings::getCallsign());
-    FOSSASAT2::DatagramEncoder::SetKey(Settings::GetKeyVector());
-    FOSSASAT2::DatagramEncoder::SetPassword(Settings::GetPassword());
-
     // create the doppler correction timer.
     // must be initialized before the UI
     m_dopplerCorrectionTimer = new QTimer(this);
@@ -35,6 +26,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWi
     this->LoadGroundStationSettingsUI();
     this->LoadSatelliteConfigurationUI();
     this->LoadSatelliteControlsUI();
+
+
+    // configure the encoder settings
+    FOSSASAT1B::DatagramEncoder::SetCallsign(Settings::getCallsign());
+    FOSSASAT1B::DatagramEncoder::SetKey(Settings::KeyStringAsByteVector());
+    FOSSASAT1B::DatagramEncoder::SetPassword(Settings::GetPassword());
+
+    FOSSASAT2::DatagramEncoder::SetCallsign(Settings::getCallsign());
+    FOSSASAT2::DatagramEncoder::SetKey(Settings::KeyStringAsByteVector());
+    FOSSASAT2::DatagramEncoder::SetPassword(Settings::GetPassword());
 
     // startup the serial port thread.
     m_serialPortThread.start();
@@ -426,28 +427,12 @@ void MainWindow::LoadControlPanelSettingsUI()
 
 
     //
-    // Load the key and password into the UI.
+    // Load the key, password and callsign into the UI.
     //
 
     // load the key from the settings
-    bool keyLoaded = Settings::LoadKeyFromSettings();
-    if (keyLoaded)
-    {
-        Settings::SetKeySet();
-
-        uint8_t* key = Settings::GetKey();
-        QString keyAsStr;
-        for (int i = 0; i < 16; i++)
-        {
-            uint8_t v = key[i];
-
-            char hexStr[2];
-            sprintf(&(hexStr[0]), "%02x", (uint8_t)v);
-            keyAsStr.append(hexStr);
-        }
-
-        this->ui->ControlPanelSettings_securityKeyLineEdit->setText(keyAsStr);
-    }
+    Settings::LoadKeyStringFromFile();
+    this->ui->ControlPanelSettings_securityKeyLineEdit->setText(QString::fromStdString(Settings::GetKeyString()));
 
     // Load password from the settings
     bool passwordLoaded = Settings::LoadPasswordFromSettings();
@@ -459,6 +444,7 @@ void MainWindow::LoadControlPanelSettingsUI()
         QString passwordStr = QString::fromStdString(password);
         this->ui->ControlPanelSettings_securityPasswordLineEdit->setText(passwordStr);
     }
+
 
 
     //
@@ -530,6 +516,9 @@ void MainWindow::LoadControlPanelSettingsUI()
 
         m_dopplerCorrectionTimer->start(1000 * 10);
     }
+
+
+
 }
 
 
@@ -601,26 +590,17 @@ void MainWindow::on_ControlPanelSettings_securitySetButton_clicked()
 
     QString key = this->ui->ControlPanelSettings_securityKeyLineEdit->text();
 
-    uint8_t keyBytes[16];
-    QStringList keyHexElements = key.split(',');
-    for (int i = 0; i < keyHexElements.size(); i++)
-    {
-        QString hexElement = keyHexElements[i];
-        bool status = false;
-        uint8_t hexDigit = hexElement.toUInt(&status, 16);
-        if (status == false)
-        {
-            throw "could not convert hex digit, e.g. 0x01";
-        }
-        keyBytes[i] = hexDigit;
-    }
+    QString callsign = this->ui->ControlPanelSettings_securityCallsignLineEdit->text();
 
 
     Settings::SetPassword(passwordStdStr);
     Settings::SavePasswordToSettings();
 
-    Settings::SetKey(keyBytes);
-    Settings::SaveKeyToSettings();
+    Settings::SetKeyString(key.toStdString());
+    Settings::SaveKeyStringToFile();
+
+    Settings::setCallsign(callsign.toStdString());
+    Settings::SaveCallsign();
 }
 
 
@@ -1879,6 +1859,26 @@ void MainWindow::on_Detumble_Execute_Button_2_clicked()
 #define SatelliteConfigurationTab_Start {
 void MainWindow::LoadSatelliteConfigurationUI()
 {
+    //
+    // Load callsign from the settings file
+    //
+    bool callsignLoaded = Settings::LoadCallsign();
+    if (callsignLoaded)
+    {
+        std::string callsign = Settings::getCallsign();
+
+        this->ui->ControlPanelSettings_securityCallsignLineEdit->setText(QString::fromStdString(callsign));
+    }
+
+    //
+    // Load satellite version
+    //
+    Settings::LoadSatVersion();
+    SatVersion satVersion = Settings::GetSatVersion();
+    std::string satVersionStr = SatVersionToString(satVersion);
+
+    int index = ui->SatelliteConfig_SatelliteVersion_ComboBox->findText(QString::fromStdString(satVersionStr));
+    ui->SatelliteConfig_SatelliteVersion_ComboBox->setCurrentIndex(index);
 
 }
 
@@ -1904,6 +1904,7 @@ void MainWindow::on_SatelliteConfig_SatelliteVersion_SetVersion_PushButton_click
     }
 
     Settings::SetSatVersion(satVersion);
+    Settings::SaveSatVersion();
 }
 
 
@@ -3803,5 +3804,3 @@ void MainWindow::on_GroundStationSettings_GFSKConfigSetButton_clicked()
 /// CGround station settings tab END //
 ///////////////////////////////////////
 #define GroundPanelSettingsTab_End }
-
-
