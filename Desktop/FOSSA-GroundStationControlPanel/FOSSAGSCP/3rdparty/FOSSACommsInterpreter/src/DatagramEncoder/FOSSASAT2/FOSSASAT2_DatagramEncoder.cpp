@@ -55,7 +55,8 @@ Datagram FOSSASAT2::DatagramEncoder::Encode(OperationID operationId, int16_t fun
             FCP_Encode(tempBuffer, (char *) callsign, functionId, optionalDataLength, (uint8_t *)optionalData, key, password);
         }
         else {
-            FCP_Encode(tempBuffer, (char *) callsign, functionId, optionalDataLength);
+            FCP_Encode(tempBuffer, (char*)callsign, functionId, optionalDataLength, (uint8_t *)optionalData);
+            //FCP_Encode(tempBuffer, (char *) callsign, functionId, optionalDataLength);
         }
         for (uint8_t i = 0; i < frameLength; i++) {
             frameData.push_back(tempBuffer[i]);
@@ -68,7 +69,11 @@ Datagram FOSSASAT2::DatagramEncoder::Encode(OperationID operationId, int16_t fun
     datagramData.push_back(frameLength);
     datagramData.insert(datagramData.end(), frameData.begin(), frameData.end());
 
-    return Datagram(SatVersion::V_FOSSASAT2, FOSSASAT2::DatagramEncoder::callsign, datagramData, false);
+    Datagram datagram = Datagram(SatVersion::V_FOSSASAT2, FOSSASAT2::DatagramEncoder::callsign, datagramData, false, encrypt);
+    if (datagram.IsEncrypted()) {
+        datagram.SetFrameFunctionID(functionId);
+    }
+    return datagram;
 }
 
 

@@ -32,7 +32,8 @@ Frame::~Frame() {
 
 }
 
-Frame::Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data) {
+Frame::Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool encrypted) {
+    this->encrypted = encrypted;
     this->satVersion = satVersion;
     this->functionId = FCP_Get_FunctionID((char *)callsign.c_str(), data.data(), data.size());
 
@@ -73,6 +74,11 @@ std::string Frame::ToHexString()
 int16_t Frame::GetFunctionID()
 {
     return this->functionId;
+}
+
+void Frame::SetFunctionID(int16_t functionID)
+{
+    this->functionId = functionID;
 }
 
 

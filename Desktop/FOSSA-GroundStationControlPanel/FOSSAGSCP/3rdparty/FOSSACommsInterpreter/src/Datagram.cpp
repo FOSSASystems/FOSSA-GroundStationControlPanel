@@ -27,7 +27,8 @@
 #include <sstream>
 
 
-Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound) {
+Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound, bool encrypted) {
+    this->encrypted = encrypted;
     this->satVersion = satVersion;
     this->inbound = inbound;
     this->callsign = callsign;
@@ -150,6 +151,16 @@ std::string Datagram::ToHexString()
     hexString.append(frameStr);
 
     return hexString;
+}
+
+void Datagram::SetFrameFunctionID(int16_t functionId)
+{
+    this->frame.SetFunctionID(functionId);
+}
+
+bool Datagram::IsEncrypted()
+{
+    return this->encrypted;
 }
 
 void Datagram::ExtractRadiolibStatusCode(std::vector<uint8_t> data) {

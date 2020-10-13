@@ -352,8 +352,8 @@ void MainWindow::SendDopplerShiftedFrequency()
     ui->statusbar->showMessage(QString::number(newCarrierFrequency), 10000);
 
 
-    Datagram datagram = GroundStation::DatagramEncoder::CarrierFrequencyChange(newCarrierFrequency);
-    this->SendDatagram(datagram);
+   // Datagram datagram = GroundStation::DatagramEncoder::CarrierFrequencyChange(newCarrierFrequency);
+    //this->SendDatagram(datagram);
 }
 
 
