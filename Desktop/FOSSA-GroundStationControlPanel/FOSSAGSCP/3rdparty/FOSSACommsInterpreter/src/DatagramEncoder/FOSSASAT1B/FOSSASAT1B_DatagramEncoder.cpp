@@ -71,10 +71,13 @@ Datagram FOSSASAT1B::DatagramEncoder::Encode(OperationID operationId, int16_t fu
     datagramData.insert(datagramData.end(), frameData.begin(), frameData.end());
 
 
-    Datagram datagram = Datagram(SatVersion::V_FOSSASAT2, FOSSASAT1B::DatagramEncoder::callsign, datagramData, false, encrypt);
-    if (datagram.IsEncrypted()) {
-        datagram.SetFrameFunctionID(functionId);
-    }
+    Datagram datagram = Datagram(SatVersion::V_FOSSASAT1B,
+                                 FOSSASAT1B::DatagramEncoder::callsign,
+                                 datagramData,
+                                 false,
+                                 encrypt,
+                                 FOSSASAT1B::DatagramEncoder::key,
+                                 FOSSASAT1B::DatagramEncoder::password);
     return datagram;
 }
 

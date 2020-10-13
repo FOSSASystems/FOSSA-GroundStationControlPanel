@@ -27,8 +27,10 @@
 #include <sstream>
 
 
-Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound, bool encrypted) {
+Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound, bool encrypted, std::vector<uint8_t> key, std::string password) {
     this->encrypted = encrypted;
+    this->key = key;
+    this->password = password;
     this->satVersion = satVersion;
     this->inbound = inbound;
     this->callsign = callsign;
@@ -75,10 +77,6 @@ Datagram::Datagram(SatVersion satVersion, std::string callsign, std::vector<uint
 
 }
 
-int16_t Datagram::GetFrameFunctionID()
-{
-    return this->frame.GetFunctionID();
-}
 
 OperationID Datagram::GetOperationID()
 {
@@ -153,53 +151,90 @@ std::string Datagram::ToHexString()
     return hexString;
 }
 
-void Datagram::SetFrameFunctionID(int16_t functionId)
-{
-    this->frame.SetFunctionID(functionId);
-}
-
 bool Datagram::IsEncrypted()
 {
     return this->encrypted;
 }
+
 
 void Datagram::ExtractRadiolibStatusCode(std::vector<uint8_t> data) {
     this->radiolibStatusCode = data[2] | (data[3] << 8);
 }
 
 void Datagram::ExtractFrame(std::string callsign, std::vector<uint8_t> data) {
-    // inbound frames have a radiolib status code prepended.
-    if (this->inbound)
-    {
-        uint8_t frameLength = this->lengthByte - 2;
-        if (frameLength > 0)
-        {
-            this->frameExists = true;
-            std::vector<uint8_t> frameData;
-            frameData.insert(frameData.end(), data.begin() + 4, data.end());
 
-            this->frame = Frame(this->satVersion, callsign, frameData);
+    if (this->encrypted)
+    {
+        // inbound frames have a radiolib status code prepended.
+        if (this->inbound)
+        {
+            uint8_t frameLength = this->lengthByte - 2;
+            if (frameLength > 0)
+            {
+                this->frameExists = true;
+                std::vector<uint8_t> frameData;
+                frameData.insert(frameData.end(), data.begin() + 4, data.end());
+
+                this->frame = Frame(this->satVersion, callsign, frameData, this->key, this->password, true);
+            }
+            else
+            {
+                this->frameExists = false;
+            }
         }
         else
         {
-            this->frameExists = false;
+            uint8_t frameLength = this->lengthByte;
+            if (frameLength > 0)
+            {
+                this->frameExists = true;
+                std::vector<uint8_t> frameData;
+                frameData.insert(frameData.end(), data.begin() + 2, data.end());
+
+                this->frame = Frame(this->satVersion, callsign, frameData, this->key, this->password, true);
+            }
+            else
+            {
+                this->frameExists = false;
+            }
         }
     }
     else
     {
-        uint8_t frameLength = this->lengthByte;
-        if (frameLength > 0)
+        // inbound frames have a radiolib status code prepended.
+        if (this->inbound)
         {
-            this->frameExists = true;
-            std::vector<uint8_t> frameData;
-            frameData.insert(frameData.end(), data.begin() + 2, data.end());
+            uint8_t frameLength = this->lengthByte - 2;
+            if (frameLength > 0)
+            {
+                this->frameExists = true;
+                std::vector<uint8_t> frameData;
+                frameData.insert(frameData.end(), data.begin() + 4, data.end());
 
-            this->frame = Frame(this->satVersion, callsign, frameData);
+                this->frame = Frame(this->satVersion, callsign, frameData, std::vector<uint8_t>(), std::string(), false);
+            }
+            else
+            {
+                this->frameExists = false;
+            }
         }
         else
         {
-            this->frameExists = false;
+            uint8_t frameLength = this->lengthByte;
+            if (frameLength > 0)
+            {
+                this->frameExists = true;
+                std::vector<uint8_t> frameData;
+                frameData.insert(frameData.end(), data.begin() + 2, data.end());
+
+                this->frame = Frame(this->satVersion, callsign, frameData, std::vector<uint8_t>(), std::string(), false);
+            }
+            else
+            {
+                this->frameExists = false;
+            }
         }
     }
+
 
 }

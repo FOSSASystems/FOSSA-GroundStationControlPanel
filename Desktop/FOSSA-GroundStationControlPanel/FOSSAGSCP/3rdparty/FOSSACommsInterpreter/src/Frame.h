@@ -36,16 +36,15 @@ class Frame {
 public:
     Frame();
     ~Frame();
-    Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool encrypted = false);
+    Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, std::vector<uint8_t> key, std::string password, bool encrypted = false);
 
     uint8_t GetByteAt(uint32_t index);
     std::vector<uint8_t> Serialize();
     std::string ToHexString();
-
     int16_t GetFunctionID();
-    void SetFunctionID(int16_t functionID);
+    bool Encrypted();
 private:
-    void ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength);
+    void ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength, std::vector<uint8_t> key, std::string password);
 private:
     bool encrypted = false;
     SatVersion satVersion;

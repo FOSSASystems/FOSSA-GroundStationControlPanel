@@ -34,7 +34,7 @@
 
 class Datagram {
 public:
-    Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound, bool encrypted = false);
+    Datagram(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool inbound, bool encrypted = false, std::vector<uint8_t> key = std::vector<uint8_t>(), std::string password = std::string());
     int16_t GetFrameFunctionID();
     OperationID GetOperationID();
     Frame GetFrame();
@@ -42,7 +42,6 @@ public:
     std::string ToString();
     std::string ToHexString();
 
-    void SetFrameFunctionID(int16_t functionId);
     bool IsEncrypted();
 private:
     void ExtractRadiolibStatusCode(std::vector<uint8_t> data);
@@ -62,6 +61,8 @@ private:
 
     std::string callsign;
     SatVersion satVersion;
+    std::vector<uint8_t> key;
+    std::string password;
 };
 
 #endif //DATAGRAM_H

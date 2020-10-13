@@ -32,26 +32,58 @@ Frame::~Frame() {
 
 }
 
-Frame::Frame(SatVersion satVersion, std::string callsign, std::vector<uint8_t> data, bool encrypted) {
+Frame::Frame(SatVersion satVersion,
+             std::string callsign,
+             std::vector<uint8_t> data,
+             std::vector<uint8_t> key,
+             std::string password,
+             bool encrypted)
+{
     this->encrypted = encrypted;
     this->satVersion = satVersion;
-    this->functionId = FCP_Get_FunctionID((char *)callsign.c_str(), data.data(), data.size());
 
-    int16_t optionalDataLength = FCP_Get_OptData_Length((char *)callsign.c_str(), data.data(), data.size());
-    if (optionalDataLength > 0) {
-        this->hasOptionalData = true;
-        this->ExtractOptionalData(callsign, data, optionalDataLength);
+    // convert the vectors and strings into C compatable variables.
+    char* callsignStr = (char*)callsign.c_str();
+    uint8_t* dataBytes = data.data();
+    size_t dataBytesLength = data.size();
+    const uint8_t* keyBytes = key.data();
+    size_t keyBytesLength = key.size();
+    const char* passwordChars = password.c_str();
+
+    // extract the function ID from the given frameData.
+    this->functionId = FCP_Get_FunctionID(callsignStr, dataBytes, dataBytesLength);
+
+    // extract the optional data length from the frameData.
+    int16_t optionalDataLength = -5;
+    if (this->encrypted)
+    {
+        optionalDataLength = FCP_Get_OptData_Length(callsignStr, dataBytes, dataBytesLength, keyBytes, passwordChars);
     }
-    else {
+    else
+    {
+        optionalDataLength = FCP_Get_OptData_Length(callsignStr, dataBytes, dataBytesLength, NULL, NULL);
+    }
+
+    // if there is optional data to parse
+    if (optionalDataLength > 0)
+    {
+        this->hasOptionalData = true;
+        this->ExtractOptionalData(callsign, data, optionalDataLength, key, password);
+    }
+    else
+    {
         this->hasOptionalData = false;
     }
+
 }
 
-uint8_t Frame::GetByteAt(uint32_t index) {
+uint8_t Frame::GetByteAt(uint32_t index)
+{
     return this->optionalData[index];
 }
 
-std::vector<uint8_t> Frame::Serialize() {
+std::vector<uint8_t> Frame::Serialize()
+{
     std::vector<uint8_t> data;
     data.insert(data.end(), this->optionalData.begin(), this->optionalData.end());
     return data;
@@ -60,6 +92,11 @@ std::vector<uint8_t> Frame::Serialize() {
 std::string Frame::ToHexString()
 {
     std::string frameStr;
+
+    char hexChar[5];
+    hexChar[4] = '\0';
+    sprintf(&(hexChar[0]), "%02x, ", this->functionId);
+    frameStr.append(hexChar);
 
     for (uint8_t value : this->optionalData) {
         char hexChar[5];
@@ -76,17 +113,34 @@ int16_t Frame::GetFunctionID()
     return this->functionId;
 }
 
-void Frame::SetFunctionID(int16_t functionID)
+bool Frame::Encrypted()
 {
-    this->functionId = functionID;
+    return this->encrypted;
 }
 
 
-void Frame::ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength) {
+void Frame::ExtractOptionalData(std::string callsign, std::vector<uint8_t> &data, int16_t optionalDataLength, std::vector<uint8_t> key, std::string password)
+{
     uint8_t *tempBuffer = new uint8_t[optionalDataLength];
-    FCP_Get_OptData((char *)callsign.c_str(), data.data(), data.size(), tempBuffer, NULL, NULL);
 
-    for (int16_t i = 0; i < optionalDataLength; i++) {
+    char* callsignStr = (char*)callsign.c_str();
+    uint8_t* dataBytes = data.data();
+    size_t dataBytesLength = data.size();
+    const uint8_t* keyBytes = key.data();
+    size_t keyBytesLength = key.size();
+    const char* passwordChars = password.c_str();
+
+    if (this->Encrypted())
+    {
+        FCP_Get_OptData(callsignStr, dataBytes, dataBytesLength, tempBuffer, keyBytes, passwordChars);
+    }
+    else
+    {
+        FCP_Get_OptData(callsignStr, dataBytes, dataBytesLength, tempBuffer, NULL, NULL);
+    }
+
+    for (int16_t i = 0; i < optionalDataLength; i++)
+    {
         this->optionalData.push_back(tempBuffer[i]);
     }
 
