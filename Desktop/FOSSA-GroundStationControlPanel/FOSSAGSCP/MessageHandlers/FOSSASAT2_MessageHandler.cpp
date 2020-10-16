@@ -209,7 +209,19 @@ void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::DeploymentState msg,
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::RecordedIMU msg, systeminformationpane* systemInfoPane)
 {
+    Ui::systeminformationpane* ui = systemInfoPane->GetUI();
 
+    ui->SystemInformation_IMUInformation_GryroX_DoubleSpinBox->setValue(msg.GetGyroX());
+    ui->SystemInformation_IMUInformation_GryroY_DoubleSpinBox->setValue(msg.GetGyroY());
+    ui->SystemInformation_IMUInformation_GryroZ_DoubleSpinBox->setValue(msg.GetGyroZ());
+
+    ui->SystemInformation_IMUInformation_AcceleX_DoubleSpinBox->setValue(msg.GetAcceleX());
+    ui->SystemInformation_IMUInformation_AcceleX_DoubleSpinBox->setValue(msg.GetAcceleY());
+    ui->SystemInformation_IMUInformation_AcceleX_DoubleSpinBox->setValue(msg.GetAcceleZ());
+
+    ui->SystemInformation_IMUInformation_MagX_DoubleSpinBox->setValue(msg.GetMagnX());
+    ui->SystemInformation_IMUInformation_MagY_DoubleSpinBox->setValue(msg.GetMagnY());
+    ui->SystemInformation_IMUInformation_MagZ_DoubleSpinBox->setValue(msg.GetMagnZ());
 }
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::GPSLogState msg, MainWindow* mainWindow)
