@@ -226,5 +226,9 @@ void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::RecordedIMU msg, sys
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::GPSLogState msg, MainWindow* mainWindow)
 {
+    Ui::MainWindow* ui = mainWindow->GetUI();
 
+    ui->GPSControl_GetGPSState_Length_LineEdit->setText(QString::number(msg.GetGpsLogLength()));
+    ui->GPSControl_GetGPSState_LastEntryAddress_LineEdit->setText(QString::number(msg.GetLastNmeaEntryAddr()));
+    ui->GPSControl_GetGPSState_LastFixAddress_LineEdit->setText(QString::number(msg.GetLastNmeaFixAddr()));
 }
