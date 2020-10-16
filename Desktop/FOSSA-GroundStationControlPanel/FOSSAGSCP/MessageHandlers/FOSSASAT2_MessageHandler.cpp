@@ -58,7 +58,65 @@ void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::PacketInfo msg, syst
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::Statistics msg, systeminformationpane* systemInfoPane)
 {
+    Ui::systeminformationpane* ui = systemInfoPane->GetUI();
 
+    ui->StatisticsControls_Flags_2_Temperatures_Enabled->setChecked(msg.IsTemperaturesIncluded());
+    ui->StatisticsControls_Flags_2_Temperatures_Disabled->setChecked(!msg.IsTemperaturesIncluded());
+
+    ui->StatisticsControls_Flags_2_Currents_Enabled->setChecked(msg.IsCurrentsIncluded());
+    ui->StatisticsControls_Flags_2_Currents_Disabled->setChecked(!msg.IsCurrentsIncluded());
+
+    ui->StatisticsControls_Flags_2_Voltages_Enabled->setChecked(msg.IsVoltagesIncluded());
+    ui->StatisticsControls_Flags_2_Voltages_Disabled->setChecked(!msg.IsVoltagesIncluded());
+
+    ui->StatisticsControls_Flags_2_LightSensors_Enabled->setChecked(msg.IsLightSensorsIncluded());
+    ui->StatisticsControls_Flags_2_LightSensors_Disabled->setChecked(!msg.IsLightSensorsIncluded());
+
+    ui->StatisticsControls_Flags_2_IMU_Enabled->setChecked(msg.IsImuIncluded());
+    ui->StatisticsControls_Flags_2_IMU_Disabled->setChecked(!msg.IsImuIncluded());
+
+    ui->LiveStatistics_Temperatures_PlainTextEdit->clear();
+    ui->LiveStatistics_Currents_PlainTextEdit->clear();
+    ui->LiveStatistics_Voltages_PlainTextEdit->clear();
+    ui->LiveStatistics_LightSensors_PlainTextEdit->clear();
+    ui->LiveStatistics_IMU_PlainTextEdit->clear();
+
+    if (msg.IsTemperaturesIncluded())
+    {
+        const std::vector<float>& temperatures = msg.GetTemperatures();
+        for (float temperature : temperatures)
+        {
+            ui->LiveStatistics_Temperatures_PlainTextEdit->appendPlainText(QString::number(temperature) + QString(" ºC\n"));
+        }
+    }
+
+
+    if (msg.IsVoltagesIncluded())
+    {
+        const std::vector<float>& voltages = msg.GetVoltages();
+        for (float voltage : voltages)
+        {
+            ui->LiveStatistics_Voltages_PlainTextEdit->appendPlainText(QString::number(voltage) + QString(" mV\n"));
+        }
+    }
+
+    if (msg.IsLightSensorsIncluded())
+    {
+        const std::vector<float>& lightSensors = msg.GetLightSensors();
+        for (float lightSensor : lightSensors) {
+
+            ui->LiveStatistics_LightSensors_PlainTextEdit->appendPlainText(QString::number(lightSensor) + QString(" ???\n"));
+        }
+    }
+
+    if (msg.IsImuIncluded())
+    {
+        const std::vector<float>& imus = msg.GetImus();
+        for (float imu : imus) {
+
+            ui->LiveStatistics_IMU_PlainTextEdit->appendPlainText(QString::number(imu) + QString(" ???\n"));
+        }
+    }
 }
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::FullSystemInfo msg, systeminformationpane* systemInfoPane)
