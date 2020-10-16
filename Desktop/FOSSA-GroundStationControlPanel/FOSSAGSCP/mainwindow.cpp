@@ -190,6 +190,8 @@ void MainWindow::ReceivedByte(uint8_t data)
                     }
                     else if (frameFunctionID == RESP_ACKNOWLEDGE)
                     {
+                        FOSSASAT2::Messages::Acknowledge acknowledge = FOSSASAT2::FrameDecoder::DecodeAcknowledge(frame);
+                        FOSSASAT2::MessageHandler::Handle(acknowledge, this->m_messageLogFrame);
                     }
                 }
                 else if (operationID == OperationID::HANDSHAKE)

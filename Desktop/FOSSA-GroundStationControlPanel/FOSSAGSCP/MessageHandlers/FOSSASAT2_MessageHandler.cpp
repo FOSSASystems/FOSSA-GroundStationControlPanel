@@ -4,6 +4,8 @@
 #include "../ui_systeminformationpane.h"
 #include "../mainwindow.h"
 #include "../ui_mainwindow.h"
+#include "../messagelogframe.h"
+#include "../ui_messagelogframe.h"
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::SystemInfo msg, systeminformationpane* systemInfoPane)
 {
@@ -231,4 +233,9 @@ void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::GPSLogState msg, Mai
     ui->GPSControl_GetGPSState_Length_LineEdit->setText(QString::number(msg.GetGpsLogLength()));
     ui->GPSControl_GetGPSState_LastEntryAddress_LineEdit->setText(QString::number(msg.GetLastNmeaEntryAddr()));
     ui->GPSControl_GetGPSState_LastFixAddress_LineEdit->setText(QString::number(msg.GetLastNmeaFixAddr()));
+}
+
+void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::Acknowledge msg, MessageLogFrame* logFrame)
+{
+    logFrame->RawWriteToLog("Command acknowledged");
 }

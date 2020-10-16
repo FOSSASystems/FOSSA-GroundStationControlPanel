@@ -5,6 +5,7 @@
 
 class systeminformationpane;
 class MainWindow;
+class MessageLogFrame;
 
 namespace FOSSASAT2 {
 
@@ -18,6 +19,7 @@ public:
     static void Handle(FOSSASAT2::Messages::DeploymentState msg, systeminformationpane* systemInfoPane);
     static void Handle(FOSSASAT2::Messages::RecordedIMU msg, systeminformationpane* systemInfoPane);
     static void Handle(FOSSASAT2::Messages::GPSLogState msg, MainWindow* mainWindow);
+    static void Handle(FOSSASAT2::Messages::Acknowledge msg, MessageLogFrame* logFrame);
 };
 
 }
