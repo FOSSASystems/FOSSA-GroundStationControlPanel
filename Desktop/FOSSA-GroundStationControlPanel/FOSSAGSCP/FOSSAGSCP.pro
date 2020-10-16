@@ -26,6 +26,7 @@ SOURCES += \
     3rdparty/FOSSACommsInterpreter/src/FrameDecoder/FOSSASAT2/FOSSASAT2_FrameDecoder.cpp \
     3rdparty/FOSSACommsInterpreter/src/FrameDecoder/GroundStation/GroundStation_FrameDecoder.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT1B/FOSSASAT1B_SystemInfo.cpp \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_Acknowledge.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_DeploymentState.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_FullSystemInfo.cpp \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_GPSLogState.cpp \
@@ -82,6 +83,7 @@ HEADERS += \
     3rdparty/FOSSACommsInterpreter/src/Interpreters/FOSSASAT2.h \
     3rdparty/FOSSACommsInterpreter/src/Interpreters/GroundStation.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT1B/FOSSASAT1B_SystemInfo.h \
+    3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_Acknowledge.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_DeploymentState.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_FullSystemInfo.h \
     3rdparty/FOSSACommsInterpreter/src/Message/FOSSASAT2/FOSSASAT2_GPSLogState.h \

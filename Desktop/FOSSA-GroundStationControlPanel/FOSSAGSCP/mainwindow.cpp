@@ -188,6 +188,9 @@ void MainWindow::ReceivedByte(uint8_t data)
                         FOSSASAT2::Messages::GPSLogState gpsLogState = FOSSASAT2::FrameDecoder::DecodeGPSLogState(frame);
                         FOSSASAT2::MessageHandler::Handle(gpsLogState, this);
                     }
+                    else if (frameFunctionID == RESP_ACKNOWLEDGE)
+                    {
+                    }
                 }
                 else if (operationID == OperationID::HANDSHAKE)
                 {

@@ -57,3 +57,8 @@ FOSSASAT2::Messages::GPSLogState FOSSASAT2::FrameDecoder::DecodeGPSLogState(Fram
 {
     return FOSSASAT2::Messages::GPSLogState(frame);
 }
+
+FOSSASAT2::Messages::Acknowledge FOSSASAT2::FrameDecoder::DecodeAcknowledge(Frame &frame)
+{
+    return FOSSASAT2::Messages::Acknowledge(frame);
+}

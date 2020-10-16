@@ -35,6 +35,7 @@
 #include "../../Message/FOSSASAT2/FOSSASAT2_DeploymentState.h"
 #include "../../Message/FOSSASAT2/FOSSASAT2_RecordedIMU.h"
 #include "../../Message/FOSSASAT2/FOSSASAT2_GPSLogState.h"
+#include "../../Message/FOSSASAT2/FOSSASAT2_Acknowledge.h"
 
 namespace FOSSASAT2
 {
@@ -48,6 +49,7 @@ public:
     static FOSSASAT2::Messages::DeploymentState DecodeDeploymentState(Frame &frame);
     static FOSSASAT2::Messages::RecordedIMU DecodeRecordedIMU(Frame &frame);
     static FOSSASAT2::Messages::GPSLogState DecodeGPSLogState(Frame &frame);
+    static FOSSASAT2::Messages::Acknowledge DecodeAcknowledge(Frame &frame);
 };
 
 }
