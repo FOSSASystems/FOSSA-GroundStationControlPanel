@@ -12,6 +12,10 @@ void setup()
 
 void loop()
 {
+	while (Serial.available()) {
+		char v = Serial.read();
+		SerialB.print("RX");
+	}
 	/* Press S to send messages from the arduino to the control panel.
 	 *  
 	// listen to the main com port 6 and echo to the serialb.
@@ -57,6 +61,7 @@ void loop()
         sprintf(&(hexStr[0]), "%02x", (uint8_t)c);
         Serial.print(hexStr);
 	}*/
+	/*
 	while (SerialB.available() > 0)
 	{
 		char c = SerialB.read();
@@ -65,5 +70,5 @@ void loop()
         //char hexStr[2];
         //sprintf(&(hexStr[0]), "%02x\r\n", (uint8_t)c);
         Serial.print(c);
-	}
+	}*/
 }

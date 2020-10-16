@@ -24,8 +24,8 @@
 
 #include "Frame.h"
 
-Frame::Frame() {
-
+Frame::Frame()
+    : hasFunctionId(false), hasOptionalData(false), encrypted(false) {
 }
 
 Frame::~Frame() {
@@ -85,7 +85,10 @@ uint8_t Frame::GetByteAt(uint32_t index)
 std::vector<uint8_t> Frame::Serialize()
 {
     std::vector<uint8_t> data;
-    data.insert(data.end(), this->optionalData.begin(), this->optionalData.end());
+    if (this->hasOptionalData)
+    {
+        data.insert(data.end(), this->optionalData.begin(), this->optionalData.end());
+    }
     return data;
 }
 
@@ -93,17 +96,25 @@ std::string Frame::ToHexString()
 {
     std::string frameStr;
 
-    char hexChar[5];
-    hexChar[4] = '\0';
-    sprintf(&(hexChar[0]), "%02x, ", this->functionId);
-    frameStr.append(hexChar);
-
-    for (uint8_t value : this->optionalData) {
+    if (this->hasFunctionId)
+    {
         char hexChar[5];
         hexChar[4] = '\0';
-        sprintf(&(hexChar[0]), "%02x, ", value);
+        sprintf(&(hexChar[0]), "%02x, ", this->functionId);
         frameStr.append(hexChar);
     }
+
+    if (this->hasOptionalData)
+    {
+        for (uint8_t value : this->optionalData)
+        {
+            char hexChar[5];
+            hexChar[4] = '\0';
+            sprintf(&(hexChar[0]), "%02x, ", value);
+            frameStr.append(hexChar);
+        }
+    }
+
 
     return frameStr;
 }

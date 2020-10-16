@@ -43,7 +43,7 @@ Datagram GroundStation::DatagramEncoder::Encode(OperationID operationId, std::ve
 Datagram GroundStation::DatagramEncoder::Handshake()
 {
     std::vector<uint8_t> msgData;
-    msgData.push_back(FCPI_DIR_FROM_GROUND_STATION);
+    msgData.push_back(FCPI_DIR_TO_GROUND_STATION);
     msgData.push_back(OperationID::HANDSHAKE);
 
     return Datagram(SatVersion::V_NA, "NA", msgData, false);

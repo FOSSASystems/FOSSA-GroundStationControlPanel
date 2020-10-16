@@ -50,7 +50,9 @@ private:
     SatVersion satVersion;
     int16_t functionId;
     std::vector<uint8_t> optionalData;
+
     bool hasOptionalData;
+    bool hasFunctionId;
 };
 
 
