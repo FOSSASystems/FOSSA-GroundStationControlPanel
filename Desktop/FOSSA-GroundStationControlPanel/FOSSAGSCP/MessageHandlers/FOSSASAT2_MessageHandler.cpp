@@ -203,7 +203,8 @@ void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::FullSystemInfo msg, 
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::DeploymentState msg, systeminformationpane* systemInfoPane)
 {
-
+    Ui::systeminformationpane* ui = systemInfoPane->GetUI();
+    ui->SystemInformation_Deployment_Counter_SpinBox->setValue(msg.GetDeploymentCounter());
 }
 
 void FOSSASAT2::MessageHandler::Handle(FOSSASAT2::Messages::RecordedIMU msg, systeminformationpane* systemInfoPane)
